@@ -1,0 +1,31 @@
+tab-item{
+		color: #E9E9F4 !important;
+background: #3A3C4E !important;
+
+}
+tab-tem:hover{
+		color: #62D6E8 !important;
+	background: #282936 !important;
+}
+
+tab-item   .label-content {
+  color: #E9E9F4 !important;
+}
+tab-item.active  .label-content {
+  color: #62d6e8 !important;
+}
+tab-item:hover  .label-content {
+  color: #B45BCF !important;
+}
+
+tab-item.active:hover .label-content{
+color: #EBFF87 !important;
+}
+
+
+
+#tabbar-container {
+	background: #282936 !important;
+color: #e9e9f4 !important;
+}
+

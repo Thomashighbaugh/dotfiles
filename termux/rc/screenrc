@@ -1,0 +1,44 @@
+# force term
+#term screen-256color
+
+# terminfo and termcap for nice 256 color terminal
+# allow bold colors - necessary for some reason
+attrcolor b ".I" 
+
+# tell screen how to set colors. AB = background, AF=foreground 
+termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm' 
+termcapinfo xterm-color 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm' 
+termcapinfo xterm-256color 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+# erase background with current bg color 
+defbce "on"
+escape ^Tt
+
+defutf8         on
+autodetach		on
+crlf			off
+hardcopy_append	on
+startup_message	off
+defscrollback		5000
+silencewait		15
+
+vbell on
+vbell_msg "   Pass ouf!  ----  Pass ouf!!  "
+bell "%C -> %n%f %t bell!~"
+bell_msg ' *BELL* in window %n'
+
+windows
+
+bind j focus down
+bind k focus up
+bind t focus top
+bind t focus down
+
+## My old default
+#caption always "%?%F%{-b bc}%:%{-b bb}%?%C|%D|%M %d|%H%?%F%{+u wb}%? %L=%-Lw%45>%{+b by}%n%f* %t%{-}%+Lw%-0<"
+## From EY
+caption always "%?%F%{...}%?%3n %t%? [%h]%?"
+hardstatus alwayslastline "%{= kW}[%Y-%0m-%0d %0c:%s]%{dd} %{= kc}%?%-Lw%?%{= kY}%n*%f %t%?(%u)%?%{= kc}%?%+Lw%?"
+activity "%C -> %n%f %t activity!"
+
+# mouse scrolling
+termcapinfo xterm* ti@:te@

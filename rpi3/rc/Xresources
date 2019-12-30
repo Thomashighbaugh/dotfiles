@@ -1,0 +1,6 @@
+#include ".Xresources.d/color"
+#include ".Xresources.d/rxvt-unicode"
+#include ".Xresources.d/font"
+#include ".Xresources.d/xterm"
+#include ".Xresources.d/uxterm"
+

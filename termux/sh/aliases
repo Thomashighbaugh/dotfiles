@@ -1,0 +1,3 @@
+alias ll='ls -ahl'
+alias pac='pkg install -y '
+alias puc='pkg update && pkg upgrade -y'

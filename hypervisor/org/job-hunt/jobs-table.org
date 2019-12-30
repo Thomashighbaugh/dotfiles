@@ -1,0 +1,10 @@
+* Job Application Tracking Table
+Below is a table that keeps track of the various jobs I apply to, excluding
+ZipRecruiter jobs, for purposes of tracking my progress
+
+| Date      | Position                     | Company                          | Listing Board    | Notes |
+|-----------+------------------------------+----------------------------------+------------------+-------|
+| 11/11/19  | Creative Front End Developer | Britelite Immersive              | Indeed           |       |
+| 11/11/19  | Web Designer                 | Simpson Strong Tie               | Indeed/Workaday/ |       |
+| 11/11/19  | Web Developer                | Alameda County Behavioral Health | Indeed           |       |
+| 11/11/19  |                              |                                  |                  |       |

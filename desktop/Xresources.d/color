@@ -1,0 +1,25 @@
+! Base colors
+*.foreground: #DEE6E7
+*.background: #17161B
+*.cursorColor: #57c7FF
+
+*.color0: #24262A
+*.color1: #F0719B
+*.color2: #5AF7B0
+*.color3: #FFA56B
+*.color4: #8265FF
+*.color5: #C792EA
+*.color6: #89DDFF
+*.color7: #DEE6E7
+*.color8: #3a3c4e
+*.color9: #F02E6E
+*.color10: #2CE592
+*.color11: #FDFF37
+*.color12: #1DA0E2
+*.color13: #B265FF
+*.color14: #47BAE8
+*.color15: #DEE6E7
+*.color16: #27292C
+*.color17: #939597
+
+Internal shared storage

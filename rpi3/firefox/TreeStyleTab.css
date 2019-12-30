@@ -1,0 +1,128 @@
+/* TreeStyleTab.css */
+
+/* Hide border on tab bar, force its state to 'scroll', adjust margin-left for width of scrollbar. */
+#tabbar {
+	border: 0;
+	scrollbar-width: none;
+}
+/* Remove space before child tabs when sidebar collapsed. */
+/* (I'd prefer for them to be at -1px, but I don't know how to target child tabs specifically.) */
+#tabbar:not(:hover) .tab {
+	margin-left: 0;
+}
+
+/* Hide .twisty and adjust margins so favicons have 7px on left. */
+.tab .twisty {
+	visibility: hidden;
+	margin-left: -12px;
+}
+
+/* Push tab labels slightly to the right so they're completely hidden in collapsed state, but still look fine while expanded. */
+.tab .label {
+	margin-left: 7px;
+}  
+
+/* Hide close buttons on tabs. */
+.tab .closebox {
+	visibility: collapse;
+}
+
+/* Hide sound playing/muted button. */
+.sound-button {
+	display: none !important;
+}
+
+/* Hide 'new tab' button. */
+.newtab-button {
+color: #DEE6e7 !important;
+background-color: #17161b !important;
+}
+
+
+
+/* ##### THEME ############################################ */
+@keyframes pulse {
+	0% {
+		width: 0px;
+		height: 0px;
+		opacity: 1;
+	}
+	100% {
+		width: 350px;
+		height: 350px;
+		opacity: 0;
+		top: calc(50% - 175px);
+		left: calc(50% - 175px);
+	}
+}
+
+
+
+#tabbar {
+	border-right: 1px solid #17161B ;
+	box-shadow: none !important;
+	background-color: #17161B;
+}
+
+
+
+.tab {
+	background-color: transparent;
+	border-color: #24262A;
+	box-shadow: none !important;
+}
+.tab .label {
+	color: #DEE6E7;
+}
+.tab:hover {
+	background-color: #24262A !important;
+color: #8265FF !important;
+}
+.tab:hover .label {
+	color: #8265FF	!important;
+}
+
+
+
+/* pending / unloaded tabs */
+.tab.discarded {
+	background-color: #17161B ;
+}
+
+.tab.discarded:hover {
+	background-color: #24262A !important;
+}
+
+
+
+/* active tab  */
+.tab.active {
+	background-color: #17161B ;
+color: #8265FF !important;
+}
+.tab.active .label {
+	font-weight: bold;
+	color: #8265FF !important;
+}
+.tab.active:hover {
+	background-color: #17161B  !important;
+color: #DDE6E7 !important;
+}
+
+
+
+/* Adjust style for tab that has sound playing. */
+.tab.sound-playing .favicon::after {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	border-radius: 50%;
+	background: #17161B;
+	animation: pulse 2s ease-out 0s infinite;
+	z-index: -1;
+	opacity: 0;
+}
+
+
+

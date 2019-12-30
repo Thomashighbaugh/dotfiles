@@ -1,0 +1,83 @@
+[options]
+allow_bold = true
+audible_bell = false
+browser = google-chrome
+clickable_url = true
+#cursor_blink = system
+cursor_shape = block
+dynamic_title = true
+filter_unmatched_urls = true
+font = Droid Sans Mono 12
+font = Hack 12
+font = Hack Nerd Font Mono 13
+#fullscreen = true
+geometry = 640x480
+hyperlinks = true
+icon_name = terminal
+#modify_other_keys = false
+#mouse_autohide = false
+scrollback_lines = 0
+scrollbar = off
+#scroll_on_keystroke = true
+#scroll_on_output = false
+search_wrap = false
+#size_hints = false
+#urgent_on_bell = true
+
+[colors]
+# Base16 Modern/arc-dark
+# Author: Modern/arc-dark
+
+foreground          = #ffffff
+foreground_bold     = #dee6e7
+cursor              = #dee6e7
+cursor_foreground   = #20242b
+background          = rgba(32, 36, 43)
+
+# 16 color space
+
+# Black, Gray, Silver, White
+color0  = #20242b
+color8  = #8f9195
+color7  = #ffffff
+color15 = #ffffff
+
+# Red
+color1  = #f02e6e
+color9  = #f02e6e
+
+# Green
+color2  = #2ce592
+color10 = #2ce592
+
+# Yellow
+color3  = #fdcc59
+color11 = #fdcc59
+
+# Blue
+color4  = #5294e2
+color12 = #5294e2
+
+# Purple
+color5  = #a742ea
+color13 = #a742ea
+
+# Teal
+color6  = #89ddff
+color14 = #89ddff
+
+# Extra colors
+color16 = #ebff87
+color17 = #d98266
+color18 = #383c4a
+color19 = #41424b
+color20 = #0c1017
+color21 = #dee6e7
+
+[hints]
+padding = 2
+border = #62d6e8#
+border_width = 0.5
+roundness = 2.0
+
+# vim: ft=dosini

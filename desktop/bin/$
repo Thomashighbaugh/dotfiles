@@ -1,0 +1,10 @@
+#!/bin/zsh
+
+# Ever pasted "$ somecommand" into the terminal and gotten this error?
+# -bash: $: command not found
+
+# Begone, silly errors! Lazy copy + paste forever!! ETCETERA!!!!
+
+echo 'FOOL! You left the dollar sign in the command you just pasted!'
+"$@"
+
