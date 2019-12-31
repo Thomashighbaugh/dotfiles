@@ -1,4 +1,4 @@
-.PHONY: uefiupdate kitty alacritty laptop awesome archive disk rc zsh bash sh X tmux vim neovim rofi browsers docker dev emacs fonts git gtk templates android media netsec yarn
+.PHONY: uefiupdate kitty alacritty laptop awesome archive disk rc zsh bash sh X tmux vim neovim rofi browsers docker dev emacs fonts git gtk templates android media netsec minikube postgresql redis pip yarn
 
 all: .PHONY
 alacritty:
@@ -44,6 +44,10 @@ dev:
 	yay -S --noconfirm --needed ruby-build-git
 	rbenv install 2.6.5
 	gem install neovim bundler jekyll sass gollum
+	yay -S rustup
+	rustup default stable
+	rustup component add rls rust-analysis rust-src
+
 
 disk: 
 	sudo pacman -S --noconfirm gnome-disk-utility gnome-keyring keychain less dosfstools ntfs-3g exfat-utils fatresize udftools zstd exfat-utils 
@@ -104,6 +108,7 @@ gtk:
 	wget -qO- https://git.io/fhQdI | sh
 	suru-plus-folders -C aurora --theme Suru++
 	sudo cp -rv /usr/share/icons/Suru++/* /usr/share/icons/hicolor ## overwrites the hicolor theme with Suru++ for pretty menus
+	sudo ln -sfv ${PWD}/gtk/gtk-bookmarks ${HOME}/.gtk-bookmarks
 kitty:
 	sudo pacman -S --noconfirm kitty kitty-terminfo xterm  libvterm
 	test -L ${HOME}/.config/kitty || rm -rf ${HOME}/.config/kitty
@@ -112,10 +117,21 @@ kitty:
 	sudo ln -sf ${PWD}/kitty/colors.conf ${HOME}/.config/kitty/colors.conf
 
 laptop:
-	yay -S --noconfirm --needed thinkalert tlpui  
+	yay -S --noconfirm --needed thinkalert tlpui  powertop
+	systemctl enable tlp.service
+	systemctl enable tlp-sleep.service
 media:
 	sudo pacman -S --noconfirm alsa-firmware alsa-utils ffmpeg ffmpegthumbnailer maim scrot i3-scrot gimp imagemagick pulseaudio-bluetooth pulseaudio-ctl ffmpeg asciidoc pulseaudio-zeroconf mpv mtpfs mtr python-mpd2 youtube-dl
 	yay -S --needed --noconfirm gpick coulr  
+minikube: 
+	sudo pacman -S --noconfirm minikube libvirt qemu-headless ebtables docker-machine
+	yay -S --needed --noconfirm docker-machine-driver-kvm2
+	sudo usermod -a -G libvirt ${USER}
+	sudo systemctl start libvirtd.service
+	sudo systemctl enable libvirtd.service
+	sudo systemctl start virtlogd.service
+	sudo systemctl enable virtlogd.service
+	minikube config set vm-driver kvm2
 neovim: 
 	sudo pacman -S --noconfirm neovim
 	mkdir -p ${HOME}/.config/nvim
@@ -139,6 +155,63 @@ netsec:
 	sudo firectl enable gimp
 	sudo firectl enable chromium
 	sudo firectl enable brave-browser
+pip: 
+	mkdir -p ${HOME}/.local
+	curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+	python get-pip.py --user
+	pip install --user --upgrade pip
+	pip install --user ansible
+	pip install --user ansible-lint
+	pip install --user autopep8
+	pip install --user awscli
+	pip install --user black
+	pip install --user chromedriver-binary
+	pip install --user faker
+	pip install --user flake8
+	pip install --user graph-cli
+	pip install --user httpie
+	pip install --user importmagic
+	pip install --user ipywidgets
+	pip install --user jedi
+	pip install --user jupyter
+	pip install --user jupyterlab
+	pip install --user jupyterthemes
+	pip install --user litecli
+	pip install --user mps-youtube
+	pip install --user neovim
+	pip install --user nose
+	pip install --user opencv-python
+	pip install --user pandas
+	pip install --user pgcli
+	pip install --user pipenv
+	pip install --user progressbar2
+	pip install --user psycopg2-binary
+	pip install --user py-spy
+	pip install --user pydoc_utils
+	pip install --user pyflakes
+	pip install --user pygments
+	pip install --user pylint
+	pip install --user redis
+	pip install --user rope
+	pip install --user rtv
+	pip install --user scrapy
+	pip install --user seaborn
+	pip install --user selenium
+	pip install --user speedtest-cli
+	pip install --user streamlink
+	pip install --user trash-cli
+	pip install --user truffleHog
+	pip install --user virtualenv
+	pip install --user virtualenvwrapper
+postgresql: 
+	sudo pacman -S postgresql
+	sudo -u postgres initdb -E UTF8 --no-locale -D '/var/lib/postgres/data'
+	sudo systemctl enable postgresql.service
+	sudo systemctl start postgresql.service
+	sudo -u postgres createuser --interactive
+redis: ## Redis inital setup
+	sudo pacman -S --noconfirm redis
+	sudo systemctl enable redis.service
 rc:
 	sudo pacman -S --noconfirm rofi zathura neofetch dunst
 	test -L ${HOME}/.config/dunst || rm -rf ${HOME}/.config/dunst
@@ -233,6 +306,8 @@ yarn:
 	yarn global add eslint-config-prettier 
 	yarn global add eslint-plugin-html
 	yarn global add eslint-plugin-babel
+	yarn global add expo-cli
+	yarn global add fastify-nextjs
 	yarn global add fx
 	yarn global add gulp
 	yarn global add neovim
@@ -241,7 +316,7 @@ yarn:
 	yarn global add jshint
 	yarn global add netlify-cli
 	yarn global add nextjs
-	yarn global add fastify-nextjs
+	yarn global add now
 	yarn global add prettier
 	yarn global add prettier-eslint
 	yarn global add react
@@ -264,3 +339,7 @@ zsh:
 	sudo ln -fs ${PWD}/zsh/zlogout ${HOME}/.zlogout
 	sudo ln -fs ${PWD}/zsh/zshenv ${HOME}/.zshenv
 	sudo ln -sf ${PWD}/zsh/zprofile ${HOME}/.zprofile
+
+
+
+
