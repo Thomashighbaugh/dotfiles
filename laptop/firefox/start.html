@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!--
+    Author:        Thomas Leon Highbaugh
+    Website:       http://thomasleonhighbaugh.me
+    Compatibility: Mozilla Firefox, Google Chrome, NetSurf, Palemoon, Basilisk 
+-->
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+<title> START BROWSER </title>
+<link rel="stylesheet" type="text/css" href="start.css">
+<script type="text/javascript" language="javascript" src="start.js">
+</script>
+</head>
+<body onload="javascript:init();">
+
+<iframe id="preview" src="about:blank" onload="javascript:preview(2,0)" frameborder="0"></iframe>
+<div id="overlay"></div>
+
+<div id="center">
+    <div id="content">
+        <div id="menu">
+            <ul id="mnu"></ul>
+        </div>
+        <br />
+        <input type="text" id="q" value="" placeholder="Search..." onkeypress="javascript:handleQuery(event,this.value);" onfocus="this.value=this.value" />
+        <br /><br />
+        <div id="more">
+            <input type="button" id="plus" value="+" onclick="javascript:toggleNote();" />
+            <br />
+            <div id="help"></div>
+          </div>
+    </div>
+</div>
+
+</body>
+</html>

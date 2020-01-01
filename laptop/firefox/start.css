@@ -1,0 +1,240 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  font-family: "BigBlue_Terminal_437TT Nerd Font Mono", monospace;
+  font-size: 10pt;
+  background: #17161B;
+}
+
+*:focus {
+  outline: none;
+}
+
+ul,
+li {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+textarea {
+  background: transparent;
+  color: #DEE6E7;
+}
+
+a,
+a:link,
+a:visited {
+  color: #929597;
+  text-decoration: none;
+  transition: 0.2s ease-out;
+}
+
+a:hover,
+a:active {
+  color: #eee8d5;
+}
+
+#preview {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+#overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  opacity: 1;
+  transition: 0.5s;
+  background: #17161b;
+}
+
+#center {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+#center #content {
+  margin: 0;
+  overflow: visible;
+  width: 100%;
+  height: auto;
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  text-align: center;
+  opacity: 1;
+  z-index: 10;
+  background: #17161b; /* #17161b || transparent */
+}
+#q {
+  width: calc((200px * 4) - (8px * 2));
+  background: #24262A;
+  color: #8265FF;
+  border: 0;
+  border-radius: 1px;
+  font-family: "BigBlue_Terminal_437TT Nerd Font Mono", monospace;
+  font-size: 12pt;
+  padding: 4px 8px;
+  height: 24px;
+}
+#more {
+  background: transparent;
+  color: #8265FF;
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+  width: 32px;
+  height: 32px;
+  font-weight: bold;
+  cursor: default;
+}
+#plus {
+  border: 0;
+  border-radius: 1px 1px 0 0;
+  width: 32px;
+  height: 32px;
+  font-size: 18pt;
+  background: transparent;
+  color: #DEE6E7;
+  cursor: pointer;
+  transition: 0.2s ease-out;
+}
+#help {
+  display: block;
+  visibility: hidden;
+  width: 320px;
+  cursor: default;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  font-family: "BigBlue_Terminal_437TT Nerd Font Mono", monospace;
+  padding: 1rem;
+  text-align: left;
+  border-radius: 8px;
+  opacity: 0;
+  background: #24262A;
+  color: #939597;
+  transition: 0.2s ease-out;
+}
+#more:hover #plus {
+  background: #24262A;
+}
+#more:hover #help {
+  visibility: visible;
+  opacity: 1;
+}
+#note {
+  width: 100%;
+  height: 100px;
+  resize: none;
+  border: 0;
+  outline: 0;
+}
+#menu {
+  width: 100%;
+  height: 32px;
+  margin: 0 auto;
+  background: transparent;
+  color: #939597;
+  cursor: default;
+}
+#mnu {
+  height: 32px;
+  line-height: 32px;
+  width: calc((250px * 4) + 1px);
+}
+#menu ul {
+  display: inline-table;
+  position: relative;
+  list-style: none;
+}
+#menu label {
+  padding: 0;
+  display: inline-block;
+  font-weight: bold;
+  width: 200px; /* menu width */
+}
+#menu ul li {
+  float: left;
+  border-radius: 0 0 1px 1px;
+  height: 32px;
+  text-align: center;
+  transition: 0.2s ease-out;
+}
+#menu ul li:hover {
+  background: #24262A;
+  color: #839496;
+}
+#menu ul li a {
+  display: block;
+  white-space: nowrap;
+  padding: 0 10px;
+}
+#menu ul ul {
+  display: flex;
+  flex-flow: column wrap; /* column | row(-reverse) */
+  align-content: flex-start;
+  visibility: hidden;
+  opacity: 0;
+  width: calc(250px * 4); /* cols */
+  height: calc(32px * 3); /* rows */
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  z-index: 11;
+  background: #24262A;
+  border-radius: 1px;
+  transition: 0.2s ease-out;
+}
+#menu ul li:hover > ul {
+  bottom: 100%;
+  visibility: visible;
+  opacity: 1;
+  z-index: 12;
+  height: calc(32px * 3); /* rows */
+}
+#menu ul ul li {
+  background: #24262A;
+  border-radius: 1px;
+  height: 32px;
+  text-align: left;
+  width: 200px; /* menu width */
+}
+/* Menu Colors */
+#menu ul #mnu_1 li:hover {
+  background: #F02E6E;
+}
+#menu ul #mnu_2 li:hover {
+  background: #47BAE8;
+}
+#menu ul #mnu_3 li:hover {
+  background: #C792EA;
+}
+#menu ul #mnu_4 li:hover {
+  background: #1DA0E2;
+}
+#menu ul #mnu_5 li:hover {
+  background: #B265FF;
+}
+#menu img {
+  position: relative;
+  top: 3px;
+  left: -3px;
+  width: 16px;
+  height: 16px;
+  visibility: hidden;
+}

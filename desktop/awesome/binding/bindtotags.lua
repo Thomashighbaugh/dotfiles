@@ -1,4 +1,4 @@
--- Standard awesome library
+ff-- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
 
@@ -7,8 +7,7 @@ local modkey = RC.vars.modkey
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
--- {{{ Key bindings
-
+-- {{{ Key bindings 
 function _M.get(globalkeys)
   -- Bind all key numbers to tags.
   -- Be careful: we use keycodes to make it work on any keyboard layout.

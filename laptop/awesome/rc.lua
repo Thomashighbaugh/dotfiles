@@ -93,3 +93,14 @@ require("main.signals")
 awful.spawn.with_shell("~/.config/awesome/autorun.sh")
 
 awful.spawn.with_shell("numlockx on")
+
+
+-----------------------------------------------------
+------------    Garbage Collection   ----------------
+-----------------------------------------------------
+ collectgarbage("setpause", 160)
+ collectgarbage("setstepmul", 400)
+
+ collectgarbage("setpause", 110)
+ collectgarbage("setstepmul", 1000)
+

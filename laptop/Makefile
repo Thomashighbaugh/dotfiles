@@ -1,9 +1,6 @@
-.PHONY: uefiupdate kitty alacritty laptop awesome archive disk rc zsh bash sh X tmux vim neovim rofi browsers docker dev emacs fonts git gtk templates android media netsec minikube postgresql redis pip yarn
+.PHONY: uefiupdate kitty laptop awesome archive disk rc zsh bash sh X tmux vim neovim rofi browsers docker dev emacs fonts git gtk templates android media netsec minikube postgresql redis pip yarn
 
 all: .PHONY
-alacritty:
-	sudo pacman -S --noconfirm alacritty alacritty-terminfo 
-	sudo ln -sf ${PWD}/alacritty ${HOME}/.config/alacritty
 android: 
 	yay -S  --noconfirm android-bash-completion shashlik-bin archon raccoon adbfs-rootless-git  android-udev android-file-transfer smali android-messages-desktop mobydroid
 archive:
@@ -58,7 +55,7 @@ disk:
 	mkdir -p ${HOME}/.config/pcmanfm
 	sudo ln -svf ${PWD}/pcmanfm ${HOME}/.config/pcmanfm
 	sudo pacman -S --noconfirm ranger 
-	sudo ln -svf ${PWD}/ranger ${HOME}/.config/ranger
+	sudo ln -svf ${PWD}/rc/rc.conf ${HOME}/.config/ranger/rc.conf
 
 docker: 
 	sudo pacman -S --noconfirm docker
@@ -115,6 +112,8 @@ kitty:
 	mkdir -p ${HOME}/.config/kitty
 	sudo ln -sf ${PWD}/kitty/kitty.conf ${HOME}/.config/kitty/kitty.conf
 	sudo ln -sf ${PWD}/kitty/colors.conf ${HOME}/.config/kitty/colors.conf
+	sudo pacman -S --noconfirm alacritty alacritty-terminfo 
+	sudo ln -sf ${PWD}/alacritty ${HOME}/.config/alacritty
 
 laptop:
 	yay -S --noconfirm --needed thinkalert tlpui  powertop
