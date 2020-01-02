@@ -1,1 +1,0 @@
-pacman -Q | awk '{print $1}' > pacman-list.txt

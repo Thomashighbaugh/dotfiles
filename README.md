@@ -9,32 +9,26 @@
 ```
 
 # Dotfiles 
-## Thomas Leon Highbaugh 
+## Laptop Configuration 
 
 ### Quick Start // Personal Reference 
 >>> Run `make` for all or `make {vim,zsh,..}` for individual components.
 
-## Introduction 
-> These are my dotfiles, there are many like them but these are mine. 
-This is the repository for my dotfiles. **But what are dotfiles?** They are
-files used by the programs I typically run to set preferences, configurations,
-etc that I prefer to have backed up on GitHub//GitLab over reconfiguring when
-using a new system or after reinstalling my current one. 
+## Mobile Development Environment 
 
-## Custom Awesome WM Theme 
-Included in this repository are my two custom window manager themes, Dracula and
-Palenight, for Awesome Window Manager. Like all custom Awesome themes, this set
-up includes some personal configurations and is organized in a way that is
-suited to my taste, so you may or may not find them useful to adapt to your own
-configuration. 
+These files store the configuration of my laptop workstation, which is intended to be roughly equivalent to my main desktop environment with specific modifications for the limitations imposed by the mobile platform. 
 
-These themes come with custom GTK themes, however you will have to adapat
-program colors from Palenight to Dracula yourself for all the other programs.
-For this purposes, I reccomend using Oomox's base16 templates.
+### Needs for Mobile System
+- function deployments of IDEs and tools for development 
+- ability to function in cases where desktop is not practical or impossible to utilize 
+- ability to read the desktop's file system's in case of critical failure
+- adapt to changing X server scenarios such as utilizing VNC && additional screens
+- power management to maximize battery utilization
+- drivers specific to Lenovo Thinkpad hardware
 
-## My Set Up
-These dotfiles were written for use on Manjaro with Awesome WM installed. This
-particular repo is for my laptop, another exists for my desktop and eventually
-another will exist for my hypervisor system. _Yes I could simply include them
-all in one repo and simply navigate to one subdirectory depending on the system,
-that will be tested soon._
+### AWESOMEWM theme configuration 
+
+One of the portions of my development environment that maintains continuity is the general theme of Awesome Window Manager, which is slightly modified from its desktop equalivalent in these dotfiles to make it more friendly to the typically single screen and mobile environment implied by its deployment on a laptop. 
+
+One of my irritations with Awesome configurations I have utilized as examples in constructing my own is the lack of implementations in differing contexts. While I can understand limiting computer us to one's work environment, if one is rather compartmentalized and does not appreciate development as I do, except that many of these configurations would lend themselves to varied deployments across one's systems and use cases. By offering these personal and consistent configurations in these varied use cases I am able to demonstrate how the overall theme can be employeed and the flexibility of this theme, which is relatively rather high. 
+
