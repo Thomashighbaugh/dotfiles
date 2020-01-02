@@ -71,10 +71,14 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 -- Statusbar: Wibar
 require("deco.statusbar")
 -----------------------------------------------------
+---------------    Notifications    -----------------
+-----------------------------------------------------
+
+require("deco.notifications")
+-----------------------------------------------------
 ---------------     Rules      ----------------------
 -----------------------------------------------------
 
--- Rules
 awful.rules.rules = main.rules(
   binding.clientkeys(),
   binding.clientbuttons()
@@ -101,6 +105,6 @@ awful.spawn.with_shell("numlockx on")
  collectgarbage("setpause", 160)
  collectgarbage("setstepmul", 400)
 
- collectgarbage("setpause", 110)
- collectgarbage("setstepmul", 1000)
+ --collectgarbage("setpause", 110)
+ --collectgarbage("setstepmul", 1000)
 

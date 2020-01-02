@@ -1,4 +1,6 @@
--- module("anybox.titlebar", package.seeall)
+-----------------------------------------------------------------
+---------------------     Titlebar      -------------------------
+-----------------------------------------------------------------
 
 -- Standard awesome library
 local gears = require("gears")
@@ -39,10 +41,10 @@ client.connect_signal("request::titlebars", function(c)
         },
         { -- Right
             awful.titlebar.widget.floatingbutton (c),
+         --  awful.titlebar.widget.stickybutton   (c),
+         --   awful.titlebar.widget.ontopbutton   (c),
             awful.titlebar.widget.minimizebutton (c),
             awful.titlebar.widget.maximizedbutton(c),
-            awful.titlebar.widget.stickybutton   (c),
-            awful.titlebar.widget.ontopbutton    (c),
             awful.titlebar.widget.closebutton    (c),
             layout = wibox.layout.fixed.horizontal()
         },

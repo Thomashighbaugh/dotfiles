@@ -26,16 +26,16 @@ local _M = {}
 -- memory widget
 memwidget = wibox.widget.textbox()
 vicious.cache(vicious.widgets.mem)
-vicious.register(memwidget, vicious.widgets.mem, "<span color='#8265FF'>RAM:</span> $1% <span color='#8265FF'>|</span> ", 15)
+vicious.register(memwidget, vicious.widgets.mem, "<span color='#939597'>RAM:</span> $1% <span color='#282A33'>|</span> ", 15)
 
 -- cpu widget
 cpuwidget = wibox.widget.textbox()
 vicious.cache(vicious.widgets.cpu)
-vicious.register(cpuwidget, vicious.widgets.cpu, "<span color='#8265FF'> ||| CPU:</span> $1% <span color='#8265FF'>|</span> ", 15)
+vicious.register(cpuwidget, vicious.widgets.cpu, "<span color='#282A33'> ||| </span><span color='#939597'> CPU:</span> $1% <span color='#282A33'>|</span> ", 15)
 
 --filesystem widget
 fswidget = wibox.widget.textbox()
-vicious.register(fswidget, vicious.widgets.fs, "<span color='#8265FF'>HDD:</span> ${/ avail_gb} GB Left <span color='#8265FF'>|||</span> ")
+vicious.register(fswidget, vicious.widgets.fs, "<span color='#939597'>HDD:</span> ${/ avail_gb} GB Left <span color='#282A33'>|||</span> ")
 
 
 

@@ -1,13 +1,6 @@
--------------------------------------------------
--- Calendar Widget
--- Featuring Customized Theme for TLH's AwesomeWM configuration
---
---
--- Based on:
--- https://github.com/streetturtle/awesome-wm-widgets/tree/master/calendar-widget
--- @author Pavel Makhov
--- @copyright 2019 Pavel Makhov
--------------------------------------------------
+-----------------------------------------------------------------
+---------------------     Calendar      -------------------------
+-----------------------------------------------------------------
 
 local awful = require("awful")
 local beautiful = require("beautiful")
@@ -30,48 +23,9 @@ local function worker(args)
             header_fg = '#2196F3',
             border = '#1DA0E2'
         },
-        outrun = {
-            bg = '#0d0221',
-            fg = '#D8DEE9',
-            focus_date_bg = '#650d89',
-            focus_date_fg = '#2de6e2',
-            weekend_day_bg = '#261447',
-            weekday_fg = '#2de6e2',
-            header_fg = '#f6019d',
-            border = '#261447'
-        },
-        dark = {
-            bg = '#000000',
-            fg = '#ffffff',
-            focus_date_bg = '#ffffff',
-            focus_date_fg = '#000000',
-            weekend_day_bg = '#444444',
-            weekday_fg = '#ffffff',
-            header_fg = '#ffffff',
-            border = '#333333'
-        },
-        light = {
-            bg = '#ffffff',
-            fg = '#000000',
-            focus_date_bg = '#000000',
-            focus_date_fg = '#ffffff',
-            weekend_day_bg = '#AAAAAA',
-            weekday_fg = '#000000',
-            header_fg = '#000000',
-            border = '#CCCCCC'
-        },
-        monokai = {
-            bg = '#272822',
-            fg = '#F8F8F2',
-            focus_date_bg = '#AE81FF',
-            focus_date_fg = '#ffffff',
-            weekend_day_bg = '#75715E',
-            weekday_fg = '#FD971F',
-            header_fg = '#F92672',
-            border = '#75715E'
-        }
+   --
     }
-
+-- @TODO: add more themes
     local args = args or {}
 
     if args.theme ~= nil and calendar_themes[args.theme] == nil then
