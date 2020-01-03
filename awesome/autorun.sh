@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
+#####################################################################
+#####################################################################
+########### Awesome Window Manager AutoStart Script #################
+#####################################################################
+#####################################################################
 ## note: this script runs each time awesome is called or refreshed. It provisions the desktop environment according to the user's taste
-###############################################
-
+### note: an xprofile file can also be used to accomplish these tasks and do so only once but I prefer this method for debugging purposes (in case these programs' settings change)
 
 ## Conditional Runs (Different Name) 
 ### note: these processes spawn with different names than the command 
@@ -25,10 +29,15 @@ fi
 if (command -v  xfce4-power-manager && ! pgrep xfce4-power-man) ; then
     xfce4-power-manager &
 fi
-########################################################
 
-## Conditional Runs (Same Name)
-### note: runs (only once) processes which spawn with the same name as the command 
+if (command -v system-config-printer-applet && ! pgrep applet.py ); then
+  system-config-printer-applet &
+fi
+
+#####################################################################
+######################### Function 'run' ############################
+#####################################################################
+### note: function 'run' is for programs which spawn processes with the same name as the command
 
 ## Template 
 function run {
@@ -36,7 +45,6 @@ function run {
      $@&
    fi
 }
-
 
 ## XFCE Settings 
 run xfsettingsd
@@ -59,10 +67,12 @@ run pamac-tray
 ## Wallpaper Setter
 ##run nitrogen --restore
 
-if (command -v system-config-printer-applet && ! pgrep applet.py ); then
-  system-config-printer-applet &
-fi
 
-run compton --shadow-exclude '!focused'
+## Compositor
+run compton
+
+## Bluetooth Manager
 run blueman-applet
+
+## Notifications
 run msm_notifier

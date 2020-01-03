@@ -1,3 +1,7 @@
+-----------------------------------------------------------------
+---------------------     Helpers      --------------------------
+-----------------------------------------------------------------
+
 -- Functions that you use more than once and in different files would
 -- be nice to define here.
 local awful = require("awful")

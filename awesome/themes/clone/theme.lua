@@ -1,3 +1,7 @@
+-----------------------------------------------------------------
+---------------------     Theme Init      -----------------------
+-----------------------------------------------------------------
+
 local awful = require("awful")
 awful.util = require("awful.util")
 local xresources = require("beautiful.xresources")
