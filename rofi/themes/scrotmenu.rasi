@@ -3,11 +3,18 @@
  * You may have to tweak values such as the window padding if you have a different resolution.
  */
 @import "shared/option-menu.rasi"
+*{
+	font:		 "FontAwesome Bold 28";
+}
 #window {
-  padding: 3em;
+  padding: 30%;
 }
 #listview {
   spacing: @option-3-listview-spacing;
   lines: 3;
+}
+#element{
+width: 50%;
+padding: 12%;
 }
 

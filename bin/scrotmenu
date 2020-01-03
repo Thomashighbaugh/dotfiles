@@ -3,13 +3,13 @@
 rofi_command="rofi -theme themes/scrotmenu.rasi"
 
 ### Options ###
-screen=""
-area=""
-window=""
+screen="Screen "
+area="Area "
+window="Window "
 # Variable passed to rofi
 options="$screen\n$area\n$window"
 
-chosen="$(echo -e "$options" | $rofi_command -dmenu -selected-row 1)"
+chosen="$( echo -e "$options" | $rofi_command -dmenu -selected-row 3)"
 case $chosen in
     $screen)
         sleep 1; scrot
