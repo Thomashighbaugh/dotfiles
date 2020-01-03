@@ -8,6 +8,7 @@ local dpi = xresources.apply_dpi
 local wibox = require("wibox")
 
 local naughty = require("naughty")
+local home = os.getenv("HOME")
 
 local helpers = {}
 
@@ -25,7 +26,7 @@ helpers.prrect = function(radius, tl, tr, br, bl)
 end
 
 function helpers.colorize_text(txt, fg)
-    return "<span foreground='" .. fg .."'>" .. txt .. "</span>"
+    return "<span color='" .. fg .."'>" .. txt .. "</span>"
 end
 
 function helpers.client_menu_toggle()
@@ -310,10 +311,10 @@ end
 function helpers.screenshot(action, delay)
     local cmd
     local timestamp = os.date("%Y.%m.%d-%H.%M.%S")
-    local filename = user.screenshot_dir..timestamp..".screenshot.png"
+    local filename = home.."/Pictures/"..timestamp..".screenshot.png"
     -- local filename = user.screenshot_dir.."screenshot"..timestamp..".png"
     local maim_args = "-u -b 3 -m 5"
-    local icon = icons.screenshot
+    local icon = home .. "/.config/awesome/themes/clone/icons/screenshot"
 
     local prefix
     if delay then
@@ -345,42 +346,12 @@ function helpers.screenshot(action, delay)
             end
         end)
     elseif action == "browse" then
-        awful.spawn.with_shell("cd "..user.screenshot_dir.." && feh $(ls -t)")
+        awful.spawn.with_shell("cd ".. home.."/Pictures/".." && feh $(ls -t)")
     elseif action == "gimp" then
-        awful.spawn.with_shell("cd "..user.screenshot_dir.." && gimp $(ls -t | head -n1)")
+        awful.spawn.with_shell("cd ".. home.."/Pictures/".." && gimp $(ls -t | head -n1)")
         naughty.notify({ message = "Opening last screenshot with GIMP", icon = icon })
     end
 
-end
-
-local prompt_font = beautiful.prompt_font or "sans bold 8"
-function helpers.prompt(action, textbox, prompt, callback)
-    if action == "run" then
-        awful.prompt.run {
-            prompt       = prompt,
-            -- prompt       = "<b>Run: </b>",
-            textbox      = textbox,
-            font = prompt_font,
-            done_callback = callback,
-            exe_callback = awful.spawn,
-            completion_callback = awful.completion.shell,
-            history_path = awful.util.get_cache_dir() .. "/history"
-        }
-    elseif action == "web_search" then
-        awful.prompt.run {
-            prompt       = prompt,
-            -- prompt       = '<b>Web search: </b>',
-            textbox      = textbox,
-            font = prompt_font,
-            history_path = awful.util.get_cache_dir() .. "/history_web",
-            done_callback = callback,
-            exe_callback = function(input)
-                if not input or #input == 0 then return end
-                awful.spawn(user.web_search_cmd.."\""..input.."\"")
-                naughty.notify { title = "Searching the web for", text = input, icon = icons.firefox }
-            end
-        }
-    end
 end
 
 function helpers.run_or_raise(match, move, spawn_cmd, spawn_args)

@@ -23,19 +23,6 @@ local _M = {}
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
 -- {{{ Wibar
--- memory widget
-memwidget = wibox.widget.textbox()
-vicious.cache(vicious.widgets.mem)
-vicious.register(memwidget, vicious.widgets.mem, "<span color='#939597'>RAM:</span> $1% <span color='#282A33'>|</span> ", 15)
-
--- cpu widget
-cpuwidget = wibox.widget.textbox()
-vicious.cache(vicious.widgets.cpu)
-vicious.register(cpuwidget, vicious.widgets.cpu, "<span color='#282A33'> ||| </span><span color='#939597'> CPU:</span> $1% <span color='#282A33'>|</span> ", 15)
-
---filesystem widget
-fswidget = wibox.widget.textbox()
-vicious.register(fswidget, vicious.widgets.fs, "<span color='#939597'>HDD:</span> ${/ avail_gb} GB Left <span color='#282A33'>|||</span> ")
 
 
 -- Create a textclock widget

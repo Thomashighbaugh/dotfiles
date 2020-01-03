@@ -2,6 +2,9 @@ local awful = require("awful")
 local wibox = require("wibox")
 local gears = require("gears")
 local beautiful = require("beautiful")
+local xresources = require("beautiful.xresources")
+local dpi = xresources.apply_dpi
+local wibox = require("wibox")
 local naughty = require("naughty")
 
 
@@ -10,15 +13,15 @@ local naughty = require("naughty")
 naughty.config.defaults['icon_size'] = 32
 
 -- Timeouts (set 0 for permanent)
-naughty.config.defaults.timeout = 5
-naughty.config.presets.low.timeout = 2
+naughty.config.defaults.timeout = dpi(5)
+naughty.config.presets.low.timeout = dpi(2)
 naughty.config.presets.critical.timeout = 0
 
 -- Apply theme variables
-naughty.config.defaults.padding = 5
-naughty.config.defaults.spacing = 5
-naughty.config.defaults.margin = 5
-naughty.config.defaults.border_width = 3
+naughty.config.defaults.padding = dpi(5)
+naughty.config.defaults.spacing = dpi(5)
+naughty.config.defaults.margin = dpi(5)
+naughty.config.defaults.border_width = dpi(3)
 -- Apply rounded rectangle shape
 beautiful.notification_shape = function(cr, width, height)
     gears.shape.rounded_rect(cr, width, height, 5)

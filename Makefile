@@ -11,7 +11,7 @@ archive:
 	sudo systemctl enable snapd
 	sudo systemctl start snapd
 awesome:
-	yay -S --noconfirm --needed awmtt feh networkmanager-dmenu-git lain rlwrap dex xcb-util-errors awesome-freedesktop vicious 
+	yay -S --noconfirm --needed fortune-mod awmtt feh networkmanager-dmenu-git lain rlwrap dex xcb-util-errors awesome-freedesktop vicious 
 	yay -S --needed  awesome-git
 	test -L ${HOME}/.config/awesome||  sudo rm -rf ${HOME}/.config/awesome
 	sudo mkdir -p ${HOME}/.config/awesome
@@ -322,6 +322,7 @@ yarn:
 	yarn global add gulp-cli
 	yarn global add heroku
 	yarn global add jshint
+	yarn global add knex
 	yarn global add netlify-cli
 	yarn global add nextjs
 	yarn global add now

@@ -163,14 +163,14 @@ theme.hotkeys_group_margin = 2
 theme.taglist_font = "awesomewm-font 25"
 theme.taglist_bg = theme.xbackground
 theme.taglist_shape = gears.shape.rounded_rect
-theme.taglist_bg_focus = theme.xforeground
+theme.taglist_bg_focus = theme.xcolor4
 theme.taglist_fg_focus = theme.xbackground
 theme.taglist_bg_urgent = theme.xcolor1
 theme.taglist_fg_urgent = theme.xbackground
 theme.taglist_bg_occupied = theme.xcolor0
-theme.taglist_fg_occupied = theme.xforeground
+theme.taglist_fg_occupied = theme.xcolor4
 theme.taglist_bg_empty = theme.xbackground
-theme.taglist_fg_empty = theme.xcolor16
+theme.taglist_fg_empty = theme.xforeground
 theme.taglist_bg_volatile = theme.xcolor0
 theme.taglist_fg_volatile = theme.xcolor3
 

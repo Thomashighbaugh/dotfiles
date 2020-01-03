@@ -8,7 +8,7 @@ local _M = {
     -- Default modkey.
   modkey = "Mod4",
   -- Default Internet Browser
-  browser = "firefox-developer-edition",
+  browser = "firefox",
     -- System File Manager
   file_manager = "pcmanfm",
   filemanager = "pcmanfm",

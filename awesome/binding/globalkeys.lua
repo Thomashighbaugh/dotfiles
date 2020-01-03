@@ -9,7 +9,7 @@ local awful = require("awful")
 local hotkeys_popup = require("awful.hotkeys_popup")
 -- Menubar library
 local menubar = require("menubar")
-require("deco.start_screen")
+local start_screen = require("deco.start_screen")
 -- Resource Configuration
 local modkey = RC.vars.modkey
 local terminal = RC.vars.terminal
@@ -95,8 +95,8 @@ function _M.get()
                  {description = "Network Manager Menu", group = "awesome"}),
        awful.key({ modkey,           }, "F2", function () awful.spawn.with_shell("scrotmenu") end,
                  {description = "Screenshot Menu", group = "awesome"}),
-          awful.key({ modkey,           }, "F3",     start_screen_show(),
-                 {description = "Screenshot Menu", group = "awesome"}),
+          awful.key({ modkey,           }, "F3", function()    start_screen_show() end,
+                 {description = "Start Screen", group = "awesome"}),
     -- Layout manipulation
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)          end,
               {description = "increase master width factor", group = "layout"}),
