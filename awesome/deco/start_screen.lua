@@ -399,7 +399,7 @@ function start_screen_show()
     if w then
         w.cursor = original_cursor
     end
-    naughty.notify({text = "starting the keygrabber"})
+   -- naughty.notify({text = "starting the keygrabber"})
     start_screen_grabber = awful.keygrabber.run(function(_, key, event)
         if event == "release" then return end
         -- Press Escape or q or F1 to hide it

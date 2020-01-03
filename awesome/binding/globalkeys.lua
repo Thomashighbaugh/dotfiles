@@ -27,41 +27,41 @@ local _M = {}
 function _M.get()
   local globalkeys = gears.table.join(
     awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
-              {description="show help", group="awesome"}),
+              {description="show help", group="Awesome"}),
 
     --   -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
     -- Tag browsing
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev,
-              {description = "view previous", group = "tag"}),
+              {description = "view previous", group = "Tag"}),
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext,
-              {description = "view next", group = "tag"}),
+              {description = "view next", group = "Tag"}),
     awful.key({ modkey,           }, "j",
         function ()
             awful.client.focus.byidx( 1)
         end,
-        {description = "focus next by index", group = "client"}
+        {description = "focus next by index", group = "Client"}
     ),
     awful.key({ modkey,           }, "k",
         function ()
             awful.client.focus.byidx(-1)
         end,
-        {description = "focus previous by index", group = "client"}
+        {description = "focus previous by index", group = "Client"}
     ),
     awful.key({ modkey,           }, "w", function () RC.mainmenu:show() end,
-              {description = "show main menu", group = "awesome"}),
+              {description = "show main menu", group = "Awesome"}),
 
     --   -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
     -- Layout manipulation
     awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end,
-              {description = "swap with next client by index", group = "client"}),
+              {description = "swap with next client by index", group = "Client"}),
     awful.key({ modkey, "Shift"   }, "k", function () awful.client.swap.byidx( -1)    end,
-              {description = "swap with previous client by index", group = "client"}),
+              {description = "swap with previous client by index", group = "Client"}),
     awful.key({ modkey, "Control" }, "j", function () awful.screen.focus_relative( 1) end,
-              {description = "focus the next screen", group = "screen"}),
+              {description = "focus the next screen", group = "Screen"}),
     awful.key({ modkey, "Control" }, "k", function () awful.screen.focus_relative(-1) end,
-              {description = "focus the previous screen", group = "screen"}),
+              {description = "focus the previous screen", group = "Screen"}),
     awful.key({ modkey,           }, "u", awful.client.urgent.jumpto,
-              {description = "jump to urgent client", group = "client"}),
+              {description = "jump to urgent client", group = "Client"}),
     awful.key({ modkey,           }, "Tab",
         function ()
             awful.client.focus.history.previous()
@@ -69,51 +69,51 @@ function _M.get()
                 client.focus:raise()
             end
         end,
-        {description = "go back", group = "client"}),
+        {description = "go back", group = "Client"}),
 
     --   -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
-              {description = "Launch Terminal", group = "launcher"}),
+              {description = "Launch Terminal", group = "Awesome"}),
     awful.key({ modkey,           }, "b", function () awful.spawn(browser) end,
-              {description = "Launch Internet Browser", group = "launcher"}),
+              {description = "Launch Internet Browser", group = "Awesome"}),
     awful.key({ modkey,           }, "e", function () awful.spawn(file_manager) end,
-              {description = "Launch File Manager", group = "launcher"}),
+              {description = "Launch File Manager", group = "Awesome"}),
     awful.key({ modkey,           }, "r", awesome.restart,
-              {description = "reload awesome", group = "awesome"}),
+              {description = "reload awesome", group = "Awesome"}),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit,
-              {description = "quit awesome", group = "awesome"}),
+              {description = "quit awesome", group = "Awesome"}),
   awful.key({ modkey, "Control"}, "Escape", function () awful.spawn("rofi -show drun") end,
-        {description = "launch rofi", group = "launcher"}),
+        {description = "launch rofi", group = "Awesome"}),
     --   -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
     -- Bin Menus
     -- note: these are provided by ~/bin executables
        awful.key({ modkey,           }, "Escape", function () awful.spawn.with_shell("powermenu") end,
-                 {description = "Power Menu", group = "awesome"}),
+                 {description = "Power Menu", group = "Awesome"}),
        awful.key({ modkey,           }, "F1", function () awful.spawn.with_shell("networkmenu") end,
-                 {description = "Network Manager Menu", group = "awesome"}),
+                 {description = "Network Manager Menu", group = "Awesome"}),
        awful.key({ modkey,           }, "F2", function () awful.spawn.with_shell("scrotmenu") end,
-                 {description = "Screenshot Menu", group = "awesome"}),
+                 {description = "Screenshot Menu", group = "Awesome"}),
           awful.key({ modkey,           }, "F3", function()    start_screen_show() end,
-                 {description = "Start Screen", group = "awesome"}),
+                 {description = "Start Screen", group = "Awesome"}),
     -- Layout manipulation
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)          end,
-              {description = "increase master width factor", group = "layout"}),
+              {description = "increase master width factor", group = "Layout"}),
     awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)          end,
-              {description = "decrease master width factor", group = "layout"}),
+              {description = "decrease master width factor", group = "Layout"}),
     awful.key({ modkey, "Shift"   }, "h",     function () awful.tag.incnmaster( 1, nil, true) end,
-              {description = "increase the number of master clients", group = "layout"}),
+              {description = "increase the number of master clients", group = "Layout"}),
     awful.key({ modkey, "Shift"   }, "l",     function () awful.tag.incnmaster(-1, nil, true) end,
-              {description = "decrease the number of master clients", group = "layout"}),
+              {description = "decrease the number of master clients", group = "Layout"}),
     awful.key({ modkey, "Control" }, "h",     function () awful.tag.incncol( 1, nil, true)    end,
-              {description = "increase the number of columns", group = "layout"}),
+              {description = "increase the number of columns", group = "Layout"}),
     awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1, nil, true)    end,
-              {description = "decrease the number of columns", group = "layout"}),
+              {description = "decrease the number of columns", group = "Layout"}),
     awful.key({ modkey,           }, "space", function () awful.layout.inc( 1)                end,
-              {description = "select next", group = "layout"}),
+              {description = "select next", group = "Layout"}),
     awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(-1)                end,
-              {description = "select previous", group = "layout"}),
+              {description = "select previous", group = "Layout"}),
 
     awful.key({ modkey, "Control" }, "n",
               function ()
@@ -125,12 +125,12 @@ function _M.get()
                     )
                   end
               end,
-              {description = "restore minimized", group = "client"}),
+              {description = "restore minimized", group = "Client"}),
 
     --   -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
     -- Prompt
     awful.key({ modkey, "Control" },            "r",     function () awful.screen.focused().mypromptbox:run() end,
-              {description = "run prompt", group = "launcher"}),
+              {description = "run prompt", group = "Awesome"}),
 
     --   -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
     -- Resize
@@ -158,7 +158,7 @@ function _M.get()
     --   -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
     -- Menubar
     awful.key({ modkey }, "p", function() menubar.show() end,
-              {description = "show the menubar", group = "launcher"})
+              {description = "show the menubar", group = "Awesome"})
 
   )
 

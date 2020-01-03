@@ -30,7 +30,7 @@ function _M.get(globalkeys)
             tag:view_only()
           end
         end,
-        {description = "view tag #"..i, group = "tag"}),
+        {description = "View tag #"..i, group = "Tag"}),
 
       --  -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
       -- Toggle tag display.
@@ -42,7 +42,7 @@ function _M.get(globalkeys)
             awful.tag.viewtoggle(tag)
           end
         end,
-        {description = "toggle tag #" .. i, group = "tag"}),
+        {description = "Toggle tag #" .. i, group = "Tag"}),
       
       --  -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
       -- Move client to tag.
@@ -55,7 +55,7 @@ function _M.get(globalkeys)
             end
           end
         end,
-        {description = "move focused client to tag #"..i, group = "tag"}),
+        {description = "Move focused client to tag #"..i, group = "Tag"}),
       
       --  -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
       -- Toggle tag on focused client.
@@ -68,7 +68,7 @@ function _M.get(globalkeys)
             end
           end
         end,
-        {description = "toggle focused client on tag #" .. i, group = "tag"})
+        {description = "Toggle focused client on tag #" .. i, group = "Tag"})
 
       --  -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
     )

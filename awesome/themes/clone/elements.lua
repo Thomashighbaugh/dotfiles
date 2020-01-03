@@ -106,19 +106,19 @@ theme.tooltip_border_color = xcolor4
 
 -- Notifications
 theme.notification_position = "top_right"
-theme.notification_border_width = dpi(3)
-theme.notification_border_radius = theme.border_radius
-theme.notification_border_color = theme.xcolor0
-theme.notification_bg = theme.xcolor4
-theme.notification_fg = theme.xcolor7
-theme.notification_crit_bg = theme.xcolor9
-theme.notification_crit_fg = theme.xcolor0
+theme.notification_border_width = dpi(1.5)
+theme.notification_border_radius = dpi(5)
+theme.notification_border_color = theme.xforeground
+theme.notification_bg = theme.xcolor0
+theme.notification_fg = theme.xforeground
+theme.notification_crit_bg = theme.xcolor0
+theme.notification_crit_fg = theme.xcolor1
 theme.notification_opacity = 1
-theme.notification_font = theme.font
-theme.notification_icon_size_normal = 50
-theme.notification_icon_size_selected = 50
+theme.notification_icon_size_normal = dpi(64)
+theme.notification_icon_size_selected = dpi(64)
 theme.notification_margin = dpi(3)
-theme.notification_font = "FuraMono NF Medium 11"
+theme.notification_font = "FuraMono NF Regular 14"
+theme.notification_padding = dpi(3)
 
 -- Edge snap
 theme.snap_bg = theme.xcolor4
@@ -149,15 +149,15 @@ theme.menu_font = "FuraMono NF Medium 9"
 theme.hotkeys_bg = theme.xbackground
 theme.hotkeys_fg = theme.xcolor7
 theme.hotkeys_border_width = dpi(3)
-theme.hotkeys_shape = gears.shape.rounded_rect
-theme.hotkeys_labal_fg = theme.xcolor4
 theme.hotkeys_border_color = theme.xcolor4
+theme.hotkeys_shape = gears.shape.rounded_rect
+theme.hotkeys_opacity = 0.95
 theme.hotkeys_modifiers_fg = theme.xcolor4
 theme.hotkeys_label_bg = theme.xcolor1
 theme.hotkeys_label_fg = theme.xcolor0
-theme.hotkeys_font = "FuraMono NF Bold 9"
+theme.hotkeys_font = "FuraMono NF Bold 10"
 theme.hotkeys_description_font = "FuraMono NF Medium 8"
-theme.hotkeys_group_margin = 2
+theme.hotkeys_group_margin = dpi(4)
 
 -- Taglist
 theme.taglist_font = "awesomewm-font 25"
