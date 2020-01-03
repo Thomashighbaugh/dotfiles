@@ -1,3 +1,7 @@
+-----------------------------------------------------------------
+---------------------     Bind To Tags      ---------------------
+-----------------------------------------------------------------
+
 -- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
@@ -7,7 +11,7 @@ local modkey = RC.vars.modkey
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
--- {{{ Key bindings
+
 
 function _M.get(globalkeys)
   -- Bind all key numbers to tags.

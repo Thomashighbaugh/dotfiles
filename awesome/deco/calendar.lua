@@ -33,7 +33,7 @@ local function worker(args)
             preset = naughty.config.presets.critical, 
             title = 'Calendar Widget',
             text = 'Theme "' .. args.theme .. '" not found, fallback to default'})
-        args.theme = 'nord'
+        args.theme = 'default'
     end
 
     local theme = args.theme or 'default'

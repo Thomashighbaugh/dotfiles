@@ -21,7 +21,7 @@ require("main.error-handling")
 require("main.theme")
 
 -- -- --
-
+require("main.helpers")
 -- Calling All Module Libraries
 
 -- Custom Local Library
@@ -30,6 +30,7 @@ local main = {
   tags    = require("main.tags"),
   menu    = require("main.menu"),
   rules   = require("main.rules"),
+  helpers = require("main.helpers"),
 }
 
 -- Custom Local Library: Keys and Mouse Binding
@@ -53,7 +54,6 @@ RC.launcher = awful.widget.launcher(
   { image = beautiful.awesome_icon, menu = RC.mainmenu }
 )
 menubar.utils.terminal = RC.vars.terminal
-
 -- Mouse and Key bindings
 RC.globalkeys = binding.globalkeys()
 RC.globalkeys = binding.bindtotags(RC.globalkeys)

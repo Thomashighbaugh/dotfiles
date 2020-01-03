@@ -38,7 +38,6 @@ fswidget = wibox.widget.textbox()
 vicious.register(fswidget, vicious.widgets.fs, "<span color='#939597'>HDD:</span> ${/ avail_gb} GB Left <span color='#282A33'>|||</span> ")
 
 
-
 -- Create a textclock widget
 mytextclock = wibox.widget.textclock()
 local cw = calendar_widget({
