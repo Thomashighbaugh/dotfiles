@@ -97,6 +97,12 @@ function _M.get()
                  {description = "Screenshot Menu", group = "Awesome"}),
           awful.key({ modkey,           }, "F3", function()    start_screen_show() end,
                  {description = "Start Screen", group = "Awesome"}),
+                 awful.key({ modkey,           }, "F4", function()    awful.spawn.with_shell("monitor_layout") end,
+                 {description = "Start Screen", group = "Awesome"}),
+                  awful.key({ modkey,           }, "F5", function()    awful.spawn.with_shell("vbox-rofi") end,
+                 {description = "Virtualbox Manager", group = "Awesome"}),
+                 awful.key({ modkey,           }, "F6", function()    awful.spawn.with_shell("fa-rofi") end,
+                 {description = "Copy Font-Awesome Icons", group = "Awesome"}),
     -- Layout manipulation
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)          end,
               {description = "increase master width factor", group = "Layout"}),

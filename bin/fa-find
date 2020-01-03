@@ -1,1 +1,0 @@
-curl -s https://raw.githubusercontent.com/wstam88/rofi-fontawesome/master/icon-list.txt | rofi -dmenu -i -markup-rows -p "" -columns 6 -width "100%" -height "100%"  -location 1 -lines 20 -bw 2 -yoffset -2 > ${HOME}/fa-list.txt
