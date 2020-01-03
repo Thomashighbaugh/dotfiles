@@ -42,6 +42,7 @@ fi
 ## Template 
 function run {
    if (command -v $1 && ! pgrep $1); then
+     # shellcheck disable=SC2068
      $@&
    fi
 }
