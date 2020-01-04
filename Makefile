@@ -289,7 +289,7 @@ vm:
 	sudo systemctl enable vmware-networks.service
 	sudo systemctl enable vmware-usbarbitrator.service
 	sudo systemctl enable vmware-hostd.service
-
+###### yay -S vmware-patch
 X:
 	sudo pacman -S  --noconfirm  xorg-server-xnest xorg-sessreg xorg-xclipboard xorg-xdpyinfo xorg-xfd arandr
 	sudo pacman -S --noconfirm xorg-xinit xorg-xev xdotool screen stunnel xorg-xprop autorandr xdg-utils xdotool srandrd
