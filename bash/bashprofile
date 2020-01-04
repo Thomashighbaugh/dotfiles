@@ -12,6 +12,6 @@ if [ -f "${HOME}/.local/share/z/z.sh" ]; then
 fi
 
 . ${HOME}/.profile
-. ${HOME}/.alias
+. ${HOME}/.aliases
 
 export PATH="$HOME/.cargo/bin:$PATH"

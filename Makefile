@@ -1,4 +1,4 @@
-.PHONY: uefiupdate kitty laptop awesome archive disk rc zsh bash sh X tmux vim neovim rofi browsers docker dev emacs fonts git gtk templates android media netsec minikube postgresql redis pip yarn
+.PHONY: uefiupdate kitty laptop awesome archive disk rc zsh bash sh X tmux vim neovim rofi browsers docker dev emacs fonts git gtk templates android media netsec vm minikube postgresql redis pip yarn
 
 all: .PHONY
 android: 
@@ -78,12 +78,10 @@ docker:
 emacs:
 	sudo pacman -S --noconfirm emacs
 	sudo ln -svf ${PWD}/emacs/spacemacs ${HOME}/.spacemacs
-	test -L ${HOME}/org || rm -rf ${HOME}/org
-	sudo ln -svf ../${PWD}/org ${HOME}/org
 	test -L ${HOME}/.emacs.d || rm -rf ${HOME}/.emacs.d
 	git clone https://github.com/syl20bnr/spacemacs ${HOME}/.emacs.d
 fonts:
-	yay -S --noconfirm --needed nerd-fonts-complete 
+#	yay -S --noconfirm --needed nerd-fonts-complete
 	sudo mkdir -p ${HOME}/.local/share/fonts
 	sudo cp -rv ${PWD}/fonts/fonts.tar.7z ${HOME}/.local/share/fonts
 	sudo 7z x -so ${HOME}/.local/share/fonts/fonts.tar.7z | sudo tar xf - -C ${HOME}/.local/share/fonts
@@ -167,6 +165,7 @@ pip:
 	mkdir -p ${HOME}/.local
 	curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 	python get-pip.py --user
+	sudo rm -r get-pip.py
 	pip install --user --upgrade pip
 	pip install --user ansible
 	pip install --user ansible-lint
@@ -284,11 +283,15 @@ vim:
 	sudo ln -sv ${PWD}/vim/vim/autoload ${HOME}/.vim/autoload
 vm:
 	yay -S --noconfirm --needed virtualbox vboxtool vboxwrapper qemu-headless open-vm-tools virt-install virt-manager libguestfs
-	yay -S --noconfirm --needed vmware-workstation kata-agent kata-shim kata-ksm kata-proxy kata-runtime
-	yay -S --noconfirm --needed kvmtop python-vagrant vagrant vagrant-libvirt libvirt-python libvirt-glib ruby-libvirt libvirt-sandbox libvirt-apparmor
-
+	yay -S --noconfirm --needed python-vagrant vagrant vagrant-libvirt libvirt-python libvirt-glib ruby-libvirt libvirt-sandbox
+	curl https://softwareupdate.vmware.com/cds/vmw-desktop/ws/15.0.2/10952284/windows/core/VMware-Workstation-Full-15.5.1-15018445.x86_64.bundle
+	git clone https://github.com/theJaxon/unlocker ${HOME}/unlocker
+	sudo systemctl enable vmware-networks.service
+	sudo systemctl enable vmware-usbarbitrator.service
+	sudo systemctl enable vmware-hostd.service
+###### yay -S vmware-patch
 X:
-	sudo pacman -S  --noconfirm  xorg-server-xnest xorg-sessreg xorg-xclipboard xorg-xdpyinfo xorg-xfd
+	sudo pacman -S  --noconfirm  xorg-server-xnest xorg-sessreg xorg-xclipboard xorg-xdpyinfo xorg-xfd arandr
 	sudo pacman -S --noconfirm xorg-xinit xorg-xev xdotool screen stunnel xorg-xprop autorandr xdg-utils xdotool srandrd
 	sudo pacman -S --noconfirm xorg-server diskus screen mosh
 	mkdir -p ${HOME}/.Xresources.d
