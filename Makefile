@@ -282,6 +282,11 @@ vim:
 	sudo ln -sv ${PWD}/vim/vim/plugins.vim ${HOME}/.vim/plugins.vim
 	sudo ln -svf ${PWD}/vim/vim/plugged ${HOME}/.vim/plugged
 	sudo ln -sv ${PWD}/vim/vim/autoload ${HOME}/.vim/autoload
+vm:
+	yay -S --noconfirm --needed virtualbox vboxtool vboxwrapper qemu-headless open-vm-tools virt-install virt-manager libguestfs
+	yay -S --noconfirm --needed vmware-workstation kata-agent kata-shim kata-ksm kata-proxy kata-runtime
+	yay -S --noconfirm --needed kvmtop python-vagrant vagrant vagrant-libvirt libvirt-python libvirt-glib ruby-libvirt libvirt-sandbox libvirt-apparmor
+
 X:
 	sudo pacman -S  --noconfirm  xorg-server-xnest xorg-sessreg xorg-xclipboard xorg-xdpyinfo xorg-xfd
 	sudo pacman -S --noconfirm xorg-xinit xorg-xev xdotool screen stunnel xorg-xprop autorandr xdg-utils xdotool srandrd
