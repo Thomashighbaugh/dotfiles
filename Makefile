@@ -153,14 +153,16 @@ netsec:
 	sudo pacman -S --noconfirm metasploit armitage veil ettercap-gtk 
 	sudo pacman -S --noconfirm rofi-pass pass pass-otp patch dnsmasq gnu-netcat avahi  sshuttle inetutils iproute2 iptables iputils
 	yay -S --noconfirm --needed firectl  apparmor-profiles firejail-profiles firetools keybase-gui  
-	sudo firectl enable wine
-	sudo firectl enable thunderbird
+	sudo firectl enable brave-browser
+	sudo firectl enable chromium
+	sudo firectl enable gimp
 	sudo firectl enable min
 	sudo firectl enable mpv
+	sudo firectl enable thunderbird
 	sudo firectl enable transmission-gtk 
-	sudo firectl enable gimp
-	sudo firectl enable chromium
-	sudo firectl enable brave-browser
+	sudo firectl enable wine
+
+
 pip: 
 	mkdir -p ${HOME}/.local
 	curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
@@ -215,7 +217,7 @@ postgresql:
 	sudo -u postgres initdb -E UTF8 --no-locale -D '/var/lib/postgres/data'
 	sudo systemctl enable postgresql.service
 	sudo systemctl start postgresql.service
-	sudo -u postgres createuser --interactive
+
 redis: 
 	sudo pacman -S --noconfirm redis
 	sudo systemctl enable redis.service
@@ -305,6 +307,7 @@ yarn:
 	yarn global add babel-core
 	yarn global add babel-preset-react-app
 	yarn global add cloc
+	yarn global add corejs
 	yarn global add create-component-app
 	yarn global add create-react-app
 	yarn global add eslint
@@ -319,6 +322,7 @@ yarn:
 	yarn global add expo-cli
 	yarn global add fastify-nextjs
 	yarn global add fx
+	yarn global add gatsby-cli
 	yarn global add gulp
 	yarn global add neovim
 	yarn global add gulp-cli
@@ -326,20 +330,18 @@ yarn:
 	yarn global add jshint
 	yarn global add knex
 	yarn global add netlify-cli
+	yarn global add next
 	yarn global add nextjs
 	yarn global add now
 	yarn global add prettier
 	yarn global add prettier-eslint
 	yarn global add react
 	yarn global add react-dom
-	yarn global add webpack
-	yarn global add gatsby-cli
 	yarn global add storybook
-	yarn global add next
 	yarn global add types
-	yarn global add eslint 
-	yarn global add corejs
+	yarn global add webpack
 	yarn install
+	yarn autoclean --init 
 	yarn autoclean --force
 	yarn upgrade
 zsh:
