@@ -1,8 +1,9 @@
 .PHONY: uefiupdate kitty laptop awesome archive disk rc zsh bash sh X tmux vim neovim rofi browsers docker dev emacs fonts git gtk templates android media netsec vm minikube postgresql redis pip yarn
 
 all: .PHONY
+
 android: 
-	yay -S --needed --noconfirm android-bash-completion shashlik-bin archon raccoon adbfs-rootless-git  android-udev android-file-transfer smali android-messages-desktop mobydroid
+	yay -S  android-bash-completion shashlik-bin archon raccoon adbfs-rootless-git  android-udev android-file-transfer smali android-messages-desktop mobydroid
 archive:
 	sudo pacman -S --noconfirm lzop p7zip unzip unrar atool hashdeep ddrescue bzip2 gzip lha lrzip lz4 lzip lzop p7zip tar unarj unrar unzip xz arj
 	sudo pacman -S  --noconfirm zip cpio xarchiver file-roller 
@@ -62,9 +63,9 @@ disk:
 	mkdir -p ${HOME}/.config/pcmanfm
 	sudo ln -svf ${PWD}/pcmanfm ${HOME}/.config/pcmanfm
 	sudo pacman -S --noconfirm ranger 
-#	test -L ${HOME}/.config/ranger || rm -rf ${HOME}/.config/ranger
-#	mkdir -p ${HOME}/.config/ranger
-#	sudo ln -svf ${PWD}/rc/rc.conf ${HOME}/.config/ranger/rc.conf
+	test -L ${HOME}/.config/ranger || rm -rf ${HOME}/.config/ranger
+	mkdir -p ${HOME}/.config/ranger
+	sudo ln -svf ${PWD}/rc/rc.conf ${HOME}/.config/ranger/rc.conf
 
 docker: 
 	sudo pacman -S --noconfirm docker
@@ -81,7 +82,7 @@ emacs:
 	test -L ${HOME}/.emacs.d || rm -rf ${HOME}/.emacs.d
 	git clone https://github.com/syl20bnr/spacemacs ${HOME}/.emacs.d
 fonts:
-#	yay -S --noconfirm --needed nerd-fonts-complete
+	yay -S --noconfirm --needed nerd-fonts-complete
 	sudo mkdir -p ${HOME}/.local/share/fonts
 	sudo cp -rv ${PWD}/fonts/fonts.tar.7z ${HOME}/.local/share/fonts
 	sudo 7z x -so ${HOME}/.local/share/fonts/fonts.tar.7z | sudo tar xf - -C ${HOME}/.local/share/fonts
@@ -123,7 +124,7 @@ kitty:
 	sudo ln -sf ${PWD}/alacritty ${HOME}/.config/alacritty
 
 laptop:
-	yay -S --noconfirm --needed thinkalert tlpui  powertop
+	yay -S --noconfirm --needed tlpui
 	systemctl enable tlp.service
 	systemctl enable tlp-sleep.service
 media:
@@ -157,7 +158,6 @@ netsec:
 	sudo firectl enable min
 	sudo firectl enable mpv
 	sudo firectl enable transmission-gtk 
-	sudo firectl enable inkscape
 	sudo firectl enable gimp
 	sudo firectl enable chromium
 	sudo firectl enable brave-browser
@@ -216,7 +216,7 @@ postgresql:
 	sudo systemctl enable postgresql.service
 	sudo systemctl start postgresql.service
 	sudo -u postgres createuser --interactive
-redis: ## Redis inital setup
+redis: 
 	sudo pacman -S --noconfirm redis
 	sudo systemctl enable redis.service
 rc:
@@ -243,7 +243,7 @@ rc:
 
 
 rofi:
-	yay -S rofi-dmenu udiskie-dmenu-git clipmenu morc_menu btmenu rofi-scripts rofi-pass 
+	yay -S --noconfirm --needed rofi-dmenu udiskie-dmenu-git clipmenu morc_menu btmenu rofi-scripts rofi-pass 
 	mkdir -p  ${HOME}/.config/rofi
 	mkdir -p ${HOME}/.local/share/
 	sudo ln -svf ${PWD}/rofi/colors.rasi ${HOME}/.config/rofi/colors.rasi
@@ -266,7 +266,7 @@ tmux:
 	mkdir -p ${HOME}/.tmuxp
 	sudo ln -fs ${PWD}/tmux/tmux.conf ${HOME}/.tmux.conf
 	sudo ln -vsf ${PWD}/tmux/tmuxp/main.yml ${HOME}/.tmuxp/main.yml
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 uefiupdate: 
 	sudo pacman -S --noconfirm fwupd dmidecode
@@ -284,12 +284,6 @@ vim:
 vm:
 	yay -S --noconfirm --needed virtualbox vboxtool vboxwrapper qemu-headless open-vm-tools virt-install virt-manager libguestfs
 	yay -S --noconfirm --needed python-vagrant vagrant vagrant-libvirt libvirt-python libvirt-glib ruby-libvirt libvirt-sandbox
-	curl https://softwareupdate.vmware.com/cds/vmw-desktop/ws/15.0.2/10952284/windows/core/VMware-Workstation-Full-15.5.1-15018445.x86_64.bundle
-	git clone https://github.com/theJaxon/unlocker ${HOME}/unlocker
-	sudo systemctl enable vmware-networks.service
-	sudo systemctl enable vmware-usbarbitrator.service
-	sudo systemctl enable vmware-hostd.service
-###### yay -S vmware-patch
 X:
 	sudo pacman -S  --noconfirm  xorg-server-xnest xorg-sessreg xorg-xclipboard xorg-xdpyinfo xorg-xfd arandr
 	sudo pacman -S --noconfirm xorg-xinit xorg-xev xdotool screen stunnel xorg-xprop autorandr xdg-utils xdotool srandrd
