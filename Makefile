@@ -1,4 +1,4 @@
-.PHONY: uefiupdate kitty laptop awesome archive disk rc zsh bash sh X tmux vim neovim rofi browsers docker dev emacs fonts git gtk templates android media netsec vm minikube postgresql pip yarn
+.PHONY: uefiupdate kitty laptop awesome archive disk rc zsh bash sh X tmux vim neovim rofi browsers docker dev emacs fonts git gtk android media netsec vm minikube postgresql pip yarn
 
 help:
 	@echo 'Dotfiles Installation Makefile                                         '
@@ -31,7 +31,6 @@ help:
 	@echo '   make rc                          install misc configurations        '
 	@echo '   make rofi                        install rofi configuration         '
 	@echo '   make sh                          install generic shell packages     '
-	@echo '   make templates                   install user defined templates     '
 	@echo '   make tmux                        install tmux configuration         '
 	@echo '   make uefiupdate                  update firmware                    '
 	@echo '   make vim                         install vim configuration          '
@@ -70,6 +69,7 @@ awesome:
 	sudo ln -sf ${PWD}/awesome/binding ${HOME}/.config/awesome/binding
 	sudo ln -sf ${PWD}/awesome/autorun.sh ${HOME}/.config/awesome/autorun.sh
 	sudo ln -sf ${PWD}/awesome/themes ${HOME}/.config/awesome/themes
+	sudo ln -sf ${PWD}/awesome/profile.png ${HOME}/.config/awesome/profile.png
 	@echo 'Reminder: You must copy the CSS in ~/dotfiles/browser into the randomly generated Firefox Profile for your browser to render the Firefox theme perfectly'
 
 bash:
@@ -323,13 +323,6 @@ sh:
 	sudo ln -fs ${PWD}/sh/profile ${HOME}/.profile
 	sudo ln -vsf ${DOTFILES}/rc/xterm.desktop /usr/share/applications/xterm.desktop
 	sudo ln -vsf ${DOTFILES}/rc/uxterm.desktop /usr/share/applications/uxterm.desktop
-
-templates:
-	@echo 'Install User Defined Templates'
-	test -L ${HOME}/Templates || rm -rf ${HOME}/Templates
-	mkdir -p ${HOME}/Templates
-	sudo ln -sf ${PWD}/templates ${HOME}/Templates
-
 tmux:
 	@echo 'Install TMUX Configuration'
 	sudo pacman -S --noconfirm tmuxp tmux

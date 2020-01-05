@@ -5,7 +5,10 @@
 -- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
-
+-- Theme Library and Variables
+local beautiful = require("beautiful")
+local xresources = require("beautiful.xresources")
+local dpi = xresources.apply_dpi
 -- Widget and layout library
 local wibox = require("wibox")
 

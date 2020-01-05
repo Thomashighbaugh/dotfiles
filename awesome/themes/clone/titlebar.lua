@@ -4,7 +4,7 @@
 
 local icondir = ""
 
--- copycat-copland
+
 
 icondir = theme_path .. "titlebar/"
 
