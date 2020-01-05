@@ -42,7 +42,7 @@ fi
 ## Template 
 function run {
    if (command -v $1 && ! pgrep $1); then
-     # shellcheck disable=SC2068
+
      $@&
    fi
 }
@@ -63,7 +63,7 @@ run xcape -e 'Super_L=Super_L|Control_L|Escape'
 run pa-applet
 
 ## Update Notifier 
-run pamac-tray
+##run pamac-tray
 
 ## Wallpaper Setter
 ##run nitrogen --restore

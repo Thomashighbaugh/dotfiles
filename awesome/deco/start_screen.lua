@@ -99,15 +99,13 @@ local username = os.getenv("USER")
 local user_text = wibox.widget.textbox(username)
 -- Capitalize username
  local user_text = wibox.widget.textbox(username:upper())
--- local user_text = wibox.widget.textbox(username:sub(1,1):upper()..username:sub(2))
-user_text.font = "FuraMono NF Bold 18"
+user_text.font = "FuraMono Nerd Font Bold 18"
 user_text.align = "center"
 user_text.valign = "center"
 
 
 local user_widget = wibox.widget {
     user_picture,
-    pad(1),
     pad(1),
     pad(1),
     user_text,
@@ -132,7 +130,7 @@ styles.focus   = { fg_color = "#F0719B",
 styles.header  = { fg_color = "#89DDFF",
                    bg_color = "#24262A",
     -- markup   = function(t) return '<b>' .. t .. '</b>' end,
-                   markup   = function(t) return '<span font_desc="FuraMono NF Bold 24">' .. t .. '</span>' end,
+                   markup   = function(t) return '<span font_desc="FuraMono Nerd Font Bold 24">' .. t .. '</span>' end,
 }
 styles.weekday = { fg_color ="#FF8537",
                    bg_color = "#24262A",
@@ -171,7 +169,7 @@ end
 
 calendar_widget = wibox.widget {
     date     = os.date('*t'),
-    font     = "FuraMono NF Bold 14",
+    font     = "FuraMono Nerd Font Bold 14",
     long_weekdays = false,
     spacing  = dpi(4),
     fn_embed = decorate_cell,
@@ -208,7 +206,7 @@ local calendar_box = create_boxed_widget(calendar_widget, dpi(400), dpi(492), be
 
 -- Time widget
 local hours = wibox.widget.textclock("<span color='#8245FF'>Time:</span>\n%H:%M")
-hours.font = "FuraMono NF Bold 30"
+hours.font = "FuraMono Nerd Font Bold 30"
 hours.align = "center"
 hours.valign = "center"
 
@@ -222,7 +220,7 @@ local time_box = create_boxed_widget(time, dpi(150), dpi(200), beautiful.xbackgr
 
 -- Date
 local day_of_the_week = wibox.widget.textclock("%A")
-day_of_the_week.font = "FuraMono NF Bold 20"
+day_of_the_week.font = "FuraMono Nerd Font Bold 20"
 day_of_the_week.fg = beautiful.xcolor0
 day_of_the_week.align = "center"
 day_of_the_week.valign = "center"
@@ -233,7 +231,7 @@ day_of_the_week.valign = "center"
      day_of_the_week.markup = "<span color='#8265FF'>" .. day_of_the_week.text .. "</span>"
  end)
 local day_of_the_month = wibox.widget.textclock("%d")
-day_of_the_month.font = "FuraMono NF Bold 30"
+day_of_the_month.font = "FuraMono Nerd Font Bold 30"
 day_of_the_month.fg = beautiful.xcolor0
 day_of_the_month.align = "center"
 day_of_the_month.valign = "center"
@@ -259,7 +257,7 @@ local date_box = create_boxed_widget(date, dpi(160), dpi(130), beautiful.xbackgr
 --local fortune_command = "fortune -n 140 -s"
  local fortune_command = "fortune -n 140 -s computers"
 local fortune = wibox.widget {
-    font = "FuraMono NF Bold 9",
+    font = "FuraMono Nerd Font Bold 9",
     align = "center",
     text = "Loading witty quote...",
     widget = wibox.widget.textbox
@@ -319,20 +317,21 @@ local fs_box = create_boxed_widget(fs, dpi(120), dpi(114), beautiful.xbackground
 local uptime_box = create_boxed_widget(uptime, dpi(120), dpi(114), beautiful.xbackground)
 
 
-local screenshot = wibox.widget.textbox("              \nscreenshot\n")
+local screenshot = wibox.widget.textbox("         timed \n  screenshot \n")
 screenshot.resize = true
 screenshot.forced_width = icon_size
 screenshot.forced_height = icon_size
-screenshot.font = "FontAwesome Bold 18"
+screenshot.font = "FontAwesome Bold 22"
 local screenshot_box = create_boxed_widget(screenshot, dpi(180), dpi(142), beautiful.xbackground)
 screenshot_box:buttons(gears.table.join(
 -- Left click - Take screenshot
         awful.button({ }, 1, function ()
-            helpers.screenshot("full")
+            naughty.notify({title = "Screenshot Sequence Begun", text = "Taking shot in 5 seconds", timeout = 9, icon =""})
+            helpers.screenshot("full", 5)
         end),
 -- Right click - Take screenshot in 10 seconds
         awful.button({ }, 3, function ()
-            naughty.notify({title = "Screenshot Sequence Begun", text = "Taking shot in 5 seconds", timeout = 9, icon =""})
+            naughty.notify({title = "Screenshot Sequence Begun", text = "Taking shot in 10 seconds", timeout = 9, icon =""})
             helpers.screenshot("full", 10)
         end)
 ))
