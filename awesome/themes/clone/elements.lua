@@ -15,7 +15,7 @@ local themes_path = require("gears.filesystem").get_themes_dir()
 
 
 -- font
-theme.font          = "FuraMono Nerd Font Medium 11"
+theme.font          = "ProFontWindows Nerd Font Mono Bold 12"
 
 
 -- Load ~/.Xresources colors and set fallback colors
@@ -78,7 +78,7 @@ theme.border_marked = theme.xcolor4
 
 -- Tasklist
 -- tasklist_[bg|fg]_[focus|urgent]
-theme.tasklist_font = "FuraMono Nerd Font Medium 9"
+theme.tasklist_font = "ProFontWindows Nerd Font Mono Bold 12"
 theme.tasklist_bg_focus = theme.xbackground
 theme.tasklist_fg_focus = theme.xforeground
 theme.tasklist_bg_urgent = theme.xbackground
@@ -88,7 +88,7 @@ theme.tasklist_fg_normal = theme.xcolor7
 theme.tasklist_shape = gears.shape.square
 theme.tasklist_shape_border_width = 0
 theme.tasklist_align = "left"
-theme.tasklist_font_focus = "FuraMono Nerd Font Medium 11"
+theme.tasklist_font_focus = "ProFontWindows Nerd Font Mono Bold 15"
 theme.tasklist_spacing = 10
 
 -- Titlebars
@@ -98,13 +98,13 @@ theme.titlebar_bg_normal = theme.xbackground
 theme.titlebar_fg_focus = theme.xforeground
 theme.titlebar_fg_normal = theme.xcolor16
 theme.titlebar_size = dpi(32)
-theme.titlebar_font = "FuraMono Nerd Font Bold 11"
+theme.titlebar_font = "ProFontWindows Nerd Font Bold 12"
 
 -- Tooltips
 -- tooltip_[font|opacity|fg_color|bg_color|border_width|border_color]
 theme.tooltip_fg = theme.fg_normal
 theme.tooltip_bg = theme.bg_normal
-theme.tooltip_font = "FuraMono Nerd Font Medium 11"
+theme.tooltip_font = "ProFontWindows Nerd Font Mono Bold 13"
 theme.tooltip_border_width = dpi(3)
 theme.tooltip_border_color = xcolor4
 
@@ -121,7 +121,7 @@ theme.notification_opacity = 1
 theme.notification_icon_size_normal = dpi(64)
 theme.notification_icon_size_selected = dpi(64)
 theme.notification_margin = dpi(3)
-theme.notification_font = "FuraMono Nerd Font Medium 14"
+theme.notification_font = "ProFontWindows Nerd Font Mono Bold 18"
 theme.notification_padding = dpi(3)
 
 -- Edge snap
@@ -134,7 +134,7 @@ theme.prompt_bg = theme.xcolor0
 theme.prompt_fg = theme.xforeground
 theme.prompt_fg_cursor = theme.xcolor7
 theme.prompt_bg_cursor = theme.xcolor7
-theme.prompt_font = "FuraMono Nerd Font Bold 11"
+theme.prompt_font = "ProFontWindows Nerd Font Bold 13"
 
 
 -- Menu
@@ -147,7 +147,7 @@ theme.menu_height = dpi(50)
 theme.menu_width  = dpi(280)
 theme.menu_border_color  = theme.xcolor4
 theme.menu_border_width  = dpi (3)
-theme.menu_font = "FuraMono Nerd Font Medium 9"
+theme.menu_font = "ProFontWindows Nerd Font Mono Bold 12"
 
 
 -- Hotkeys Popup
@@ -161,9 +161,8 @@ theme.hotkeys_opacity = 0.95
 theme.hotkeys_modifiers_fg = theme.xcolor4
 theme.hotkeys_label_bg = theme.xcolor1
 theme.hotkeys_label_fg = theme.xcolor0
-theme.hotkeys_font = "FuraMono Nerd Font Bold 10"
-theme.hotkeys_description_font = "FuraMono Nerd Font Medium 8"
-theme.hotkeys_group_margin = dpi(4)
+theme.hotkeys_font = "ProFontWindows Nerd Font Mono Bold 15"
+theme.hotkeys_description_font = "ProFontWindows Nerd Font Mono Bold 12"
 
 -- Taglist
 theme.taglist_font = "awesomewm-font 25"
@@ -179,6 +178,8 @@ theme.taglist_bg_empty = theme.xbackground
 theme.taglist_fg_empty = theme.xforeground
 theme.taglist_bg_volatile = theme.xcolor0
 theme.taglist_fg_volatile = theme.xcolor3
+
+
 
 
 

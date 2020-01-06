@@ -126,14 +126,14 @@ function helpers.round(number, decimals)
     return math.floor(number * power) / power
 end
 
--- TODO: notification action buttons
+
 function helpers.screenshot(action, delay)
     local cmd
     local timestamp = os.date("%Y.%m.%d-%H.%M.%S")
     local filename = home.."/Pictures/"..timestamp..".screenshot.png"
     -- local filename = user.screenshot_dir.."screenshot"..timestamp..".png"
     local maim_args = "-u -b 3 -m 5"
-    local icon = home .. "/.config/awesome/themes/clone/icons/screenshot"
+    local icon = ""
 
     local prefix
     if delay then
@@ -173,75 +173,5 @@ function helpers.screenshot(action, delay)
 
 end
 
-function helpers.run_or_raise(match, move, spawn_cmd, spawn_args)
-    local matcher = function (c)
-        return awful.rules.match(c, match)
-    end
-
-    -- Find and raise
-    local found = false
-    for c in awful.client.iterate(matcher) do
-        found = true
-        c.minimized = false
-        if move then
-            c:move_to_tag(mouse.screen.selected_tag)
-            client.focus = c
-            c:raise()
-        else
-            c:jump_to()
-        end
-
-        -- -- Return if found
-        -- return
-        -- -- This would normally work, but some terminals (*cough* termite)
-        -- -- create 2 instances of the same class, for just one window.
-        -- -- So it is not reliable. We will use the helper variable "found"
-        -- -- instead in order to determine if we have raised the window.
-    end
-
-    -- Spawn if not found
-    if not found then
-        awful.spawn(spawn_cmd, spawn_args)
-    end
-end
-
-
-function helpers.toggle_scratchpad()
-    local screen = awful.screen.focused()
-
-    -- Get rid of it if it is focused
-    local cf = client.focus
-    if cf and cf.class == "scratchpad" then
-        -- 1. Minimize scratchpad
-        cf.minimized = true
-        -- 2. Move scratchpad to "Miscellaneous" tag
-        -- local tag = screen.tags[10]
-        -- if tag then
-        --     client.focus:move_to_tag(tag)
-        -- end
-    else
-        helpers.run_or_raise({class = "scratchpad"}, true, "scratchpad")
-    end
-end
-
-function helpers.toggle_night_mode()
-    local cmd = "pgrep redshift > /dev/null && (pkill redshift && echo 'OFF') || (echo 'ON' && redshift -l 0:0 -t 3700:3700 -r &>/dev/null &)"
-    awful.spawn.easy_async_with_shell(cmd, function(out)
-        if out:match('ON') then
-            naughty.notify({ title = "Night mode", message = "Activated!" })
-        else
-            naughty.notify({ title = "Night mode", message = "Deactivated!" })
-        end
-    end)
-end
-
-function helpers.float_and_resize(c, width, height)
-    c.width = width
-    c.height = height
-    awful.placement.centered(c,{honor_workarea=true, honor_padding = true})
-    awful.client.property.set(c, 'floating_geometry', c:geometry())
-    c.floating = true
-    c:raise()
-end
 
 return helpers

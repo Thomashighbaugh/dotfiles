@@ -1,7 +1,7 @@
 ! Base colors
 *.foreground: #DEE6E7
 *.background: #17161B
-*.cursorColor: #57c7FF
+*.cursorColor: #8265FF
 
 *.color0: #17161B
 *.color1: #FB5368 

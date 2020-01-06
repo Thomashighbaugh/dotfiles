@@ -100,9 +100,9 @@ dev:
 	sudo pacman -S --noconfirm diffutils git ruby highlight diffutils git go highlight texinfo pandoc  ansible ansible-lint zeal devhelp 
 	yay -S --noconfirm jetbrains-toolbox python-virtualenv python-virtualenvwrapper 
 	yay -S --noconfirm --needed rbenv-git rubygems
-	yay -S --noconfirm --needed ruby-build-git
+	yay -S --noconfirm --needed ruby-build-git ruby-gollum 
 	rbenv install 2.6.5
-	gem install neovim bundler jekyll sass gollum
+	gem install neovim bundler jekyll sass gollum bourbon neat
 	yay -S --needed --noconfirm rustup
 	rustup default stable
 	rustup component add rls rust-analysis rust-src
@@ -115,6 +115,7 @@ disk:
 	sudo pacman -S --noconfirm udisks2 sshfs the_silver_searcher vivid cifs-utils trash-cli rclone git-crypt gnupg borg bleachbit flatpak 
 	yay -S --noconfirm --needed vorta ruby-colorls 
 	sudo pacman -S --noconfirm pcmanfm-gtk3
+	sudo pacman -Rns thunar-gtk3 thunar thunar-volman thunar-volman-gtk3 thunar-archive-plugin thunar-archive-plugin-gtk3 thunar-shares-plugin-gtk3 
 	@echo 'Install File Manager Configuration'
 	mkdir -p ${HOME}/.config/pcmanfm
 	sudo ln -svf ${PWD}/pcmanfm ${HOME}/.config/pcmanfm
@@ -143,6 +144,8 @@ emacs:
 fonts:
 	@echo 'Installing Font Packages'
 	yay -S --noconfirm --needed nerd-fonts-complete
+	yay -S --noconfirm --needed gedit gedit-plugins libgit2-glib gucharmap 
+	sudo pacman -Rns mousepad 
 	sudo mkdir -p ${HOME}/.local/share/fonts
 	sudo cp -rv ${PWD}/fonts/fonts.tar.7z ${HOME}/.local/share/fonts
 	sudo 7z x -so ${HOME}/.local/share/fonts/fonts.tar.7z | sudo tar xf - -C ${HOME}/.local/share/fonts
@@ -319,6 +322,7 @@ rofi:
 sh:
 	@echo 'Install Generic Shell Configuration'
 	sudo ln -fns ${PWD}/bin/ ${HOME}/bin
+	sudo ln -fs ${PWD}/lib/ ${HOME}/lib
 	sudo ln -fs ${PWD}/sh/aliases ${HOME}/.aliases
 	sudo ln -fs ${PWD}/sh/profile ${HOME}/.profile
 	sudo ln -vsf ${DOTFILES}/rc/xterm.desktop /usr/share/applications/xterm.desktop
@@ -370,24 +374,33 @@ yarn:
 	yarn global add @babel/preset-react
 	yarn global add babel-loader
 	yarn global add babel-core
+	yarn global add babel-runtime
 	yarn global add babel-preset-react-app
 	yarn global add cloc
 	yarn global add corejs
 	yarn global add create-component-app
 	yarn global add create-react-app
+	yarn global add electron
+	yarn global add electron-webpack
 	yarn global add eslint
 	yarn global add eslint-cli
 	yarn global add eslint-config-vue
 	yarn global add eslint-plugin-react
-	yarn global add eslint-plugin-jsx-a11y  
+	yarn global add eslint-plugin-jsx-a11y
 	yarn global add eslint-plugin-vue@next
-	yarn global add eslint-config-prettier 
+	yarn global add eslint-config-prettier
 	yarn global add eslint-plugin-html
 	yarn global add eslint-plugin-babel
 	yarn global add expo-cli
 	yarn global add fastify-nextjs
+	yarn global add firebase
+	yarn global add firebase-tools
+	yarn global add firebase-functions
 	yarn global add fx
 	yarn global add gatsby-cli
+	yarn global add generator-react-firebase
+	yarn global add generator-webapp
+	yarn global add generator-fountain-webapp
 	yarn global add gulp
 	yarn global add neovim
 	yarn global add gulp-cli
@@ -405,6 +418,7 @@ yarn:
 	yarn global add storybook
 	yarn global add types
 	yarn global add webpack
+	yarn global add yo
 	yarn install
 	yarn autoclean --init 
 	yarn autoclean --force
