@@ -1,5 +1,6 @@
 
 ! UXTerm
+UXTerm*termName: xterm-256color
 UXTerm*cursorColor: white
 UXTerm*VT100.geometry: 90x34
 UXTerm*font: monospace
