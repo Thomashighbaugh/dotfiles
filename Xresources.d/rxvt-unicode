@@ -18,7 +18,6 @@ URxvt.keysym.m-v: perl:clipboard:paste
 URxvt.urlLauncher: exo-open
 URxvt.underlineURLs: true
 URxvt.urlButton: 1
-URxvt.geometry: 90x34
 URxvt.tabbed.tabbar-fg: 4
 URxvt.tabbed.tabbar-bg: 16
 URxvt.tabbed.tab-fg: 15
@@ -29,11 +28,9 @@ URxvt*buffered: false
 URxvt.geometry:                   130x30
 URxvt.bold.font: -xos4-terminus-bold-r-normal--16-160-72-72-c-80-iso10646-1
 URxvt.depth:                      32
-URxvt*scrollBar:                  false
 URxvt*mouseWheelScrollPage:       true
 URxvt*cursorBlink:                true
 URxvt.saveLines:0 ! use TMUX for this	
-URxvt.perl-ext-common: keyboard-select,url-select,clipboard,tabbedex
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
 URxvt.keysym.M-s: perl:keyboard-select:search
 URxvt.keysym.M-u: perl:url-select:select_next
