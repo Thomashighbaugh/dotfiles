@@ -83,10 +83,10 @@ browsers:
 	git clone https://github.com/Thomashighbaugh/startpage ${HOME}/startpage
 	sudo ln -svf ${PWD}/firefox/autoconfig.cfg /usr/lib/firefox/autoconfig.cfg
 	sudo ln -svf ${PWD}/firefox/autoconfig.js /usr/lib/firefox/defaults/pref/autoconfig.js
-	sudo mkdir -p /usr/lib/firefox/chrome
-	sudo ln -svf ${PWD}/firefox/userChrome.css /usr/lib/firefox/chrome/userChrome.css
-	sudo ln -svf ${PWD}/firefox/TreeStyleTab.css /usr/lib/firefox/chrome/TreeStyleTab.css
-	sudo ln -svf ${PWD}/firefox/userContent.css /usr/lib/firefox/chrome/userContent.css
+	sudo mkdir -p ${HOME}/.mozilla/firefox/*.default/chrome
+	sudo ln -svf ${PWD}/firefox/userContent.css ${HOME}/.mozilla/firefox/*.default/chrome/userContent.css
+	sudo ln -svf ${PWD}/firefox/userChrome.css ${HOME}/.mozilla/firefox/*.default/userChrome.css
+	sudo ln -svf ${PWD}/firefox/TreeStyleTab.css ${HOME}/.mozilla/firefox/*.default/TreeStyleTab.css
 	sudo mkdir -p ${HOME}/.mozilla/firefox/*.default-release/chrome
 	sudo ln -svf ${PWD}/firefox/userContent.css ${HOME}/.mozilla/firefox/*.default-release/chrome/userContent.css
 	sudo ln -svf ${PWD}/firefox/userChrome.css ${HOME}/.mozilla/firefox/*.default-release/userChrome.css
