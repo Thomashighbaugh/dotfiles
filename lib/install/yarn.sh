@@ -1,6 +1,10 @@
 
 sudo pacman -S  --noconfirm yarn npm
 
+nvm install node 
+
+nvm use node 
+
 yarn global add babel-eslint
 
 yarn global add @babel/preset-react
@@ -56,6 +60,8 @@ yarn global add firebase-functions
 yarn global add fx
 
 yarn global add gatsby-cli
+
+yarn global add generator-gatsby
 
 yarn global add generator-react-firebase
 
