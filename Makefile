@@ -292,6 +292,7 @@ postgresql:
 rc:
 	@echo 'Install Misc Configurations'
 	sudo pacman -S --noconfirm rofi zathura neofetch dunst
+	yay -S --needed --noconfirm stacer-bin
 	test -L ${HOME}/.config/dunst || rm -rf ${HOME}/.config/dunst
 	mkdir -p ${HOME}/.config/dunst
 	test -L ${HOME}/.config/neofetch || rm -rf ${HOME}/.config/neofetch
@@ -407,6 +408,7 @@ yarn:
 	yarn global add heroku
 	yarn global add jshint
 	yarn global add knex
+	yarn global add nativefier
 	yarn global add netlify-cli
 	yarn global add next
 	yarn global add nextjs
