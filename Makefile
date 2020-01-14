@@ -7,7 +7,7 @@ help:
 	@echo '-----------------------------------------------------------------------'
 	@echo '-----------------------------------------------------------------------'
 	@echo 'Usage:                                                                 '
-	@echo '   make                             install everything                 '
+	@echo '   make all                         install everything                 '
 	@echo '   make android                     install android packages           '
 	@echo '   make awesome                     install awesome configuration      '
 	@echo '   make archive                     install archive packages           '
@@ -79,7 +79,10 @@ bash:
 	sudo ln -fs ${HOME}/.aliases ${HOME}/.bashalias
 browsers:
 	@echo 'Installing Browser Configuration'
-	sh ${PWD}/lib/install/browsers.sh 
+	sh ${PWD}/lib/install/browsers.sh
+	@echo 'Remove Manjaro Branding from Firefox and Thunderbird'
+	sudo rm -r /etc/manjaro-firefox*
+	sudo rm -r /etc/manjaro-thunderbird.ini
 	git clone https://github.com/Thomashighbaugh/startpage ${HOME}/startpage
 	sudo ln -svf ${PWD}/firefox/autoconfig.cfg /usr/lib/firefox/autoconfig.cfg
 	sudo ln -svf ${PWD}/firefox/autoconfig.js /usr/lib/firefox/defaults/pref/autoconfig.js
@@ -222,6 +225,12 @@ postgresql:
 	sudo systemctl enable redis.service
 rc:
 	@echo 'Install Misc Configurations'
+	@echo 'Install System Administration Packages'
+	yay -S --noconfirm --needed stacer adriconf
+	@echo 'Install Ryzen (AMD) Specific Packages for Laptop'
+	yay -S --noconfirm ryzencontroller-bin zenstates-git ryzen-stabilizator-git
+	@echo 'Install Pacman Configuration Globally'
+	sudo ln -svf ${PWD}/rc/pacman.conf /etc/pacman.conf
 	sh ${PWD}/lib/install/rc.sh
 	test -L ${HOME}/.config/dunst || rm -rf ${HOME}/.config/dunst
 	mkdir -p ${HOME}/.config/dunst
@@ -274,6 +283,7 @@ uefiupdate:
 	fwupdmgr update
 vim:
 	@echo 'Install VIM configuration'
+	sudo pacman -S --noconfirm vim vim-runtime
 	sh ${PWD}/lib/install/vim.sh
 	mkdir -p ${HOME}/.vim 
 	sudo ln -sv ${PWD}/vim/vimrc ${HOME}/.vimrc
