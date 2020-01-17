@@ -107,6 +107,8 @@ yarn global add webpack
 
 yarn global add yo
 
+yarn global add zero
+
 yarn install
 
 yarn autoclean --init 
@@ -114,5 +116,6 @@ yarn autoclean --init
 yarn autoclean --force
 
 yarn upgrade
+
 
 echo 'Finished Installing Yarn Packages'

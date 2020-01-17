@@ -10,27 +10,6 @@
 
 
 ################################################################################
-## Config Directory 
-################################################################################
-
-export XDG_CONFIG_HOME="$HOME/.config"
-
-
-################################################################################
-## Path Modification ###########################################################
-################################################################################
-
-export PATH="$XDG_CONFIG_HOME/yarn/global/node_modules/.bin:$PATH"
-PATH="$HOME/bin:$PATH"
-PATH="$HOME/.local/bin:$PATH"
-export PATH="$HOME/.yarn/bin:$PATH"
-export PATH="$HOME/.cargo/bin:$PATH"
-export PATH="$HOME/.gem/ruby/2.6.5/bin:$PATH"
-export PATH="$HOME/.gem/ruby/2.6.4/bin:$PATH"
-export PATH="$HOME/.gem/ruby/2.6.0/bin:$PATH"
-export PATH="$HOME/.cargo/bin:$PATH"
-
-################################################################################
 ## ZPlug #######################################################################
 ################################################################################
 
@@ -76,35 +55,6 @@ source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring
 ################################################################################
 ## Variable Definitions ######################################################## 
 ################################################################################
-
-
-## Editor ######################################################################
-export EDITOR=/usr/bin/nvim
-export EDITORD=/usr/bin/nvim
-export GUI_EDITOR=/usr/share/applications/nvim.desktop
-export TERM="xterm-256color"
-## QT ##########################################################################
-export QT_QPA_PLATFORMTHEME="qt5ct"
-export QT_AUTO_SCREEN_SCALE_FACTOR=0
-
-## XDG #########################################################################
-export XDG_CURRENT_DESKTOP=XFCE
-export XDG_CONFIG_DIRS=/etc/xdg
-
-
-## GOLANG ######################################################################
-export GOPATH=$HOME/go
-export GO15VENDOREXPERIMENT=1
-
-## OS ##########################################################################
-export TERMINFO=~/.terminfo
-export tOS=`uname -s`
-export ARCH=`uname -m`
-
-## Pager #######################################################################
-export PAGER="less"
-export LESS="-RMin"
-export RI_PAGER='less -FX'
 
 ## History #####################################################################
 export SAVEHIST=9999
