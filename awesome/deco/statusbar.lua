@@ -5,6 +5,8 @@
 local gears = require("gears")
 local awful     = require("awful")
 local beautiful = require("beautiful")
+local xresources = require("beautiful.xresources")
+local dpi = xresources.apply_dpi
 -- Wibox handling library
 local wibox = require("wibox")
 
@@ -20,12 +22,37 @@ local vicious = require("vicious")
 require("main.menu")
 local taglist_buttons  = deco.taglist()
 local tasklist_buttons = deco.tasklist()
+local naughty = require("naughty")
+local home = os.getenv("HOME")
+local vicious = require("vicious")
+local keygrabber = require("awful.keygrabber")
 
+local helpers = require("main.helpers")
 local _M = {}
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
 -- {{{ Wibar
+
+function pad(size)
+    local str = ""
+    for i = 1, size do
+        str = str .. " "
+    end
+    local pad = wibox.widget.textbox(str)
+    return pad
+
+end
+-- memory widget
+mem = wibox.widget.textbox()
+vicious.cache(vicious.widgets.mem)
+vicious.register(mem, vicious.widgets.mem, " <span color='#FC61F7'> Mem: </span>  $1%  ", 4)
+mem.font = "ProFontWindows Nerd Font Bold 12"
+-- cpu widget
+cpu = wibox.widget.textbox()
+vicious.cache(vicious.widgets.cpu)
+vicious.register(cpu, vicious.widgets.cpu, " <span color='#8265FF'> CPU: </span> $1%  ", 4)
+cpu.font = "ProFontWindows Nerd Font Bold 12"
 
 
 -- Create a textclock widget
@@ -109,9 +136,10 @@ awful.screen.connect_for_each_screen(function(s)
       layout = wibox.layout.fixed.horizontal,
     --z  mylauncher,
         s.mypromptbox,
-       cpuwidget,
-        memwidget,
-        fswidget,
+      cpu,
+      mem,
+
+      spacing = dpi(5),
 
     },
     {-- Middle widgets
@@ -131,11 +159,12 @@ awful.screen.connect_for_each_screen(function(s)
 },
     { -- Right widgets
       layout = wibox.layout.fixed.horizontal,
-      wibox.widget.systray(),
+
+           wibox.widget.systray(),
       --s.mylayoutbox,
 
     },
-    margin = 15,
+    margin = dpi(15),
   }
   s.mywibox2 = awful.wibar({ position = "bottom", screen = s, height = 30, ontop = true })
 
@@ -145,6 +174,7 @@ awful.screen.connect_for_each_screen(function(s)
       { -- Left widgets
         layout = wibox.layout.fixed.horizontal,
         mylauncher,
+
         s.mypromptbox,
         spacing = 30,
       },

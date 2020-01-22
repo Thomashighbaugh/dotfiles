@@ -92,14 +92,14 @@ user_picture_container.shape = gears.shape.circle
 user_picture_container.forced_height = dpi(240)
 user_picture_container.forced_width = dpi(240)
 local user_picture = wibox.widget {
-    wibox.widget.imagebox(os.getenv("HOME").."/.config/awesome/profile.png"),
+    wibox.widget.imagebox(os.getenv("HOME").."/.coNerd Fontig/awesome/profile.png"),
     widget = user_picture_container
 }
 local username = os.getenv("USER")
 local user_text = wibox.widget.textbox(username)
 -- Capitalize username
  local user_text = wibox.widget.textbox(username:upper())
-user_text.font = "FuraMono Nerd Font Bold 18"
+user_text.font = "ProFontWindows Nerd Font Bold 18"
 user_text.align = "center"
 user_text.valign = "center"
 
@@ -130,7 +130,7 @@ styles.focus   = { fg_color = "#F0719B",
 styles.header  = { fg_color = "#89DDFF",
                    bg_color = "#24262A",
     -- markup   = function(t) return '<b>' .. t .. '</b>' end,
-                   markup   = function(t) return '<span font_desc="FuraMono Nerd Font Bold 24">' .. t .. '</span>' end,
+                   markup   = function(t) return '<span font_desc="ProFontWindows Nerd Font Bold 24">' .. t .. '</span>' end,
 }
 styles.weekday = { fg_color ="#FF8537",
                    bg_color = "#24262A",
@@ -169,7 +169,7 @@ end
 
 calendar_widget = wibox.widget {
     date     = os.date('*t'),
-    font     = "FuraMono Nerd Font Bold 14",
+    font     = "ProFontWindows Nerd Font Bold 14",
     long_weekdays = false,
     spacing  = dpi(4),
     fn_embed = decorate_cell,
@@ -206,7 +206,7 @@ local calendar_box = create_boxed_widget(calendar_widget, dpi(400), dpi(492), be
 
 -- Time widget
 local hours = wibox.widget.textclock("<span color='#8245FF'>Time:</span>\n%H:%M")
-hours.font = "FuraMono Nerd Font Bold 30"
+hours.font = "ProFontWindows Nerd Font Bold 30"
 hours.align = "center"
 hours.valign = "center"
 
@@ -220,7 +220,7 @@ local time_box = create_boxed_widget(time, dpi(150), dpi(200), beautiful.xbackgr
 
 -- Date
 local day_of_the_week = wibox.widget.textclock("%A")
-day_of_the_week.font = "FuraMono Nerd Font Bold 20"
+day_of_the_week.font = "ProFontWindows Nerd Font Bold 20"
 day_of_the_week.fg = beautiful.xcolor0
 day_of_the_week.align = "center"
 day_of_the_week.valign = "center"
@@ -231,7 +231,7 @@ day_of_the_week.valign = "center"
      day_of_the_week.markup = "<span color='#8265FF'>" .. day_of_the_week.text .. "</span>"
  end)
 local day_of_the_month = wibox.widget.textclock("%d")
-day_of_the_month.font = "FuraMono Nerd Font Bold 30"
+day_of_the_month.font = "ProFontWindows Nerd Font Bold 30"
 day_of_the_month.fg = beautiful.xcolor0
 day_of_the_month.align = "center"
 day_of_the_month.valign = "center"
@@ -257,7 +257,7 @@ local date_box = create_boxed_widget(date, dpi(160), dpi(130), beautiful.xbackgr
 --local fortune_command = "fortune -n 140 -s"
  local fortune_command = "fortune -n 140 -s computers"
 local fortune = wibox.widget {
-    font = "FuraMono Nerd Font Bold 9",
+    font = "ProFontWindows Nerd Font Bold 9",
     align = "center",
     text = "Loading witty quote...",
     widget = wibox.widget.textbox
@@ -285,7 +285,7 @@ fortune_box:buttons(gears.table.join(
             awful.spawn.easy_async_with_shell(fortune_command, function(out)
                 -- Remove trailing whitespaces
                 out = out:gsub('^%s*(.-)%s*$', '%1')
-                fortune.markup = "<i>"..out.."</i>"
+                fortune.markup = "<p>"..out.."</p>"
             end)
         end)
 ))
@@ -294,21 +294,21 @@ helpers.add_hover_cursor(fortune_box, "hand1")
 mem = wibox.widget.textbox()
 vicious.cache(vicious.widgets.mem)
 vicious.register(mem, vicious.widgets.mem, "<span color='#2196F3'> Mem: </span> \n $1%", 9)
-mem.font = "FuraMono NF Bold 18"
+mem.font = "ProFontWindows Nerd Font Bold 18"
 -- cpu widget
 cpu = wibox.widget.textbox()
 vicious.cache(vicious.widgets.cpu)
 vicious.register(cpu, vicious.widgets.cpu, "<span color='#A742EA'> CPU: </span> \n $1%", 9)
-cpu.font = "FuraMono NF Bold 18"
+cpu.font = "ProFontWindows Nerd Font Bold 18"
 --filesystem widget
 fs = wibox.widget.textbox()
 vicious.register(fs, vicious.widgets.fs, "<span color='#f0719B'> SSD: </span> \n ${/ avail_gb} GB")
-fs.font = "FuraMono NF Bold 18"
+fs.font = "ProFontWindows Nerd Font Bold 18"
 -- Uptime Widgets
 uptime = wibox.widget.textbox()
 vicious.cache(vicious.widgets.uptime)
 vicious.register(uptime, vicious.widgets.uptime, "<span color='#A742EA'> Up:</span> \n $2:$3")
-uptime.font = "FuraMono NF Bold 18"
+uptime.font = "ProFontWindows Nerd Font Bold 18"
 
 
 local cpu_box = create_boxed_widget(cpu, dpi(120), dpi(114), beautiful.xbackground)

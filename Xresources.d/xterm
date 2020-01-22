@@ -1,7 +1,5 @@
 ! xterm
-xterm*termName: xterm-256color
 xterm*font: monospace
-xterm*faceName: monospace:size=11
 xterm*loginShell: true
 xterm*vt100*geometry: 90x34
 xterm*saveLines: 2000

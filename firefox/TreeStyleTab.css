@@ -4,6 +4,8 @@
 #tabbar {
 	border: 0;
 	scrollbar-width: none;
+	background: #17161B !important;
+        color: #DEE6E7 !important;
 }
 /* Remove space before child tabs when sidebar collapsed. */
 /* (I'd prefer for them to be at -1px, but I don't know how to target child tabs specifically.) */
@@ -22,20 +24,13 @@
 	margin-left: 7px;
 }  
 
-/* Hide close buttons on tabs. */
-.tab .closebox {
-	visibility: collapse;
-}
 
-/* Hide sound playing/muted button. */
-.sound-button {
-	display: none !important;
-}
+
 
 /* Hide 'new tab' button. */
 .newtab-button {
 color: #DEE6e7 !important;
-background-color: #17161b !important;
+	background:  #17161B !important;
 }
 
 
@@ -60,54 +55,63 @@ background-color: #17161b !important;
 
 #tabbar {
 	border-right: 1px solid #17161B ;
+	border-left: 1px solid #17161B ;
 	box-shadow: none !important;
-	background-color: #17161B;
+	background: #17161B !important;
+        color: #DEE6E7;
 }
 
 
 
 .tab {
-	background-color: transparent;
-	border-color: #24262A;
+	background: transparent;
+	border-color: #3a3c4e;
 	box-shadow: none !important;
+	background: linear-gradient(90deg, #24262A, #17161B, #17161B, #17161B, #17161B) !important;
 }
 .tab .label {
 	color: #DEE6E7;
+	background: linear-gradient(90deg, #24262A, #17161B, #17161B, #17161B, #17161B) !important;
 }
 .tab:hover {
-	background-color: #24262A !important;
-color: #8265FF !important;
+	background: linear-gradient(90deg, #24262A, #17161B, #17161B, #17161B, #17161B) !important;
+        color: #8265FF !important;
+	font-weight:900;
 }
 .tab:hover .label {
 	color: #8265FF	!important;
+	background: linear-gradient(90deg, #24262A, #17161B, #17161B, #17161B, #17161B) !important;
 }
 
 
 
 /* pending / unloaded tabs */
 .tab.discarded {
-	background-color: #17161B ;
+	background: linear-gradient(90deg, #24262A, #17161B, #17161B, #17161B, #17161B) !important;
 }
 
 .tab.discarded:hover {
-	background-color: #24262A !important;
+	background: linear-gradient(90deg, #24262A, #17161B, #17161B, #17161B, #17161B) !important;
 }
 
 
 
 /* active tab  */
 .tab.active {
-	background-color: #17161B ;
-color: #8265FF !important;
+	background: linear-gradient(90deg, #24262A, #17161B, #17161B, #17161B, #17161B) !important;
+       color: #FC61F7 !important;
 }
 .tab.active .label {
-	font-weight: bold;
-	color: #8265FF !important;
+	font-weight: 900;
+        color: #FC61F7 !important;
+	background: linear-gradient(90deg, #24262A, #17161B, #17161B, #17161B, #17161B) !important;
+       color: #FC61F7 !important;
 }
 .tab.active:hover {
-	background-color: #17161B  !important;
-color: #DDE6E7 !important;
+	background: linear-gradient(90deg, #24262A, #17161B, #17161B, #17161B, #17161B) !important;
+       color: #FC61F7 !important;
 }
+
 
 
 
@@ -124,5 +128,18 @@ color: #DDE6E7 !important;
 	opacity: 0;
 }
 
+tab-item tab-closebox::before {
+  border-radius: 10px; /* vary between 0 and 10 to make the background rounder */
+}
+/* I find these work well on my monitor (slightly darker than the normal tab color) but YMMV */
+tab-item tab-closebox:hover::before {
+  background: #FC61F7 !important;
+  color: #dee6e7
+  opacity: 1; /* defaults to 0.1 */
+}
+tab-item.active tab-closebox:hover::before {
+  background: #8265FF;
+  color: #dee6e7
+}
 
 
