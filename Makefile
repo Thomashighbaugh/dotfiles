@@ -86,14 +86,16 @@ browsers:
 	git clone https://github.com/Thomashighbaugh/startpage ${HOME}/startpage
 	sudo ln -svf ${PWD}/firefox/autoconfig.cfg /usr/lib/firefox/autoconfig.cfg
 	sudo ln -svf ${PWD}/firefox/autoconfig.js /usr/lib/firefox/defaults/pref/autoconfig.js
+	sudo ln -svf ${PWD}/firefox/autoconfig.cfg /usr/lib/firefox-developer-edition/autoconfig.cfg
+	sudo ln -svf ${PWD}/firefox/autoconfig.js /usr/lib/firefox-developer-edition/defaults/pref/autoconfig.js		
 	sudo mkdir -p ${HOME}/.mozilla/firefox/tlh-dev.default/chrome
-	sudo ln -svf ${PWD}/firefox/userContent.css ${HOME}/.mozilla/firefox/tlh-dev.default/chrome/userContent.css
-	sudo ln -svf ${PWD}/firefox/userChrome.css ${HOME}/.mozilla/firefox/tlh-dev.default/userChrome.css
-	sudo ln -svf ${PWD}/firefox/TreeStyleTab.css ${HOME}/.mozilla/firefox/tlh-dev.default/TreeStyleTab.css
+	sudo cp -rvf ${PWD}/firefox/userContent.css ${HOME}/.mozilla/firefox/tlh-dev.default/chrome/userContent.css
+	sudo cp -rvf ${PWD}/firefox/userChrome.css ${HOME}/.mozilla/firefox/tlh-dev.default/userChrome.css
+	sudo cp -rvf ${PWD}/firefox/TreeStyleTab.css ${HOME}/.mozilla/firefox/tlh-dev.default/TreeStyleTab.css
 	sudo mkdir -p ${HOME}/.mozilla/firefox/tlh.default-release/chrome
-	sudo ln -svf ${PWD}/firefox/userContent.css ${HOME}/.mozilla/firefox/tlh.default-release/chrome/userContent.css
-	sudo ln -svf ${PWD}/firefox/userChrome.css ${HOME}/.mozilla/firefox/tlh.default-release/userChrome.css
-	sudo ln -svf ${PWD}/firefox/TreeStyleTab.css ${HOME}/.mozilla/firefox/tlh.default-release/TreeStyleTab.css
+	sudo cp -rvf ${PWD}/firefox/userContent.css ${HOME}/.mozilla/firefox/tlh.default-release/chrome/userContent.css
+	sudo cp -rvf ${PWD}/firefox/userChrome.css ${HOME}/.mozilla/firefox/tlh.default-release/userChrome.css
+	sudo cp -rvf ${PWD}/firefox/TreeStyleTab.css ${HOME}/.mozilla/firefox/tlh.default-release/TreeStyleTab.css
 dev:
 	@echo 'Installing Development Environment Packages'
 	sh ${PWD}/lib/install/dev.sh 

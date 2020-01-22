@@ -1,3 +1,0 @@
-emulate sh -c 'source ~/.profile'
-source $HOME/.aliases
-source $HOME/.zshrc
