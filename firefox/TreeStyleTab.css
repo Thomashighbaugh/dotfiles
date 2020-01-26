@@ -15,8 +15,8 @@
 
 /* Hide .twisty and adjust margins so favicons have 7px on left. */
 .tab .twisty {
-	visibility: hidden;
-	margin-left: -12px;
+
+	margin-left: -18px;
 }
 
 /* Push tab labels slightly to the right so they're completely hidden in collapsed state, but still look fine while expanded. */
@@ -29,7 +29,8 @@
 
 /* Hide 'new tab' button. */
 .newtab-button {
-color: #DEE6e7 !important;
+color: #ffffff !important;
+
 	background:  #17161B !important;
 }
 
@@ -58,62 +59,77 @@ color: #DEE6e7 !important;
 	border-left: 1px solid #17161B ;
 	box-shadow: none !important;
 	background: #17161B !important;
-        color: #DEE6E7;
+        color: #cccccc;
 }
 
 
 
 .tab {
-	background: transparent;
+
 	border-color: #3a3c4e;
 	box-shadow: none !important;
-	background: linear-gradient(90deg, #24262A, #17161B, #17161B, #17161B, #17161B) !important;
+	background: #343a40 !important;
 }
 .tab .label {
-	color: #DEE6E7;
-	background: linear-gradient(90deg, #24262A, #17161B, #17161B, #17161B, #17161B) !important;
+	color: #cccccc;
+        margin-left: 1rem;
+
 }
 .tab:hover {
-	background: linear-gradient(90deg, #24262A, #17161B, #17161B, #17161B, #17161B) !important;
         color: #8265FF !important;
 	font-weight:900;
+
 }
 .tab:hover .label {
 	color: #8265FF	!important;
-	background: linear-gradient(90deg, #24262A, #17161B, #17161B, #17161B, #17161B) !important;
+
 }
 
 
 
 /* pending / unloaded tabs */
 .tab.discarded {
-	background: linear-gradient(90deg, #24262A, #17161B, #17161B, #17161B, #17161B) !important;
+background: #17161b;
+color:#ffffff;
 }
 
 .tab.discarded:hover {
-	background: linear-gradient(90deg, #24262A, #17161B, #17161B, #17161B, #17161B) !important;
+	background: #2d2d2d;
+color:#44ddff;
 }
 
 
 
 /* active tab  */
 .tab.active {
-	background: linear-gradient(90deg, #24262A, #17161B, #17161B, #17161B, #17161B) !important;
+	background-color: #24262A !important;
        color: #FC61F7 !important;
 }
 .tab.active .label {
 	font-weight: 900;
         color: #FC61F7 !important;
-	background: linear-gradient(90deg, #24262A, #17161B, #17161B, #17161B, #17161B) !important;
+
        color: #FC61F7 !important;
 }
-.tab.active:hover {
-	background: linear-gradient(90deg, #24262A, #17161B, #17161B, #17161B, #17161B) !important;
-       color: #FC61F7 !important;
+.tab.active:hover .label {
+
+       color: #44ddff !important;
 }
 
+tab-item tab-favicon img {
+min-width: 32px;
+min-height:28px;
 
 
+}
+tab-item tab-favicon {
+min-width: 32px;
+min-height:24px;
+padding:0;
+margin-left:0;
+
+
+}
 
 /* Adjust style for tab that has sound playing. */
 .tab.sound-playing .favicon::after {
@@ -127,19 +143,30 @@ color: #DEE6e7 !important;
 	z-index: -1;
 	opacity: 0;
 }
+tab-item tab-closebox {
+ line-height: 1;
+  mask: none;
+  text-align: center;
 
+}
 tab-item tab-closebox::before {
-  border-radius: 10px; /* vary between 0 and 10 to make the background rounder */
+content: '✖';
+color: #cccccc;
+display: block;
+z-index:1;
+
+background: #8265FF;
 }
-/* I find these work well on my monitor (slightly darker than the normal tab color) but YMMV */
-tab-item tab-closebox:hover::before {
-  background: #FC61F7 !important;
-  color: #dee6e7
-  opacity: 1; /* defaults to 0.1 */
+
+
+tab-item.active tab-closebox::before {
+content: '✖';
+color: #cccccc;
+display: block;
+z-index:1;
+mask-mode: alpha;
+background: #44ddff;
 }
-tab-item.active tab-closebox:hover::before {
-  background: #8265FF;
-  color: #dee6e7
-}
+
 
 
