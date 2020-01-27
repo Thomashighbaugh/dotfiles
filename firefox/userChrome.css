@@ -5,13 +5,13 @@
 #sidebar {
 min-width: 0 !important;
 max-width: 20% !important;
-	color: #DEE6E7 !important;
+	color: #CCCCCC !important;
 	background: #17161B !important;
 }
 /* Hide splitter, when using Tree Style Tab. */
 #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] + #sidebar-splitter {
 
-	color: #DEE6E7 !important;
+	color: #CCCCCC !important;
 	background: #17161B !important;
 }
 
@@ -19,8 +19,8 @@ max-width: 20% !important;
 /*Collapse in default state and add transition*/
 #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] {
   overflow: hidden;
-  min-width: 40px;
-  max-width: 40px;
+  min-width: 42px;
+  max-width: 42px;
   transition: all 0.2s ease;
   border-right: 1px solid #0c0c0d;
   z-index: 2;
@@ -36,7 +36,7 @@ max-width: 20% !important;
 
 /* COLOR THEME*/ 
 #nav-bar textbox {
-	color: #DEE6E7 !important;
+	color: #CCCCCC !important;
 	background-color: #24262a !important;
 }
 #nav-bar textbox:hover {
@@ -45,20 +45,20 @@ max-width: 20% !important;
 #urlbar, .searchbar-textbox {
 	border: 0px !important;
 	height: 20px !important;
-	color: #DEE6E7 !important;
+	color: #CCCCCC !important;
 	background: #17161B !important;
 
 }
 #urlbar {
 	margin-left: 1px !important;
 	margin-right: 1px !important;
-	color: #DEE6E7 !important;
+	color: #CCCCCC !important;
 	background: #17161b !important;
 }
 /*STYLE TOOLBARS AND UI MAIN*/
 #nav-bar[id], #PersonalToolbar[id], #web-developer-toolbar[id], #navigator-toolbox[tabsontop="true"] > #nav-bar[id], #navigator-toolbox[tabsontop="true"]:not([customizing]) > #nav-bar[collapsed="true"][id] + toolbar, #navigator-toolbox[tabsontop="true"]:not([customizing]) > #nav-bar[collapsed="true"] + #customToolbars + #PersonalToolbar[id], #navigator-toolbox[tabsontop="false"] > #nav-bar[id], #navigator-toolbox[tabsontop="false"]:not([customizing]) > #nav-bar[collapsed="true"][id] + toolbar, #navigator-toolbox[tabsontop="false"]:not([customizing]) > #nav-bar[collapsed="true"] + #customToolbars + #PersonalToolbar[id] {
 	background-image: none !important;
-	color: #DEE6E7 !important;
+	color: #CCCCCC !important;
 	background: #17161B !important;
 }
 #urlbar, .searchbar-textbox {
@@ -73,7 +73,7 @@ background: #24262a !important;
 #identity-box {
 	max-width: 0 !important;
 display: none;
-color: #DEE6E7;
+color: #CCCCCC;
 }
 
 
@@ -82,7 +82,7 @@ color: #DEE6E7;
 .urlbar-go-button,
 #nav-bar-overflow-button,/*more stuff double arrow button*/
 {
-		color: #DEE6E7 !important;
+		color: #CCCCCC !important;
 	background: #17161B !important;
 
 }

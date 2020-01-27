@@ -8,7 +8,7 @@ yay -S --noconfirm --needed rbenv-git rubygems
 
 yay -S --noconfirm --needed ruby-build-git ruby-gollum 
 
-rbenv install 2.6.5
+rbenv install 2.7.0
 
 gem install neovim bundler jekyll sass gollum bourbon neat
 

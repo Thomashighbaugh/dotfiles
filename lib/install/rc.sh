@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo pacman -S --noconfirm rofi zathura neofetch dunst
+sudo pacman -S --noconfirm proselint rofi zathura neofetch dunst  
 
 yay -S --needed --noconfirm stacer-bin
 

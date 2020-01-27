@@ -1,1 +1,0 @@
-/home/tlh/dotfiles/laptop/zsh/zshenv

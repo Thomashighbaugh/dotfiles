@@ -6,10 +6,10 @@ windows:
         main-pane-width: 85
     panes:
       - shell_command:
-          - clear && neofetch
+          - c && neofetch
       - shell_command:
-          - clear && htop
+          - c && htop
       - shell_command:
-          - clear && colorblocks && colorpanes && colorballs
+          - c && colorblocks && colorpanes && colorballs
                 
 

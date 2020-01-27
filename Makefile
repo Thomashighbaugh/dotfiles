@@ -43,7 +43,7 @@ help:
 	@echo '    Select from the above to provision your system accordingly         '
 	@echo '                                                                       '
 
-all: .PHONY
+all: sh zsh bash rc uefiupdate kitty laptop awesome archive disk X tmux vim neovim rofi browsers docker dev emacs fonts git gtk android media netsec vm minikube postgresql pip yarn
 
 android:
 	@echo 'Installing Android Packages'
@@ -86,14 +86,16 @@ browsers:
 	git clone https://github.com/Thomashighbaugh/startpage ${HOME}/startpage
 	sudo ln -svf ${PWD}/firefox/autoconfig.cfg /usr/lib/firefox/autoconfig.cfg
 	sudo ln -svf ${PWD}/firefox/autoconfig.js /usr/lib/firefox/defaults/pref/autoconfig.js
-	sudo mkdir -p ${HOME}/.mozilla/firefox/*.default/chrome
-	sudo ln -svf ${PWD}/firefox/userContent.css ${HOME}/.mozilla/firefox/*.default/chrome/userContent.css
-	sudo ln -svf ${PWD}/firefox/userChrome.css ${HOME}/.mozilla/firefox/*.default/userChrome.css
-	sudo ln -svf ${PWD}/firefox/TreeStyleTab.css ${HOME}/.mozilla/firefox/*.default/TreeStyleTab.css
-	sudo mkdir -p ${HOME}/.mozilla/firefox/*.default-release/chrome
-	sudo ln -svf ${PWD}/firefox/userContent.css ${HOME}/.mozilla/firefox/*.default-release/chrome/userContent.css
-	sudo ln -svf ${PWD}/firefox/userChrome.css ${HOME}/.mozilla/firefox/*.default-release/userChrome.css
-	sudo ln -svf ${PWD}/firefox/TreeStyleTab.css ${HOME}/.mozilla/firefox/*.default-release/TreeStyleTab.css
+	sudo ln -svf ${PWD}/firefox/autoconfig.cfg /usr/lib/firefox-developer-edition/autoconfig.cfg
+	sudo ln -svf ${PWD}/firefox/autoconfig.js /usr/lib/firefox-developer-edition/defaults/pref/autoconfig.js		
+	sudo mkdir -p ${HOME}/.mozilla/firefox/tlh-dev.default/chrome
+	sudo cp -rvf ${PWD}/firefox/userContent.css ${HOME}/.mozilla/firefox/tlh-dev.default/chrome/userContent.css
+	sudo cp -rvf ${PWD}/firefox/userChrome.css ${HOME}/.mozilla/firefox/tlh-dev.default/userChrome.css
+	sudo cp -rvf ${PWD}/firefox/TreeStyleTab.css ${HOME}/.mozilla/firefox/tlh-dev.default/TreeStyleTab.css
+	sudo mkdir -p ${HOME}/.mozilla/firefox/tlh.default-release/chrome
+	sudo cp -rvf ${PWD}/firefox/userContent.css ${HOME}/.mozilla/firefox/tlh.default-release/chrome/userContent.css
+	sudo cp -rvf ${PWD}/firefox/userChrome.css ${HOME}/.mozilla/firefox/tlh.default-release/userChrome.css
+	sudo cp -rvf ${PWD}/firefox/TreeStyleTab.css ${HOME}/.mozilla/firefox/tlh.default-release/TreeStyleTab.css
 dev:
 	@echo 'Installing Development Environment Packages'
 	sh ${PWD}/lib/install/dev.sh 
@@ -188,7 +190,7 @@ minikube:
 	minikube config set vm-driver kvm2
 neovim:
 	@echo 'Installing Neovim Configuration'
-	sh ${PWD}/lib/install/neovim.sh
+	sh ${PWD}/lib/install/nvim.sh
 	mkdir -p ${HOME}/.config/nvim
 	sudo ln -svf ${PWD}/nvim/init.vim ${HOME}/.config/nvim/init.vim
 	sudo ln -svf ${PWD}/nvim/nvim.desktop /usr/share/applications/nvim.desktop
@@ -206,9 +208,6 @@ netsec:
 	sudo firectl enable mpv
 	sudo firectl enable thunderbird
 	sudo firectl enable transmission-gtk 
-	sudo firectl enable wine
-
-
 pip:
 	@echo 'Installing Python Packages'
 	mkdir -p ${HOME}/.local
@@ -269,14 +268,14 @@ sh:
 	sudo ln -vsf ${DOTFILES}/rc/uxterm.desktop /usr/share/applications/uxterm.desktop
 tmux:
 	@echo 'Install TMUX Configuration'
-	sh ${PWD}/lib/themes/tmux.sh
+	sh ${PWD}/lib/install/tmux.sh
 	mkdir -p ${HOME}/.tmuxp
 	sudo ln -fs ${PWD}/tmux/tmux.conf ${HOME}/.tmux.conf
 	sudo ln -vsf ${PWD}/tmux/tmuxp/main.yml ${HOME}/.tmuxp/main.yml
 	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 uefiupdate:
 	@echo 'Update Firmware'
-	sh ${PWD}/lib/themes/uefi.sh
+	sh ${PWD}/lib/install/uefi.sh
 	sudo dmidecode -s bios-version
 	fwupdmgr refresh
 	fwupdmgr get-updates
@@ -312,7 +311,7 @@ yarn:
 zsh:
 	@echo 'Install ZSH Configuration'
 	sh ${PWD}/lib/install/zsh.sh
-	curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+	#curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
 	yay -S --noconfirm --needed zplug powerline 
 	sudo ln -fs ${PWD}/zsh/zshrc ${HOME}/.zshrc
 	sudo ln -fs ${PWD}/zsh/zlogout ${HOME}/.zlogout
