@@ -17,6 +17,7 @@
 
 ![Another Screensot](2.png)
 
+
 ---
 
 ## Table of Contents (Optional)
@@ -75,11 +76,12 @@ let generateProject = project => {
 
 - **Why Did You Use Makefile instead of Stow or A Dotfiles Manager**
 
+
   - _Makefile offers the most features with the most customization options and is remarkably similar to shell scripts in constructing_ - **Most Features** Unlike Stow or the various Dotfile Management Applications, Make does more than just symlinking files in the repository, it can run almost any shell command, enabling one to store files meant for /etc/ in the dotfiles repo. By separating portions of the configuration out, one can tailor the provisioning process to the specific needs of the system they are provsioning easily and powerfully.  
      - **Most Customization** You can use Makefiles to provision the system and install the dotfiles. Being that these were two separate steps prior, having them both easily done at once simplifies the time it takes to spin up a new system. - **Shell Script Like Syntax** You can run pretty much any shell command within the Makefile, which is contained under various headings within the file. Under these headings are shell commands that run when the heading is called. This creates an environment that is pretty much shell scripts + modularity that is expected by the make comand.
 
-- **How Do I Get the Firefox Configuration to Work** - To provision firefox, and Firefox Developer Edition, the Makefile creates and symlinks configurations into two directories. Open the browser, go to about:profiles, create a new profile and select one of those directories in the same directory as the other profiles as the source directory and voila! - Note: The default firefox homepage and new tab page are both replaced by my 'startpage' repository which is to be hosted locally and downloaded with during the "browsers" provisioning process.
 
+- **How Do I Get the Firefox Configuration to Work** - To provision firefox, and Firefox Developer Edition, the Makefile creates and symlinks configurations into two directories. Open the browser, go to about:profiles, create a new profile and select one of those directories in the same directory as the other profiles as the source directory and voila! - Note: The default firefox homepage and new tab page are both replaced by my 'startpage' repository which is to be hosted locally and downloaded with during the "browsers" provisioning process.
 ---
 
 ## License
