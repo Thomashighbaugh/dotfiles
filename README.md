@@ -14,35 +14,12 @@
 # Dotfiles of Thomas Leon Highbaugh
 
 > Never mind the bullocks, here's my dotfiles!'
-
-
+> Makefile managed configurations of ZSH, BASH, VIM, NeoVim, Kitty, Alacritty, AwesomeWM, SpaceMacs, Docker, Git, GTK, Ranger, Rofi+DMenu, Zathura, Xresources, Pacman, Firefox and More 
+> For Manjaro Linux (or other Arch based systems with Yay Installed)
 
 
 ![Another Screensot](2.png)
 
-[![INSERT YOUR GRAPHIC HERE](http://i.imgur.com/dt8AUb6.png)]()
-
-- Most people will glance at your `README`, *maybe* star it, and leave
-- Ergo, people should understand instantly what your project is about based on your repo
-
-> Tips
-
-- HAVE WHITE SPACE
-- MAKE IT PRETTY
-- GIFS ARE REALLY COOL
-
-> GIF Tools
-
-- Use <a href="http://recordit.co/" target="_blank">**Recordit**</a> to create quicks screencasts of your desktop and export them as `GIF`s.
-- For terminal sessions, there's <a href="https://github.com/chjj/ttystudio" target="_blank">**ttystudio**</a> which also supports exporting `GIF`s.
-
-**Recordit**
-
-![Recordit GIF](http://g.recordit.co/iLN6A0vSD8.gif)
-
-**ttystudio**
-
-![ttystudio GIF](https://raw.githubusercontent.com/chjj/ttystudio/master/img/example.gif)
 
 ---
 
@@ -52,10 +29,7 @@
 
 - [Installation](#installation)
 - [Features](#features)
-- [Contributing](#contributing)
-- [Team](#team)
 - [FAQ](#faq)
-- [Support](#support)
 - [License](#license)
 
 
@@ -78,111 +52,63 @@ let generateProject = project => {
 
 ## Installation
 
-- All the `code` required to get started
-- Images of what it should look like
+- Use the commands below to fetch the code and provision your system 
+- If you would like to modify any part of the installation process, changes should be reflected within the Makefile
 
-### Clone
 
-- Clone this repo to your local machine using `https://github.com/fvcproductions/SOMEREPO`
+![Set Up Commands](screenshot/carbon(1).png)
 
-### Setup
 
-- If you want more syntax highlighting, format your code like this:
-
-> update and install this package first
-
-```shell
-$ brew update
-$ brew install fvcproductions
-```
-
-> now install npm and bower packages
-
-```shell
-$ npm install
-$ bower install
-```
-
-- For all the possible languages that support syntax highlithing on GitHub (which is basically all of them), refer <a href="https://github.com/github/linguist/blob/master/lib/linguist/languages.yml" target="_blank">here</a>.
 
 ---
-
 ## Features
+- Configurations for 
+	- ZSH - .zshrc .zshenv, .zprofile - based on the Manjaro defaults but rearranged so that variables are available to all shells on the system 
+	- BASH - .bashrc, .profile, .bashenv - based on Manjaro defaults and included for times when using ZSH is not possible or practical
+	- VIM - .vimrc including plugin manager and configuration
+	- TMUX - tmux configuration and tmuxp files for tmux layout consistency
+	- NeoVim - based on VIM configuration fr consistency 
+	- Kitty - including kitty.conf and a file for color themes
+	- Alacritty - for times when kitty isn't working right 
+	- AwesomeWM - modular configuration file with custom interface themes
+	- SpaceMacs - my preferred features already set, including toolbar for new initiates
+	- Docker - custom DOCKERFILE using arch linux base
+	- Git - configuring my name and email in .gitconfiguration as well as the universal .gitignore file 
+	- GTK - pulls in my custom GTK theme, [Dhumavati](https://github.com/Thomashighbaugh/Dhumavati), which is intended to be a dark theme that matches my AwesomeWM theme 
+	- Ranger - made consistent in theme with the rest of the system 
+	- Rofi+DMenu - adds several functions available with hotkeys on Awesome WM for powering the system off, changing xrandr configuration, managing wifi, etc. Custom overlay available on Awesome using mod4(windows) key. 
+	- Zathura - adding color theme 
+	- Xresources - adding color scheme and configuarations for Xterm URXVT, etc. 
+	- Pacman - adding colors to output of search commands 
+	- Firefox - custom theme and modifications using userChrome.css. Strips out Manjaro defaults and default homepage/new tab page replacing them with my [startpage](https://github.com/Thomashighbaugh/startpage) repository hosted locally.
+- ~/bin/ - a folder with shell scripts and small applications utilized locally 
+- ~/lib/ - files and larger functionality that is nice to have across my workstation environments 
+- Custom Firefox theme and modifications using userChrome.css
+- Custom Awesome WM theme and modular configuration
+- 
 ## Usage (Optional)
 ## Documentation (Optional)
-## Tests (Optional)
-
-- Going into more detail on code and technologies used
-- I utilized this nifty <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" target="_blank">Markdown Cheatsheet</a> for this sample `README`.
-
----
-
-## Contributing
-
-> To get started...
-
-### Step 1
-
-- **Option 1**
-    - 🍴 Fork this repo!
-
-- **Option 2**
-    - 👯 Clone this repo to your local machine using `https://github.com/joanaz/HireDot2.git`
-
-### Step 2
-
-- **HACK AWAY!** 🔨🔨🔨
-
-### Step 3
-
-- 🔃 Create a new pull request using <a href="https://github.com/joanaz/HireDot2/compare/" target="_blank">`https://github.com/joanaz/HireDot2/compare/`</a>.
-
----
-
-## Team
-
-> Or Contributors/People
-
-| <a href="http://fvcproductions.com" target="_blank">**FVCproductions**</a> | <a href="http://fvcproductions.com" target="_blank">**FVCproductions**</a> | <a href="http://fvcproductions.com" target="_blank">**FVCproductions**</a> |
-| :---: |:---:| :---:|
-| [![FVCproductions](https://avatars1.githubusercontent.com/u/4284691?v=3&s=200)](http://fvcproductions.com)    | [![FVCproductions](https://avatars1.githubusercontent.com/u/4284691?v=3&s=200)](http://fvcproductions.com) | [![FVCproductions](https://avatars1.githubusercontent.com/u/4284691?v=3&s=200)](http://fvcproductions.com)  |
-| <a href="http://github.com/fvcproductions" target="_blank">`github.com/fvcproductions`</a> | <a href="http://github.com/fvcproductions" target="_blank">`github.com/fvcproductions`</a> | <a href="http://github.com/fvcproductions" target="_blank">`github.com/fvcproductions`</a> |
-
-- You can just grab their GitHub profile image URL
-- You should probably resize their picture using `?s=200` at the end of the image URL.
+- Individual documentation for the various configurations is **a work in progress**. Check back for updates as time goes on. 
 
 ---
 
 ## FAQ
 
-- **How do I do *specifically* so and so?**
-    - No problem! Just do this.
+- **Why Did You Use Makefile instead of Stow or A Dotfiles Manager**
+    - *Makefile offers the most features with the most customization options and is remarkably similar to shell scripts in constructing*
+	- **Most Features** Unlike Stow or the various Dotfile Management Applications, Make does more than just symlinking files in the repository, it can run almost any shell command, enabling one to store files meant for /etc/ in the dotfiles repo. By separating portions of the configuration out, one can tailor the provisioning process to the specific needs of the system they are provsioning easily and powerfully.  
+	- **Most Customization** You can use Makefiles to provision the system and install the dotfiles. Being that these were two separate steps prior, having them both easily done at once simplifies the time it takes to spin up a new system. 
+	- **Shell Script Like Syntax** You can run pretty much any shell command within the Makefile, which is contained under various headings within the file. Under these headings are shell commands that run when the heading is called. This creates an environment that is pretty much shell scripts + modularity that is expected by the make comand. 
+
+- **How Do I Get the Firefox Configuration to Work**
+	- To provision firefox, and Firefox Developer Edition, the Makefile creates and symlinks configurations into two directories. Open the browser, go to about:profiles, create a new profile and select one of those directories in the same directory as the other profiles as the source directory and voila! 
+	- Note: The default firefox homepage and new tab page are both replaced by my 'startpage' repository which is to be hosted locally and downloaded with during the "browsers" provisioning process.
 
 ---
-
-## Support
-
-Reach out to me at one of the following places!
-
-- Website at <a href="http://fvcproductions.com" target="_blank">`fvcproductions.com`</a>
-- Twitter at <a href="http://twitter.com/fvcproductions" target="_blank">`@fvcproductions`</a>
-- Insert more social links here.
-
----
-
-## Donations (Optional)
-
-- You could include a <a href="https://cdn.rawgit.com/gratipay/gratipay-badge/2.3.0/dist/gratipay.png" target="_blank">Gratipay</a> link as well.
-
-[![Support via Gratipay](https://cdn.rawgit.com/gratipay/gratipay-badge/2.3.0/dist/gratipay.png)](https://gratipay.com/fvcproductions/)
-
-
----
-
 ## License
 
 [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
 
 - **[MIT license](http://opensource.org/licenses/mit-license.php)**
-- Copyright 2015 © <a href="http://fvcproductions.com" target="_blank">FVCproductions</a>.
+- Copyright 2020 © <a href="http://thomasleonhighbaugh.me" target="_blank">Thomas Leon Highbaugh</a>.
 
