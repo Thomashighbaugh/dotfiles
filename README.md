@@ -1,13 +1,11 @@
-
 ```
-#####   ####  ##### ###### # #      ######  ####     #  #  #      #       #   #  
-#    # #    #   #   #      # #      #      #             ##      #         # #   
-#    # #    #   #   #####  # #      #####   ####                #        ####### 
-#    # #    #   #   #      # #      #           #              #     ###   # #   
-#    # #    #   #   #      # #      #      #    #             #      ###  #   #  
-#####   ####    #   #      # ###### ######  ####             #       ###         
+#####   ####  ##### ###### # #      ######  ####     #  #  #      #       #   #
+#    # #    #   #   #      # #      #      #             ##      #         # #
+#    # #    #   #   #####  # #      #####   ####                #        #######
+#    # #    #   #   #      # #      #           #              #     ###   # #
+#    # #    #   #   #      # #      #      #    #             #      ###  #   #
+#####   ####    #   #      # ###### ######  ####             #       ###
 ```
-
 
 ![Screenshot of my desktop](1.png)
 
@@ -15,14 +13,11 @@
 
 > Never mind the bullocks, here's my dotfiles!'
 
-
-
-
 ![Another Screensot](2.png)
 
 [![INSERT YOUR GRAPHIC HERE](http://i.imgur.com/dt8AUb6.png)]()
 
-- Most people will glance at your `README`, *maybe* star it, and leave
+- Most people will glance at your `README`, _maybe_ star it, and leave
 - Ergo, people should understand instantly what your project is about based on your repo
 
 > Tips
@@ -57,7 +52,6 @@
 - [FAQ](#faq)
 - [Support](#support)
 - [License](#license)
-
 
 ---
 
@@ -108,8 +102,11 @@ $ bower install
 ---
 
 ## Features
+
 ## Usage (Optional)
+
 ## Documentation (Optional)
+
 ## Tests (Optional)
 
 - Going into more detail on code and technologies used
@@ -124,10 +121,11 @@ $ bower install
 ### Step 1
 
 - **Option 1**
-    - 🍴 Fork this repo!
+
+  - 🍴 Fork this repo!
 
 - **Option 2**
-    - 👯 Clone this repo to your local machine using `https://github.com/joanaz/HireDot2.git`
+  - 👯 Clone this repo to your local machine using `https://github.com/joanaz/HireDot2.git`
 
 ### Step 2
 
@@ -143,10 +141,10 @@ $ bower install
 
 > Or Contributors/People
 
-| <a href="http://fvcproductions.com" target="_blank">**FVCproductions**</a> | <a href="http://fvcproductions.com" target="_blank">**FVCproductions**</a> | <a href="http://fvcproductions.com" target="_blank">**FVCproductions**</a> |
-| :---: |:---:| :---:|
-| [![FVCproductions](https://avatars1.githubusercontent.com/u/4284691?v=3&s=200)](http://fvcproductions.com)    | [![FVCproductions](https://avatars1.githubusercontent.com/u/4284691?v=3&s=200)](http://fvcproductions.com) | [![FVCproductions](https://avatars1.githubusercontent.com/u/4284691?v=3&s=200)](http://fvcproductions.com)  |
-| <a href="http://github.com/fvcproductions" target="_blank">`github.com/fvcproductions`</a> | <a href="http://github.com/fvcproductions" target="_blank">`github.com/fvcproductions`</a> | <a href="http://github.com/fvcproductions" target="_blank">`github.com/fvcproductions`</a> |
+|                 <a href="http://fvcproductions.com" target="_blank">**FVCproductions**</a>                 |                 <a href="http://fvcproductions.com" target="_blank">**FVCproductions**</a>                 |                 <a href="http://fvcproductions.com" target="_blank">**FVCproductions**</a>                 |
+| :--------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------: |
+| [![FVCproductions](https://avatars1.githubusercontent.com/u/4284691?v=3&s=200)](http://fvcproductions.com) | [![FVCproductions](https://avatars1.githubusercontent.com/u/4284691?v=3&s=200)](http://fvcproductions.com) | [![FVCproductions](https://avatars1.githubusercontent.com/u/4284691?v=3&s=200)](http://fvcproductions.com) |
+|         <a href="http://github.com/fvcproductions" target="_blank">`github.com/fvcproductions`</a>         |         <a href="http://github.com/fvcproductions" target="_blank">`github.com/fvcproductions`</a>         |         <a href="http://github.com/fvcproductions" target="_blank">`github.com/fvcproductions`</a>         |
 
 - You can just grab their GitHub profile image URL
 - You should probably resize their picture using `?s=200` at the end of the image URL.
@@ -155,8 +153,8 @@ $ bower install
 
 ## FAQ
 
-- **How do I do *specifically* so and so?**
-    - No problem! Just do this.
+- **How do I do _specifically_ so and so?**
+  - No problem! Just do this.
 
 ---
 
@@ -176,7 +174,6 @@ Reach out to me at one of the following places!
 
 [![Support via Gratipay](https://cdn.rawgit.com/gratipay/gratipay-badge/2.3.0/dist/gratipay.png)](https://gratipay.com/fvcproductions/)
 
-
 ---
 
 ## License
@@ -185,4 +182,3 @@ Reach out to me at one of the following places!
 
 - **[MIT license](http://opensource.org/licenses/mit-license.php)**
 - Copyright 2015 © <a href="http://fvcproductions.com" target="_blank">FVCproductions</a>.
-
