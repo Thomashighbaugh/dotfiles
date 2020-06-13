@@ -1,0 +1,14 @@
+Xft.dpi:         96
+Xft.antialias:   true
+Xft.hinting:     true
+Xft.rgba:        rgb
+Xft.autohint:    false
+Xft.lcdfilter:   lcddefault
+XTerm*selectToClipboard: true
+Xcursor.theme: Breeze
+Xcursor.size:                     0
+XTerm*reverseVideo:               on
+
+xterm*faceName: Source Code Pro:style=Regular
+xterm*faceSize: 11
+xterm*termName: xterm-256color

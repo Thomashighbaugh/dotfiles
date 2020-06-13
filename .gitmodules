@@ -1,0 +1,9 @@
+[submodule "bin"]
+    path = bin
+    url = https://github.com/Thomashighbaugh/bin
+[submodule "base16-vice-scheme"]
+	path = base16-vice-scheme
+	url = https://github.com/Thomashighbaugh/base16-vice-scheme
+[submodule "firefox"]
+	path = firefox
+	url = https://github.com/Thomashighbaugh/firefox

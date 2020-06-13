@@ -1,0 +1,13 @@
+session_name: main
+start_directory: "~"
+windows:
+  - layout: main-vertical
+    options:
+      main-pane-width: 85
+    panes:
+      - shell_command:
+          - c && neofetch
+      - shell_command:
+          - c && htop
+      - shell_command:
+          - c && colorblocks && colorpanes && colorballs

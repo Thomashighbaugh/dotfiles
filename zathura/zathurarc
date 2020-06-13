@@ -1,0 +1,42 @@
+# zathurarc
+include colors
+
+# settings
+set adjust-open "best-fit"
+ set show-scrollbars true
+set first-page-column  1
+set window-title-basename true
+set selection-clipboard clipboard
+set pages-per-row 2
+set scroll-page-aware "true"
+set smooth-scroll "true"
+set scroll-full-overlap 0.01
+set scroll-step 100
+
+# key bindings
+map  <F11> toggle_fullscreen
+map  <C-l> reload
+
+map           e scroll down
+map           <C-e> scroll down
+map           y scroll up
+map           <C-y> scroll up
+map           <PageUp>   navigate previous
+map           <PageDown> navigate next
+map           <C-i>      recolor
+map           <A-1> set "first-page-column 1:1"
+map           <A-2> set "first-page-column 1:2"
+
+# Why are these only defined for normal mode by default?
+map  a adjust_window best-fit
+map  s adjust_window width
+map  f follow
+map  d toggle_page_mode
+map  h mark_add
+map  k scroll up
+map <C-j> zoom in
+map <C-k> zoom out
+
+set recolor                     "true"
+set recolor-keephue             "true"
+

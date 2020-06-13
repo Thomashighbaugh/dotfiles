@@ -1,0 +1,151 @@
+###########################################################################
+# Aliases
+#
+#
+# Thomas Leon Highbaugh
+# Github: https://github.com/Thomashighbaugh
+###########################################################################
+
+alias free='free -m'          # Show sizes in MB
+
+# Program Fixes
+##########################################################################
+alias xrandr="xrandr -s 0 "
+alias fstrim="sudo fstrim -a --verbose "
+alias systemctl="sudo systemctl "
+alias ssh="ssh -x "
+alias c="clear"
+alias brightnessctl="sudo brightnessctl "
+
+# Copy Commands
+###########################################################################
+alias cpf="cp -rvf "
+alias cpn="cp -rnv "
+alias cpr="cp -rv "
+alias cpU="cp -rvu "
+alias cpi="cp -rvi "
+alias rm="sudo rm -frv "
+
+# Git Commands
+###########################################################################
+alias gitsubpush="git submodule foreach git push"
+alias gitsubcommit="git submodule foreach git commit -m 'submodule batch commit'"
+alias gitsubadd="git submodule foreach git add ."
+alias gitsubfix="git submodule foreach git checkout master"
+alias gitsub="gitsubadd && gitsubcommit"
+##  Add All Files, Commit and Push
+alias gitu="git add -u . && git add . && git commit -m 'Committed by ${USER}'  && git push"
+
+
+
+# Power Control
+###########################################################################
+alias shutdown="sudo poweroff "
+alias reboot="sudo reboot -i "
+
+
+
+# TMUX
+##########################################################################
+
+alias kmux="tmux kill-server"
+alias listmux="tmux list-sessions"
+alias muxtop="tmuxp load main"
+
+
+# Youtube DL
+##########################################################################
+#### Warning: Do not use without express permission of the copyright owner
+
+# Download Audio Track only
+alias yt-audio="youtube-dl -x  --audio-format mp3 --audio-quality 0"
+
+alias gitpu='git push '
+# Download YouTube playlist videos in separate directory indexed by video order in a playlist
+alias yt-dl-playlist="youtube-dl -o '%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s'"
+
+# Download all playlists of YouTube channel/user keeping each playlist in separate directory
+alias yt-dl-user="youtube-dl -o '%(uploader)s/%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s'  "
+alias yadl-user="youtube-dl -x  --audio-format mp3 --audio-quality 0 -o  '%(uploader)s/%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s'  "
+
+
+# Node Package Management
+###########################################################################
+
+alias npmup="npm update --global"
+alias yarnup="yarn global upgrade "
+alias nvm8="nvm use 8"
+alias nvm10="nvm use 10"
+alias nvm12="nvm use 12"
+alias nvmNow="nvm use node"e
+
+## Clears cache, lock and node_modules (for gatsy dev) expected to fail if no NPM lock is present but if it is, clears it
+alias clear-yarn="rm .cache && rm yarn.lock && rm node_modules && rm package.json.lock "
+## Same as above, but if NPM is primary package manager
+alias clear-npm="rm .cache && rm package.json.lock && node_modules && rm yarn.lock "e
+
+
+# Arch-based (and Kaos Linux) Package Management
+##########################################################################
+
+## Install Packages
+alias yu="yay -S --needed "
+alias pu="sudo pacman -S "
+
+## Install Package(s) Without Confirm
+alias yup="yay -Syyuu --noconfirm --needed --batchinstall "
+alias pup="sudo pacman -Syu --noconfirm "
+
+## Uninstall Package(s)
+alias puprm="sudo pacman -Rns "
+alias yuprm="yay -Rns "
+
+## Purge Packages
+alias pupRM="sudo pacman -Rcns "
+alias yupRM="yay -Rcns "
+
+## Search
+alias yupss="yay -Ss "
+alias pupss="sudo pacman -Ss "
+
+# Navigation
+###########################################################################
+
+
+## Change Directories
+### https://github.com/mathiasbynens/dotfiles
+alias cd.="cd . "
+alias cd..="cd .. "
+alias cd...="cd ../.. "
+alias cd....="cd ../../.. "
+alias cd.....="cd ../../../.. "
+
+## User Directory Shortcuts
+alias down="cd ~/Downloads"
+alias desk="cd ~/Desktop"
+alias pic="cd ~/Pictures"
+alias home="cd ~ "
+
+## List Contents
+alias ll="lsd -alh" # List all files and directories, including hidden, with permissions
+alias ls='lsd' #use lsd instead of ls everytime ls is called
+
+
+# YAD
+###########################################################################
+
+alias iconGTK="yad-icon-browser"
+
+
+# Kitty
+##########################################################################
+alias icat="kitty +kitten icat"
+# Graphics
+#################################################
+alias svgtopng='for file in *.svg; do inkscape $file -o ${file%svg}png; done'
+alias pngtosvg='for file in *.png do inkscape $file -o ${file%svg}svg; done'
+alias pngtobmp="ls -1 *.png | xargs -n 1 bash -c 'convert "$0" "${0%.png}.bmp"'" 
+
+# Reflector
+######################################################################################
+alias mirrors="sudo reflector --verbose --country 'United States' -l 0 --sort rate --save /etc/pacman.d/mirrorlist"

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+## Created By Aditya Shakya
+
+rofi -modi run,drun -show drun -location 1 -theme ~/.config/rofi/launchers/style_normal_rainbow_sidebar.rasi 

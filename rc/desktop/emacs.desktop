@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Spacemacs
+GenericName=Text Editor 
+Comment=Vim Keybindings + Emacs Under the Hood = Pain in the Ass Modal Text Editor That Is Powerful(ly a Pain in My Ass) 
+Exec=emacs %F
+Icon=emacs
+Type=Application
+Terminal=false
+Categories=Development;TextEditor;
+StartupWMClass=Emacs
+Keywords=Text;Editor;

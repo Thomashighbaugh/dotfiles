@@ -1,0 +1,5 @@
+#!/bin/bash
+
+## Created By Aditya Shakya
+
+rofi -modi run,drun -show drun  -theme ~/.config/rofi/launchers/style_icons_popup.rasi

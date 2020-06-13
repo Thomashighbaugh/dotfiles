@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Spacemacs
+GenericName=Text Editor
+Comment=Edit text, the bloated approached to a Linux configuration. 
+Exec=emacs --with-profile spacemacs %F
+Icon=emacs
+Type=Application
+Terminal=false
+Categories=Development;TextEditor;
+StartupWMClass=Emacs
+Keywords=Text;Editor;

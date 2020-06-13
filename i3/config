@@ -1,0 +1,429 @@
+# i3 config
+
+
+#    /$$  /$$$$$$                                       /$$$$$$  /$$
+#   |__/ /$$__  $$                                     /$$__  $$|__/
+#    /$$|__/  \ $$        /$$$$$$$  /$$$$$$  /$$$$$$$ | $$  \__/ /$$  /$$$$$$
+#   | $$   /$$$$$/       /$$_____/ /$$__  $$| $$__  $$| $$$$    | $$ /$$__  $$
+#   | $$  |___  $$      | $$      | $$  \ $$| $$  \ $$| $$_/    | $$| $$  \ $$
+#   | $$ /$$  \ $$      | $$      | $$  | $$| $$  | $$| $$      | $$| $$  | $$
+#   | $$|  $$$$$$/      |  $$$$$$$|  $$$$$$/| $$  | $$| $$      | $$|  $$$$$$$
+#   |__/ \______/        \_______/ \______/ |__/  |__/|__/      |__/ \____  $$
+#                                                                    /$$  \ $$
+#                                                                   |  $$$$$$/
+#                                                                    \______/
+
+# 
+
+################################################################################
+##  General   ##################################################################
+################################################################################
+font xft:Monofurbold Nerd Font 11
+
+mouse_warping none
+# hide_edge_borders none
+
+
+
+# default_border pixel 1
+################################################################################
+##  Autostart  #################################################################
+################################################################################
+# Autostart applications
+exec_always --no-startup-id  picom
+exec --no-startup-id xfce4-power-manager
+exec --no-startup-id clipit
+exec_always  --no-startup-id  feh --bg-fill ${HOME}/.backgrounds/vice.png
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec_always --no-startup-id sudo systemctl start systemd-networkd
+exec_always --no-startup-id sudo systemctl start anbox-container-manager.service
+exec_always --no-startup-id xss-lock --transfer-sleep-lock  i3lock-fancy-multimonitor --nofork
+
+################################################################################
+## General Keybindings #########################################################
+################################################################################
+
+
+set $mod Mod4
+
+
+### Sound Controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pulseaudio-ctl up
+bindsym XF86AudioLowerVolume exec --no-startup-id pulseaudio-ctl down
+bindsym XF86AudioMute exec --no-startup-id pulseaudio-ctl mute
+bindsym XF86AudioMicMute exec --no-startup-id mute-input
+
+
+### Screen brightness controls
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5%
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
+
+### change borders
+#bindsym $mod+u border none
+#bindsym $mod+y border pixel 1
+#bindsym $mod+z border normal
+
+
+### Kill Focused
+bindsym $mod+x kill
+
+### Kill Notifications 
+bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'Restart Dunst'"
+
+### Use Mouse+$mod to drag floating windows
+floating_modifier $mod
+
+### Focus Change
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+### move focused window
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+
+
+### split orientation
+bindsym $mod+h split h;exec notify-send 'tile horizontally'
+bindsym $mod+v split v;exec notify-send 'tile vertically'
+bindsym $mod+q split toggle
+
+### toggle fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+### change container layout (stacked, tabbed, toggle split)
+bindsym $mod+l layout toggle all
+
+
+### toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+### change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+### Layout Manager
+bindsym $mod+k exec --no-startup-id "i3-layout-manager"
+
+### toggle sticky
+bindsym $mod+Shift+o sticky toggle
+
+### focus the parent container
+bindsym $mod+a focus parent
+
+### The middle button over a titlebar kills the window
+bindsym --release button2 kill
+
+### The middle button and a modifer over any part of the window kills the window
+bindsym --whole-window $mod+button2 kill
+
+### The right button toggles floating
+bindsym button3 floating toggle
+bindsym $mod+button3 floating toggle
+
+### The side buttons move the window around
+bindsym button9 move left
+bindsym button8 move right
+
+### reload the configuration file
+bindsym $mod+Shift+c reload
+
+### restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+### exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+################################################################################
+## Application Keybindings #####################################################
+################################################################################
+
+#### Application Menu
+bindsym $mod+F1 exec --no-startup-id $HOME/.config/rofi/launchers/launcher
+#### Quicklinks Shortcut
+bindsym $mod+Shift+F1 exec --no-startup-id $HOME/.config/rofi/scripts/quicklinks.sh
+
+
+#### Firefox
+bindsym $mod+F2 exec firefox-developer-edition
+#### Basilisk
+bindsym $mod+Shift+F2 exec basilisk
+
+#### TUI File Manager
+bindsym $mod+F3  exec kitty -e 'ranger'
+#### GUI File Manager
+bindsym $mod+Shift+F3 exec pcmanfm
+
+#### Copy Emoji
+bindsym $mod+F4 exec --no-startup-id  $HOME/bin/emojipick
+#### Copy FontAwesome Icon to Clipboard
+bindsym $mod+Shift+F4 exec --no-startup-id $HOME/bin/fa-rofi
+
+#### Picom 
+bindsym $mod+F5 exec --no-startup-id "compton -b; exec notify-send -h string:fgcolor:#004D40 'Picom Activated'"
+bindsym $mod+Shift+F5 exec --no-startup-id  "pkill compton; exec notify-send 'Picom Deactivated'"
+
+exec_always --no-startup-id  "$HOME/.config/i3/autotiling.py; dunstify 'Autotiling Activated' 'You have now activated Autotiling'"
+bindsym $mod+F10 exec --no-startup-id  anbox launch --package=org.anbox.appmgr --component=org.anbox.appmgr.AppViewActivity   
+
+
+
+#### Screenshot Menu
+bindsym $mod+Print exec --no-startup-id $HOME/.config/rofi/android/screenshot.sh
+
+
+# Switch monitor by switching to the next visible workspace
+bindsym $mod+End exec --no-startup-id ~/.config/i3/autoi3/next_visible_ws.py
+
+# Close entire workspace
+bindsym $mod+Shift+Delete exec --no-startup-id ~/.config/i3/autoi3/close_ws.py
+
+# New workspace
+bindsym $mod+Home exec --no-startup-id ~/.config/i3/autoi3/new_ws.py
+
+# Switch workspaces
+bindsym $mod+Prior exec --no-startup-id ~/Development/autoi3/next_ws.py
+bindsym $mod+Next exec --no-startup-id ~/Development/autoi3/prev_ws.py
+
+
+#### Terminal
+bindsym $mod+Return exec kitty
+bindsym $mod+Ctrl+Return exec kitty -e tmux new
+
+
+
+################################################################################
+## Window Rules ################################################################
+################################################################################
+
+# Open specific applications in floating mode
+for_window [title="alsamixer"] floating enable border pixel 1
+for_window [class="calamares"] floating enable border normal
+for_window [class="Clipgrab"] floating enable
+for_window [title="File Transfer*"] floating enable
+for_window [class="fpakman"] floating enable
+for_window [class="Galculator"] floating enable border pixel 1
+for_window [class="GParted"] floating enable border normal
+for_window [class="Gpick"] floating enable border normal
+for_window [class="Lightdm-settings"] floating enable
+for_window [class="Lxappearance"] floating enable sticky enable border normal
+for_window [title="MuseScore: Play Panel"] floating enable
+for_window [class="Nitrogen"] floating enable sticky enable border normal
+
+for_window [class="Pamac-manager"] floating enable
+for_window [class="Pavucontrol"] floating enable
+for_window [class="qt5ct"] floating enable sticky enable border normal
+for_window [class="Qtconfig-qt4"] floating enable sticky enable border normal
+for_window [class="Simple-scan"] floating enable border normal
+for_window [class="(?i)System-config-printer.py"] floating enable border normal
+
+
+
+# Dialogs, popups, etc should be floating and in the center of the screen
+for_window [window_role="pop-up"] floating enable,move absolute position center
+for_window [window_role="task_dialog"] floating enable,move absolute position center
+for_window [instance="Dialog"] floating enable,move absolute position center
+
+
+################################################################################
+## Workspace ###################################################################
+################################################################################
+
+
+## Workspace names
+set $ws1 1
+set $ws2 2
+set $ws3 3
+set $ws4 4
+set $ws5 5
+set $ws6 6
+set $ws7 7
+set $ws8 8
+set $ws9 9
+
+### workspace back and forth (with/without active container)
+workspace_auto_back_and_forth yes
+bindsym $mod+b workspace back_and_forth
+bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
+
+### navigate workspaces next / previous
+bindsym $mod+Ctrl+Right workspace next
+bindsym $mod+Ctrl+Left workspace prev
+
+
+### switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+
+# Move focused container to workspace
+bindsym $mod+Ctrl+1 move container to workspace $ws1
+bindsym $mod+Ctrl+2 move container to workspace $ws2
+bindsym $mod+Ctrl+3 move container to workspace $ws3
+bindsym $mod+Ctrl+4 move container to workspace $ws4
+bindsym $mod+Ctrl+5 move container to workspace $ws5
+bindsym $mod+Ctrl+6 move container to workspace $ws6
+bindsym $mod+Ctrl+7 move container to workspace $ws7
+bindsym $mod+Ctrl+8 move container to workspace $ws8
+bindsym $mod+Ctrl+9 move container to workspace $ws9
+
+# Move to workspace with focused container
+bindsym $mod+Shift+1 move container to workspace $ws1; workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2; workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3; workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4; workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5; workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6; workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9; workspace $ws9
+
+
+################################################################################
+## Colors ######################################################################
+################################################################################
+
+# Color palette used for the terminal ( ~/.Xresources file )
+# https://i3wm.org/docs/userguide.html#xresources
+
+set_from_resource $term_background background
+set_from_resource $term_foreground foreground
+set_from_resource $term_color0     color0
+set_from_resource $term_color1     color1
+set_from_resource $term_color2     color2
+set_from_resource $term_color3     color3
+set_from_resource $term_color4     color4
+set_from_resource $term_color5     color5
+set_from_resource $term_color6     color6
+set_from_resource $term_color7     color7
+set_from_resource $term_color8     color8
+set_from_resource $term_color9     color9
+set_from_resource $term_color10    color10
+set_from_resource $term_color11    color11
+set_from_resource $term_color12    color12
+set_from_resource $term_color13    color13
+set_from_resource $term_color14    color14
+set_from_resource $term_color15    color15
+
+
+# Basic color configuration using the Base16 variables for windows and borders.
+# Property Name         Border  BG      Text    Indicator Child Border
+client.focused          $term_color6 $term_background $term_color6 $term_background $term_background
+client.focused_inactive $term_background $term_background $term_color14 $term_color0 $term_background
+client.unfocused        $term_background $term_background $term_color15 $term_color0 $term_background
+client.urgent           $term_background $term_background $term_color9 $term_color9 $term_color9
+client.placeholder      $term_background $term_background $term_color15 $term_background $term_background
+client.background       $term_background
+
+################################################################################
+##  Power Management  ##########################################################
+################################################################################
+
+# Set shut down, restart and locking features
+bindsym $mod+0 mode "$mode_system"
+set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id i3exit lock, mode "default"
+    bindsym s exec --no-startup-id i3exit suspend, mode "default"
+    bindsym u exec --no-startup-id i3exit switch_user, mode "default"
+    bindsym e exec --no-startup-id i3exit logout, mode "default"
+    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
+    bindsym r exec --no-startup-id i3exit reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
+
+    # exit system mode: "Enter" or "Escape"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+# Resize window 
+bindsym $mod+r mode "resize"
+mode "resize" {
+        # These bindings trigger as you enter resize mode
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # exit resize mode: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+
+bindsym $mod++Shift+Escape exec --no-startup-id light-locker
+
+
+
+################################################################################
+##  Gaps   #####################################################################
+################################################################################
+
+# Set gaps
+gaps inner 8
+gaps outer  4
+gaps top 8
+gaps bottom 2
+title_align center
+
+border_radius  8
+
+
+
+
+# Press $mod+Shift+g to enter the gap mode. Choose o or i for modifying outer/inner gaps. Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace). If you also press Shift with these keys, the change will be global for all workspaces.
+set $mode_gaps Gaps: (o) outer, (i) inner
+set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
+bindsym $mod+Shift+g mode "$mode_gaps"
+
+mode "$mode_gaps" {
+        bindsym o      mode "$mode_gaps_outer"
+        bindsym i      mode "$mode_gaps_inner"
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_inner" {
+        bindsym plus  gaps inner current plus 5
+        bindsym minus gaps inner current minus 5
+        bindsym 0     gaps inner current set 0
+
+        bindsym Shift+plus  gaps inner all plus 5
+        bindsym Shift+minus gaps inner all minus 5
+        bindsym Shift+0     gaps inner all set 0
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_outer" {
+        bindsym plus  gaps outer current plus 5
+        bindsym minus gaps outer current minus 5
+        bindsym 0     gaps outer current set 0
+
+        bindsym Shift+plus  gaps outer all plus 5
+        bindsym Shift+minus gaps outer all minus 5
+        bindsym Shift+0     gaps outer all set 0
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+
+################################################################################
+## Alt Tab #####################################################################
+################################################################################
+    set $i3t_alt_tab        $HOME/.config/i3/i3-alt-tab.py n all
+    set $i3t_alt_shift_tab  $HOME/.config/i3/i3-alt-tab.py p all
+    bindsym $mod+Tab exec   exec $i3t_alt_tab
+    bindsym $mod+Shift+Tab  exec $i3t_alt_shift_tab
+
+
+
