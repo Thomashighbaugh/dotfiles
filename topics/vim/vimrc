@@ -1,0 +1,187 @@
+"------------------------------------------------------------
+" Features {{{1
+"
+" These options and commands enable some very useful features in Vim, that
+" no user should have to live without.
+ 
+" Set 'nocompatible' to ward off unexpected things that your distro might
+" have made, as well as sanely reset options when re-sourcing .vimrc
+set nocompatible
+ 
+" Attempt to determine the type of a file based on its name and possibly its
+" contents. Use this to allow intelligent auto-indenting for each filetype,
+" and for plugins that are filetype specific.
+filetype indent plugin on
+ 
+" Enable syntax highlighting
+syntax on
+ 
+ "Without this, whenever you switch buffers, Vim will prompt you to save the file (you don't want that if you want to move quickly between buffers).
+set hidden 
+
+"------------------------------------------------------------
+"Options
+
+" Allows leaving buffer without save
+set hidden
+ 
+" Better command-line completion
+set wildmenu
+
+"Prevent unneeded screen tears
+set lazyredraw
+
+"Show partial commands in the last line of the screen
+set showcmd
+
+"show matching brackets
+set showmatch
+
+" Highlight searches (use <C-L> to temporarily turn off highlighting; see the
+" mapping of <C-L> below)
+set hlsearch
+ 
+" set nomodeline
+ 
+" Use case insensitive search, except when using capital letters
+set ignorecase
+set smartcase
+ 
+" Allow backspacing over autoindent, line breaks and start of insert action
+set backspace=indent,eol,start
+ 
+" When opening a new line and no filetype-specific indenting is enabled, keep
+" the same indent as the line you're currently on. Useful for READMEs, etc.
+set autoindent
+ 
+" Stop certain movements from always going to the first character of a line.
+set nostartofline
+ 
+" Display the cursor position on the last line of the screen or in the status
+" line of a window
+set ruler
+ 
+" Always display the status line, even if only one window is displayed
+set laststatus=2
+ 
+" Instead of failing a command because of unsaved changes, instead raise a
+" dialogue asking if you wish to save changed files.
+set confirm
+
+" Enable Folding of Blocks
+set foldenable
+
+"Open most folds by default
+set foldlevelstart=10
+
+"Set maximum fold nesting
+set foldnestmax=10
+
+"Spacebar opens and closes fold
+nnoremap <space> za
+
+"Fold based on indent level
+set foldmethod=indent 
+
+
+" Use visual bell instead of beeping when doing something wrong
+set visualbell
+ 
+" And reset the terminal code for the visual bell. If visualbell is set, and
+" this line is also included, vim will neither flash nor beep. If visualbell
+" is unset, this does nothing.
+"set t_vb=
+ 
+" Enable use of the mouse for all modes
+set mouse=a
+ 
+" Set the command window height to 2 lines, to avoid many cases of having to
+" press <Enter> to continue
+set cmdheight=2
+ 
+" Display line numbers on the left
+set number
+ 
+" Quickly time out on keycodes, but never time out on mappings
+set notimeout ttimeout ttimeoutlen=200
+ 
+" Use <F11> to toggle between 'paste' and 'nopaste'
+set pastetoggle=<F11>
+
+" allow backspacing over everything.
+ set backspace=indent,eol,start
+
+
+"------------------------------------------------------------
+" Indentation options {{{1
+"
+" Indentation settings according to personal preference.
+ 
+" Indentation settings for using 4 spaces instead of tabs.
+" Do not change 'tabstop' from its default value of 8 with this setup.
+set shiftwidth=4
+set softtabstop=4
+set expandtab
+ 
+" Indentation settings for using hard tabs for indent. Display tabs as
+" four characters wide.
+set tabstop=4
+
+"------------------------------------------------------------
+"Mappings 
+"
+" Useful mappings
+ 
+" Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy,
+" which is the default
+map Y y$
+ 
+" Map <C-L> (redraw screen) to also turn off search highlighting until the
+" next search
+nnoremap <c-l> :nohl<cr><c-l>
+
+"------------------------------------------------------------- color-window: ;*/
+"Launch Configuration
+
+"allows cursor change in tmux mode
+if exists('$TMUX')
+    let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+    let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+else
+    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif
+
+
+" Rofi's .rasi Configuration
+au BufNewFile,BufRead /*.rasi setf css
+
+"vim-plug plugin manager 
+
+" Install and run vim-plug on first run
+if empty(glob('~/.vim/autoload/plug.vim'))
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+"source plugins file in .vim/plugins.vim
+so ~/.vim/plugins.vim
+"plugin configurations
+
+let g:lightline = {
+  \     'active': {
+  \         'left': [['mode', 'paste' ], ['readonly', 'filename', 'modified']],
+  \         'right': [['lineinfo'], ['percent'], ['gitbranch', 'fileformat', 'fileencoding']]
+  \     },
+  \     'component_function': {
+  \         'gitbranch': 'gitbranch#name'
+  \     }
+  \ }
+
+let NERDTreeShowHidden = 1
+
+:let g:notes_directories = ['~/2a/VIMNotes', '~/Documents/VimNotes', '~/Dropbox/VIMNotes']
+:let g:notes_suffix = '.md'
+
+"vim:foldmethod=marker:foldlevel=0
+

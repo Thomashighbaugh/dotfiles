@@ -1,0 +1,90 @@
+#!/bin/sh
+#####################################################################
+#####################    xprofile    ################################
+#####################################################################
+# sourced at boot by xinit and display managers like lightdm
+
+export XDG_CONFIG_HOME="$HOME/.config"
+
+[ -d /sbin ] && PATH="$PATH:/sbin"
+[ -d /usr/sbin ] && PATH="$PATH:/usr/sbin"
+[ -d "$HOME/bin" ] && PATH="$HOME/bin:$PATH"
+
+
+# keyring and polkit daemons
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+gnome-keyring-daemon --start --components=pkcs11 &
+
+
+
+# # display timeout and sleep
+# xset s 600 1200
+# xset dpms 600 900 1500
+
+# keyboard repeat rate
+#xset r rate 350 60
+
+
+## Gnome Keyring
+if (command -v gnome-keyring-daemon && ! pgrep gnome-keyring-d); then
+    gnome-keyring-daemon --daemonize --login &
+fi
+
+## Pulse Audio for X11
+if (command -v start-pulseaudio-x11 && ! pgrep pulseaudio); then
+    start-pulseaudio-x11 &
+fi
+
+## Power Manager
+#if (command -v  xfce4-power-manager && ! pgrep xfce4-power-man) ; then
+#    xfce4-power-manager &
+#fi
+
+if (command -v system-config-printer-applet && ! pgrep applet.py ); then
+  system-config-printer-applet &
+fi
+
+
+## Function
+function run {
+   if (command -v $1 && ! pgrep $1); then
+
+     $@&
+   fi
+}
+
+
+
+## Hitting Left Super == L Super + L Control + Escape (for rofi)
+run xcape -e 'Super_L=Super_L|Control_L|Escape'
+
+## Compositor
+run  picom
+
+
+## Bluetooth Manager
+run blueman-applet
+
+## Notifications
+run dunst 
+
+## PulseAudio Tray Applet
+run pa-applet
+
+## XFCE Settings
+run xfsettingsd
+
+## XFCE4 Power Manager (for laptop)
+#run xfce4-power-manager
+
+## Network Manager Applet
+run nm-applet
+
+#run xsettingsd
+
+xrdb -merge $HOME/.Xresources 
+
+
+# Screensaver Daemon
+xscreemsaver
+

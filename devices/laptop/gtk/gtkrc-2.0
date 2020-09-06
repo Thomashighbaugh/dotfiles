@@ -1,0 +1,12 @@
+gtk-color-scheme = "bg_color:#13111a
+text_color:#edeeff
+selected_bg_color:#545862
+selected_fg_color:#edeeff
+tooltip_bg_color:#13111a
+tooltip_fg_color:#edeeff
+titlebar_bg_color:#13111a
+titlebar_fg_color:#edeeff
+menu_bg_color:#13111a
+menu_fg_color:#edeeff
+link_color:#545862"
+
