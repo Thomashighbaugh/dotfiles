@@ -1,5 +1,5 @@
 Xft/Hinting -1
-Gtk/FontName "Inter V Medium 11"
+Gtk/FontName "Iceland Bold 15"
 Xft/HintStyle "hintfull"
 Gtk/KeyThemeName ""
 Net/IconThemeName "Flatery-Dark"
@@ -19,10 +19,10 @@ Gtk/MenuBarAccel "F10"
 Net/ThemeName "Dhumavati-dark"
 Gtk/ButtonImages 1
 Net/DoubleClickDistance 5
-Gtk/MonospaceFontName "Inter V Heavy 11"
+Gtk/MonospaceFontName "Iceland Bold  15"
 Xft/DPI 94208
 Gtk/CursorThemeName ""
-Gtk/ToolbarIconSize 3
+Gtk/ToolbarIconSize 32
 Net/DndDragThreshold 8
 Gtk/DecorationLayout "menu:minimize,maximize,close"
 Net/EnableInputFeedbackSounds 1

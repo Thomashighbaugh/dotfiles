@@ -15,7 +15,7 @@ yay -S --noconfirm gtk-theme-arc-git
 
 yay -S --noconfirm paper-gtk-theme-git pocillo-gtk-theme-git 
 
-yay -S --noconfirm pop-gtk-theme-bin canta-gtk-theme-git themix-full-git 
+yay -S --noconfirm pop-gtk-theme canta-gtk-theme-git themix-full-git 
 
 mkdir -p $HOME/.config/gtk-2.0
 

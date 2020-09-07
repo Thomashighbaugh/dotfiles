@@ -6,38 +6,38 @@ echo  ".----.-----.|  |  |_|  |  ||    __|"
 echo  "|  __|  _  ||  |   _|__    |__    |"
 echo  "|____|_____||__|____|  |__||______|"
 echo  ""                                 
-echo  "Dotfiles Installation Script"
+echo  "Dotfiles Installation System"
 echo
 echo "Before I begin please enter the device you are provisioning."
-echo "1 ) Workstation | AMD | Nvidia"
-echo "2 ) Laptop | Thinkpad | AMD | AMDGPU "
-echo "3 ) Hypervisor | Intel"
+echo "1 ) Workstation  | AMD Ryzen 3900x       | Nvidia"
+echo "2 ) Laptop       | Thinkpad  Ryzen 3500  | AMDGPU "
+echo "3 ) Hypervisor   | Intel 8th Gen i7      | Nvidia"
 read system
 echo -n ""
 echo -n ""
 case $system in
 1) # Workstation Configuration
-echo "You have chosen to provision the workstation configuration option."
+echo
+echo "You have chosen the workstation provisioning and configuration option."
+echo 
+echo
 sh ./dependencies/install.sh
-for D in devices/workstation
-do # first assign directory to present position
-  directory=$D
-  # second instal the script labeled install.sh within the position directory
-      if [ -d "${D}" ]; then
-        bash "${D}/install.sh"   # your processing here
-	fi
-done
+bash "devices/workstation/install.sh"   # your processing here
+echo 
+echo 
+echo "You are now done configuring after provisioning a workstation device."
 ;;
 2)
+echo
 echo "You have chosen to provision the laptop configuration option."
+echo
+echo
+echo
 bash ./dependencies/install.sh
-for SD in *
-do
- 
-  directory=$d
-  echo "$directory"
-  bash $directory/install.sh
-done
+bash "devices/laptop/install.sh"   # your processing here
+echo 
+echo 
+echo "You are now done configuring after provisioning a laptop device."
 ;;
 *)
 echo "Not an option, you've made the wrong choice"
