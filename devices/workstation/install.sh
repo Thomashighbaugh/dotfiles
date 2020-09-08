@@ -25,7 +25,7 @@ sh $HOME/dotfiles/topics/cursor/install.sh
 sh $HOME/dotfiles/topics/disks/install.sh
 
 sh $HOME/dotfiles/topics/docker/install.sh
-3
+
 sh $HOME/dotfiles/topics/dropbox/install.sh
 
 sh $HOME/dotfiles/topics/emacs/install.sh

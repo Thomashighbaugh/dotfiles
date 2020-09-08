@@ -22,5 +22,5 @@ export WORDCHARS=${WORDCHARS//\/[&.;]}
 RPROMPT='$(git_prompt_string)'
 
 ## NVM ######################################################################
-echo export NVM_DIR="$HOME/.nvm"
+export NVM_DIR="$HOME/.nvm"
 source "$NVM_DIR/nvm.sh"
