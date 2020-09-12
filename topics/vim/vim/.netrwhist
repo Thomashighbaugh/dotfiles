@@ -1,5 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =3
+let g:netrw_dirhistcnt =5
+let g:netrw_dirhist_5='/home/tlh/.local/share'
+let g:netrw_dirhist_4='/home/tlh/.local/share/bin'
 let g:netrw_dirhist_3='/home/tlh/.config/gtk-4.0'
 let g:netrw_dirhist_2='/home/tlh/.config/gtk-3.0'
 let g:netrw_dirhist_1='/home/tlh/dotfiles/topics/firefox'
