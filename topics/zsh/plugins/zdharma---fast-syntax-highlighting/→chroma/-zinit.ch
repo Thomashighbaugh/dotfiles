@@ -309,12 +309,12 @@ fsh__zinit__chroma__def=(
     local_dir="${ZINIT[SNIPPETS_DIR]}${local_dir:+/$local_dir}"
 
     (( ${+ZINIT_ICE[svn]} || ${FAST_HIGHLIGHT[chroma-zinit-ice-elements-svn]} )) && {
-        # TODO: handle the SVN path's specifics
+        #
         [[ -d "$local_dir/$dirname" ]] && \
             { __style=${FAST_THEME_NAME}correct-subtle; return 0; } || \
             return 1
     } || {
-        # TODO: handle the non-SVN path's specifics
+        # 
         [[ -d "$local_dir/$dirname" ]] && \
             { __style=${FAST_THEME_NAME}correct-subtle; return 0; } || \
             return 1

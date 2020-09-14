@@ -40,7 +40,6 @@ sh $HOME/dotfiles/topics/grub/install.sh
 
 sh $HOME/dotfiles/topics/gtk_laptop/install.sh
 
-
 sh $HOME/dotfiles/topics/hosts/install.sh
 
 sh $HOME/dotfiles/topics/htop/install.sh
@@ -60,8 +59,6 @@ sh $HOME/dotfiles/topics/lua/install.sh
 sh $HOME/dotfiles/topics/neofetch/install.sh
 
 sh $HOME/dotfiles/topics/network-manager/install.sh
-
-sh $HOME/dotfiles/topics/nvidia/install.sh
 
 sh $HOME/dotfiles/topics/nvm/install.sh
 
@@ -100,8 +97,6 @@ sh $HOME/dotfiles/topics/tor/install.sh
 sh $HOME/dotfiles/topics/vagrant/install.sh
 
 sh $HOME/dotfiles/topics/vim/install.sh
-
-sh $HOME/dotfiles/topics/virtualbox/install.sh
 
 sh $HOME/dotfiles/topics/xorg/install.sh
 

@@ -548,7 +548,7 @@ typeset -gA HSMW_HIGHLIGHT_STYLES
                    -hsmw-highlight-stack-pop 'R' style=reserved-word
                  fi;;
         $'\x28\x29') # possibly a function definition
-                 if (( multi_func_def )) || false # TODO: or if the previous word was a command word
+                 if (( multi_func_def )) || false # 
                  then
                    next_word+=':start:'
                  fi
@@ -787,7 +787,7 @@ typeset -gA HSMW_HIGHLIGHT_STYLES
 # Does not perform filename generation (globbing).
 -hsmw-highlight-expand-path()
 {
-  (( $# == 1 )) || print -r -- >&2 "hsmw-highlight: BUG: -hsmw-highlight-expand-path: called without argument"
+  (( $# == 1 )) || print -r -- >&2 "hsmw-highlight: 
 
   # The $~1 syntax normally performs filename generation, but not when it's on the right-hand side of ${x:=y}.
   setopt localoptions nonomatch

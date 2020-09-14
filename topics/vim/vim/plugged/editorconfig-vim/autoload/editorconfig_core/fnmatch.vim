@@ -152,7 +152,7 @@ function! editorconfig_core#fnmatch#translate(pat, ...)
         call s:dump_chars(a:pat)
     endif
 
-    let l:pat = a:pat   " TODO remove if we wind up not needing this
+    let l:pat = a:pat   "
 
     " Note: the Python sets MULTILINE and DOTALL, but Vim has \_.
     " instead of DOTALL, and \_^ / \_$ instead of MULTILINE.

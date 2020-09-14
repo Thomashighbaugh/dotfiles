@@ -2,7 +2,7 @@
 " Description: Support for the scalastyle checker.
 
 call ale#Set('scala_scalastyle_options', '')
-" TODO: Remove support for the old option name in ALE 3.0.
+"
 call ale#Set('scala_scalastyle_config',
 \   get(g:, 'ale_scalastyle_config_loc', '')
 \)

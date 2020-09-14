@@ -61,7 +61,7 @@ function! ale#handlers#languagetool#HandleOutput(buffer, lines) abort
 endfunction
 
 " Define the languagetool linter for a given filetype.
-" TODO:
+"
 " - Add language detection settings based on user env (for mothertongue)
 " - Add fixer
 " - Add config options for rules

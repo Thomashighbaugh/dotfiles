@@ -18,7 +18,7 @@ function! ale_linters#matlab#mlint#Handle(buffer, lines) abort
         let l:text = l:match[4]
 
         " Suppress erroneous waring about filename
-        " TODO: Enable this error when copying filename is supported
+        "
         if l:code is# 'FNDEF'
             continue
         endif

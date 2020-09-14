@@ -903,7 +903,7 @@ function! s:bang(cmd, ...)
   let batchfile = ''
   try
     let [sh, shellcmdflag, shrd] = s:chsh(a:0)
-    " FIXME: Escaping is incomplete. We could use shellescape with eval,
+    "
     "        but it won't work on Windows.
     let cmd = a:0 ? s:with_cd(a:cmd, a:1) : a:cmd
     if s:is_win
@@ -1408,7 +1408,7 @@ function! s:log(bullet, name, lines)
     else
       let b = 4
     endif
-    " FIXME For some reason, nomodifiable is set after :d in vim8
+    "
     setlocal modifiable
     call append(b - 1, s:format_message(a:bullet, a:name, a:lines))
     call s:switch_out()

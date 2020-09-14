@@ -376,7 +376,7 @@ endfunction
 function! s:Cursor.remove_visual_selection() dict
   let self.saved_visual = deepcopy(self.visual)
   let self.visual = []
-  " TODO(terryma): Move functionality into separate class
+  "
   call s:cm.remove_highlight(self.visual_hi_id)
   let self.visual_hi_id = 0
 endfunction
@@ -783,8 +783,8 @@ endfunction
 " behavior if `` is the same location as the cursor location.
 " Mode change: Normal -> Visual
 " Cursor change: Set to end of region
-" TODO: Refactor this and s:update_visual_markers
-" FIXME: By using m` we're destroying the user's jumplist. We should use a
+"
+"
 " different mark and use :keepjump
 function! s:select_in_visual_mode(region)
   if a:region[0] == a:region[1]
@@ -917,7 +917,7 @@ function! s:process_user_input()
   " was in when the input was entered
   call s:revert_mode(s:to_mode, s:from_mode)
 
-  " Update the line length BEFORE applying any actions. TODO(terryma): Is there
+  " Update the line length BEFORE applying any actions.
   " a better place to do this?
   " let cursor_position = s:cm.get_current()
   call cursor_position.update_line_length()
@@ -939,7 +939,7 @@ function! s:process_user_input()
 
   " If we're coming from insert mode or going into insert mode, always chain the
   " undos together.
-  " FIXME(terryma): Undo always places the cursor at the beginning of the line.
+  "
   " Figure out why.
   if s:from_mode ==# 'i' || s:to_mode ==# 'i'
     silent! undojoin | call s:feedkeys(s:char."\<Plug>(multiple-cursors-apply)")

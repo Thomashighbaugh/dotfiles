@@ -35,7 +35,7 @@ endfunction " }}}1
 
 " path_join(): ('a','b')->'a/b'; ('a/','b')->'a/b'. {{{1
 function! editorconfig_core#util#path_join(a, b)
-    " TODO shellescape/shellslash?
+    "
     "echom 'Joining <' . a:a . '> and <' . a:b . '>'
     "echom 'Length is ' . strlen(a:a)
     "echom 'Last char is ' . char2nr(a:a[-1])

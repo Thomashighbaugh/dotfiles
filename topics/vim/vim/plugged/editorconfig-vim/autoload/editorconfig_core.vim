@@ -52,7 +52,7 @@ endfunction
 " For use from the command line.  Output settings for in_name to
 " the buffer named out_name.  If an optional argument is provided, it is the
 " name of the config file to use (default '.editorconfig').
-" TODO support multiple files
+"
 "
 " filename (if any)
 " @param names  {Dictionary}    The names of the files to use for this run
@@ -79,7 +79,7 @@ function! editorconfig_core#currbuf_cli(names, job) " out_name, in_name, ...
         let l:job.version = l:ver
     endif
 
-    " TODO provide version output from here instead of the shell script
+    "
 "    if string(a:names) ==? 'version'
 "        return
 "    endif

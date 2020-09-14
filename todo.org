@@ -1,0 +1,9 @@
+* Inbox
+** DONE trizen --noconfirm
+NOTE: Cannot be done due to makepkg, will have to tolerate it
+** TODO --noconfirm elsewhere (near fonts)
+
+[[file:~/dotfiles/.projectile][file:~/dotfiles/.projectile]]
+** DONE zsh hunt for the dune quote shit
+
+[[file:~/dotfiles/.projectile][file:~/dotfiles/.projectile]]

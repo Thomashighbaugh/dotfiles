@@ -254,7 +254,7 @@ fsh__git__chroma__def=(
     ##
     ## DIFF
     ##
-    ##  TODO: When a second argument is also a path and it points to a directory, then
+    ##  
     ##        git appends the previous file name to it – good to implement this too
     ## {{{
 
@@ -921,11 +921,11 @@ fsh__git__chroma__def=(
 }
 
 # A RESET handler
-# TODO: differentiate tree-ish from commit
+# 
 →chroma/-git-RESET-verify-commit-or-file() {
     →chroma/-git-verify-commit "$@" && {
         →chroma/-git-verify-file "$@" && {
-            # TODO: with -p/--patch, the <paths> are optional,
+            # 
             # and this argument will be taken as a commit in a
             # specific circumstances
             FAST_HIGHLIGHT[chroma-git-reset-etc-saw-file]=1

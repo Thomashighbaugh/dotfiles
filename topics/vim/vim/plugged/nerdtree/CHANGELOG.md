@@ -56,6 +56,7 @@
 - **.2**: Fix NERDTree opening with the wrong size. (PhilRunninger) [#1008](https://github.com/scrooloose/nerdtree/pull/1008)
 - **.1**: Update Changelog and create PR Template (PhilRunninger) [#1007](https://github.com/scrooloose/nerdtree/pull/1007)
 - **.0**: Too many changes for one patch...
+
   - Refresh a dir_node if the file wasn't found in it, and look once more. (PhilRunninger) [#1005](https://github.com/scrooloose/nerdtree/pull/1005)
   - Add a "copy path to clipboard" menu option (PhilRunninger) [#1002](https://github.com/scrooloose/nerdtree/pull/1002)
   - Enable root refresh on "vim ." a different way than [#999](https://github.com/scrooloose/nerdtree/pull/999). (PhilRunninger) [#1001](https://github.com/scrooloose/nerdtree/pull/1001)
@@ -112,7 +113,7 @@
   - Add code to sort mappings in quickhelp (lifecrisis) [#849](https://github.com/scrooloose/nerdtree/pull/849)
   - Use ":clearjumps" in new NERDTree windows (lifecrisis) [#844](https://github.com/scrooloose/nerdtree/pull/844)
   - Like m-c did before, create parent directories if needed on m-m. (PhilRunninger) [#840](https://github.com/scrooloose/nerdtree/pull/840)
-  - BUGFIX: Repair a problem with the `'u'` mapping. (lifecrisis) [#838](https://github.com/scrooloose/nerdtree/pull/838)
+  -
   - Make the NERDTree buffer writable when rendering it. (PhilRunninger) [#837](https://github.com/scrooloose/nerdtree/pull/837)
   - Code cleanup: Remove unsupported bookmark table mappings (lifecrisis) [#835](https://github.com/scrooloose/nerdtree/pull/835)
   - Replace strcharpart() with substitute() for backward compatibility (bravestarr) [#834](https://github.com/scrooloose/nerdtree/pull/834)
@@ -125,10 +126,10 @@
   - Use a better check for existence of the NERDTree buffer. (PhilRunninger) [#814](https://github.com/scrooloose/nerdtree/pull/814)
   - Fix focussing previous buffer when closing NERDTree (mrubli) [#801](https://github.com/scrooloose/nerdtree/pull/801)
   - Update the docs for "NERDTreeStatusline" (lifecrisis) [#796](https://github.com/scrooloose/nerdtree/pull/796)
-  - BUGFIX: Unstable behavior in the "getPath()" method (lifecrisis) [#795](https://github.com/scrooloose/nerdtree/pull/795)
+  -
   - Revert the bugfix from pull request [#785](https://github.com/scrooloose/nerdtree/pull/785) (lifecrisis) [#794](https://github.com/scrooloose/nerdtree/pull/794)
-  - BUGFIX: Allow ":NERDTreeFind" to discover hidden files (lifecrisis) [#786](https://github.com/scrooloose/nerdtree/pull/786)
-  - BUGFIX: Allow ":NERDTreeFind" to reveal new files (lifecrisis) [#785](https://github.com/scrooloose/nerdtree/pull/785)
+  -
+
   - Add modelines (lifecrisis) [#782](https://github.com/scrooloose/nerdtree/pull/782)
   - Change the type of completion used by NERDTreeFind (lifecrisis) [#781](https://github.com/scrooloose/nerdtree/pull/781)
   - change NERDTreeFind with args (zhenyangze) [#778](https://github.com/scrooloose/nerdtree/pull/778)
@@ -139,7 +140,7 @@
   - Fix a problem with the "x" handler (lifecrisis) [#768](https://github.com/scrooloose/nerdtree/pull/768)
   - Clean up the handler for the "x" mapping (lifecrisis) [#767](https://github.com/scrooloose/nerdtree/pull/767)
   - Revert change to tab opening method (lifecrisis) [#766](https://github.com/scrooloose/nerdtree/pull/766)
-  - BUGFIX: Add back support for "b:NERDTreeRoot" (lifecrisis) [#765](https://github.com/scrooloose/nerdtree/pull/765)
+  -
   - Fix broken "t" and "T" mappings, tabs now open at end (lifecrisis) [#759](https://github.com/scrooloose/nerdtree/pull/759)
   - Update doc with already existing mapping variables (asnr) [#699](https://github.com/scrooloose/nerdtree/pull/699)
   - Fix the broken g:NERDTreeBookmarksSort setting (lifecrisis) [#696](https://github.com/scrooloose/nerdtree/pull/696)

@@ -330,7 +330,7 @@ endfunction
 function! ale#job#HasOpenChannel(job_id) abort
     if ale#job#IsRunning(a:job_id)
         if has('nvim')
-            " TODO: Implement a check for NeoVim.
+            "
             return 1
         endif
 
@@ -349,7 +349,7 @@ function! ale#job#Stop(job_id) abort
     endif
 
     if has('nvim')
-        " FIXME: NeoVim kills jobs on a timer, but will not kill any processes
+        "
         " which are child processes on Unix. Some work needs to be done to
         " kill child processes to stop long-running processes like pylint.
         silent! call jobstop(a:job_id)

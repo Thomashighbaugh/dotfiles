@@ -428,7 +428,7 @@ endfunction
 " Given part of a command, replace any % with %%, so that no characters in
 " the string will be replaced with filenames, etc.
 function! ale#engine#EscapeCommandPart(command_part) abort
-    " TODO: Emit deprecation warning here later.
+    "
     return ale#command#EscapeCommandPart(a:command_part)
 endfunction
 

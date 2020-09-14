@@ -152,7 +152,7 @@ Execute(Using `python -m flake8` should be supported for running flake8):
 Execute(Setting executable to 'pipenv' should append 'run flake8'):
   let g:ale_python_flake8_executable = 'path/to/pipenv'
 
-  " FIXME: pipenv should check the version with flake8.
+  "
   GivenCommandOutput []
   AssertLinter 'path/to/pipenv',
   \ ale#path#BufferCdString(bufnr(''))

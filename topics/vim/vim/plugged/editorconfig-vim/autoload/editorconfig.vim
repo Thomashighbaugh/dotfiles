@@ -47,7 +47,7 @@ function! editorconfig#ApplyHooks(config) abort " {{{1
         let l:hook_ret = Hook(a:config)
 
         if type(l:hook_ret) != type(0) && l:hook_ret != 0
-            " TODO print some debug info here
+            "
         endif
     endfor
 endfunction

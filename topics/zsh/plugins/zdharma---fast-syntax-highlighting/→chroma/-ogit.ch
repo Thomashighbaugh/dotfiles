@@ -120,7 +120,7 @@ else
                 # 3) There's little problem, git v2.20 outputs aliases in git help -a,
                 #    which means that alias will be recognized as correct if it will
                 #    point at another alias or on itself. That's a minor problem, a
-                #    TODO for future planned optimization for v2.20 Git
+                #    
                 # 4) Notice that the above situation is better than the previous - the
                 #    alias is being verified to point to a valid git subcommand
                 # That's all that's needed to decide on the correctnes:

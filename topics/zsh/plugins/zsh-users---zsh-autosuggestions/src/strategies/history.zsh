@@ -16,7 +16,7 @@ _zsh_autosuggest_strategy_history() {
 	# Escape backslashes and all of the glob operators so we can use
 	# this string as a pattern to search the $history associative array.
 	# - (#m) globbing flag enables setting references for match data
-	# TODO: Use (b) flag when we can drop support for zsh older than v5.0.8
+	# 
 	local prefix="${1//(#m)[\\*?[\]<>()|^~#]/\\$MATCH}"
 
 	# Get the history items that match the prefix, excluding those that match

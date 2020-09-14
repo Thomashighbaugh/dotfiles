@@ -56,6 +56,8 @@ sh $HOME/dotfiles/topics/kitty/install.sh
 
 sh $HOME/dotfiles/topics/lua/install.sh
 
+sh $HOME/dotfiles/topics/lxd/install.sh
+ 
 sh $HOME/dotfiles/topics/neofetch/install.sh
 
 sh $HOME/dotfiles/topics/network-manager/install.sh

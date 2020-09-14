@@ -99,7 +99,7 @@ if($files.count -lt 1) {
 }
 
 if($files[0] -eq '-') {
-    echo "Reading filenames from stdin not yet supported" # TODO
+    echo "Reading filenames from stdin not yet supported" #
     exit 1
 }
 
@@ -148,8 +148,8 @@ if($debug) { echo "Using Vim command ${cmd}" | D }
 $vim_args = @(
     '-c', "set runtimepath+=${DIR}\..\..",
     '-c', $cmd,
-    '-c', 'quit!'   # TODO write a wrapper that will cquit on exception
-)
+    '-c', 'quit!'   #
+
 
 # Run editorconfig.  Thanks for options to
 # http://vim.wikia.com/wiki/Vim_as_a_system_interpreter_for_vimscript .

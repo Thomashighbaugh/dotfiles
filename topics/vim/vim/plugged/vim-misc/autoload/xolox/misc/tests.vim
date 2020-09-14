@@ -70,7 +70,7 @@ function! xolox#misc#tests#shell_escaping() " {{{2
   call xolox#misc#test#assert_equals(0, result['exit_code'])
   call xolox#misc#test#assert_same_type([], result['stdout'])
   call xolox#misc#test#assert_equals(1, len(result['stdout']))
-  " XXX On Windows using system() there's a trailing space I can't explain.
+  "
   " However the point of this test was to show that all characters pass
   " through unharmed, so for now I'll just ignore the space :-)
   call xolox#misc#test#assert_equals(expected_value, xolox#misc#str#trim(result['stdout'][0]))

@@ -1,7 +1,7 @@
 " Author: Sven-Hendrik Haase <svenstaro@gmail.com>
 " Description: glslang-based linter for glsl files
 "
-" TODO: Once https://github.com/KhronosGroup/glslang/pull/1047 is accepted,
+
 " we can use stdin.
 
 call ale#Set('glsl_glslang_executable', 'glslangValidator')

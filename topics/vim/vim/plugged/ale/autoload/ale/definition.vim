@@ -109,7 +109,7 @@ function! s:OnReady(line, column, options, capability, linter, lsp_details) abor
         elseif a:capability is# 'typeDefinition'
             let l:message = ale#lsp#message#TypeDefinition(l:buffer, a:line, a:column)
         else
-            " XXX: log here?
+            "
             return
         endif
     endif
@@ -144,7 +144,7 @@ endfunction
 function! ale#definition#GoToType(options) abort
     for l:linter in ale#linter#Get(&filetype)
         if !empty(l:linter.lsp)
-            " TODO: handle typeDefinition for tsserver if supported by the
+            "
             " protocol
             if l:linter.lsp is# 'tsserver'
                 continue

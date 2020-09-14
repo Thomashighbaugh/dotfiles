@@ -414,7 +414,7 @@ k () {
        FILESIZE_OUT="${(l:MAX_LEN[5]:)FILESIZE_OUT}"
 
       # --------------------------------------------------------------------------
-      # Colour the permissions - TODO
+      # Colour the permissions - 
       # --------------------------------------------------------------------------
       # Colour the first character based on filetype
       FILETYPE="${PERMISSIONS[1]}"

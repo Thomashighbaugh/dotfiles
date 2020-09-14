@@ -160,7 +160,7 @@ HELP
 
         case $opt in
             --verbose|-v) verbose="yes";;
-            # TODO; try adapt ; echo "$opt" | grep '^-[a-zA-Z]*v[a-zA-Z]*$' >/dev/null) \
+            # 
             -V) vimedit="yes" ;;
             -Z) raw="yes" ;;
             -W) ;;

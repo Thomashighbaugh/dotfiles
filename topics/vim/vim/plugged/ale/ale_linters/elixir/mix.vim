@@ -8,7 +8,7 @@ function! ale_linters#elixir#mix#Handle(buffer, lines) abort
     " Error format
     " ** (CompileError) apps/sim/lib/sim/server.ex:87: undefined function update_in/4
     "
-    " TODO: Warning format
+    "
     " warning: variable "foobar" does not exist and is being expanded to "foobar()", please use parentheses to remove the ambiguity or change the variable name
     let l:pattern = '\v\(([^\)]+Error)\) ([^:]+):([^:]+): (.+)$'
     let l:output = []

@@ -1,1 +1,1 @@
-sudo pacman -S git
+sudo pacman -S --noconfirm git

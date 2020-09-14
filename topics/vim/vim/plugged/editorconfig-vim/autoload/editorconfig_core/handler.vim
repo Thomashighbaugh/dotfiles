@@ -31,7 +31,7 @@ set cpo&vim
 
 " Return full filepath for filename in each directory in and above path. {{{1
 " Input path must be an absolute path.
-" TODO shellslash/shellescape?
+"
 function! s:get_filenames(path, config_filename)
     let l:path = a:path
     let l:path_list = []
@@ -53,7 +53,7 @@ endfunction " get_filenames
 " Throws on failure.
 " @param job    {Dictionary}    required 'target'; optional 'config' and 'version'
 function! editorconfig_core#handler#get_configurations(job)
-    " TODO? support VERSION checks?
+    "
 
 "    Special exceptions that may be raised by this function include:
 "    - ``VersionError``: self.version is invalid EditorConfig version
@@ -118,7 +118,7 @@ function! editorconfig_core#handler#get_configurations(job)
 endfunction " get_configurations
 
 function! s:check_assertions(job)
-" TODO
+"
 "    """Raise error if filepath or version have invalid values"""
 
 "    # Raise ``PathError`` if filepath isn't an absolute path

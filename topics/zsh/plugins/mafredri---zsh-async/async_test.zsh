@@ -379,7 +379,7 @@ test_async_flush_jobs() {
 	sleep 0.2
 
 	# Flush jobs, this kills running jobs and discards unprocessed results.
-	# TODO: Confirm that they no longer exist in the process tree.
+	# 
 	local output
 	output="${(Q)$(ASYNC_DEBUG=1 async_flush_jobs test)}"
 	# NOTE(mafredri): First 'p' in print_four is lost when null-prefixing

@@ -39,10 +39,10 @@ function! ale#lsp#response#ReadDiagnostics(response) abort
         if l:severity == s:SEVERITY_WARNING
             let l:loclist_item.type = 'W'
         elseif l:severity == s:SEVERITY_INFORMATION
-            " TODO: Use 'I' here in future.
+            "
             let l:loclist_item.type = 'W'
         elseif l:severity == s:SEVERITY_HINT
-            " TODO: Use 'H' here in future
+            "
             let l:loclist_item.type = 'W'
         endif
 

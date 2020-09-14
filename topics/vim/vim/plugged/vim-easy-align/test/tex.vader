@@ -9,7 +9,7 @@ Given tex (table with escaped &):
     777&8\&8&999\\
   \end{tabular}
 
-# FIXME vip doesn't work if folded
+#
 Do (Align around all &s and \\s):
   VG\<Enter>*&
 

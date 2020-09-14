@@ -313,7 +313,7 @@ function! s:insert(...) " {{{1
   let linemode = a:0 ? a:1 : 0
   let char = s:inputreplacement()
   while char == "\<CR>" || char == "\<C-S>"
-    " TODO: use total count for additional blank lines
+    "
     let linemode += 1
     let char = s:inputreplacement()
   endwhile

@@ -126,7 +126,7 @@ if (( "$#" < 1 )); then
 fi
 
 if [[ $1 = '-' ]]; then
-    echo "Reading filenames from stdin not yet supported" 1>&2  # TODO
+    echo "Reading filenames from stdin not yet supported" 1>&2  # 
     exit 1
 fi
 

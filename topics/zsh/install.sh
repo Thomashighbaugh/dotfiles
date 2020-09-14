@@ -5,7 +5,7 @@
 ################################################################################
 
 ## Install Necessary Packages 
-yay -S --noconfirm --sudoloop --needed zsh alias-tips-git zsh-auto-notify zsh-doc 
+yay -S --noconfirm --sudoloop --needed zsh alias-tips-git zsh-auto-notify zsh-doc lsd lshw
 yay -S --noconfirm --sudoloop --needed zsh-syntax-highlighting zsh-lovers   zsh-autosuggestions 
 yay -S --noconfirm --sudoloop --needed alias-tips-git  zsh-system-clipboard-git  
 

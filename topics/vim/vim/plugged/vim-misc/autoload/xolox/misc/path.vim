@@ -164,7 +164,7 @@ endfunction
 function! xolox#misc#path#merge(parent, child, ...) " {{{1
   " Join a directory pathname and filename into a single pathname.
   if type(a:parent) == type('') && type(a:child) == type('')
-    " TODO Use xolox#misc#path#is_relative()?
+    "
     if s:windows_compatible
       let parent = substitute(a:parent, '[\\/]\+$', '', '')
       let child = substitute(a:child, '^[\\/]\+', '', '')

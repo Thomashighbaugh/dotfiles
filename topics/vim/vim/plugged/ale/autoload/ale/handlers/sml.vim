@@ -54,7 +54,7 @@ endfunction
 
 function! ale#handlers#sml#Handle(buffer, lines) abort
     " Try to match basic sml errors
-    " TODO(jez) We can get better errorfmt strings from Syntastic
+    "
     let l:out = []
     let l:pattern = '^.*\:\([0-9\.]\+\)\ \(\w\+\)\:\ \(.*\)'
     let l:pattern2 = '^.*\:\([0-9]\+\)\.\?\([0-9]\+\).* \(\(Warning\|Error\): .*\)'
