@@ -130,49 +130,49 @@
   - Revert the bugfix from pull request [#785](https://github.com/scrooloose/nerdtree/pull/785) (lifecrisis) [#794](https://github.com/scrooloose/nerdtree/pull/794)
   -
 
-  - Add modelines (lifecrisis) [#782](https://github.com/scrooloose/nerdtree/pull/782)
-  - Change the type of completion used by NERDTreeFind (lifecrisis) [#781](https://github.com/scrooloose/nerdtree/pull/781)
-  - change NERDTreeFind with args (zhenyangze) [#778](https://github.com/scrooloose/nerdtree/pull/778)
-  - Style Choice: Using confirm() when deleting a bookmark (lifecrisis) [#777](https://github.com/scrooloose/nerdtree/pull/777)
-  - remove useless substitute when `file =~# "/$"` (skyblueee) [#773](https://github.com/scrooloose/nerdtree/pull/773)
-  - remove useless removeLeadingSpaces in \_stripMarkup (skyblueee) [#772](https://github.com/scrooloose/nerdtree/pull/772)
-  - Make the "o" mapping consistent with "x" (lifecrisis) [#769](https://github.com/scrooloose/nerdtree/pull/769)
-  - Fix a problem with the "x" handler (lifecrisis) [#768](https://github.com/scrooloose/nerdtree/pull/768)
-  - Clean up the handler for the "x" mapping (lifecrisis) [#767](https://github.com/scrooloose/nerdtree/pull/767)
-  - Revert change to tab opening method (lifecrisis) [#766](https://github.com/scrooloose/nerdtree/pull/766)
-  -
-  - Fix broken "t" and "T" mappings, tabs now open at end (lifecrisis) [#759](https://github.com/scrooloose/nerdtree/pull/759)
-  - Update doc with already existing mapping variables (asnr) [#699](https://github.com/scrooloose/nerdtree/pull/699)
-  - Fix the broken g:NERDTreeBookmarksSort setting (lifecrisis) [#696](https://github.com/scrooloose/nerdtree/pull/696)
-  - Correct NERDTreeIgnore pattern in doc (cntoplolicon) [#648](https://github.com/scrooloose/nerdtree/pull/648)
-  - Remove empty segments when splitting path (sooth-sayer) [#574](https://github.com/scrooloose/nerdtree/pull/574)
-  - Suppress autocmds less agressively (wincent) [#578](https://github.com/scrooloose/nerdtree/pull/578) [#691](https://github.com/scrooloose/nerdtree/pull/691)
-  - Add an Issues template to ask for more info initially.
-  - Fix markdown headers in readme (josephfrazier) [#676](https://github.com/scrooloose/nerdtree/pull/676)
-  - Don't touch `@o` and `@h` registers when rendering
-  - Fix bug with files and directories with dollar signs (alegen) [#649](https://github.com/scrooloose/nerdtree/pull/649)
-  - Reuse/reopen existing window trees where possible [#244](https://github.com/scrooloose/nerdtree/pull/244)
-  - Remove NERDTree.previousBuf()
-  - Change color of arrow (Leeiio) [#630](https://github.com/scrooloose/nerdtree/pull/630)
-  - Improved a tip in README.markdown (ggicci) [#628](https://github.com/scrooloose/nerdtree/pull/628)
-  - Shorten delete confimration of empty directory to `y` (mikeperri) [#530](https://github.com/scrooloose/nerdtree/pull/530)
-  - Fix API call to open directory tree in window (devm33) [#533](https://github.com/scrooloose/nerdtree/pull/533)
-  - Change default arrows on non-Windows platforms (gwilk) [#546](https://github.com/scrooloose/nerdtree/pull/546)
-  - Update to README - combine cd and git clone (zwhitchcox) [#584](https://github.com/scrooloose/nerdtree/pull/584)
-  - Update to README - Tip: start NERDTree when vim starts (therealplato) [#593](https://github.com/scrooloose/nerdtree/pull/593)
-  - Escape filename when moving an open buffer (zacharyvoase) [#595](https://github.com/scrooloose/nerdtree/pull/595)
-  - Fixed incorrect :helptags command in README (curran) [#619](https://github.com/scrooloose/nerdtree/pull/619)
-  - Fixed incomplete escaping of folder arrows (adityanatraj) [#548](https://github.com/scrooloose/nerdtree/pull/548)
-  - Added NERDTreeCascadeSingleChildDir option (juanibiapina) [#558](https://github.com/scrooloose/nerdtree/pull/558)
-  - Replace strchars() with backward compatible workaround.
-  - Add support for copy command in Windows (SkylerLipthay) [#231](https://github.com/scrooloose/nerdtree/pull/231)
-  - Fixed typo in README.markdown - :Helptags -> :helptags
-  - Rename "primary" and "secondary" trees to "tab" and "window" trees.
-  - Move a bunch of buffer level variables into the NERDTree and UI classes.
-  - Display cascading dirs on one line to save vertical/horizontal space (matt-gardner: brainstorming/testing)
-  - Remove the old style UI - Remove `NERDTreeDirArrows` option.
-  - On windows default to + and ~ for expand/collapse directory symbols.
-  - Lots more refactoring. Move a bunch of b: level vars into b:NERDTree and friends.
+  * Add modelines (lifecrisis) [#782](https://github.com/scrooloose/nerdtree/pull/782)
+  * Change the type of completion used by NERDTreeFind (lifecrisis) [#781](https://github.com/scrooloose/nerdtree/pull/781)
+  * change NERDTreeFind with args (zhenyangze) [#778](https://github.com/scrooloose/nerdtree/pull/778)
+  * Style Choice: Using confirm() when deleting a bookmark (lifecrisis) [#777](https://github.com/scrooloose/nerdtree/pull/777)
+  * remove useless substitute when `file =~# "/$"` (skyblueee) [#773](https://github.com/scrooloose/nerdtree/pull/773)
+  * remove useless removeLeadingSpaces in \_stripMarkup (skyblueee) [#772](https://github.com/scrooloose/nerdtree/pull/772)
+  * Make the "o" mapping consistent with "x" (lifecrisis) [#769](https://github.com/scrooloose/nerdtree/pull/769)
+  * Fix a problem with the "x" handler (lifecrisis) [#768](https://github.com/scrooloose/nerdtree/pull/768)
+  * Clean up the handler for the "x" mapping (lifecrisis) [#767](https://github.com/scrooloose/nerdtree/pull/767)
+  * Revert change to tab opening method (lifecrisis) [#766](https://github.com/scrooloose/nerdtree/pull/766)
+  *
+  * Fix broken "t" and "T" mappings, tabs now open at end (lifecrisis) [#759](https://github.com/scrooloose/nerdtree/pull/759)
+  * Update doc with already existing mapping variables (asnr) [#699](https://github.com/scrooloose/nerdtree/pull/699)
+  * Fix the broken g:NERDTreeBookmarksSort setting (lifecrisis) [#696](https://github.com/scrooloose/nerdtree/pull/696)
+  * Correct NERDTreeIgnore pattern in doc (cntoplolicon) [#648](https://github.com/scrooloose/nerdtree/pull/648)
+  * Remove empty segments when splitting path (sooth-sayer) [#574](https://github.com/scrooloose/nerdtree/pull/574)
+  * Suppress autocmds less agressively (wincent) [#578](https://github.com/scrooloose/nerdtree/pull/578) [#691](https://github.com/scrooloose/nerdtree/pull/691)
+  * Add an Issues template to ask for more info initially.
+  * Fix markdown headers in readme (josephfrazier) [#676](https://github.com/scrooloose/nerdtree/pull/676)
+  * Don't touch `@o` and `@h` registers when rendering
+  * Fix bug with files and directories with dollar signs (alegen) [#649](https://github.com/scrooloose/nerdtree/pull/649)
+  * Reuse/reopen existing window trees where possible [#244](https://github.com/scrooloose/nerdtree/pull/244)
+  * Remove NERDTree.previousBuf()
+  * Change color of arrow (Leeiio) [#630](https://github.com/scrooloose/nerdtree/pull/630)
+  * Improved a tip in README.markdown (ggicci) [#628](https://github.com/scrooloose/nerdtree/pull/628)
+  * Shorten delete confimration of empty directory to `y` (mikeperri) [#530](https://github.com/scrooloose/nerdtree/pull/530)
+  * Fix API call to open directory tree in window (devm33) [#533](https://github.com/scrooloose/nerdtree/pull/533)
+  * Change default arrows on non-Windows platforms (gwilk) [#546](https://github.com/scrooloose/nerdtree/pull/546)
+  * Update to README - combine cd and git clone (zwhitchcox) [#584](https://github.com/scrooloose/nerdtree/pull/584)
+  * Update to README - Tip: start NERDTree when vim starts (therealplato) [#593](https://github.com/scrooloose/nerdtree/pull/593)
+  * Escape filename when moving an open buffer (zacharyvoase) [#595](https://github.com/scrooloose/nerdtree/pull/595)
+  * Fixed incorrect :helptags command in README (curran) [#619](https://github.com/scrooloose/nerdtree/pull/619)
+  * Fixed incomplete escaping of folder arrows (adityanatraj) [#548](https://github.com/scrooloose/nerdtree/pull/548)
+  * Added NERDTreeCascadeSingleChildDir option (juanibiapina) [#558](https://github.com/scrooloose/nerdtree/pull/558)
+  * Replace strchars() with backward compatible workaround.
+  * Add support for copy command in Windows (SkylerLipthay) [#231](https://github.com/scrooloose/nerdtree/pull/231)
+  * Fixed typo in README.markdown - :Helptags -> :helptags
+  * Rename "primary" and "secondary" trees to "tab" and "window" trees.
+  * Move a bunch of buffer level variables into the NERDTree and UI classes.
+  * Display cascading dirs on one line to save vertical/horizontal space (matt-gardner: brainstorming/testing)
+  * Remove the old style UI - Remove `NERDTreeDirArrows` option.
+  * On windows default to + and ~ for expand/collapse directory symbols.
+  * Lots more refactoring. Move a bunch of b: level vars into b:NERDTree and friends.
 
 #### 5.0.0
 
