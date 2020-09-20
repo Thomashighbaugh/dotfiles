@@ -1,5 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =5
+let g:netrw_dirhistcnt =7
+let g:netrw_dirhist_7='/home/tlh/resgen/classes'
+let g:netrw_dirhist_6='/home/tlh/resgen/templates'
 let g:netrw_dirhist_5='/home/tlh/dotfiles/topics/zsh'
 let g:netrw_dirhist_4='/home/tlh/dotfiles/topics/zsh/prompt'
 let g:netrw_dirhist_3='/home/tlh/dotfiles/topics/zsh'
@@ -8,5 +10,3 @@ let g:netrw_dirhist_1='/home/tlh/dotfiles/topics/zsh'
 let g:netrw_dirhist_0='/home/tlh/dotfiles/topics/zsh/path'
 let g:netrw_dirhist_9='/home/tlh/dotfiles/topics/zsh'
 let g:netrw_dirhist_8='/home/tlh/dotfiles/topics/zsh/functions'
-let g:netrw_dirhist_7='/home/tlh/dotfiles/topics/zsh'
-let g:netrw_dirhist_6='/home/tlh/dotfiles/topics/zsh/plugins'

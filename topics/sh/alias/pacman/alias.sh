@@ -6,7 +6,7 @@ alias yu="yay -S --needed "
 alias pu="sudo pacman -S "
 
 ## Install Package(s) Without Confirm
-alias yup="yay -Syyuu --noconfirm --needed --batchinstall "
+alias yup="yay -Syyuu --noconfirm --needed --sudoloop "
 alias pup="sudo pacman -Syu --noconfirm "
 
 ## Uninstall Package(s)
