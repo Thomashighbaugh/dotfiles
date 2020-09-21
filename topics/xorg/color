@@ -2,15 +2,15 @@
 
 ! special
 *.foreground:  #edeeff
-*.background:   #292d35
+*.background:   #0e121a
 *.cursorColor:  #e9e9ff
 
 ! black
-*.color0:       #292d35
+*.color0:       #282d35
 *.color8:       #3C3F4C
 
 ! red
-*.color1:       #f850ac
+*.color1:       #f83fcf
 *.color9:       #ff9cff
 
 ! green
