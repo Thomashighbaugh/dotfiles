@@ -1,5 +1,6 @@
+
+
 configuration {
-theme: "tlh";
 	modi: "window,run,ssh,drun,combi,windowcd,keys";
 /*	width: 50;*/
 /*	lines: 15;*/
@@ -144,3 +145,5 @@ theme: "tlh";
 /*	me-accept-entry: "MouseDPrimary";*/
 /*	me-accept-custom: "Control+MouseDPrimary";*/
 }
+
+
