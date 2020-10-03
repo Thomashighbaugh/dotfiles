@@ -1,12 +1,12 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =0
+let g:netrw_dirhistcnt =4
+let g:netrw_dirhist_4='/etc/fonts/conf.d'
+let g:netrw_dirhist_3='/etc/fonts'
+let g:netrw_dirhist_2='/home/tlh/.gnupg/crls.d'
+let g:netrw_dirhist_1='/home/tlh/2a/electric-tantra-repo/electric-tantra/dhumavati-gtk-Theme'
 let g:netrw_dirhist_0='/etc/lxdm'
 let g:netrw_dirhist_9='/home/tlh/dotfiles/topics/zsh/path'
 let g:netrw_dirhist_8='/home/tlh/dotfiles/topics/zsh'
 let g:netrw_dirhist_7='/home/tlh/dotfiles/topics/zsh/path'
 let g:netrw_dirhist_6='/home/tlh/dotfiles/topics/zsh'
 let g:netrw_dirhist_5='/home/tlh/dotfiles/topics/zsh/path'
-let g:netrw_dirhist_4='/home/tlh/dotfiles/topics/zsh'
-let g:netrw_dirhist_3='/home/tlh/dotfiles/topics/zsh/path'
-let g:netrw_dirhist_2='/home/tlh/dotfiles/topics/zsh'
-let g:netrw_dirhist_1='/home/tlh/electric-tantra-repo/x86_64'
