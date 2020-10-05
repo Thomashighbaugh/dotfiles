@@ -1,0 +1,1 @@
+alias ssh='ssh -Y' 

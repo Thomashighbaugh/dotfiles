@@ -26,7 +26,7 @@ sh $HOME/dotfiles/topics/disks/install.sh
 
 sh $HOME/dotfiles/topics/docker/install.sh
 
-sh $HOME/dotfiles/topics/dropbox/install.sh
+#sh $HOME/dotfiles/topics/dropbox/install.sh
 
 sh $HOME/dotfiles/topics/emacs/install.sh
 

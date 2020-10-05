@@ -5,17 +5,6 @@
 ################################################################################
 yay -S --noconfirm numix-gtk-theme  arc-gtk-theme  gtk-engine-murrine gtk-engines 
 
-yay -S --noconfirm evopop-gtk-theme
-
-yay -S --noconfirm vertex-themes
-
-yay -S --noconfirm gtk-engines breeze-gtk adapta-gtk-theme materia-gtk-theme 
-#  Arc theme
-yay -S --noconfirm gtk-theme-arc-git 
-
-yay -S --noconfirm paper-gtk-theme-git pocillo-gtk-theme-git 
-
-yay -S --noconfirm pop-gtk-theme canta-gtk-theme-git themix-full-git 
 
 mkdir -p $HOME/.config/gtk-2.0
 
