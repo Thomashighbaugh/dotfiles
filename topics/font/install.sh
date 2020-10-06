@@ -6,7 +6,8 @@
 ## Thomas Leon Highbaugh
 ################################################################################
 
-yay -S --batchinstall --needed  dina-font ttf-hack mono-tools mono-addins otf-fantasque-sans-mono otf-fira-mono \ 
+
+yay -S --noconfirm --batchinstall --needed  dina-font ttf-hack mono-tools mono-addins otf-fantasque-sans-mono otf-fira-mono \ 
   otf-hermit tamsyn-font terminus-font-otb terminus-font ttf-cascadia-code ttf-fira-mono ttf-fira-code ttf-inconsolata \ 
   ttf-ibm-plex  ttf-proggy-clean ttf-monaco terminus-font-ttf ttf-everson-mono ttf-monoid ttf-go-mono-git ttf-mononoki  \ 
   ttf-spacemono uw-ttyp0-font otf-sfmono ttf-luculent   otf-inconsolata-lgc montecarlo-font ttf-camingocode ttf-league-mono \ 
@@ -21,7 +22,7 @@ wget $HOME/.local/share/fonts.tar.7z https://www.dropbox.com/s/e1lbpaognaoiycs/f
 
 7z x -so $HOME/.local/share/fonts/fonts.tar.7z | sudo tar xf - -C $HOME/.local/share/fonts
 
-sudo cp -rnv $HOME/.local/share/fonts /usr/share/fonts
+sudo cp -rnv $HOME/.local/share/fonts /usr/share/fonts && rm -rvf 
 
 sudo fc-cache -vf 
 
