@@ -36,7 +36,6 @@ setopt    nocaseglob         # Case insensitive globbing
 setopt    rcexpandparam      # Array expension with parameters
 setopt    nocheckjobs        # Don't warn about running processes when exiting
 setopt    numericglobsort    # Sort filenames numerically when it makes sense
-setopt    nobeep             # No beep
 setopt    appendhistory      # Immediately append history instead of overwriting
 setopt    histignorealldups  # If a new command is a duplicate, remove the older one
 setopt    autocd             # if only directory path is entered, cd there.
@@ -48,6 +47,5 @@ autoload -U history-search-end
 zmodload -a zsh/stat stat
 zmodload -a zsh/zpty zpty
 zmodload -a zsh/zprof zprof
-# zmodload -ap zsh/mapfile mapfile
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
