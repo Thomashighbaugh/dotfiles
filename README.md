@@ -2,8 +2,6 @@
 
 > Never Mind the Bullocks, Here's the Dotfiles!
 
-
-
 ---
 
 ## What Is Going On Here
