@@ -26,8 +26,6 @@ sh $HOME/dotfiles/topics/disks/install.sh
 
 sh $HOME/dotfiles/topics/docker/install.sh
 
-#sh $HOME/dotfiles/topics/dropbox/install.sh
-
 sh $HOME/dotfiles/topics/emacs/install.sh
 
 sh $HOME/dotfiles/topics/font/install.sh
@@ -37,8 +35,6 @@ sh $HOME/dotfiles/topics/gimp/install.sh
 sh $HOME/dotfiles/topics/git/install.sh
 
 sh $HOME/dotfiles/topics/grub/install.sh
-
-sh $HOME/dotfiles/topics/gtk/install.sh
 
 sh $HOME/dotfiles/topics/hosts/install.sh
 
@@ -64,7 +60,6 @@ sh $HOME/dotfiles/topics/network-manager/install.sh
 
 sh $HOME/dotfiles/topics/nvidia/install.sh
 
-sh $HOME/dotfiles/topics/nvm/install.sh
 
 sh $HOME/dotfiles/topics/p10k/install.sh
 
@@ -109,6 +104,12 @@ sh $HOME/dotfiles/topics/zathura/install.sh
 sh $HOME/dotfiles/topics/zsh/install.sh
 
 
+# Requires ZSH (thus after)
+sh $HOME/dotfiles/topics/nvm/install.sh
+
+# Requires Node
+sh $HOME/dotfiles/topics/gtk/install.sh
 
 
-
+# Requires GUI
+#sh $HOME/dotfiles/topics/dropbox/install.sh

@@ -1,40 +1,32 @@
-if ! [[ -d "$HOME/.nvm" ]]; then
-  git clone https://github.com/creationix/nvm.git ~/.nvm
-  install_default_node=true
-fi
+#!/bin/env bash
 
-# We always initialize nvm because of other topics, such as yarn/install.sh
-echo export NVM_DIR="$HOME/.nvm"
-source "$NVM_DIR/nvm.sh"
+# git clone https://github.com/creationix/nvm.git ~/.nvm
 
-if [[ -n "$install_default_node" ]]; then
-  sleep 3
-  nvm install node
-  nvm use node
-  nvm alias default node
+	yay -S --noconfirm --sudoloop --batchinstall nvm  
+	sudo nvm install node
+	sudo nvm use node
+	sudo nvm alias default node
 
-  unset install_default_node
+	sudo npm --global install yarn
+	sudo yarn global add babel-eslint
+	sudo yarn global add create-component-app
+	sudo yarn global add create-next-app
+	sudo yarn global add create-react-app
+	sudo yarn global add eslint
+	sudo yarn global add eslint-plugin-react
+	sudo yarn global add eslint-plugin-jsx-a11y
+	sudo yarn global add eslint-config-prettier
+	sudo yarn global add gatsby
+	sudo yarn global add gulp
+	sudo yarn global add neovim
+	sudo yarn global add heroku
+	sudo yarn global add now
+	sudo yarn global add prettier
+	sudo yarn global add prettier-eslint
+	sudo yarn global add react
+	sudo yarn global add react-dom
+	sudo yarn global add webpack
 
-	npm --global install yarn
-	yarn global add babel-eslint
-	yarn global add create-component-app
-	yarn global add create-next-app
-	yarn global add create-react-app
-	yarn global add eslint
-	yarn global add eslint-plugin-react
-	yarn global add eslint-plugin-jsx-a11y
-	yarn global add eslint-config-prettier
-	yarn global add gatsby
-	yarn global add gulp
-	yarn global add neovim
-	yarn global add heroku
-	yarn global add now
-	yarn global add prettier
-	yarn global add prettier-eslint
-	yarn global add react
-	yarn global add react-dom
-	yarn global add webpack
+	sudo yarn upgrade
 
-	yarn upgrade
 
-fi
