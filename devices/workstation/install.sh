@@ -90,8 +90,6 @@ sh $HOME/dotfiles/topics/sqlite/install.sh
 
 sh $HOME/dotfiles/topics/ssh/install.sh
 
-sh $HOME/dotfiles/topics/sway/install.sh
-
 sh $HOME/dotfiles/topics/tor/install.sh
 
 sh $HOME/dotfiles/topics/vagrant/install.sh
