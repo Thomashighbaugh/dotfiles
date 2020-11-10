@@ -32,6 +32,8 @@ sh $HOME/dotfiles/topics/emacs/install.sh
 
 sh $HOME/dotfiles/topics/font/install.sh
 
+sh $HOME/dotfiles/topics/gparted/install.sh
+
 sh $HOME/dotfiles/topics/gimp/install.sh
 
 sh $HOME/dotfiles/topics/git/install.sh
