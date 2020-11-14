@@ -5,10 +5,10 @@
 ---
 
 ## What Is Going On Here
+
 The wild world you have found yourself within is my dotfiles, which are Linux configuration files that generally begin with a period (or dot) hiding them from view.
 
-This ever evolving example of what is possible with Linux (and a lot of time spent fighting with it) is entirely for the installation and configuration of my personal systems on Arch Linux based machines. You will probably need to modify it for your own use cases, whatever it is that they are. 
-
+This ever evolving example of what is possible with Linux (and a lot of time spent fighting with it) is entirely for the installation and configuration of my personal systems on Arch Linux based machines. You will probably need to modify it for your own use cases, whatever it is that they are.
 
 ### Dotfiles are Meant to be Modular
 
@@ -28,7 +28,7 @@ Yes, I am a proponent of Makefiles for things like this, which are not exactly t
 
 ### No Submodules Zone
 
-**Detatched heads suck**, *especially from my repos*. So there is none of that in this repo. Sure there are other git repos being called in various topic's `install.sh` files, but they aren't downloaded in this repo only to haunt me later on, they are going into the places they are expected in the system. That way I can still set up a script to update them really fast (like after crashing my OS and remembering to update them all) but none of the tedious, hard to maintain tinkering with submodules that still detatch from their HEAD and cost you 12 hours of work on your awesomewm config (Lua is the worst, hands down). This is the power of shell scripts, no need to bend the tools to the point of detatching your repos from their HEAD which you won't realize until you realize that your work was lost.
+**Detatched heads suck**, _especially from my repos_. So there is none of that in this repo. Sure there are other git repos being called in various topic's `install.sh` files, but they aren't downloaded in this repo only to haunt me later on, they are going into the places they are expected in the system. That way I can still set up a script to update them really fast (like after crashing my OS and remembering to update them all) but none of the tedious, hard to maintain tinkering with submodules that still detatch from their HEAD and cost you 12 hours of work on your awesomewm config (Lua is the worst, hands down). This is the power of shell scripts, no need to bend the tools to the point of detatching your repos from their HEAD which you won't realize until you realize that your work was lost.
 
 Also I have included the external libraries, plugins, etc. within this repo as files, because the files included are the exact files I have built this configuration upon, no breaking changes can even be introduced unless I manually add them in. Maybe others desire some additional changes in the repos that they incorporate into their configurations, I tend to leave the thing out or make the changes myself over waiting and I don't judge, this is just what works for me.
 
