@@ -5,6 +5,10 @@
 ---
 
 ## What Is Going On Here
+The wild world you have found yourself within is my dotfiles, which are Linux configuration files that generally begin with a period (or dot) hiding them from view.
+
+This ever evolving example of what is possible with Linux (and a lot of time spent fighting with it) is entirely for the installation and configuration of my personal systems on Arch Linux based machines. You will probably need to modify it for your own use cases, whatever it is that they are. 
+
 
 ### Dotfiles are Meant to be Modular
 
@@ -24,7 +28,7 @@ Yes, I am a proponent of Makefiles for things like this, which are not exactly t
 
 ### No Submodules Zone
 
-Detatched heads suck, especially from my repos. So there is none of that in this repo. Sure there are other git repos being called in various topic's `install.sh` files, but they aren't downloading in this repo, they are going into the places they are expected in the system. That way I can still set up a script to update them really fast (like after crashing my OS and remembering to update them all) but none of the tedious, hard to maintain tinkering with submodules that still detatch from their HEAD and cost you 12 hours of work on your awesomewm config (Lua is the worst, hands down). This is the power of shell scripts, no need to bend the tools to the point of detatching your repos from their HEAD which you won't realize until you realize that your work was lost.
+**Detatched heads suck**, *especially from my repos*. So there is none of that in this repo. Sure there are other git repos being called in various topic's `install.sh` files, but they aren't downloaded in this repo only to haunt me later on, they are going into the places they are expected in the system. That way I can still set up a script to update them really fast (like after crashing my OS and remembering to update them all) but none of the tedious, hard to maintain tinkering with submodules that still detatch from their HEAD and cost you 12 hours of work on your awesomewm config (Lua is the worst, hands down). This is the power of shell scripts, no need to bend the tools to the point of detatching your repos from their HEAD which you won't realize until you realize that your work was lost.
 
 Also I have included the external libraries, plugins, etc. within this repo as files, because the files included are the exact files I have built this configuration upon, no breaking changes can even be introduced unless I manually add them in. Maybe others desire some additional changes in the repos that they incorporate into their configurations, I tend to leave the thing out or make the changes myself over waiting and I don't judge, this is just what works for me.
 
@@ -68,20 +72,6 @@ When I want to modify values in my dotfiles, I generally navigate to where the s
 ### Topics
 
 Within the topics directory are a series of sub-directories that correspond to each program that is provisioned, installed or both. Inside of each of these is an `install.sh` script that will install and provision, according to need, that program. I have tried to minimize the number of package bundles where dozens of programs get lumped in together and installed, thus have maximized the number of sub-directories.
-
-| Topic     | Notes                                                                                                                                                                    |
-| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| amd       | For those of us with Ryzens, this adds the microcode                                                                                                                     |
-| awesome   | installs awesome-git and git clones my configuration for it in .config                                                                                                   |
-| bash      | meant for continuity, it links to the same profile and aliases files                                                                                                     |
-| bitwarden | painless password management                                                                                                                                             |
-| bluetooth | the functionality I require to get my headset to work the one day a month I need it                                                                                      |
-| chromium  | ugh my credit union's web app doesn't like firefox                                                                                                                       |
-| cups      | printing is still necessary, unfortunately                                                                                                                               |
-| cursor    | make sure that sucker is big or I can't see it                                                                                                                           |
-| disks     | the utilities necessary to work with filesystems and archives                                                                                                            |
-| docker    | Containers on the workstation, containers on the hypervisor, containers on the laptop! When you have docker installed on the Linux, you can have containers all the time |
-| emacs     | **needs fixing** just basically to install doom until I get the free time to roll my own emacs, I am sure that's coming...                                               |
 
 ## Inspiration
 
