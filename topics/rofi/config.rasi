@@ -53,7 +53,7 @@ configuration {
 /*	window-format: "{w}    {c}   {t}";*/
 /*	click-to-exit: true;*/
 /*	show-match: true;*/
-	theme: "/usr/share/rofi/themes/colors.rasi" ;
+	theme: "/home/tlh/dotfiles/topics/rofi/themes/colors.rasi" ;
 /*	color-normal: ;*/
 /*	color-urgent: ;*/
 /*	color-active: ;*/

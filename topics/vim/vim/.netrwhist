@@ -1,5 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =8
+let g:netrw_dirhistcnt =0
+let g:netrw_dirhist_0='/home/tlh/dotfiles/topics/kitty'
+let g:netrw_dirhist_9='/home/tlh/dotfiles/topics'
 let g:netrw_dirhist_8='/home/tlh/dotfiles/topics/rofi/themes'
 let g:netrw_dirhist_7='/home/tlh/dotfiles/devices'
 let g:netrw_dirhist_6='/home/tlh/.config/rofi/themes'
@@ -8,5 +10,3 @@ let g:netrw_dirhist_4='/etc/fonts/conf.d'
 let g:netrw_dirhist_3='/etc/fonts'
 let g:netrw_dirhist_2='/home/tlh/.gnupg/crls.d'
 let g:netrw_dirhist_1='/home/tlh/2a/electric-tantra-repo/electric-tantra/dhumavati-gtk-Theme'
-let g:netrw_dirhist_0='/etc/lxdm'
-let g:netrw_dirhist_9='/home/tlh/dotfiles/topics/zsh/path'
