@@ -9,7 +9,7 @@
 yay -S --noconfirm --sudoloop --needed zsh alias-tips-git zsh-auto-notify zsh-doc lsd lshw
 yay -S --noconfirm --sudoloop --needed zsh-syntax-highlighting zsh-lovers   zsh-autosuggestions 
 yay -S --noconfirm --sudoloop --needed alias-tips-git  zsh-system-clipboard-git  
-
+yay -S --noconfirm --sudoloop zsh-completions keybase-zsh-completion-git python-click-completion
 ## Symlink Files
 ln -svf $HOME/dotfiles/topics/zsh/zprofile $HOME/.zprofile 
 ln -svf $HOME/dotfiles/topics/zsh/zshenv $HOME/.zshenv
