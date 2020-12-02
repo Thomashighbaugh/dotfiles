@@ -1,0 +1,85 @@
+
+configuration {
+    drun-display-format: "{icon} {name}";
+    display-drun: "Applications";
+	show-icons: true;
+	icon-theme: "Suru++";
+	columns: 3;
+	fake-transparency: true;
+	hide-scrollbar: true;
+	bw: 0;
+    fullscreen: true;
+    show-icons: true;
+	terminal: "kitty";
+	sidebar-mode: false;
+}
+
+@import "colors.rasi"
+
+* {
+  text-font:                            "Monofonto 14";
+
+  inputbar-margin:                      20px 6px;
+  prompt-padding:                       15px 20px;
+  entry-padding:                        15px 15px 15px 15px;
+  list-element-padding:                 10px;
+  list-element-margin:                  0px;
+  list-element-border:                  0px 0px 0px 1px;
+
+  apps-textbox-prompt-colon-padding:    15px -5px 0px 0px;
+}
+
+#window {
+  width: 100%;
+  height: 100%;
+padding: 0px 0px -15px;
+}
+
+* {
+  background-color: @color0;
+  text-color: @foreground;
+  font: @text-font;
+}
+
+inputbar,
+prompt,
+textbox-prompt-colon,
+entry {
+  background-color: @color;
+}
+
+#inputbar {
+  children: [ prompt, textbox-prompt-colon, entry ];
+  margin: @inputbar-margin;
+}
+
+#prompt {
+  padding: @prompt-padding;
+  background-color: @accent;
+  text-color: @color7;
+}
+
+#textbox-prompt-colon {
+  expand: false;
+  str: "  |||  ";
+  text-color: #556;
+  padding: @apps-textbox-prompt-colon-padding;
+}
+
+#entry {
+  text-color: @color7;
+  padding: @entry-padding;
+}
+
+#element {
+  padding: @list-element-padding;
+  margin: @list-element-margin;
+  border: @list-element-border;
+  border-color: @color0;
+  background: @color0;
+}
+
+#element.selected {
+  text-color: @accent;
+  border-color: @accent;
+}
