@@ -6,7 +6,6 @@
 
 ## Each topic is manually installed to allow for scripted control over device configuration 
 
-sh $HOME/dotfiles/topics/amd/install.sh
 
 sh $HOME/dotfiles/topics/awesome/install.sh
 
@@ -110,7 +109,9 @@ sh $HOME/dotfiles/topics/zathura/install.sh
 
 sh $HOME/dotfiles/topics/zsh/install.sh
 
+sh $HOME/dotfiles/topics/pacman/install.sh 
 
+sh $HOME/dotfiles/topics/amd/install.sh
 
 
 

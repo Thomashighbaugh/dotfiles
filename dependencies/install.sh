@@ -4,7 +4,7 @@ mkdir -p  $HOME/Pictures $HOME/.local/share $HOME/.config $HOME/.cache $HOME/.lo
 
 sudo pacman -S --noconfirm git pacutils fakeroot perl-libwww perl-term-ui perl-json perl-data-dump perl-lwp-protocol-https perl-term-readline-gnu
 
-git clone hhttps://aur.archlinux.org/yay.git $HOME/yay && cd $HOME/yay && makepkg -si && cd .. && sudo rm -rf $HOME/yay
+#git clone https://aur.archlinux.org/yay.git $HOME/yay && cd $HOME/yay && makepkg -is && cd .. && sudo rm -rf $HOME/yay
 
 yay -S    --needed  --sudoloop  --noconfirm  arandr autorandr atool autoconf autocutsel automake  binutils bison
 yay -S    --needed  --sudoloop  --noconfirm  chrony  

@@ -3,7 +3,7 @@
 ################################################################################
 ## TLP Installer ###############################################################
 ################################################################################
-yay -S --noconfirm --sudoloop --needed tlp powertop acpid tlp-rdw system76-power
+yay -S --noconfirm --sudoloop --needed tlp powertop acpid tlp-rdw acpi acpid acpica acpitool 
 
 sudo systemctl enable --now tlp 
-sudo systemctl enable --now system76-power
+

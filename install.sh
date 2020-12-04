@@ -1,17 +1,20 @@
 # #!/usr/bin/env bash
 echo ""
-
-echo  "             __ __   _____  ______ "
-echo  ".----.-----.|  |  |_|  |  ||    __|"
-echo  "|  __|  _  ||  |   _|__    |__    |"
-echo  "|____|_____||__|____|  |__||______|"
-echo  ""                                 
-echo  "Dotfiles Installation System"
-echo
-echo "Before I begin please enter the device you are provisioning."
-echo "1 ) Workstation  | AMD Ryzen 3900x       | Nvidia"
-echo "2 ) Laptop       | Thinkpad  Ryzen 3500  | AMDGPU "
-echo "3 ) Hypervisor   | Intel 8th Gen i7      | Nvidia"
+echo  "  _____         __    ___ __ __                   "
+echo  " |     \.-----.|  |_.'  _|__|  |.-----.-----.     "
+echo  " |  --  |  _  ||   _|   _|  |  ||  -__|__ --|     "
+echo  " |_____/|_____||____|__| |__|__||_____|_____|     "                         
+echo  "  __               __          __ __              "
+echo  " |__|.-----.-----.|  |_.---.-.|  |  |.-----.----. "
+echo  " |  ||     |__ --||   _|  _  ||  |  ||  -__|   _| "
+echo  " |__||__|__|_____||____|___._||__|__||_____|__|   "
+echo  ""
+echo  ""
+echo " Select the device to provision from the list below."
+echo "-------------------------------------------------------"
+echo "                1 ) Workstation      "
+echo "                2 ) Laptop           "
+echo "                3)  (coming soon) Raspberry Pi 4   "
 read system
 echo -n ""
 echo -n ""
@@ -22,7 +25,7 @@ echo "You have chosen the workstation provisioning and configuration option."
 echo 
 echo
 sh ./dependencies/install.sh
-bash "devices/workstation/install.sh"   # your processing here
+bash "devices/workstation/install.sh"   
 echo 
 echo 
 echo "You are now done configuring after provisioning a workstation device."
@@ -34,7 +37,7 @@ echo
 echo
 echo
 bash ./dependencies/install.sh
-bash "devices/laptop/install.sh"   # your processing here
+bash "devices/laptop/install.sh"   
 echo 
 echo 
 echo "You are now done configuring after provisioning a laptop device."
