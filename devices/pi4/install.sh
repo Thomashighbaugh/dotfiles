@@ -19,8 +19,6 @@ sh $HOME/dotfiles/topics/bluetooth/install.sh
 
 sh $HOME/dotfiles/topics/chromium/install.sh
 
-sh $HOME/dotfiles/topics/cups/install.sh
-
 sh $HOME/dotfiles/topics/cursor/install.sh
 
 sh $HOME/dotfiles/topics/disks/install.sh
@@ -39,7 +37,7 @@ sh $HOME/dotfiles/topics/git/install.sh
 
 sh $HOME/dotfiles/topics/grub/install.sh
 
-sh $HOME/dotfiles/topics/gtk_laptop/install.sh
+sh $HOME/dotfiles/topics/gtk/install.sh
 
 sh $HOME/dotfiles/topics/hosts/install.sh
 
@@ -89,8 +87,6 @@ sh $HOME/dotfiles/topics/ssh/install.sh
 
 sh $HOME/dotfiles/topics/sway/install.sh
 
-sh $HOME/dotfiles/topics/thinkpad/install.sh
-
 sh $HOME/dotfiles/topics/tlp/install.sh
 
 sh $HOME/dotfiles/topics/tor/install.sh
@@ -112,8 +108,6 @@ sh $HOME/dotfiles/topics/zsh/install.sh
 ############################################
 
 sh $HOME/dotfiles/topics/pacman/install.sh 
-
-sh $HOME/dotfiles/topics/amd/install.sh
 
 sh $HOME/dotfiles/topics/dropbox/install.sh
 
