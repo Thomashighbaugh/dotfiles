@@ -35,8 +35,6 @@ sh $HOME/dotfiles/topics/git/install.sh
 
 sh $HOME/dotfiles/topics/grub/install.sh
 
-sh $HOME/dotfiles/topics/gtk/install.sh
-
 sh $HOME/dotfiles/topics/hosts/install.sh
 
 sh $HOME/dotfiles/topics/htop/install.sh
