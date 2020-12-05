@@ -31,8 +31,6 @@ sh $HOME/dotfiles/topics/font/install.sh
 
 sh $HOME/dotfiles/topics/gparted/install.sh
 
-sh $HOME/dotfiles/topics/gimp/install.sh
-
 sh $HOME/dotfiles/topics/git/install.sh
 
 sh $HOME/dotfiles/topics/grub/install.sh
@@ -44,10 +42,6 @@ sh $HOME/dotfiles/topics/hosts/install.sh
 sh $HOME/dotfiles/topics/htop/install.sh
 
 sh $HOME/dotfiles/topics/icons/install.sh
-
-sh $HOME/dotfiles/topics/inkscape/install.sh
-
-sh $HOME/dotfiles/topics/jetbrains/install.sh
 
 sh $HOME/dotfiles/topics/keybase/install.sh
 
@@ -81,13 +75,9 @@ sh $HOME/dotfiles/topics/rustup/install.sh
 
 sh $HOME/dotfiles/topics/sh/install.sh
 
-sh $HOME/dotfiles/topics/sqlite/install.sh
-
 sh $HOME/dotfiles/topics/ssh/install.sh
 
 sh $HOME/dotfiles/topics/sway/install.sh
-
-sh $HOME/dotfiles/topics/tlp/install.sh
 
 sh $HOME/dotfiles/topics/tor/install.sh
 
