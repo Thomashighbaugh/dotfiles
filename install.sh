@@ -61,6 +61,8 @@ case $system in
 	 		;;
 	     [iI])
 	 		echo "You have chosen to install and provision a fresh Arch Arm."
+	 		bash ./dependencies/install.sh
+
 	 		sh $HOME/dotfiles/devices/pi4/install.sh 
 
 	       	;;
