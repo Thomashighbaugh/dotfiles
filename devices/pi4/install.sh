@@ -96,9 +96,6 @@ sh $HOME/dotfiles/topics/zsh/install.sh
 ############################################
 
 
-sh $HOME/dotfiles/topics/pacman/install.sh 
-
-
 sh $HOME/dotfiles/topics/rpi/install.sh
 
 
