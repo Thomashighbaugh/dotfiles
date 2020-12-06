@@ -53,7 +53,7 @@ case $system in
 	     [pP])
 			echo
 	 		echo "You have chosen to prepare an SD Card"
-	 		sh $HOME/dotfiles/devices/pi4/prep.sh 
+	 		sudo sh $HOME/dotfiles/devices/pi4/prep.sh 
 	 		echo
 	 		echo
 	 		echo

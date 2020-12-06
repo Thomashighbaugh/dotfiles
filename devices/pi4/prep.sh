@@ -8,7 +8,7 @@ if test -d tmparch
 fi
 SD_MOUNT="tmparch/"
 
-function rasp3 {
+function rasp4 {
 	DEV=$1
 	SD_MOUNT=$2
 
@@ -141,11 +141,11 @@ if [[ ! -b "${DEV}" ]] ; then
    exit 1
 fi
 echo "Final target: "
-echo "(1)-Raspberry Pi 2/3"
+echo "(1)-Raspberry Pi 4"
 echo "(2)-Raspberry Pi Zero W"
 read -p "Chose a device: " CHOICE
 if [[ $CHOICE = 1 ]] ; then
-	rasp3 "${DEV}" "${SD_MOUNT}"
+	rasp4 "${DEV}" "${SD_MOUNT}"
 else
 	raspZero "${DEV}" "${SD_MOUNT}"
 fi
