@@ -1,1 +1,1 @@
-sudo pacman -S --noconfirm  htop
+sudo pacman -S --noconfirm htop

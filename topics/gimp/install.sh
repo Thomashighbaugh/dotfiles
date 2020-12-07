@@ -1,1 +1,1 @@
-yay -S --noconfirm --needed  gimp gimp-plugin-gmic 
+yay -S --noconfirm --needed gimp gimp-plugin-gmic

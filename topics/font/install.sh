@@ -6,8 +6,7 @@
 ## Thomas Leon Highbaugh
 ################################################################################
 
-
-yay -S --noconfirm --batchinstall --needed bdf-unifont gnome-font-viewer freetype2 libfontenc  libxft libotf woff2 fontconfig sdl2_ttf t1lib birdfont
+yay -S --noconfirm --batchinstall --needed bdf-unifont gnome-font-viewer freetype2 libfontenc libxft libotf woff2 fontconfig sdl2_ttf t1lib birdfont
 
 ## Create Directory ############################################################
 mkdir -p ${HOME}/.local/share/fonts
@@ -19,6 +18,6 @@ cd $HOME && wget https://www.dropbox.com/s/e1lbpaognaoiycs/fonts.tar.7z
 
 sudo cp -rnv $HOME/fonts /usr/share/fonts && rm -rvf $HOME/fonts $HOME/fonts.tar.7z
 
-sudo fc-cache -vf 
+sudo fc-cache -vf
 
 fc-cache -vf

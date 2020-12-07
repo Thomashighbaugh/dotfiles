@@ -1,1 +1,1 @@
-yay -S --noconfirm --sudoloop --needed   inkscape
+yay -S --noconfirm --sudoloop --needed inkscape

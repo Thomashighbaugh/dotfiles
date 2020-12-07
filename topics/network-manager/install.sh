@@ -1,1 +1,1 @@
-yay -S --noconfirm --sudoloop --needed network-manager-applet networkmanager 
+yay -S --noconfirm --sudoloop --needed network-manager-applet networkmanager

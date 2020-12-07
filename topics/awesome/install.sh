@@ -4,18 +4,16 @@
 ## Awesome Wm ################################################################
 ##############################################################################
 
-## Install Relevant Packages 
-yay -S --noconfirm --sudoloop  awesome-git feh xcape
+## Install Relevant Packages
+yay -S --noconfirm --sudoloop awesome-git feh xcape
 
-yay -S --noconfirm --sudoloop vicious lain-git awesome-freedesktop-git archlinux-xdg-menu archlinux-menus 
+yay -S --noconfirm --sudoloop vicious lain-git awesome-freedesktop-git archlinux-xdg-menu archlinux-menus
 
-yay -S --noconfirm --sudoloop bemenu blueberry blueman bluez-hid2hci bluez-tools bluez-utils 
+yay -S --noconfirm --sudoloop bemenu blueberry blueman bluez-hid2hci bluez-tools bluez-utils
 
 yay -S --noconfirm --sudoloop awmtt thunar thunar-archive-plugin thunar-media-tags-plugin thunar-volman
 
-yay -S --noconfirm --sudoloop maim firefox feh-git luarocks  nitrogen 
-
-
+yay -S --noconfirm --sudoloop maim firefox feh-git luarocks nitrogen
 
 ## Erase Current Configuration
 

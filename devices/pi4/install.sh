@@ -6,8 +6,7 @@
 ###############################################################
 ###############################################################
 
-## Each topic is manually installed to allow for scripted control over device configuration 
-
+## Each topic is manually installed to allow for scripted control over device configuration
 
 sh $HOME/dotfiles/topics/awesome/install.sh
 
@@ -93,9 +92,6 @@ sh $HOME/dotfiles/topics/zsh/install.sh
 
 ############################################
 
-
 sh $HOME/dotfiles/topics/rpi/install.sh
 
-
 sh $HOME/dotfiles/topics/dropbox/install.sh
-

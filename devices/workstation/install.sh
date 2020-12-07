@@ -4,7 +4,7 @@
 ## Device: Workstation ############################################################################################
 ###################################################################################################################
 
-## Each topic is manually installed to allow for scripted control over device configuration 
+## Each topic is manually installed to allow for scripted control over device configuration
 
 sh $HOME/dotfiles/topics/amd/install.sh
 
@@ -55,13 +55,12 @@ sh $HOME/dotfiles/topics/kitty/install.sh
 sh $HOME/dotfiles/topics/lua/install.sh
 
 sh $HOME/dotfiles/topics/lxd/install.sh
- 
+
 sh $HOME/dotfiles/topics/neofetch/install.sh
 
 sh $HOME/dotfiles/topics/network-manager/install.sh
 
 sh $HOME/dotfiles/topics/nvidia/install.sh
-
 
 sh $HOME/dotfiles/topics/p10k/install.sh
 
@@ -105,13 +104,11 @@ sh $HOME/dotfiles/topics/zathura/install.sh
 
 sh $HOME/dotfiles/topics/zsh/install.sh
 
-
 # Requires ZSH (thus after)
 sh $HOME/dotfiles/topics/nvm/install.sh
 
 # Requires Node
 sh $HOME/dotfiles/topics/gtk/install.sh
-
 
 # Requires GUI
 #sh $HOME/dotfiles/topics/dropbox/install.sh

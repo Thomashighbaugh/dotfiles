@@ -4,6 +4,6 @@
 ## Neofetch Installer ##########################################################
 ################################################################################
 
-sudo pacman -S --noconfirm neofetch 
+sudo pacman -S --noconfirm neofetch
 
-ln -svf $HOME/dotfiles/topics/neofetch $HOME/.config/neofetch 
+ln -svf $HOME/dotfiles/topics/neofetch $HOME/.config/neofetch

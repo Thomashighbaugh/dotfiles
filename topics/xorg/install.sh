@@ -4,11 +4,10 @@
 ## xorg installer##############################################################
 ################################################################################
 
-yay -S --noconfirm --sudoloop xorg xorg-apps xorg-drivers xorg-fonts 
-yay -S --needed --noconfirm --sudoloop  pa-applet-git  gnome-keyring polkit-gnome libgnome-keyring xscreensaver
+yay -S --noconfirm --sudoloop xorg xorg-apps xorg-drivers xorg-fonts
+yay -S --needed --noconfirm --sudoloop pa-applet-git gnome-keyring polkit-gnome libgnome-keyring xscreensaver
 
 mkdir -p $HOME/.Xresources.d
-
 
 ln -svf $HOME/dotfiles/topics/xorg/Xresources $HOME/.Xresources
 ln -svf $HOME/dotfiles/topics/xorg/color $HOME/.Xresources.d/color
@@ -21,4 +20,3 @@ ln -fvs $HOME/dotfiles/topics/xorg/xinitrc $HOME/.xinitrc
 ln -fvs $HOME/dotfiles/topics/xorg/xprofile $HOME/.xprofile
 ln -fvs $HOME/dotfiles/topics/xorg/xsettingsd $HOME/.xsettingsd
 ln -fvs $HOME/dotfiles/topics/xorg/xsessionrc $HOME/.xsessionrc
-

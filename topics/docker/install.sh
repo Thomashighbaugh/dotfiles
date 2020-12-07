@@ -1,8 +1,10 @@
-# #!/usr/bin/env bash
+#!/usr/bin/env bash
 
+##############################################################################
+## Docker ####################################################################
+##############################################################################
 
-
-yay -S --noconfirm --sudoloop --needed   docker docker-compose docker-machine  python-docker  containerd 
+yay -S --noconfirm --sudoloop --needed docker docker-compose docker-machine python-docker containerd
 
 sudo usermod -aG docker ${USER}
 sudo systemctl enable --now docker.service

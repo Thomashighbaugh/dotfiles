@@ -4,8 +4,7 @@
 ## Emacs #####################################################################
 ##############################################################################
 
-
-sudo pacman -S --noconfirm emacs 
+sudo pacman -S --noconfirm emacs
 
 ln -svf $HOME/dotfiles/emacs/doom.d $HOME/.doom.d
 ## Remove Emacs Directory if it exists
