@@ -17,7 +17,7 @@ function rasp4 {
 		then
 			echo "Tar file allready exists"
 		else
-			wget http://os.archlinuxarm.org/os/ArchLinuxARM-rpi-4-latest.tar.gz
+			wget http://os.archlinuxarm.org/os/ArchLinuxARM-rpi-aarch64-latest.tar.gz
 	fi
 	bsdtar -xvpf ArchLinuxARM-rpi-4-latest.tar.gz -C ${SD_MOUNT}root
 	basicSettings "${SD_MOUNT}"	
