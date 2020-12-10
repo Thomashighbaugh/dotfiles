@@ -1,17 +1,17 @@
 ! Base colors
 
 ! special
-*.foreground:  #edeeff
-*.background:   #282c34
+*.foreground:   #edeeff
+*.background:   #1f2023
 *.cursorColor:  #e9e9ff
 
 ! black
-*.color0:       #282c34
-*.color8:       #3c3f4c
+*.color0:       #1f2023
+*.color8:       #313040
 
 ! red
-*.color1:    #E44A66
-*.color9:      #FF5372
+*.color1:       #E44A66
+*.color9:       #FF5372
 
 ! green
 *.color2:       #76dcdd
@@ -23,19 +23,19 @@
 
 ! blue
 *.color4:       #00a9ff
-*.color12:     #49B9E3
+*.color12:      #49B9E3
 
 ! magenta
-*.color5:        #6c71c4
-*.color13:       #796af5
+*.color5:       #6c71c4
+*.color13:      #796af5
 
 ! cyan
-*.color6:      #00eaff
-*.color14:     #6FFFFF
+*.color6:       #00eaff
+*.color14:      #6FFFFF
 
 ! white
 *.color7:       #e9e9ff
 *.color15:      #edeeff
 
-*.color16:     #12131f 
-*.color17:     #1F202D
+*.color16:      #3a3F49 
+*.color17:      #525d73
