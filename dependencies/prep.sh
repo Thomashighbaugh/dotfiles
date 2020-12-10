@@ -1,585 +1,559 @@
 #!/usr/bin/env bash
 
+SCRIPT_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPT_FILE="$(basename "${BASH_SOURCE[0]}")"
+SCRIPT_NAME="${SCRIPT_FILE%.*}"
 
-####################################################################################
-# rpi4-arch-install.sh
-# --------------------
-#
-# Prepare an HD with ArchLinux ARM
-#
-####################################################################################
-
-
-VERSION="0.2.0"
-
-
-# Globals
-##########
-SCRIPT_DIR=$(dirname $(readlink -f $0));
-
-ROOT_FS_BASE_URL="https://olegtown.pw/Public/ArchLinuxArm/RPi4/rootfs/"
-KERNEL_BASE_URL="https://api.github.com/repos/sakaki-/bcm2711-kernel-bis/releases/latest"
-RPI_FIRMWARE_GIT="https://github.com/raspberrypi/firmware.git" 
-
-SUDO="sudo"
-
-DEFAULT_PER_W=80
-RES_OK="\xE2\x9C\x94"   #"\u2714";
-RES_FAIL="\xE2\x9C\x96" #"\u2716";
-RES_WARN="\xE2\x9A\xA0" #"\u2716";
-
-RED="$(tput setaf 1)"
-GREEN="$(tput setaf 2)"
-YELLOW="$(tput setaf 3)"
-BLUE="$(tput setaf 4)"
-WHITE="$(tput setaf 7)"
-BOLD="$(tput bold)"
-NORMAL="$(tput sgr0)"
-
-SAVE_CURSOR="$(tput sc)"
-RESTORE_CURSOR="$(tput rc)"
-CLEAR_TO_END="$(tput ed)"
-MOVE_CURSOR_UP="$(tput cuu1)"
-HIDE_CURSOR="$(tput civis)"
-SHOW_CURSOR="$(tput cnorm)"
-
-# Functions
-###########
-
-###################################
-# Shows a heading section
-# Params:
-# - (1) section : Section's name
-###################################
-function showSection() {
-	printf "\n\e[1;34m==> \e[1;37m$1\e[0m\n";
+doPrintPrompt() {
+    printf "[%s] $*" "$SCRIPT_NAME"
 }
 
-###################################
-# Shows a sub section
-# Params:
-# - (1) subsection : Subsection's name
-###################################
-function showSubSection() {
-	printf "\n\e[1;32m==> \e[1;37m$1\e[0m\n";
+doPrint() {
+    doPrintPrompt "$*\n"
 }
 
-###################################
-# Shows the result of an operation
-###################################
-function showResult() {
-	local err=${1-$?};
-	local msg=$2
-	if [[ $err -eq 0 ]]; then
-		success "$RES_OK";
-		if [ -n "$msg" ]; then
-			warn " $msg"
-		fi
-		printf "\n";
-	else
-		fail "$RES_FAIL\n";
-	fi
+doPrintHelpMessage() {
+    printf "Usage: ./%s [-h] [-c config]\n" "$SCRIPT_FILE"
 }
 
-###################################
-# Shows the result of an operation
-# and exit if return code not 0
-###################################
-function showResultOrExit() {
-	local err=$?;
-	local msg=$1;
-	showResult "$err" "$msg";
-	if [[ $err -ne 0 ]]; then
-		if [ -n "$msg" ]; then
-			fail "$msg\n";
-		fi
+while getopts :hc: opt; do
+    case "$opt" in
+        h)
+            doPrintHelpMessage
+            exit 0
+            ;;
 
-		cleanup;
-		exit -1;
-	fi
-}
+        c)
+            SCRIPT_CONF="$OPTARG"
+            ;;
 
-#######################################
-# Shows a success message (Green color)
-# Params:
-# - (1) msg : String to show
-#######################################
-function success() {
-	printf "\e[0;32m$1\e[0m";
-}
+        :)
+            printf "ERROR: "
+            case "$OPTARG" in
+                c)
+                    printf "Missing config file"
+                    ;;
+            esac
+            printf "\n"
+            exit 1
+            ;;
 
-#######################################
-# Shows a fail message (Red color)
-# Params:
-# - (1) msg : String to show
-#######################################
-function fail() {
-	printf "\e[0;31m$1\e[0m";
-}
-
-#######################################
-# Shows a debug message (Yellow color)
-# Params:
-# - (1) msg : String to show
-#######################################
-function debug() {
-	printf "\e[0;33m$1\e[0m";
-}
-
-#######################################
-# Shows a warning message (Yellow color)
-# Params:
-# - (1) msg : String to show
-#######################################
-function warn() {
-	debug "$1"
-}
-
-##############################################
-# Pads a message with the given character
-# up to a maximum size,
-# Params:
-#   - (1) msg          : The message to pad
-#   - (2) max_padding  : The maximum length to pad
-#   - (3) padding_char : The character used in
-#                        the padding.
-##############################################
-function paddingMax() {
-	local msg=$1;
-	local max_padding=$2;
-	local padding_char=$3;
-	local stripped_msg=$(stripAnsi "$msg");
-	local cur_size=${#stripped_msg};
-
-	while [ $cur_size -lt $max_padding ]; do
-		let cur_size+=1;
-		msg=${msg}${padding_char};
-	done
-
-	echo "$msg";
-}
-
-##############################################
-# Pads a message with the given character
-# up to the percentage of maximum terminal
-# available width.
-#
-# params:
-#   - (1) msg          : the message to pad
-#   - (2) width_ratio  : the width percentage
-#   - (3) padding_char : the character used in
-#                        the padding.
-##############################################
-function padding() {
-	local msg=$1;
-	local width_ratio=$2;
-	local padding_char=$3;
-	local stripped_msg=$(stripAnsi "$msg");
-	local cur_size=${#stripped_msg};
-	local max_width=$(tput cols);
-	local max_padding=$((max_width*width_ratio/100));
-
-	while [ $cur_size -lt $max_padding ]; do
-		let cur_size+=1;
-		msg=${msg}${padding_char};
-	done
-
-	printf "$msg";
-}
-
-##############################################
-# Pads a message with the given characters
-# up to the percentage of maximum terminal
-# available width.
-#
-# params:
-#   - (1) msg          : the message to pad
-##############################################
-function pad() {
-	padding "$1" $DEFAULT_PER_W '.';
-}
-
-##############################################
-# Removes ANSI sequences from a given String
-# Params:
-# - (1) msg : String to remove ANSI sequences
-##############################################
-function stripAnsi() {
-	echo -e $1 | sed "s,\x1B\[[0-9;]*[a-zA-Z],,g";
-}
-
-##############################################
-# Moves the cursor to the maximum width
-# in the current line
-##############################################
-function move_to_max_width() {
-	max_width=$(tput cols);
-	max_padding=$((max_width*$DEFAULT_PER_W/100));
-	tput cuf $max_padding
-}
-
-##############################################
-# Shows the help message
-##############################################
-function show_help() {
-	debug "\nPayball's Rpi4 Automated Installer\n\n";
-	printf "Usage : $(basename $0) <OPTIONS>\n";
-	printf "where OPTIONS are :\n";
-	printf "\t-d|--disk <disk>   : use the given disk (e.g. /dev/sdb)\n";
-	printf "\t-k|--keep [<path>] : keep dowloaded files at this location\n";
-	printf "\t-f|--from [<path>] : use dowloaded files at this location\n";
-	printf "\t-h|--host [<host>] : set as hostname in target root file system\n";
-	printf "\t-v                 : show version\n";
-	printf "\t--help             : show this help\n";
-}
-
-##############################################
-# Shows the version
-##############################################
-function show_version() {
-	success "v$VERSION\n";
-	exit 0;
-}
-
-##############################################
-# Performs cleanup actions 
-# - umount partitions
-# - remove tmp directory
-##############################################
-function cleanup()  {
-	if [ -d "$tmp_dir/boot" ]; then
-		$SUDO umount $tmp_dir/boot &>/dev/null
-	fi
-	if [ -d "$tmp_dir/root" ]; then
-		$SUDO umount $tmp_dir/root &>/dev/null
-	fi
-	if [ -d "$tmp_dir" ]; then
-		rm -fr "$tmp_dir" &>/dev/null
-	fi
-}
-
-
-#########s Main ###########
-
-# Step 1 : Get args
-disk="";
-PARAMS=""
-
-# Parse options
-while (( "$#" )); do
-	case "$1" in
-		--help)
-			show_help;
-			exit 0;
-			;;
-		-v|--version)
-			show_version;
-			exit 0;
-			;;
-		-h|--host)
-			host="$2";
-			if [ -z "$host" ]; then
-				fail "Hostname not specified";
-				exit 1;
-			fi
-			shift 2
-			;;
-		-d|--disk)
-			disk="$2"
-			if [ -z "$disk" ]; then
-				fail "Disk not specified";
-				exit 1;
-			fi
-			shift 2;
-			;;
-		-k|--keep)
-			target_folder="$2"
-			if [ -z "$target_folder" ]; then
-				fail "Download folder not specified";
-				exit 1;
-			fi
-			shift 2;
-			;;
-		-f|--from)
-			data_folder="$2"
-			if [ -z "$data_folder" ]; then
-				fail "Data folder not specified";
-				exit 1;
-			fi
-			shift 2;
-			;;
-		--) # end argument parsing
-			shift
-			break
-			;;
-		*) # preserve positional arguments
-			PARAMS="$PARAMS $1"
-			shift
-			;;
-	esac
+        \?)
+            printf "ERROR: Invalid option ('-%s')\n" "$OPTARG"
+            exit 1
+            ;;
+    esac
 done
+shift $((OPTIND - 1))
 
-# set positional arguments in their proper place
-eval set -- "$PARAMS"
-
-if [ -n "$data_folder" -a ! -e "$data_folder" ]; then
-	fail "Cannot access data folder \"$data_folder\"";
-	exit 1
+if [ -z "$SCRIPT_CONF" ]; then
+    SCRIPT_CONF="$SCRIPT_PATH/$SCRIPT_NAME.conf"
 fi
 
-if [ -n "$data_folder" ]; then
-	if [ -n "$target_folder" ]; then
-		fail "Cannot use target & source folder at the same time";
-		exit 1;
-	fi
-	showSection "User options"
-	warn "Using data folder [$data_folder]\n";
+if [ ! -f "$SCRIPT_CONF" ]; then
+    printf "ERROR: Config file not found ('%s')\n" "$SCRIPT_CONF"
+    exit 1
 fi
 
-if [ ! -b "$disk" ]; then
-	fail "Cannot access disk \"$disk\"\n";
-	exit 1;
+source "$SCRIPT_CONF"
+
+# =================================================================================
+#    F U N C T I O N S
+# =================================================================================
+
+doCheckRootPrivileges() {
+    if [ "${USER}" != "root" ]; then
+        printf "ERROR: This script requires root privileges\n"
+        exit 1
+    fi
+}
+
+doCheckInstallDevice() {
+    if [ ! -b "$INSTALL_DEVICE" ]; then
+        printf "ERROR: INSTALL_DEVICE is not a block device ('%s')\n" "$INSTALL_DEVICE"
+        exit 1
+    fi
+}
+
+doSelectHardwareModel() {
+    local i=0
+
+    if [ -z "$HARDWARE_MODEL_SELECT" ]; then
+        doPrint "Select hardware model"
+
+        local j=1
+        while [ "$i" -lt "${#HARDWARE_MODEL[@]}" ]; do
+            doPrint "$j = ${HARDWARE_MODEL[$i]}"
+            let i=i+3
+            let j=j+1
+        done
+
+        doPrintPrompt "> "
+        read -r i
+        if [[ ! $i =~ ^[0-9]+$ ]] || [ ! "$i" -gt "0" ] || [ ! "$i" -lt "$j" ]; then
+            printf "ERROR: Invalid selection ('%s')\n" "$i"
+            exit 1
+        else
+            HARDWARE_MODEL_SELECT="$i"
+        fi
+    fi
+
+    let i=$HARDWARE_MODEL_SELECT*3-3
+    doPrint "Installing for ${HARDWARE_MODEL[$i]}"
+
+    let i=i+1
+    ARCH_LINUX_DOWNLOAD_URL="${HARDWARE_MODEL[$i]}"
+
+    let i=i+1
+    ARCH_LINUX_PACKAGES_URL="${HARDWARE_MODEL[$i]}"
+}
+
+doConfirmInstall() {
+    lsblk
+    doPrint "Installing to '$INSTALL_DEVICE' - ALL DATA ON IT WILL BE LOST!"
+    doPrint "Enter 'YES' (in capitals) to confirm and start the installation."
+
+    doPrintPrompt "> "
+    read -r i
+    if [ "$i" != "YES" ]; then
+        doPrint "Aborted."
+        exit 0
+    fi
+
+    for i in {10..1}; do
+        doPrint "Starting in $i - Press CTRL-C to abort..."
+        sleep 1
+    done
+}
+
+doDownloadArchLinux() {
+    if [ ! -f "$(basename "$ARCH_LINUX_DOWNLOAD_URL")" ] || [ "$ARCH_LINUX_DOWNLOAD_FORCE" == "yes" ]; then
+        rm -f "$(basename "$ARCH_LINUX_DOWNLOAD_URL")"
+        curl --retry 999 --retry-delay 0 --retry-max-time 300 --speed-time 10 --speed-limit 0 \
+            -LO "$ARCH_LINUX_DOWNLOAD_URL"
+    fi
+}
+
+doGetAllPartitions() {
+    lsblk -l -n -o NAME -x NAME "$INSTALL_DEVICE" | grep "^$INSTALL_DEVICE_FILE" | grep -v "^$INSTALL_DEVICE_FILE$"
+}
+
+doFlush() {
+    sync
+    sync
+    sync
+}
+
+doWipeAllPartitions() {
+    for i in $( doGetAllPartitions | sort -r ); do
+        umount "$INSTALL_DEVICE_PATH/$i"
+        dd if=/dev/zero of="$INSTALL_DEVICE_PATH/$i" bs=1M count=1
+    done
+
+    doFlush
+}
+
+doPartProbe() {
+    partprobe "$INSTALL_DEVICE"
+}
+
+doWipeDevice() {
+    dd if=/dev/zero of="$INSTALL_DEVICE" bs=1M count=1
+
+    doFlush
+    doPartProbe
+}
+
+doCreateNewPartitionTable() {
+    parted -s -a optimal "$INSTALL_DEVICE" mklabel "$1"
+}
+
+doCreateNewPartitions() {
+    local START="1"; local END="$BOOT_SIZE"
+    case "$BOOT_FILESYSTEM" in
+        fat32)
+            parted -s -a optimal "$INSTALL_DEVICE" mkpart primary "$BOOT_FILESYSTEM" "${START}MiB" "${END}MiB"
+            ;;
+
+        *)
+            parted -s -a optimal "$INSTALL_DEVICE" mkpart primary "${START}MiB" "${END}MiB"
+            ;;
+    esac
+
+    START="$END"; END="100%"
+    parted -s -a optimal "$INSTALL_DEVICE" mkpart primary "${START}MiB" "${END}MiB"
+
+    parted -s -a optimal "$INSTALL_DEVICE" set 1 boot on
+
+    doFlush
+    doPartProbe
+}
+
+doDetectDevices() {
+    local ALL_PARTITIONS=($( doGetAllPartitions ))
+
+    BOOT_DEVICE="$INSTALL_DEVICE_PATH/${ALL_PARTITIONS[0]}"
+    ROOT_DEVICE="$INSTALL_DEVICE_PATH/${ALL_PARTITIONS[1]}"
+}
+
+doMkfs() {
+    case "$1" in
+        fat32)
+            mkfs -t fat -F 32 -n "$2" "$3"
+            ;;
+
+        *)
+            mkfs -t "$1" -L "$2" "$3"
+            ;;
+    esac
+}
+
+doFormat() {
+    doMkfs "$BOOT_FILESYSTEM" "$BOOT_LABEL" "$BOOT_DEVICE"
+    doMkfs "$ROOT_FILESYSTEM" "$ROOT_LABEL" "$ROOT_DEVICE"
+}
+
+doMount() {
+    mkdir -p root
+    mount "$ROOT_DEVICE" root
+    mkdir -p boot
+    mount "$BOOT_DEVICE" boot
+}
+
+doUnpackArchLinux() {
+    tar xvf "$(basename "$ARCH_LINUX_DOWNLOAD_URL")" -C root -p
+}
+
+doFinalizeBoot() {
+    mv root/boot/* boot
+
+    doFlush
+}
+
+doSetHostname() {
+    cat > root/etc/hostname << __END__
+$1
+__END__
+}
+
+doSetTimezone() {
+    ln -sf "/usr/share/zoneinfo/$1" root/etc/localtime
+}
+
+doSetConsole() {
+    cat > root/etc/vconsole.conf << __END__
+KEYMAP=$1
+FONT=$2
+__END__
+}
+
+doSetEthernetDhcp() {
+    rm -f "root/etc/systemd/network/eth*.network"
+
+    cat > "root/etc/systemd/network/$ETHERNET_INTERFACE.network" << __END__
+[Match]
+Name=$ETHERNET_INTERFACE
+
+[Network]
+DHCP=true
+__END__
+
+    if [ "$DISABLE_IPV6" == "yes" ]; then
+        cat >> "root/etc/systemd/network/$ETHERNET_INTERFACE.network" << __END__
+IPv6AcceptRouterAdvertisements=false
+__END__
+    fi
+}
+
+doSetEthernetStatic() {
+    rm -f "root/etc/systemd/network/eth*.network"
+
+    cat > "root/etc/systemd/network/$ETHERNET_INTERFACE.network" << __END__
+[Match]
+Name=$ETHERNET_INTERFACE
+
+[Network]
+DNS=$ETHERNET_DNS
+__END__
+
+    if [ "$DISABLE_IPV6" == "yes" ]; then
+        cat >> "root/etc/systemd/network/$ETHERNET_INTERFACE.network" << __END__
+IPv6AcceptRouterAdvertisements=false
+__END__
+    fi
+
+    cat >> "root/etc/systemd/network/$ETHERNET_INTERFACE.network" << __END__
+
+[Address]
+Address=$ETHERNET_ADDRESS
+
+[Route]
+Gateway=$ETHERNET_GATEWAY
+__END__
+}
+
+doSetWirelessDhcp() {
+    cat > "root/etc/systemd/network/$WIRELESS_INTERFACE.network" << __END__
+[Match]
+Name=$WIRELESS_INTERFACE
+
+[Network]
+DHCP=true
+__END__
+
+    if [ "$DISABLE_IPV6" == "yes" ]; then
+        cat >> "root/etc/systemd/network/$WIRELESS_INTERFACE.network" << __END__
+IPv6AcceptRouterAdvertisements=false
+__END__
+    fi
+}
+
+doSetWirelessStatic() {
+    cat > "root/etc/systemd/network/$WIRELESS_INTERFACE.network" << __END__
+[Match]
+Name=$WIRELESS_INTERFACE
+
+[Network]
+DNS=$WIRELESS_DNS
+__END__
+
+    if [ "$DISABLE_IPV6" == "yes" ]; then
+        cat >> "root/etc/systemd/network/$WIRELESS_INTERFACE.network" << __END__
+IPv6AcceptRouterAdvertisements=false
+__END__
+    fi
+
+    cat >> "root/etc/systemd/network/$WIRELESS_INTERFACE.network" << __END__
+
+[Address]
+Address=$WIRELESS_ADDRESS
+
+[Route]
+Gateway=$WIRELESS_GATEWAY
+__END__
+}
+
+doEnableWireless() {
+    echo -n > "root/etc/wpa_supplicant/wpa_supplicant-$WIRELESS_INTERFACE.conf"
+
+    if [ ! -z "$WIRELESS_COUNTRY" ]; then
+        cat >> "root/etc/wpa_supplicant/wpa_supplicant-$WIRELESS_INTERFACE.conf" << __END__
+country=$WIRELESS_COUNTRY
+__END__
+    fi
+
+    cat >> "root/etc/wpa_supplicant/wpa_supplicant-$WIRELESS_INTERFACE.conf" << __END__
+network={
+    ssid="$WIRELESS_ESSID"
+    psk="$WIRELESS_KEY"
+__END__
+
+    if [ "$WIRELESS_HIDDEN" == "yes" ]; then
+        cat >> "root/etc/wpa_supplicant/wpa_supplicant-$WIRELESS_INTERFACE.conf" << __END__
+    scan_ssid=1
+__END__
+    fi
+
+    cat >> "root/etc/wpa_supplicant/wpa_supplicant-$WIRELESS_INTERFACE.conf" << __END__
+}
+__END__
+
+    chmod 0640 "root/etc/wpa_supplicant/wpa_supplicant-$WIRELESS_INTERFACE.conf"
+
+    ln -s "/usr/lib/systemd/system/wpa_supplicant@.service" "root/etc/systemd/system/multi-user.target.wants/wpa_supplicant@$WIRELESS_INTERFACE.service"
+}
+
+doDisableIpv6() {
+    cat > root/etc/sysctl.d/40-ipv6.conf << __END__
+ipv6.disable_ipv6=1
+__END__
+}
+
+doBashLogoutClear() {
+    cat >> root/root/.bash_logout << __END__
+clear
+__END__
+}
+
+doSshAcceptKeyTypeSshDss() {
+    cat >> root/etc/ssh/ssh_config << __END__
+Host *
+  PubkeyAcceptedKeyTypes=+ssh-dss
+__END__
+
+    cat >> root/etc/ssh/sshd_config << __END__
+PubkeyAcceptedKeyTypes=+ssh-dss
+__END__
+}
+
+doCreateYayDirectory() {
+    local DIR="root$(eval printf "$YAY_PATH")"
+    mkdir -p "$DIR"
+}
+
+doChmodYayDirectory() {
+    if [ ! -z "$YAY_CHXXX_PATH" ]; then
+        local DIR="root$(eval printf "$YAY_CHXXX_PATH")"
+        if [ ! -z "$YAY_CHMOD" ]; then
+            chmod -R "$YAY_CHMOD" "$DIR"
+        fi
+    fi
+}
+
+doChownYayDirectory() {
+    if [ ! -z "$YAY_CHXXX_PATH" ]; then
+        local DIR="root$(eval printf "$YAY_CHXXX_PATH")"
+        if [ ! -z "$YAY_CHOWN" ]; then
+            chown -R "$YAY_CHOWN" "$DIR"
+        fi
+    fi
+}
+
+doDownloadYay() {
+    doCreateYayDirectory
+    doChmodYayDirectory
+
+    local _PWD="$PWD"
+
+    local DIR="root$(eval printf "$YAY_PATH")"
+    cd "$DIR"
+
+    local URL="$YAY_YAY_URL"
+    curl --retry 999 --retry-delay 0 --retry-max-time 300 --speed-time 10 --speed-limit 0 \
+        -LO "$URL"
+
+    cd "$_PWD"
+
+    doChownYayDirectory
+}
+
+
+doSymlinkHashCommands() {
+    ln -s /usr/bin/md5sum root/usr/local/bin/md5
+    ln -s /usr/bin/sha1sum root/usr/local/bin/sha1
+}
+
+doOptimizeSwappiness() {
+    cat > root/etc/sysctl.d/99-sysctl.conf << __END__
+vm.swappiness=$OPTIMIZE_SWAPPINESS_VALUE
+__END__
+}
+
+doCreatePackageSetsDirectory() {
+    local DIR="root$(eval printf "$PACKAGE_SETS_PATH")"
+    mkdir -p "$DIR"
+}
+
+doDownloadPackage() {
+    local REPOSITORY="$(printf "$2" | cut -d/ -f1)"
+    local PACKAGE_NAME="$(printf "$2" | cut -d/ -f2)"
+
+    local PACKAGE_FILE="$(curl -sL "$ARCH_LINUX_PACKAGES_URL$REPOSITORY" | sed -e 's/<[^>]*>/ /g' | grep "$PACKAGE_NAME-.*xz[^.]" | awk '{ print $1 }')"
+    local PACKAGE_URL="$ARCH_LINUX_PACKAGES_URL$REPOSITORY/$PACKAGE_FILE"
+
+    doPrint ">>> [$1] $REPOSITORY/$PACKAGE_NAME ($PACKAGE_URL)"
+
+    doCreatePackageSetsDirectory
+
+    local _PWD="$PWD"
+
+    local DIR="root$(eval printf "$PACKAGE_SETS_PATH")"
+    cd "$DIR"
+
+    curl --retry 999 --retry-delay 0 --retry-max-time 300 --speed-time 10 --speed-limit 0 \
+        -LO "$PACKAGE_URL"
+
+    cd "$_PWD"
+}
+
+doDownloadPackageSets() {
+    doPrint "Downloading package sets..."
+    for i in $DOWNLOAD_PACKAGE_SETS; do
+        for j in ${PACKAGE_SET[$i]}; do
+            doDownloadPackage "$i" "$j"
+        done
+    done
+}
+
+doUnmount() {
+    umount "$BOOT_DEVICE"
+    rmdir boot
+
+    umount "$ROOT_DEVICE"
+    rmdir root
+}
+
+# =================================================================================
+#    M A I N
+# =================================================================================
+
+doCheckRootPrivileges
+
+doCheckInstallDevice
+
+doSelectHardwareModel
+
+doConfirmInstall
+
+doDownloadArchLinux
+
+doWipeAllPartitions
+doWipeDevice
+
+doCreateNewPartitionTable "$PARTITION_TABLE_TYPE"
+
+doCreateNewPartitions
+doDetectDevices
+
+doFormat
+doMount
+
+doUnpackArchLinux
+
+doFinalizeBoot
+
+doSetHostname "$HOSTNAME"
+doSetTimezone "$TIMEZONE"
+
+doSetConsole "$CONSOLE_KEYMAP" "$CONSOLE_FONT"
+
+if [ "$SET_ETHERNET" == "yes" ]; then
+    if [ "$ETHERNET_DHCP" == "no" ]; then
+        doSetEthernetStatic
+    else
+        doSetEthernetDhcp
+    fi
 fi
 
-# Check disk is not main
-if [[ $(df --output=source /) == *$disk* ]]; then
-	fail "Cannot use main device \"$disk\"\n";
-	exit 1;
+if [ "$SET_WIRELESS" == "yes" ]; then
+    if [ "$WIRELESS_DHCP" == "no" ]; then
+        doSetWirelessStatic
+    else
+        doSetWirelessDhcp
+    fi
+
+    doEnableWireless
 fi
 
-# Check if disk is mounted
+[ "$DISABLE_IPV6" == "yes" ] && doDisableIpv6
 
-if [[ $(lsblk $disk --output=mountpoint -n | grep -v "^$" | wc -l) -gt 0 ]]; then
-	fail "Disk \"$disk\" is mounted\n";
-	exit 1;
-fi
+[ "$ROOT_USER_BASH_LOGOUT_CLEAR" == "yes" ] && doBashLogoutClear
 
+[ "$SSH_ACCEPT_KEY_TYPE_SSH_DSS" == "yes" ] && doSshAcceptKeyTypeSshDss
 
-# Step 2 : Check sudo permissions
-if [ "$EUID" -ne 0 ]; then
-	CAN_I_RUN_SUDO=$(sudo -n uptime 2>&1|grep "load"|wc -l)
-	if [ ${CAN_I_RUN_SUDO} -eq 0 ]; then
-		# Ask for the administrator password upfront
-		warn "This script needs elevated permissions to execute.\nPlease provide super-user credentials to continue.\n"
-		sudo -v
-	fi
-	# Keep-alive: update existing `sudo` time stamp until finished
-	while true; do sudo -n true; sleep 62; kill -0 "$$" || exit; done 2>/dev/null &
-else
-	SUDO=""
-fi
+[ "$DOWNLOAD_YAY" == "yes" ] && doDownloadYay
 
-# Step 3 : Wipe all partitions
-showSection "Disk preparation (\"$disk\")";
+[ "$SYMLINK_HASH_COMMANDS" == "yes" ] && doSymlinkHashCommands
 
-showSubSection "Creating partitions";
+[ "$OPTIMIZE_SWAPPINESS" == "yes" ] && doOptimizeSwappiness
 
-pad "Wiping disk";
-$SUDO sfdisk --delete $disk -w always &>/dev/null
-showResultOrExit;
+[ ! -z "$DOWNLOAD_PACKAGE_SETS" ] && doDownloadPackageSets
 
-pad "Creating boot partition"
-echo ",204800,c" | $SUDO sfdisk /dev/sdb &>/dev/null
-showResultOrExit;
-pad "Creating root partition"
-echo ",,83" | $SUDO sfdisk --append /dev/sdb &>/dev/null
-showResultOrExit;
+doPrint "Flushing..."
+doFlush
 
-showSubSection "Formatting partitions"
-pad "Wiping partition signatures"
-$SUDO wipefs --all ${disk}1 &>/dev/null && $SUDO wipefs --all ${disk}2 &>/dev/null
-showResultOrExit;
-pad "Creating filesystems"
-$SUDO mkfs.vfat -F 32 -n BOOT ${disk}1 &>/dev/null && $SUDO mkfs.ext4 ${disk}2 -L ROOT &>/dev/null
-showResultOrExit;
+doUnmount
 
-showSubSection "Mounting partitions"
-tmp_dir=$(mktemp -d -t rpi4_mnt-XXXXXXXXXX)
-pad "Creating mount points"
-mkdir -p $tmp_dir/{boot,root}
-showResultOrExit
+doPrint "The installation is done!"
 
-pad "Mounting \"$disk\" partitions"
-$SUDO mount ${disk}1 $tmp_dir/boot &>/dev/null && $SUDO mount ${disk}2 $tmp_dir/root &>/dev/null
-showResultOrExit
-
-showSection "Root filesystem and kernel setup"
-
-showSubSection "Extracting kernel & file system"
-
-rfs_pack="";
-if [ -z "$data_folder" ]; then
-	pad "Downloading root filesystem"
-	rfs_pack=$(curl -s $ROOT_FS_BASE_URL 2>/dev/null| sed -e "s;<a href;\n<a href;g" | grep "<a href" | cut -d"\"" -f2 | grep tar.gz | tail -1 | xargs -I{} basename {});
-	if [ $? -ne 0 ]; then
-		showResultOrExit
-	fi
-else
-	pad "Retrieving root filesystem"
-	ROOT_FS_BASE_URL=$data_folder;
-	if [ -d "${data_folder}/root_fs" ]; then
-		rfs_pack=$(find ${data_folder}/root_fs -type f -printf "%T@ %p\n" | sort -n | cut -d' ' -f 2- | tail -n 1)
-	fi
-	showResultOrExit
-	ROOT_FS="${rfs_pack}";
-fi
-
-if [ -z "$rfs_pack" ]; then
-	(exit 1);
-	showResultOrExit "Cannot obtain latest root filesystem from $ROOT_FS_BASE_URL"
-fi
-
-
-if [ -z "$data_folder" ]; then
-	DOWNLOAD_FOLDER="${tmp_dir}/root_fs"
-	if [ -n "$target_folder" ]; then
-		DOWNLOAD_FOLDER="$target_folder/root_fs";
-	fi
-	ROOT_FS="${DOWNLOAD_FOLDER}/$rfs_pack";
-	printf "\n"
-	warn "$(basename $ROOT_FS)\n"
-	printf "$HIDE_CURSOR"
-	$SUDO mkdir -p $DOWNLOAD_FOLDER && (cd $DOWNLOAD_FOLDER; $SUDO curl --progress-bar --remote-name --location $ROOT_FS_BASE_URL/$rfs_pack)
-	printf "${MOVE_CURSOR_UP}${MOVE_CURSOR_UP}${CLEAR_TO_END}${MOVE_CURSOR_UP}${SHOW_CURSOR}"
-
-	move_to_max_width;
-
-	LAST_RC=$?
-
-	(exit $LAST_RC)
-	showResultOrExit
-fi
-
-pad "Extracting root file system"
-if [ ! -e "$ROOT_FS" ]; then
-	(exit 1);
-	showResultOrExit "Root filesystem tarball not found"
-fi
-$SUDO bsdtar -xpf $ROOT_FS -C ${tmp_dir}/root &>/dev/null
-showResultOrExit 
-
-if [ -z "$data_folder" ]; then
-	pad "Downloading Raspberry Pi 64bit kernel"
-	kernel_url=$(curl -L -s $KERNEL_BASE_URL 2>/dev/null|  grep "browser_download" | cut -d"\"" -f4);
-	if [ $? -ne 0 ]; then
-		showResultOrExit
-	fi
-
-	if [ -z "$kernel_url" ]; then
-		(exit 1);
-		showResultOrExit "Cannot obtain latest kernel from $KERNEL_BASE_URL"
-	fi
-
-	KERNEL_DIR="$tmp_dir/kernel/";
-	if [ -n "${target_folder}" ]; then
-		KERNEL_DIR="${target_folder}/kernel";
-	fi
-	KERNEL_FILE="$(basename $kernel_url)";
-	KERNEL="${KERNEL_DIR}/${KERNEL_FILE}";
-	printf "\n"
-	warn "$KERNEL_FILE\n"
-	printf "$HIDE_CURSOR"
-	$SUDO mkdir $KERNEL_DIR && (cd $KERNEL_DIR; $SUDO curl -L --progress-bar --remote-name --location $kernel_url)
-	printf "${MOVE_CURSOR_UP}${MOVE_CURSOR_UP}${CLEAR_TO_END}${MOVE_CURSOR_UP}${MOVE_CURSOR_UP}${SHOW_CURSOR}"
-
-	move_to_max_width;
-
-	LAST_RC=$?
-
-	(exit $LAST_RC)
-	showResultOrExit
-else
-	pad "Retrieving kernel"
-	kernel_pack="";
-	if [ -d "${data_folder}/kernel" ]; then
-		kernel_pack=$(find ${data_folder}/kernel -type f -printf "%T@ %p\n" | sort -n | cut -d' ' -f 2- | tail -n 1)
-	fi
-	KERNEL="${kernel_pack}"
-
-	if [ ! -e "$KERNEL" ]; then
-		(exit 1);
-		showResultOrExit "Cannot obtain latest kernel from \"${data_folder}/kernel\"";
-
-	fi
-	showResultOrExit
-fi
-
-pad "Extracting kernel"
-if [ ! -e "$KERNEL" ]; then
-	(exit 1);
-	showResultOrExit "Kernel tarball not found"
-fi
-$SUDO mkdir ${tmp_dir}/kernel_d && $SUDO bsdtar -xpf $KERNEL -C ${tmp_dir}/kernel_d &>/dev/null
-showResultOrExit 
-
-pad "Removing old kernel"
-if [ ! -e "$tmp_dir/root/boot/config.txt" ]; then
-	(exit 1);
-	showResultOrExit "Kernel config file not found"
-fi
-old_kernel=$(grep "^kernel=" $tmp_dir/root/boot/config.txt | cut -d"=" -f2)
-$SUDO rm -f $tmp_dir/root/boot/$old_kernel &> /dev/null
-showResultOrExit
-
-pad "Updating kernel config"
-new_kernel=$(basename $(tar -tf $KERNEL| grep "boot" | grep "img$"));
-$SUDO sed -i -e "s;^kernel=${old_kernel}$;kernel=${new_kernel};g" $tmp_dir/root/boot/config.txt &>/dev/null
-showResultOrExit
-
-pad "Merging kernel files"
-$SUDO rsync -avzKP ${tmp_dir}/kernel_d/* ${tmp_dir}/root &>/dev/null
-showResultOrExit
-
-pad "Moving boot files to boot partition"
-$SUDO mv $tmp_dir/root/boot/* $tmp_dir/boot/ &>/dev/null
-showResultOrExit
-
-showSubSection "Tuning user configuration"
-pad "Configuring /etc/fstab"
-echo "LABEL=BOOT  /boot    vfat   rw,relatime   0 0" | $SUDO tee $tmp_dir/root/etc/fstab &>/dev/null && \
-       	echo "LABEL=ROOT  /        ext4   rw,relatime   0 1" | $SUDO tee -a $tmp_dir/root/etc/fstab &>/dev/null
-showResultOrExit
-
-pad "Updating /boot/cmdline.txt"
-$SUDO perl -pi -e 's;^root=.+?[\s];root=LABEL=ROOT ;g' $tmp_dir/boot/cmdline.txt &>/dev/null
-showResultOrExit
-
-FIRM_DIR="${tmp_dir}/rpi_firmware"
-if [ -z "${data_folder}" ]; then
-	if [ -n "${target_folder}" ]; then
-		FIRM_DIR="${target_folder}/rpi_firmware";
-	fi
-	pad "Downloading latest Raspberry Pi firmware"
-	$SUDO git clone --depth 1 $RPI_FIRMWARE_GIT $FIRM_DIR &>/dev/null
-	showResultOrExit
-else
-	pad "Retrieving Raspberry Pi firmware"
-	FIRM_DIR="${data_folder}/rpi_firmware";
-	if [ ! -d "${FIRM_DIR}/boot" ]; then
-		(exit 1)
-		showResultOrExit "Cannot find firmware boot files";
-	else
-		(exit 0)
-		showResultOrExit
-	fi
-fi
-
-pad "Copying firmware files"
-$SUDO cp $FIRM_DIR/boot/{*.elf,*.dat} $tmp_dir/boot/ &>/dev/null
-showResultOrExit
-
-if [ -n "$host" ]; then
-	pad "Setting hostname \"$host\""
-	echo "$host" | $SUDO tee $tmp_dir/root/etc/hostname &>/dev/null
-	showResultOrExit
-fi
-
-showSubSection "Performing cleanup"
-
-pad "Unmounting disk \"$disk\""
-$SUDO umount $tmp_dir/{boot,root}
-showResultOrExit
-
-pad "Removing temporary directory"
-$SUDO rm -fr $tmp_dir;
-showResultOrExit
+exit 0
