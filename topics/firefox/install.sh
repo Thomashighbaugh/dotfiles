@@ -11,3 +11,5 @@ git clone https://github.com/Thomashighbaugh/firefox $HOME/.local/share/firefox/
 cp -rvf $HOME/.local/share/firefox/chrome $HOME/.mozilla/firefox/*.default
 
 cp -rvf $HOME/.local/share/firefox/chrome $HOME/.mozilla/firefox/*.default-release
+
+cp -rvf $HOME/dotfiles/topics/firefox/user.js $HOME/.mozilla/firefox/user.js
