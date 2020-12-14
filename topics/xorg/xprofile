@@ -80,6 +80,9 @@ run xfsettingsd
 ## Network Manager Applet
 run nm-applet
 
+## Thinkpad Battery
+run tp-battery-icon
+
 #run xsettingsd
 
 xrdb -merge $HOME/.Xresources 
