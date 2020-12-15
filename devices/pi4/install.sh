@@ -16,29 +16,19 @@ sh $HOME/dotfiles/topics/bitwarden/install.sh
 
 sh $HOME/dotfiles/topics/bluetooth/install.sh
 
-sh $HOME/dotfiles/topics/chromium/install.sh
-
 sh $HOME/dotfiles/topics/cursor/install.sh
 
 sh $HOME/dotfiles/topics/disks/install.sh
 
 sh $HOME/dotfiles/topics/docker/install.sh
 
-sh $HOME/dotfiles/topics/emacs/install.sh
-
 sh $HOME/dotfiles/topics/font/install.sh
 
-sh $HOME/dotfiles/topics/gparted/install.sh
-
 sh $HOME/dotfiles/topics/git/install.sh
-
-sh $HOME/dotfiles/topics/grub/install.sh
 
 sh $HOME/dotfiles/topics/hosts/install.sh
 
 sh $HOME/dotfiles/topics/htop/install.sh
-
-sh $HOME/dotfiles/topics/icons/install.sh
 
 sh $HOME/dotfiles/topics/keybase/install.sh
 
@@ -92,6 +82,3 @@ sh $HOME/dotfiles/topics/zsh/install.sh
 
 ############################################
 
-sh $HOME/dotfiles/topics/rpi/install.sh
-
-sh $HOME/dotfiles/topics/dropbox/install.sh
