@@ -88,10 +88,6 @@ sh $HOME/dotfiles/topics/ssh/install.sh
 
 sh $HOME/dotfiles/topics/sway/install.sh
 
-sh $HOME/dotfiles/topics/thinkpad/install.sh
-
-sh $HOME/dotfiles/topics/tlp/install.sh
-
 sh $HOME/dotfiles/topics/tor/install.sh
 
 sh $HOME/dotfiles/topics/vagrant/install.sh
@@ -114,4 +110,6 @@ sh $HOME/dotfiles/topics/pacman/install.sh
 
 sh $HOME/dotfiles/topics/amd/install.sh
 
-sh $HOME/dotfiles/topics/dropbox/install.sh
+sh $HOME/dotfiles/topics/thinkpad/install.sh
+
+#sh $HOME/dotfiles/topics/dropbox/install.sh
