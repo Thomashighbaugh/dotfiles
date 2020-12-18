@@ -4,4 +4,4 @@ I obviously would be concerned if a vulnerability where to arise within the dotf
 
 ## Reporting a Vulnerability
 
-If you find a vulnerability, just pull request it and let me know what it is or maybe even fix the issue and I will be happy to merge it and be in your eternal debt. 
+If you find a vulnerability, just pull request it and let me know what it is or maybe even fix the issue and I will be happy to merge it and be in your eternal debt.
