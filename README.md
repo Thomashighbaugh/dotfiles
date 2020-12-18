@@ -20,33 +20,17 @@ To realize this, zsh completions related to git are not in `topics/git` but in `
 
 The idea and indeed much of the programming logic of the repo comes from wafflepie's take on the _Holman Pattern_ which he included a script I have mopdified that replaces a portion of the Makefile for now
 
-### Two Tools For One Problem?
-
-Ansible has its use cases which it works awesomely for and Stow, well it works well for what its _actually_ for but really these tools are flatheads when what provisioning my systems really requires is a philips head, so to speak, for me to be truly satisfied with how stable and secure my system is. So instead of trying to bend Ansible to work with AUR helpers or even looking at anymore GNU word salad (called docs apparently to the GNU folks), I just wrote a bunch of files called `install.sh` which do the job of both tools, **NATIVELY** because that is what shell scripts exist for and reinventing that wheel doesn't seem to contribute much to anything but the frustrations of r/unixporn readers playing with the things years later.
-
-Yes, I am a proponent of Makefiles for things like this, which are not exactly their intended purpose but close enough that they offer far better features than things like stow, but elected to write shell scripts to install all the necessary applications **by topic** and then symlink my configurations **by topic** because they are far easier to call and easily managed as modular components within a directory tree as I have done here. I left the Makefile around for updating the several repos that are part of these dotfiles but spread out for purposes of keeping my head on straight. Which is the same reason that I don't have a bunch of **hidden directories** in this repo like stow users...
-
 ### No Submodules Zone
 
-**Detatched heads suck**, _especially from my repos_. So there is none of that in this repo. Sure there are other git repos being called in various topic's `install.sh` files, but they aren't downloaded in this repo only to haunt me later on, they are going into the places they are expected in the system. That way I can still set up a script to update them really fast (like after crashing my OS and remembering to update them all) but none of the tedious, hard to maintain tinkering with submodules that still detatch from their HEAD and cost you 12 hours of work on your awesomewm config (Lua is the worst, hands down). This is the power of shell scripts, no need to bend the tools to the point of detatching your repos from their HEAD which you won't realize until you realize that your work was lost.
-
-Also I have included the external libraries, plugins, etc. within this repo as files, because the files included are the exact files I have built this configuration upon, no breaking changes can even be introduced unless I manually add them in. Maybe others desire some additional changes in the repos that they incorporate into their configurations, I tend to leave the thing out or make the changes myself over waiting and I don't judge, this is just what works for me.
+No submodules are included within the application logic of the installation process, nor included in this repository. This is a strange choice, to be sure but this makes the installation and maintaining of this repository less of a nightmare for me and makes for a cleaner overall installation process for the end user, who is also just me. Submodules are of two overall types, those that are your own repositories and those that are other people's repositories. I will go over my reasoning for leaving them both out below. 
 
 ### Idemponent (WIP)
 
-All of this should be idempotent, which is the snobby way of saying you can run it on top of itself and it should still work. With the other cloned repos being the temporary exception as I have to hunt them all down and wrap them in conditionals.
+All of this should be idempotent, which is the snobby way of saying you can run it on top of itself and it should still work the same as if you had just run it the first time. The advantages of this approach are (for me):
 
-According to RedHat's Glossary related to Ansible,
-
->     An operation is idempotent if the result of performing it once is exactly the same as the result of performing it repeatedly without any intervening actions.
-
-What this means for my systems' configurations
-
-- consistency in environment
-- an known baseline systems can be returned to if my tinkering goes too far
-- if not in the mood for debugging why soemthing isn't working right, I can just run the whole thing over (hoping its not an issue with the config files themselves)
-- it sounds really nerdy
-- its a key feature of Ansible I can reproduce without needing to try to fit ansible into an arch-based environment where the AUR helpers cannot be run as root.
+- consistency in environment resulting from installation+provisioning
+- if not in the mood for debugging why soemthing isn't working right that was working prior, I can just run the whole thing over or delete the `dotfiles` directory and `git clone` it again.
+- its a key feature of Ansible I can reproduce without needing to try to fit ansible into an arch-based environment where the AUR helpers cannot be run as root nor need to remember the nuances of Ansible and the quirks its acquisition by RedHat will mean as time marches on (look at their videos sometime and you will get what I mean).
 
 ---
 
@@ -56,7 +40,7 @@ What this means for my systems' configurations
 
 Some people go to great lengths to hide as many of their dotfiles as possible out of the home directory, which I do somewhat as well, just not to the same extent. I have moved my bin directory to `.local/share/bin` but am also ok with having `.zshrc` in my home directory (for now...) and think having a `.etc` or `.local/etc` when already there is a `.config` is reinventing the wheel.
 
-### Within the dotfiles Repository
+### Directory Structure
 
 Internal to this repository are a series of directories that are as follows
 | Directory | Contents |
@@ -65,13 +49,13 @@ Internal to this repository are a series of directories that are as follows
 | devices | installation scripts for the devices I have to provision, these control what gets installed on each devices and in what order |
 | topics | various programs that I either install, provision or both on fresh installations |
 
-#### Doesn't that make it harder to work with the files cause there are like all these topics in there
 
-When I want to modify values in my dotfiles, I generally navigate to where the system expects them and the soft link provided in the install process is sufficient that I never have an issue modifying the file found in that place that is really the one deep in my dotfiles/topics.
+### Dependencies 
+In order to have things work as expected in the individual programs installation phase, there are some necessary programs that need to be present on the system. These programs are needed by all devices and so the first step with each device's installation is first running the install script in the `dependencies` directory. The main program this script installs is yay, an AUR package manager that pulls in a large segment of programs I use because they are not in the Arch Official Repositories.  
 
 ### Topics
 
-Within the topics directory are a series of sub-directories that correspond to each program that is provisioned, installed or both. Inside of each of these is an `install.sh` script that will install and provision, according to need, that program. I have tried to minimize the number of package bundles where dozens of programs get lumped in together and installed, thus have maximized the number of sub-directories.
+Within the topics directory are a series of sub-directories that correspond to each program that is provisioned, installed or both. Inside of each of these is an `install.sh` script that will install and provision, according to need, that program. I have tried to minimize the number of package bundles where dozens of programs get lumped in together and installed, thus have maximized the number of sub-directories. Many of these subdirectories only have the `install.sh` file in them because there is no necessary configuration files to symlink into the home directory, which may seem daunting to some, but navigating `vim` to the location it is symlinked to and editing the file has always worked fine for me so I doubt any potential users would have too much trouble with editing files doing it that way if they found the topics subdirectories a little daunting. 
 
 ## Inspiration
 
