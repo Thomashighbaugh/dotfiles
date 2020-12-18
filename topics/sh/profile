@@ -10,15 +10,15 @@
 ## Config Directory
 ################################################################################
 
-## Order Matters
-source $HOME/dotfiles/topics/sh/variables/variables.posix.sh
+## Order Matters hence no looping structure ;]
+source $HOME/dotfiles/topics/sh/configs/variables.posix.sh
 
-source $HOME/dotfiles/topics/sh/path/path.posix.sh
+source $HOME/dotfiles/topics/sh/configs/path.posix.sh
 
-source $HOME/dotfiles/topics/sh/keychain/keychain.posix.sh
+source $HOME/dotfiles/topics/sh/configs/keychain.posix.sh
 
-
-# Adds in system wide NVM 
+source $HOME/dotfiles/topics/sh/configs/variables.posix.sh
+# Adds in system wide NVM
 
 [ -z "$NVM_DIR" ] && export NVM_DIR="$HOME/.nvm"
 source /usr/share/nvm/nvm.sh
@@ -30,3 +30,9 @@ source /usr/share/nvm/install-nvm-exec
 # Adds in rbenv
 
 eval "$(rbenv init -)"
+
+source "$HOME/.aliases"
+
+[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+
+# vim: set ft=sh:

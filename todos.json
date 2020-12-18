@@ -11,6 +11,10 @@
     {
       "name": "Linux Certification Buy It",
       "description": "First transfer the money to the account, then buy the dual certification and take both courses"
+    },
+    {
+      "name": "To enable Rounded Corners add this line to the \\'<theme>\\' section of your Openbox config.",
+      "description": "To enable Rounded Corners add this line to the \\'<theme>\\' section of your Openbox config."
     }
   ]
 }

@@ -7,18 +7,13 @@
 # Github: https://github.com/Thomashighbaugh
 ###########################################################################
 
-
-
 ## Dotfiles Location ###########################################################
 cd "$(readlink ~/.zshrc | xargs dirname)"
 export DOTFILES="$(git rev-parse --show-toplevel)"
-cd - > /dev/null
-
-
+cd - >/dev/null
 
 for file in $(
-  find "$DOTFILES/topics/sh/alias" -name 'alias.sh'
+	find "$DOTFILES/topics/sh/alias" -name '*.alias.sh'
 ); do
-  source "$file"
+	source "$file"
 done
-

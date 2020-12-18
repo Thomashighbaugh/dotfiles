@@ -16,6 +16,8 @@ sh $HOME/dotfiles/topics/bitwarden/install.sh
 
 sh $HOME/dotfiles/topics/bluetooth/install.sh
 
+sh $HOME/dotfiles/topics/bspwm/install.sh
+
 sh $HOME/dotfiles/topics/chromium/install.sh
 
 sh $HOME/dotfiles/topics/cups/install.sh
@@ -61,6 +63,8 @@ sh $HOME/dotfiles/topics/neofetch/install.sh
 sh $HOME/dotfiles/topics/network-manager/install.sh
 
 sh $HOME/dotfiles/topics/nvm/install.sh
+
+sh $HOME/dotfiles/topics/openbox/install.sh
 
 sh $HOME/dotfiles/topics/p10k/install.sh
 

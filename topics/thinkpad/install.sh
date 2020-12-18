@@ -11,7 +11,7 @@ yay -S --noconfirm --sudoloop --needed ryzen-stabilizator-git ryzen_smu-dkms-git
 
 yay -S --noconfirm --sudoloop --needed linux-amd-znver2 opencl-amd ryzen-stabilizator-git mhwd-amdgpu zenstates-git aocl-gcc tpc-git amdcovc rapl-read-ryzen-git
 
-yay -S --nconfirm --sudoloop --needed zenmonitor ryzenadj-git ryzen-controller-bin disable-c6-systemd  
+yay -S --nconfirm --sudoloop --needed zenmonitor ryzenadj-git ryzen-controller-bin disable-c6-systemd tuned perf-tools-git 
 
 sudo systemctl enable auto-cpufreq.service
 
@@ -22,6 +22,12 @@ sudo systemctl enable --now tp-battery-mode.service
 sudo systemctl enable --now cpupower.service                       
 
 sudo systemctl enable --now lm_sensors.service    
+
+sudo systemctl enable --now ryzen-stabilizator.service  
+
+sudo systemctl enable --now tuned.service  
+
+tuned-adm profiles laptop-ac-powersave
 
 sudo mkinitramfs -Psv
 

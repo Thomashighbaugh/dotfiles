@@ -7,7 +7,7 @@
 ## life in times so desperate as I need to use BASH as a login shell. 
 
 ## Profile ###################################################################
-source $HOME/profile
+source $HOME/.profile
 
 ## Aliases ###################################################################
 source $HOME/.aliases
