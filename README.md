@@ -22,7 +22,7 @@ The idea and indeed much of the programming logic of the repo comes from wafflep
 
 ### No Submodules Zone
 
-No submodules are included within the application logic of the installation process, nor included in this repository. This is a strange choice, to be sure but this makes the installation and maintaining of this repository less of a nightmare for me and makes for a cleaner overall installation process for the end user, who is also just me. Submodules are of two overall types, those that are your own repositories and those that are other people's repositories. I will go over my reasoning for leaving them both out below. 
+No submodules are included within the application logic of the installation process, nor included in this repository. This is a strange choice, to be sure but this makes the installation and maintaining of this repository less of a nightmare for me and makes for a cleaner overall installation process for the end user, who is also just me. Submodules are of two overall types, those that are your own repositories and those that are other people's repositories. I will go over my reasoning for leaving them both out below.
 
 ### Idemponent (WIP)
 
@@ -49,13 +49,13 @@ Internal to this repository are a series of directories that are as follows
 | devices | installation scripts for the devices I have to provision, these control what gets installed on each devices and in what order |
 | topics | various programs that I either install, provision or both on fresh installations |
 
+### Dependencies
 
-### Dependencies 
-In order to have things work as expected in the individual programs installation phase, there are some necessary programs that need to be present on the system. These programs are needed by all devices and so the first step with each device's installation is first running the install script in the `dependencies` directory. The main program this script installs is yay, an AUR package manager that pulls in a large segment of programs I use because they are not in the Arch Official Repositories.  
+In order to have things work as expected in the individual programs installation phase, there are some necessary programs that need to be present on the system. These programs are needed by all devices and so the first step with each device's installation is first running the install script in the `dependencies` directory. The main program this script installs is yay, an AUR package manager that pulls in a large segment of programs I use because they are not in the Arch Official Repositories.
 
 ### Topics
 
-Within the topics directory are a series of sub-directories that correspond to each program that is provisioned, installed or both. Inside of each of these is an `install.sh` script that will install and provision, according to need, that program. I have tried to minimize the number of package bundles where dozens of programs get lumped in together and installed, thus have maximized the number of sub-directories. Many of these subdirectories only have the `install.sh` file in them because there is no necessary configuration files to symlink into the home directory, which may seem daunting to some, but navigating `vim` to the location it is symlinked to and editing the file has always worked fine for me so I doubt any potential users would have too much trouble with editing files doing it that way if they found the topics subdirectories a little daunting. 
+Within the topics directory are a series of sub-directories that correspond to each program that is provisioned, installed or both. Inside of each of these is an `install.sh` script that will install and provision, according to need, that program. I have tried to minimize the number of package bundles where dozens of programs get lumped in together and installed, thus have maximized the number of sub-directories. Many of these subdirectories only have the `install.sh` file in them because there is no necessary configuration files to symlink into the home directory, which may seem daunting to some, but navigating `vim` to the location it is symlinked to and editing the file has always worked fine for me so I doubt any potential users would have too much trouble with editing files doing it that way if they found the topics subdirectories a little daunting.
 
 ## Inspiration
 
