@@ -10,3 +10,4 @@ menu_bg_color:#13111a
 menu_fg_color:#edeeff
 link_color:#545862"
 
+gtk-color-scheme = "bg_color:#1f2023\nfg_color:#8b9cbe\nbase_color:#1f2023\ntext_color:#8b9cbe\nselected_bg_color:#313040\nselected_fg_color:#8b9cbe\ntooltip_bg_color:#1f2023\ntooltip_fg_color:#0b0c0f\ntitlebar_bg_color:#1f2023\ntitlebar_fg_color:#00caff\nmenubar_bg_color:#1f2023\nmenubar_fg_color:#00caff\ntoolbar_bg_color:#1f2023\ntoolbar_fg_color:#f0ee6e\nmenu_bg_color:#1f2023\nmenu_fg_color:#8b9cbe\npanel_bg_color:#1f2023\npanel_fg_color:#6c71c4\nlink_color:#796af5"

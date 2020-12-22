@@ -22,6 +22,7 @@ yay -S --needed --sudoloop --noconfirm ntp pacman-contrib pkgconf pkgfile pciuti
 yay -S --needed --sudoloop --noconfirm procps-ng proselint psmisc psutils rmlint rygel screen
 yay -S --needed --sudoloop --noconfirm seahorse sed shadow shellharden simple-scan sshfs stunnel sudo switchboard-plug-bluetooth
 yay -S --needed --sudoloop --noconfirm make man-db man-pages man2html mesa mlocate moc network-manager-applet vte3 xterm
+yay -S --needed --sudoloop --noconfirm powerpill bauerbill 
 
 sudo systemctl enable --now chrony
 

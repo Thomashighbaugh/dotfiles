@@ -1,0 +1,1 @@
+yay -S --noconfirm --sudoloop --needed menumaker obmenu-generator obapps obkey obdevicemenu openbox-xdgmenu ob-autostart obfilebrowser obtheme obsetlayout fbctrl idesk openbox-patched obhud opensnap waybox

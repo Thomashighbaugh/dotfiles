@@ -20,3 +20,4 @@ ln -fvs $HOME/dotfiles/topics/xorg/xinitrc $HOME/.xinitrc
 ln -fvs $HOME/dotfiles/topics/xorg/xprofile $HOME/.xprofile
 ln -fvs $HOME/dotfiles/topics/xorg/xsettingsd $HOME/.xsettingsd
 ln -fvs $HOME/dotfiles/topics/xorg/xsessionrc $HOME/.xsessionrc
+sudo ln -fvs $HOME/dotfiles/topics/xorg/xinitrc /etc/X11/xinit/xinitrc

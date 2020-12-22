@@ -6,6 +6,8 @@
 
 export XDG_CONFIG_HOME="$HOME/.config"
 
+## Path Modifications
+## Yes, I know this is unnecessary due to ~/.profile, but it is just to be sure since it can't hurt!
 [ -d /sbin ] && PATH="$PATH:/sbin"
 [ -d /usr/sbin ] && PATH="$PATH:/usr/sbin"
 [ -d "$HOME/bin" ] && PATH="$HOME/bin:$PATH"
@@ -13,36 +15,24 @@ export XDG_CONFIG_HOME="$HOME/.config"
 
 # keyring and polkit daemons
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-gnome-keyring-daemon --start --components=pkcs11 &
-
-
 
 ## Gnome Keyring
 if (command -v gnome-keyring-daemon && ! pgrep gnome-keyring-d); then
-    gnome-keyring-daemon --daemonize --login &
+	gnome-keyring-daemon ---start --components=pkcs11 --login &
+	/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 fi
 
 ## Pulse Audio for X11
 if (command -v start-pulseaudio-x11 && ! pgrep pulseaudio); then
-    start-pulseaudio-x11 &
+	start-pulseaudio-x11 &
 fi
-
-## Power Manager
-if (command -v  xfce4-power-manager && ! pgrep xfce4-power-man) ; then
-    xfce4-power-manager &
-fi
-
-if (command -v system-config-printer-applet && ! pgrep applet.py ); then
-  system-config-printer-applet &
-fi
-
 
 ## Function Definition
 function run {
-   if (command -v $1 && ! pgrep $1); then
+	if (command -v $1 && ! pgrep $1); then
 
-     $@&
-   fi
+		$@ &
+	fi
 }
 
 ## Functions
@@ -51,13 +41,13 @@ function run {
 run xcape -e 'Super_L=Super_L|Control_L|Escape'
 
 ### Compositor
-run  picom -b --experimental-backends --dbus --config $HOME/.config/picom.conf
+run picom -b --experimental-backends --dbus --config $HOME/.config/picom.conf
 
 ### Bluetooth Manager
 run blueman-applet
 
 ### Notifications
-run dunst 
+run dunst
 
 ### PulseAudio Tray Applet
 run pa-applet
@@ -65,7 +55,7 @@ run pa-applet
 ### XFCE Settings
 run xfsettingsd
 
-### XFCE Power Manager 
+### XFCE Power Manager
 run xfce4-power-manager
 
 ### Network Manager Applet
@@ -74,11 +64,11 @@ run nm-applet
 ### Thinkpad Battery
 run tp-battery-icon
 
-### Screen Saver 
+### Screen Saver
 run xscreensaver
 
-## Merging Xresources 
-xrdb -merge $HOME/.Xresources 
+### Dropbox
+run ~/dropbox-dist/dropboxd &
 
-
-
+## Merging Xresources
+xrdb -merge $HOME/.Xresources
