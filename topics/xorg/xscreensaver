@@ -1,10 +1,10 @@
 # XScreenSaver Preferences File
-# Written by xscreensaver-demo 5.44 for tlh on Sun Sep  6 16:54:04 2020.
+# Written by xscreensaver-demo 5.44 for tlh on Tue Dec 22 10:59:17 2020.
 # https://www.jwz.org/xscreensaver/
 
-timeout:	0:25:00
-cycle:		0:30:00
-lock:		True
+timeout:	0:15:00
+cycle:		0:45:00
+lock:		False
 lockTimeout:	0:05:00
 passwdTimeout:	0:00:30
 visualID:	default
@@ -249,9 +249,10 @@ programs:								      \
 				hexadrop -root				    \n\
   GL: 				kaleidocycle -root			    \n\
   GL: 				quasicrystal -root			    \n\
-  GL: 				unknownpleasures -root -delay 0 -count	      \
-				  118 -speed 2.2558 -resolution 300	      \
-				  -amplitude 0.25 -noise 0.6 -buzz -fps	    \n\
+  GL: 				unknownpleasures -root -delay 0 -count 64     \
+				  -speed 2.2558 -resolution 300		      \
+				  -amplitude 0.25 -noise 1.325 -no-ortho      \
+				  -fps					    \n\
 				binaryring -root			    \n\
   GL: 				cityflow -root				    \n\
   GL: 				geodesicgears -root			    \n\
