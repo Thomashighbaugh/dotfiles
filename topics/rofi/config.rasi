@@ -23,7 +23,7 @@ configuration {
   drun-match-fields: "name,generic,exec,categories";
 	drun-show-actions: true;
 /*	drun-display-format: "{name} [<span weight='light' size='small'><i>({generic})</i></span>]";*/
-/*	disable-history: false;*/
+	disable-history: false;
 /*	ignored-prefixes: "";*/
 /*	sort: false;*/
 /*	sorting-method: ;*/
@@ -44,7 +44,7 @@ configuration {
 /*	separator-style: "dash";*/
 /*	hide-scrollbar: false;*/
 /*	fullscreen: false;*/
-/*	fake-transparency: false;*/
+	fake-transparency: true;
 	dpi: 0.96;
 /*	threads: 0;*/
 /*	scrollbar-width: 8;*/

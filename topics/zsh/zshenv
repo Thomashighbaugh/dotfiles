@@ -25,7 +25,8 @@ for file in $(
   source "$file"
 done
 
-
+## Env-Modules #################################################################
+      (( ${+functions[module]} )) || source /etc/modules/init/zsh
 
 
 
