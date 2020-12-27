@@ -1,3 +1,5 @@
+#!/bin/env bash
+
 yay -S --noconfirm --sudoloop --needed vim vi sudo vim-runtime vim-spell-en
 
 ln -svf $HOME/dotfiles/topics/vim/vimrc $HOME/.vimrc

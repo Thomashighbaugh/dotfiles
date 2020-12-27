@@ -13,13 +13,13 @@ yay -S --noconfirm --sudoloop bemenu blueberry blueman bluez-hid2hci bluez-tools
 
 yay -S --noconfirm --sudoloop awmtt thunar thunar-archive-plugin thunar-media-tags-plugin thunar-volman
 
-yay -S --noconfirm --sudoloop maim firefox feh-git luarocks nitrogen
+yay -S --noconfirm --sudoloop maim firefox luarocks nitrogen
 
 ## Erase Current Configuration
 
-# if [[ -d "$HOME/.config/awesome" ]]; then
-# 	mv $HOME/.config/awesome $HOME/.config/aweesome.old
-# fi
+ if [[ -d "$HOME/.config/awesome" ]]; then
+ 	mv $HOME/.config/awesome $HOME/.config/aweesome.old
+ fi
 
 ## Install My Configuration
 git clone https://github.com/Thomashighbaugh/awesomewm $HOME/.config/awesome
