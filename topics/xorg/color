@@ -17,6 +17,7 @@
 #define base0D #00caff
 #define base0E #61aeee
 #define base0F #a86fe6
+#define base10 #ff9cff
 
 *foreground:   base05
 #ifdef background_opacity
@@ -36,7 +37,7 @@
 *color7:       base05
 
 *color8:       base03
-*color9:       base08
+*color9:       base10
 *color10:      base0B
 *color11:      base0A
 *color12:      base0D
