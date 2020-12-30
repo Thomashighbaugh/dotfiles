@@ -5,10 +5,10 @@
 ################################################################################
 yay -S --noconfirm --sudoloop --needed numix-gtk-theme arc-gtk-theme gtk-engine-murrine gtk-engines
 
-yay -S --noconfirm --sudoloop --needed vertex-themes gtk-engines gtk-theme-arc-git pocillo-gtk-theme-git pop-gtk-theme
+yay -S --noconfirm --sudoloop --needed vertex-themes gtk-engines gtk-theme-arc-git pocillo-gtk-theme-git pop-gtk-theme xfce-settings
 
 mkdir -p $HOME/.config/gtk-2.0
-
+xfsettingsd
 ln -svf $HOME/dotfiles/topics/gtk/gtk-2.0/gtkfilechooser.ini $HOME/.config/gtk-2.0/gtkfilechooser.ini
 
 mkdir -p $HOME/.config/gtk-3.0
