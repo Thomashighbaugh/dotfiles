@@ -4,14 +4,15 @@
 ## Thinkpad Installer ##########################################################
 ################################################################################
 
-yay -S --noconfirm --sudoloop --needed tp_smapi thinkfan thinkalert tp-battery-mode thinkpad-scripts hdaps-gl tpfand-git threshy libthinkpad tp-battery-icon-git i2c-tools
+yay -S --noconfirm --sudoloop --needed tp_smapi tp-battery-mode thinkpad-scripts hdaps-gl tpfand-git threshy libthinkpad tp-battery-icon-git i2c-tools
 
 yay -S --noconfirm --sudoloop --needed cpufreqctl auto-cpufreq aocl-gcc aocl-aocc hipcpu-git zenpower-dkms-git zenmonitor
-yay -S --noconfirm --sudoloop --needed ryzen-stabilizator-git ryzen_smu-dkms-git rapl-read-ryzen-git amf-headers opencl-mesa
 
-yay -S --noconfirm --sudoloop --needed opencl-amd ryzen-stabilizator-git mhwd-amdgpu zenstates-git aocl-gcc tpc-git amdcovc rapl-read-ryzen-git
+yay -S --noconfirm --sudoloop --needed ryzen_smu-dkms-git rapl-read-ryzen-git amf-headers opencl-mesa
 
-yay -S --nconfirm --sudoloop --needed zenmonitor ryzenadj-git tuned perf-tools-git
+yay -S --noconfirm --sudoloop --needed opencl-amd mhwd-amdgpu zenstates-git aocl-gcc tpc-git amdcovc rapl-read-ryzen-git
+
+yay -S --nconfirm --sudoloop --needed zenmonitor ryzenadj-git tuned perf-tools-git smartmontools tp_smapi x86_energy_perf_policy bash-completion acpi_call
 
 sudo systemctl enable auto-cpufreq.service
 

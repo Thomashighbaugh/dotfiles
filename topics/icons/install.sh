@@ -1,4 +1,0 @@
-#!/bin/env bash
-
-# Paper
-

@@ -7,6 +7,8 @@ call plug#begin('~/.vim/plugged')
     
     Plug 'xolox/vim-misc'
     
+    Plug 'vimwiki/vimwiki'
+
     Plug 'junegunn/vim-easy-align'
     
     Plug 'dense-analysis/ale'
