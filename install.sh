@@ -35,6 +35,8 @@ deps() {
 
 	yay -S --needed --sudoloop --noconfirm keychain grep ntp pacman-contrib pkgconf pkgfile pciutils sed powerpill bauerbill
 
+	sh $HOME/dotfiles/topics/git/credentials.sh
+
 }
 
 ####################################################################################
@@ -116,13 +118,404 @@ docker() {
 dunst() {
 	ln -svf $HOME/dotfiles/topics/dunst/dunstrc $HOME/.config/dunst/dunstrc
 }
+firefox() {
+	sudo pacman -S --noconfirm firefo
+	git clone https://github.com/Thomashighbaugh/firefox $HOME/.local/share/firefox/chrome
+	cp -rvf $HOME/.local/share/firefox/chrome $HOME/.mozilla/firefox/*.default
+	cp -rvf $HOME/.local/share/firefox/chrome $HOME/.mozilla/firefox/*.default-release
 
+}
+font() {
+	yay -S --noconfirm --batchinstall --needed bdf-unifont gnome-font-viewer freetype2 libfontenc libxft libotf woff2 fontconfig sdl2_ttf t1lib birdfont
+	mkdir -p ${HOME}/.local/share/fonts
+	cd $HOME && wget https://www.dropbox.com/s/e1lbpaognaoiycs/fonts.tar.7z
+	7z x -so $HOME/fonts.tar.7z | sudo tar xf - -C $HOME/fonts
+	sudo cp -rnv $HOME/fonts /usr/share/fonts && rm -rvf $HOME/fonts $HOME/fonts.tar.7z
+	sudo fc-cache -vf
+	fc-cache -vf
+}
+
+gimp() {
+	yay -S --noconfirm --needed gimp gimp-plugin-gmic
+}
+git() {
+	sudo pacman -S --noconfirm git
+	# Enter your git credentials once, forget it for the rest of the install
+	git config --global credential.helper store
+	ln -svf $HOME/dotfiles/topics/git/gitconfig %HOME/.gitconfig
+	ln -svf $HOME/dotfiles/topics/git/gitignore %HOME/.gitignore
+}
+
+gnupg() {
+	sudo pacman -S --noconfirm gnupg gmime3 libcryptui seahorse mcabber hopenpgp-tools
+	ln -svf $HOME/dotfiles/topics/gnupg/gpg.conf $HOME/.gnupg/gpg.conf
+}
+
+gparted() {
+	yay -S --sudoloop --batchinstall --noconfirm gpart gparted mtools nilfs-utils ntfs-3g polkit
+
+}
+
+grub() {
+	git clone https://github.com/Thomashighbaugh/Bhairava-Grub-Theme $HOME/.local/share/Bhairava-Grub-Theme
+	sudo sh $HOME/.local/share/Bhairava-Grub-Theme/svg2png.sh
+	sudo sh $HOME/.local/share/Bhairava-Grub-Theme/set-grub.sh
+
+}
+
+gtk() {
+	yay -S --noconfirm gtk-engine-murrine gtk-engines xfce4-settings qt5ct kvantum colord-gtk gst-plugin-gtk glade gtkglext gtkspell xdg-desktop-portal-gtk wxgtk3 gpg-crypter gtk-chtheme gtkd gtkglarea libfm-gtk3
+
+	mkdir -p $HOME/.config/gtk-2.0
+
+	ln -svf $HOME/dotfiles/topics/gtk/gtk-2.0/gtkfilechooser.ini $HOME/.config/gtk-2.0/gtkfilechooser.ini
+
+	mkdir -p $HOME/.config/gtk-3.0
+
+	ln -svf $HOME/dotfiles/topics/gtk/gtk-3.0/bookmarks $HOME/.config/gtk-3.0/bookmarks
+
+	ln -svf $HOME/dotfiles/topics/gtk/gtk-3.0/gtk.css $HOME/.config/gtk-3.0/gtk.css
+
+	ln -svf $HOME/dotfiles/topics/gtk/gtk-3.0/settings.ini $HOME/.config/gtk-3.0/settings.ini
+
+	ln -svf $HOME/dotfiles/topics/gtk/gtkrc-2.0 $HOME/.gtkrc-2.0
+
+	mkdir -p $HOME/.config/Kvantum
+
+	ln -svf $HOME/dotfiles/topics/gtk/kvantum.kvconfig $HOME/.config/Kvantum/kvantum.kvconfig
+
+}
+
+hosts() {
+	sudo cp /etc/hosts /etc/hosts.backup
+	sudo wget https://someonewhocares.org/hosts/hosts -O /etc/hosts
+	sudo bash -c "cat hosts /etc/hosts | sponge /etc/hosts"
+
+}
+htop() {
+	sudo pacman -S --noconfirm htop
+
+}
+inkscape() {
+	yay -S --noconfirm --sudoloop --needed inkscape
+
+}
+
+kitty() {
+	sudo pacman -S --noconfirm kitty kitty-terminfo catimg
+
+	if [[ -r "$HOME/.config/kitty" ]]; then
+		rm -rvf $HOME/.config/kitty
+	fi
+
+	mkdir -p $HOME/.config/kitty
+
+	sudo ln -sf $HOME/dotfiles/topics/kitty/kitty.conf $HOME/.config/kitty/kitty.conf
+
+	sudo ln -sf $HOME/dotfiles/topics/kitty/theme.conf $HOME/.config/kitty/theme.conf
+
+	sudo ln -sf $HOME/dotfiles/topics/kitty/motd /etc/motd
+
+}
+lightdm() {
+
+	yay -S lightdm-gtk-greeter-settings lightdm lightdm-gtk-greeter
+	sudo ln -svf $HOE/dotfiles/topics/lightdm/lightdm.conf /etc/lightdm
+	sudo ln -svf $HOE/dotfiles/topics/lightdm/lightdm-gtk-greeter.conf /etc/lightdm
+
+}
+sh $HOME/dotfiles/topics/neofetch/install.sh
+lua() {
+	yay -S --noconfirm --sudoloop --needed lua-dbi lua-socket luakit luarocks luakit lua-socket lua-dbi
+
+}
+lxd() {
+	yay -S --noconfirm --sudoloop --needed lxd lxc lxcfs
+
+	sudo systemctl enable --now lxc
+	sudo systemctl enable --now lxc-auto
+	sudo systemctl enable --now lxcfs
+	sudo systemctl enable --now containerd
+
+}
+makepkg() {
+	sudo cp -rvf $HOME/dotfiles/topics/makepkg/makepkg.conf /etc/makepkg.conf
+
+}
+motd() {
+
+	sudo ln -svf $HOME/dotfiles/topics/motd/motd /etc/motd
+	sudo ln -vf $HOME/dotfiles/topics/motd/motd.sh /etc/motd.sh
+
+}
+neofetch() {
+	sudo pacman -S --noconfirm neofetch
+
+	ln -svf $HOME/dotfiles/topics/neofetch $HOME/.config/neofetch
+
+}
+network-manager() {
+	yay -S --noconfirm --sudoloop --needed network-manager-applet networkmanager
+
+}
+nvidia() {
+	yay -S --noconfirm --sudoloop --batchinstall nvidia nvidia-dkms libvdpau nvidia-cg-toolkit pycuda-headers
+
+	yay -S --noconfirm --sudoloop --batchinstall cuda cudnn mesa egl-wayland libxnvctrl ffnvcodec-headers8.1
+
+	yay -S --noconfirm --sudoloop --batchinstall nvtop opencl-nvidia nvidia-utils nvidia-container-runtime
+
+}
+nvm() {
+	yay -S --noconfirm --sudoloop --batchinstall nvm
+	sudo nvm install node
+	sudo nvm use node
+	sudo nvm alias default node
+
+	sudo npm --global install yarn
+	sudo yarn global add babel-eslint
+	sudo yarn global add create-component-app
+	sudo yarn global add create-next-app
+	sudo yarn global add create-react-app
+	sudo yarn global add eslint
+	sudo yarn global add eslint-plugin-react
+	sudo yarn global add eslint-plugin-jsx-a11y
+	sudo yarn global add eslint-config-prettier
+	sudo yarn global add gatsby
+	sudo yarn global add gulp
+	sudo yarn global add neovim
+	sudo yarn global add heroku
+	sudo yarn global add now
+	sudo yarn global add prettier
+	sudo yarn global add prettier-eslint
+	sudo yarn global add react
+	sudo yarn global add react-dom
+	sudo yarn global add webpack
+
+	sudo yarn upgrade
+
+}
+pacman() {
+	sudo rm -rvf /etc/pacman.conf
+
+	sudo cp -rvf $HOME/dotfiles/topics/pacman/pacman.conf /etc/pacman.conf
+
+	yay -S --needed --sudoloop --noconfirm systemd-boot-pacman-hook grub-hook mirrorlist-rankmirrors-hook kernel-modules-hook mkinitcpio-kms pacman-kernel-install-git
+	yay -S --needed --sudoloop --noconfirm smkinitcpio-modconf-hook-git mkinitcpio-archiso-git systemd-removed-services-hook
+
+}
+picom() {
+	yay -S --noconfirm --needed --sudoloop picom-ibhagwan-git
+
+	ln -svf $HOME/dotfiles/topics/picom/picom.conf $HOME/.config
+
+}
+pulseaudio() {
+	yay -S --noconfirm --sudoloop --needed amixer pavucontrol pulseaudio pulseaudio-alsa pulseaudio-bluetooth volumeicon
+
+}
+python() {
+	yay -S --noconfirm --sudoloop --needed python-pip python2-pip pyenv python python2 python-virtualenv python2-virtualenv python-pipenv python-pytest-virtualenv python-virtualenvwrapper pyenv-virtualenv
+
+}
+qtile() {
+	yay -S --needed --noconfirm --sudoloop qtile rofi sensors
+
+	## Clone and Provision my QTile Configuration
+	git clone https://github.com/Thomashighbaugh/qtile $HOME/.config/qtile
+
+}
+ranger() {
+	yay -S --noconfirm --sudoloop ranger w3m ueberzug transmission-cli perl-image-exiftool odt2txt mediainfo lynx highlight elinks
+
+}
+rofi() {
+
+	yay -S --noconfirm --sudoloop --needed rofi-git rofi-todo
+	sudo pip install python-rofi
+
+	mkdir -p $HOME/.config/rofi
+	ln -svf $HOME/dotfiles/topics/rofi/config $HOME/.config/rofi
+	ln -svf $HOME/dotfiles/topics/rofi/themes $HOME/.config/rofi
+	sudo ln -svf $HOME/dotfiles/topics/rofi/themes /usr/share/rofi
+	ln -svf $HOME/dotfiles/topics/rofi/config.rasi $HOME/.config/rofi/config.rasi
+	ln -svf $HOME/dotfiles/topics/rofi/three.rasi $HOME/.config/rofi/three.rasi
+	sudo cp -rvf $HOME/dotfiles/topics/rofi/rofi-todo /usr/bin
+
+}
+
+rpi() {
+
+	yay -S --noconfirm --sudoloop --needed linux-raspberrypi4-aarch64 linux-raspberrypi4-aarch64-headers argonone-git
+
+}
+
+ruby() {
+
+	yay -S --noconfirm --sudoloop --needed rbenv rbenv-binstubs ruby-sassc
+	rbenv 2.7.1
+
+}
+rustup() {
+	yay -S --noconfirm --sudoloop --needed rustup
+
+	rustup install stable
+	rustup default stable
+
+}
+
+sh() {
+
+	sudo pacman -S --noconfirm keychain
+
+	git clone https://github.com/Thomashighbaugh/bin $HOME/.local/share/bin
+
+	yay -S --noconfirm --batchinstall --needed --sudoloop autojump nvm
+
+	ln -svf $HOME/dotfiles/topics/sh/profile $HOME/.profile
+	ln -svf $HOME/dotfiles/topics/sh/z.sh $HOME/.z.sh
+	ln -svf $HOME/dotfiles/topics/sh/aliases $HOME/.aliases
+}
+ssh() {
+	sudo pacman -S --noconfirm openssh keychain seahorse
+
+	sudo cp -rvf $HOME/dotfiles/topics/ssh/ssh_config /etc/ssh/
+	sudo cp -rvf $HOME/dotfiles/topics/ssh/sshd_config /etc/ssh/
+
+}
+sway() {
+	yay -S --noconfirm --sudoloop --needed sway-borders-git swayidle grimshot wofi swaybg waybar wf-recorder autotiling nwg-launcher i3title swayimg swaylock wofer mako
+
+	ln -svf $HOME/dotfiles/topics/sway/config $HOME/.config/sway/config
+
+	ln -svf $HOME/dotfiles/topics/sway/lockman.sh $HOME/.config/sway/lockman.sh
+
+	ln -svf $HOME/dotfiles/topics/sway/window.sh $HOME/.config/sway/window.sh
+
+	ln -svf $HOME/dotfiles/topics/sway/nwg-launchers $HOME/.config/nwg-launchers
+
+}
+thinkpad() {
+	yay -S --noconfirm --sudoloop --needed tp_smapi tp-battery-mode thinkpad-scripts hdaps-gl tpfand-git threshy libthinkpad tp-battery-icon-git i2c-tools
+	yay -S --noconfirm --sudoloop --needed cpufreqctl auto-cpufreq aocl-gcc aocl-aocc hipcpu-git zenpower-dkms-git zenmonitor
+	yay -S --noconfirm --sudoloop --needed ryzen_smu-dkms-git rapl-read-ryzen-git amf-headers opencl-mesa
+	yay -S --noconfirm --sudoloop --needed opencl-amd mhwd-amdgpu zenstates-git aocl-gcc tpc-git amdcovc rapl-read-ryzen-git
+	yay -S --nconfirm --sudoloop --needed zenmonitor ryzenadj-git tuned perf-tools-git smartmontools tp_smapi x86_energy_perf_policy bash-completion acpi_call
+	sudo systemctl enable auto-cpufreq.service
+	sudo systemctl enable acpid.service
+	sudo systemctl enable --now tp-battery-mode.service
+	sudo systemctl enable --now cpupower.service
+	sudo systemctl enable --now lm_sensors.servic
+	sudo systemctl enable --now ryzen-stabilizator.service
+	sudo systemctl enable --now tuned.service
+	tuned-adm profiles laptop-ac-powersave
+	sudo mkinitramfs -Psv
+	sudo grub-mkconfig -o /boot/grub/grub.conf
+
+}
+tlp() {
+	yay -S --noconfirm --sudoloop --needed tlp powertop acpid tlp-rdw acpi acpid acpica acpitool
+
+	sudo systemctl enable --now tlp
+
+}
+tor() {
+	# Install Black Arch Repo
+	curl -O https://blackarch.org/strap.sh
+	echo 9c15f5d3d6f3f8ad63a6927ba78ed54f1a52176b strap.sh | sha1sum -c
+	chmod +x strap.sh
+	sudo ./strap.sh
+
+	# Install Tor Browser
+	yay -S --noconfirm --needed --sudoloop tor-browser-en
+
+}
+torrents() {
+	yay -S --noconfirm --needed --sudoloop transmission-gtk transmission-cli libtorrent
+
+}
+vagrant() {
+	yay -S --noconfirm --sudoloop --needed vagrant python-vagrant
+
+}
+vim() {
+	yay -S --noconfirm --sudoloop --needed vim vi sudo vim-runtime vim-spell-en
+
+	ln -svf $HOME/dotfiles/topics/vim/vimrc $HOME/.vimrc
+	ln -svf $HOME/dotfiles/topics/vim/vim/plugged $HOME/.vim/plugged
+	ln -svf $HOME/dotfiles/topics/vim/plugins.vim $HOME/.vim/plugins.vim
+	ln -svf $HOME/dotfiles/topics/vim/vim/autoload $HOME/.vim/autoload
+
+}
+virt-manager() {
+	yay -S virt-manager libvirt-python libvirt libvirt-dbus libvirt-glib perl-sys-virt ruby-libvirt zenity qemu libvirt-storage-gluster libvirt-storage-iscsi-direct libvirt-storage-rbd openbsd-netcat radvdqemu open-iscsi
+
+	## Enable the Daemon
+	systemctl enable --now libvirtd
+	systemctl enable --now virtnetworkd.service
+	systemctl enable --now virtinterfaced.service
+	systemctl enable --now virtqemud.service
+	systemctl enable --now libvirtd-admin.socket
+
+}
+virtualbox() {
+	yay -S virtualbox-ext-vnc virtualbox-guest-iso virtualbox-host-dkms virtualbox virtualbox virtualbox-ext-oracle virtualbox-guest-goodies
+
+}
+xorg() {
+	yay -S --noconfirm --sudoloop xorg xorg-apps xorg-drivers xorg-fonts
+	yay -S --needed --noconfirm --sudoloop pa-applet-git gnome-keyring polkit-gnome libgnome-keyring xscreensaver
+
+	mkdir -p $HOME/.Xresources.d
+
+	ln -svf $HOME/dotfiles/topics/xorg/Xresources $HOME/.Xresources
+	ln -svf $HOME/dotfiles/topics/xorg/color $HOME/.Xresources.d/color
+	ln -svf $HOME/dotfiles/topics/xorg/font $HOME/.Xresources.d/font
+	ln -svf $HOME/dotfiles/topics/xorg/rxvt-unicode $HOME/.Xresources.d/rxvt-unicode
+	ln -svf $HOME/dotfiles/topics/xorg/uxterm $HOME/.Xresources.d/uxterm
+	ln -svf $HOME/dotfiles/topics/xorg/xterm $HOME/.Xresources.d/xterm
+	ln -svf $HOME/dotfiles/topics/xorg/xscreensaver $HOME/.xscreensaver
+	ln -fvs $HOME/dotfiles/topics/xorg/xinitrc $HOME/.xinitrc
+	ln -fvs $HOME/dotfiles/topics/xorg/xprofile $HOME/.xprofile
+	ln -fvs $HOME/dotfiles/topics/xorg/xsettingsd $HOME/.xsettingsd
+	ln -fvs $HOME/dotfiles/topics/xorg/xsessionrc $HOME/.xsessionrc
+	sudo ln -fvs $HOME/dotfiles/topics/xorg/xinitrc /etc/X11/xinit/xinitrc
+
+}
+youtube-dl() {
+	yay -S --noconfirm --sudoloop --needed youtube-dl
+
+}
+zathura() {
+
+	yay -S --noconfirm --sudoloop --needed zathura zathura-pdf-mupdf zathura-ps
+
+	ln -svf $HOME/dotfiles/topics/zathura/zathurarc $HOME/.config/zathura
+
+}
+zshenv() {
+	## Install Necessary Packages
+	yay -S --noconfirm --sudoloop --needed zsh alias-tips-git zsh-auto-notify zsh-doc lsd lshw
+	yay -S --noconfirm --sudoloop --needed zsh-syntax-highlighting zsh-lovers zsh-autosuggestions
+	yay -S --noconfirm --sudoloop --needed alias-tips-git zsh-system-clipboard-git
+	yay -S --noconfirm --sudoloop zsh-completions keybase-zsh-completion-git python-click-completion
+	## Symlink Files
+	ln -svf $HOME/dotfiles/topics/zsh/zprofile $HOME/.zprofile
+	ln -svf $HOME/dotfiles/topics/zsh/zshenv $HOME/.zshenv
+	ln -svf $HOME/dotfiles/topics/zsh/zshrc $HOME/.zshrc
+	ln -svf $HOME/dotfiles/topics/zsh/zlogout $HOME/.zlogout
+	ln -svf $HOME/dotfiles/topics/zsh/functions$HOME/.zsh.d/functions
+
+	## End
+
+}
 ####################################################################################
 ## Devices #########################################################################
 ####################################################################################
 
 laptop() {
-	amd
+	sh
+	zshenv
 	awesomewm
 	bash
 	bitwarden
@@ -133,45 +526,50 @@ laptop() {
 	disks
 	docker
 	dunst
-	sh $HOME/dotfiles/topics/font/install.sh
-	sh $HOME/dotfiles/topics/gparted/install.sh
-	sh $HOME/dotfiles/topics/gimp/install.sh
-	sh $HOME/dotfiles/topics/git/install.sh
-	sh $HOME/dotfiles/topics/grub/install.sh
-	sh $HOME/dotfiles/topics/gtk /install.sh
-	sh $HOME/dotfiles/topics/hosts/install.sh
-	sh $HOME/dotfiles/topics/htop/install.sh
-	sh $HOME/dotfiles/topics/icons/install.sh
-	sh $HOME/dotfiles/topics/inkscape/install.sh
-	sh $HOME/dotfiles/topics/kitty/install.sh
-	sh $HOME/dotfiles/topics/lua/install.sh
-	sh $HOME/dotfiles/topics/neofetch/install.sh
-	sh $HOME/dotfiles/topics/network-manager/install.sh
-	sh $HOME/dotfiles/topics/nvm/install.sh
-	sh $HOME/dotfiles/topics/openbox/install.sh
-	sh $HOME/dotfiles/topics/picom/install.sh
-	sh $HOME/dotfiles/topics/pulseaudio/install.sh
-	sh $HOME/dotfiles/topics/python/install.sh
-	sh $HOME/dotfiles/topics/qtile/install.sh
-	sh $HOME/dotfiles/topics/ripgrep/install.sh
-	sh $HOME/dotfiles/topics/rofi/install.sh
-	sh $HOME/dotfiles/topics/ruby/install.sh
-	sh $HOME/dotfiles/topics/rustup/install.sh
-	sh $HOME/dotfiles/topics/sh/install.sh
-	sh $HOME/dotfiles/topics/sqlite/install.sh
-	sh $HOME/dotfiles/topics/ssh/install.sh
-	sh $HOME/dotfiles/topics/sway/install.sh
-	sh $HOME/dotfiles/topics/tor/install.sh
-	sh $HOME/dotfiles/topics/vagrant/install.sh
-	sh $HOME/dotfiles/topics/vim/install.sh
-	sh $HOME/dotfiles/topics/xorg/install.sh
-	sh $HOME/dotfiles/topics/yarn/install.sh
-	sh $HOME/dotfiles/topics/youtube-dl/install.sh
-	sh $HOME/dotfiles/topics/zathura/install.sh
-	sh $HOME/dotfiles/topics/zsh/install.sh
-	sh $HOME/dotfiles/topics/pacman/install.sh
-	sh $HOME/dotfiles/topics/amd/install.sh
-	sh $HOME/dotfiles/topics/thinkpad/install.sh
+	font
+	firefox
+	gparted
+	gimp
+	git
+	grub
+	gtk
+	hosts
+	htop
+	inkscape
+	kitty
+	lightdm
+	lua
+	lxd
+	makepkg
+	motd
+	neofetch
+	network-manager
+	nvm
+	picom
+	pulseaudio
+	python
+	qtile
+	ranger
+	rofi
+	ruby
+	rustup
+	ssh
+	sway
+	tlp
+	tor
+	torrents
+	vagrant
+	virt-manager
+	virtualbox
+	vim
+	xorg
+	youtube-dl
+	zathura
+
+	thinkpad
+	amd
+	pacman
+
 }
 
 workstation() {
@@ -183,50 +581,50 @@ workstation() {
 	bspwm
 	chromium
 	cups
-
 	disks
 	docker
 	dunst
-	sh $HOME/dotfiles/topics/font/install.sh
-	sh $HOME/dotfiles/topics/gparted/install.sh
-	sh $HOME/dotfiles/topics/gimp/install.sh
-	sh $HOME/dotfiles/topics/git/install.sh
-	sh $HOME/dotfiles/topics/gtk/install.sh
-	sh $HOME/dotfiles/topics/grub/install.sh
-	sh $HOME/dotfiles/topics/hosts/install.sh
-	sh $HOME/dotfiles/topics/htop/install.sh
-	sh $HOME/dotfiles/topics/inkscape/install.sh
-	sh $HOME/dotfiles/topics/kitty/install.sh
-	sh $HOME/dotfiles/topics/lua/install.sh
-	sh $HOME/dotfiles/topics/lxd/install.sh
-	sh $HOME/dotfiles/topics/neofetch/install.sh
-	sh $HOME/dotfiles/topics/network-manager/install.sh
-	sh $HOME/dotfiles/topics/nvidia/install.sh
-	sh $HOME/dotfiles/topics/openbox/install.sh
-	sh $HOME/dotfiles/topics/p10k/install.sh
-	sh $HOME/dotfiles/topics/picom/install.sh
-	sh $HOME/dotfiles/topics/pulseaudio/install.sh
-	sh $HOME/dotfiles/topics/python/install.sh
-	sh $HOME/dotfiles/topics/qtile/install.sh
-	sh $HOME/dotfiles/topics/ripgrep/install.sh
-	sh $HOME/dotfiles/topics/rofi/install.sh
-	sh $HOME/dotfiles/topics/ruby/install.sh
-	sh $HOME/dotfiles/topics/rustup/install.sh
-	sh $HOME/dotfiles/topics/sh/install.sh
-	sh $HOME/dotfiles/topics/ssh/install.sh
-	sh $HOME/dotfiles/topics/tor/install.sh
-	sh $HOME/dotfiles/topics/vagrant/install.sh
-	sh $HOME/dotfiles/topics/vim/install.sh
-	sh $HOME/dotfiles/topics/virtualbox/install.sh
-	sh $HOME/dotfiles/topics/xorg/install.sh
-	sh $HOME/dotfiles/topics/yarn/install.sh
-	sh $HOME/dotfiles/topics/youtube-dl/install.sh
-	sh $HOME/dotfiles/topics/zathura/install.sh
-	sh $HOME/dotfiles/topics/zsh/install.sh
+	firefox
+	font
+	gparted
+	gimp
+	git
+	gtk
+	grub
+	hosts
+	htop
+	inkscape
+	kitty
+	lightdm
+	lua
+	lxd
+	neofetch
+	network-manager
+	nvidia
+	pacman
+	picom
+	pulseaudio
+	python
+	qtile
+	ranger
+	rofi
+	ruby
+	rustup
+	sh
+	ssh
+	tor
+	vagrant
+	vim
+	virt-manager
+	virtualbox
+	xorg
+	youtube-dl
+	zathura
+	zshenv
 	# Requires ZSH (thus after)
-	sh $HOME/dotfiles/topics/nvm/install.sh
+	nvm
 	# Requires Node
-	sh $HOME/dotfiles/topics/gtk/install.sh
+	gtk
 }
 
 rpi4() {
@@ -238,35 +636,36 @@ rpi4() {
 	disks
 	docker
 	dunst
-	sh $HOME/dotfiles/topics/font/install.sh
-	sh $HOME/dotfiles/topics/git/install.sh
-	sh $HOME/dotfiles/topics/gtk/install.sh
-	sh $HOME/dotfiles/topics/hosts/install.sh
-	sh $HOME/dotfiles/topics/htop/install.sh
-	sh $HOME/dotfiles/topics/kitty/install.sh
-	sh $HOME/dotfiles/topics/lua/install.sh
-	sh $HOME/dotfiles/topics/neofetch/install.sh
-	sh $HOME/dotfiles/topics/network-manager/install.sh
-	sh $HOME/dotfiles/topics/nvm/install.sh
-	sh $HOME/dotfiles/topics/p10k/install.sh
-	sh $HOME/dotfiles/topics/picom/install.sh
-	sh $HOME/dotfiles/topics/pulseaudio/install.sh
-	sh $HOME/dotfiles/topics/python/install.sh
-	sh $HOME/dotfiles/topics/qtile/install.sh
-	sh $HOME/dotfiles/topics/ripgrep/install.sh
-	sh $HOME/dotfiles/topics/rofi/install.sh
-	sh $HOME/dotfiles/topics/ruby/install.sh
-	sh $HOME/dotfiles/topics/rustup/install.sh
-	sh $HOME/dotfiles/topics/sh/install.sh
-	sh $HOME/dotfiles/topics/ssh/install.sh
-	sh $HOME/dotfiles/topics/sway/install.sh
-	sh $HOME/dotfiles/topics/vagrant/install.sh
-	sh $HOME/dotfiles/topics/vim/install.sh
-	sh $HOME/dotfiles/topics/xorg/install.sh
+	firefox
+	font
+	git
+	gtk
+	hosts
+	htop
+	kitty
+	lightdm
+	lua
+	neofetch
+	network-manager
+	nvm
+	picom
+	pulseaudio
+	python
+	qtile
+	ranger
+	rofi
+	ruby
+	rustup
+	sh
+	ssh
+	sway
+	vagrant
+	vim
+	xorg
 	sh $HOME/dotfiles/topics/yarn/install.sh
-	sh $HOME/dotfiles/topics/youtube-dl/install.sh
-	sh $HOME/dotfiles/topics/zathura/install.sh
-	sh $HOME/dotfiles/topics/zsh/install.sh
+	youtube-dl
+	zathura
+	zshenv
 
 }
 
