@@ -42,6 +42,8 @@ deps() {
 ####################################################################################
 ## Application Installation FUnctions ##############################################
 ####################################################################################
+
+## amd #############################################################################
 amd() {
 	yay -S --noconfirm --needed --sudoloop amd-ucode ryzenadj-git zenstates-git ryzen-stabilizator-git linux-amd-znver2-docs linux-amd-znver2-headers linux-amd-znver2
 
@@ -49,6 +51,10 @@ amd() {
 
 	sudo mkinitcpio -P
 }
+android() {
+	yay -S --noconfirm --needed --sudoloop pulse-sms
+}
+##### awesomewm #####################################################################
 awesomewm() {
 	yay -S --noconfirm --sudoloop awesome-git feh xcape
 
@@ -69,7 +75,7 @@ awesomewm() {
 	## Install My Configuration
 	git clone https://github.com/Thomashighbaugh/awesomewm $HOME/.config/awesome
 }
-
+####################################################################################
 bash() {
 	## Install Packages
 	sudo pacman -S bash shellharden bashlint
@@ -78,26 +84,29 @@ bash() {
 	ln -svf $HOME/dotfiles/topics/bash/bashenv $HOME/.bashenv
 	ln -svf $HOME/dotfiles/topics/bash/bashrc $HOME/.bashrc
 }
-
+####################################################################################
 bitwarden() {
 	yay -S --noconfirm --sudoloop bitwarden
 }
-
+####################################################################################
 bluetooth() {
 	yay -S --noconfirm --sudoloop --needed blueberry blueman bluez-hid2hci bluez-tools bluez-utils python-pybluez
 }
+####################################################################################
 bspwm() {
 	yay --noconfirm --sudoloop --needed bspwm-rounded-corners-git bsp-layout sxhkd-git bar-aint-recursive xtitle-git sutils-git
 	ln -svf $HOME/dotfiles/topics/bspwm $HOME/.config/bspwm
 
 }
+####################################################################################
 chromium() {
 	sudo pacman -S --noconfirm chromium
 }
-
+####################################################################################
 cups() {
 	yay -S --noconfirm --sudoloop --batchinstall cups cups-filters cups-pdf cups-pk-helper foomatic-db foomatic-db-engine foomatic-db-gutenprint-ppds cups cups-filters cups-pdf cndrvcups-lb-bin cnijfilter2-bin cups-pk-helper
 }
+####################################################################################
 disks() {
 
 	yay -S --noconfirm --sudoloop --needed dosfstools findutils gzip lzip p7zip tar
@@ -107,6 +116,7 @@ disks() {
 	yay -S --noconfirm --sudoloop --needed gvfs-gphoto2 gvfs-mtp gvfs-nfs lrzip hardinfo hddtemp bzip2
 	yay -S --noconfirm --sudoloop --needed gvfs-smb xarchiver unrar unarj unzip borg btrfs-progs
 }
+####################################################################################
 docker() {
 	yay -S --noconfirm --sudoloop --needed docker docker-compose docker-machine python-docker containerd
 	sudo usermod -aG docker ${USER}
@@ -114,10 +124,11 @@ docker() {
 	sudo systemctl enable --now docker.socket
 
 }
-
+####################################################################################
 dunst() {
 	ln -svf $HOME/dotfiles/topics/dunst/dunstrc $HOME/.config/dunst/dunstrc
 }
+####################################################################################
 firefox() {
 	sudo pacman -S --noconfirm firefo
 	git clone https://github.com/Thomashighbaugh/firefox $HOME/.local/share/firefox/chrome
@@ -125,6 +136,7 @@ firefox() {
 	cp -rvf $HOME/.local/share/firefox/chrome $HOME/.mozilla/firefox/*.default-release
 
 }
+####################################################################################
 font() {
 	yay -S --noconfirm --batchinstall --needed bdf-unifont gnome-font-viewer freetype2 libfontenc libxft libotf woff2 fontconfig sdl2_ttf t1lib birdfont
 	mkdir -p ${HOME}/.local/share/fonts
@@ -134,10 +146,11 @@ font() {
 	sudo fc-cache -vf
 	fc-cache -vf
 }
-
+####################################################################################
 gimp() {
 	yay -S --noconfirm --needed gimp gimp-plugin-gmic
 }
+####################################################################################
 git() {
 	sudo pacman -S --noconfirm git
 	# Enter your git credentials once, forget it for the rest of the install
@@ -145,24 +158,24 @@ git() {
 	ln -svf $HOME/dotfiles/topics/git/gitconfig %HOME/.gitconfig
 	ln -svf $HOME/dotfiles/topics/git/gitignore %HOME/.gitignore
 }
-
+####################################################################################
 gnupg() {
 	sudo pacman -S --noconfirm gnupg gmime3 libcryptui seahorse mcabber hopenpgp-tools
 	ln -svf $HOME/dotfiles/topics/gnupg/gpg.conf $HOME/.gnupg/gpg.conf
 }
-
+####################################################################################
 gparted() {
 	yay -S --sudoloop --batchinstall --noconfirm gpart gparted mtools nilfs-utils ntfs-3g polkit
 
 }
-
+####################################################################################
 grub() {
 	git clone https://github.com/Thomashighbaugh/Bhairava-Grub-Theme $HOME/.local/share/Bhairava-Grub-Theme
 	sudo sh $HOME/.local/share/Bhairava-Grub-Theme/svg2png.sh
 	sudo sh $HOME/.local/share/Bhairava-Grub-Theme/set-grub.sh
 
 }
-
+####################################################################################
 gtk() {
 	yay -S --noconfirm gtk-engine-murrine gtk-engines xfce4-settings qt5ct kvantum colord-gtk gst-plugin-gtk glade gtkglext gtkspell xdg-desktop-portal-gtk wxgtk3 gpg-crypter gtk-chtheme gtkd gtkglarea libfm-gtk3
 
@@ -185,22 +198,24 @@ gtk() {
 	ln -svf $HOME/dotfiles/topics/gtk/kvantum.kvconfig $HOME/.config/Kvantum/kvantum.kvconfig
 
 }
-
+####################################################################################
 hosts() {
 	sudo cp /etc/hosts /etc/hosts.backup
 	sudo wget https://someonewhocares.org/hosts/hosts -O /etc/hosts
 	sudo bash -c "cat hosts /etc/hosts | sponge /etc/hosts"
 
 }
+####################################################################################
 htop() {
 	sudo pacman -S --noconfirm htop
 
 }
+####################################################################################
 inkscape() {
 	yay -S --noconfirm --sudoloop --needed inkscape
 
 }
-
+####################################################################################
 kitty() {
 	sudo pacman -S --noconfirm kitty kitty-terminfo catimg
 
@@ -217,6 +232,7 @@ kitty() {
 	sudo ln -sf $HOME/dotfiles/topics/kitty/motd /etc/motd
 
 }
+####################################################################################
 lightdm() {
 
 	yay -S lightdm-gtk-greeter-settings lightdm lightdm-gtk-greeter
@@ -224,11 +240,13 @@ lightdm() {
 	sudo ln -svf $HOE/dotfiles/topics/lightdm/lightdm-gtk-greeter.conf /etc/lightdm
 
 }
-sh $HOME/dotfiles/topics/neofetch/install.sh
+####################################################################################
+
 lua() {
 	yay -S --noconfirm --sudoloop --needed lua-dbi lua-socket luakit luarocks luakit lua-socket lua-dbi
 
 }
+####################################################################################
 lxd() {
 	yay -S --noconfirm --sudoloop --needed lxd lxc lxcfs
 
@@ -238,26 +256,31 @@ lxd() {
 	sudo systemctl enable --now containerd
 
 }
+####################################################################################
 makepkg() {
 	sudo cp -rvf $HOME/dotfiles/topics/makepkg/makepkg.conf /etc/makepkg.conf
 
 }
+####################################################################################
 motd() {
 
 	sudo ln -svf $HOME/dotfiles/topics/motd/motd /etc/motd
 	sudo ln -vf $HOME/dotfiles/topics/motd/motd.sh /etc/motd.sh
 
 }
+####################################################################################
 neofetch() {
 	sudo pacman -S --noconfirm neofetch
 
 	ln -svf $HOME/dotfiles/topics/neofetch $HOME/.config/neofetch
 
 }
+####################################################################################
 network-manager() {
 	yay -S --noconfirm --sudoloop --needed network-manager-applet networkmanager
 
 }
+####################################################################################
 nvidia() {
 	yay -S --noconfirm --sudoloop --batchinstall nvidia nvidia-dkms libvdpau nvidia-cg-toolkit pycuda-headers
 
@@ -266,6 +289,7 @@ nvidia() {
 	yay -S --noconfirm --sudoloop --batchinstall nvtop opencl-nvidia nvidia-utils nvidia-container-runtime
 
 }
+####################################################################################
 nvm() {
 	yay -S --noconfirm --sudoloop --batchinstall nvm
 	sudo nvm install node
@@ -295,6 +319,7 @@ nvm() {
 	sudo yarn upgrade
 
 }
+####################################################################################
 pacman() {
 	sudo rm -rvf /etc/pacman.conf
 
@@ -304,6 +329,7 @@ pacman() {
 	yay -S --needed --sudoloop --noconfirm smkinitcpio-modconf-hook-git mkinitcpio-archiso-git systemd-removed-services-hook
 
 }
+####################################################################################
 picom() {
 	yay -S --noconfirm --needed --sudoloop picom-ibhagwan-git
 
@@ -462,6 +488,11 @@ virtualbox() {
 	yay -S virtualbox-ext-vnc virtualbox-guest-iso virtualbox-host-dkms virtualbox virtualbox virtualbox-ext-oracle virtualbox-guest-goodies
 
 }
+vmware() {
+
+	yay -S --noconfirm --sudoloop createvm open-vm-tools vmware-workstation vagrant-vmware-utility libview vmware-auto-unlocker-git vmware-modules-dkms-git vmware-component-extractor-git
+	sudo modprobe -a vmw_vmci vmmon
+}
 xorg() {
 	yay -S --noconfirm --sudoloop xorg xorg-apps xorg-drivers xorg-fonts
 	yay -S --needed --noconfirm --sudoloop pa-applet-git gnome-keyring polkit-gnome libgnome-keyring xscreensaver
@@ -562,6 +593,7 @@ laptop() {
 	virt-manager
 	virtualbox
 	vim
+	vmware
 	xorg
 	youtube-dl
 	zathura
@@ -617,6 +649,7 @@ workstation() {
 	vim
 	virt-manager
 	virtualbox
+	vmware
 	xorg
 	youtube-dl
 	zathura
