@@ -162,6 +162,13 @@ so ~/.vim/plugins.vim
 
     " Nerd Tree Toggle to Control O 
      map <C-o> :NERDTreeToggle<CR>
+
+     " New Tab Control + t 
+     map <C-t> :tabnew<CR>
+     
+     " Navigate Tabs Control+n Control+m 
+     map <C-m> :tabp<CR>
+     map <C-n> :tabn<CR>
 "------------------------------------------------------------- 
     
 "------------------------------------------------------------- 
