@@ -13,7 +13,6 @@ cd - > /dev/null
 
 ## Sourcing Common Shell Files #################################################
 source $HOME/.profile
-source $HOME/.aliases
 
 
 ## Calling Sources #############################################################

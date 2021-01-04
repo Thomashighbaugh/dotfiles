@@ -35,17 +35,6 @@ if [[ -d "$HOME/.cargo/bin" ]]; then
 	export PATH="$HOME/.cargo/bin:$PATH"
 fi
 
-## Ruby ###################################################################################################
-export PATH="$HOME/.gem/ruby/2.7.0/bin:$PATH"
-
-if [[ -d "$HOME/.gem/ruby" ]]; then
-	export PATH="$HOME/.gem/ruby:$PATH"
-fi
-
-if [[ -d "$HOME/.gem/ruby/2.7.0/bin" ]]; then
-	export PATH="$HOME/.gem/ruby/2.7.0/bin:$PATH"
-fi
-
 ## Pyenv ########################################################################################
 if [[ -d "$HOME/.pyenv/bin" ]]; then
 	export PATH="$HOME/.pyenv/bin:$PATH"
@@ -60,9 +49,4 @@ fi
 
 if [[ -d "$HOME/$GOPATH/bin" ]]; then
 	export PATH="$HOME/$GOPATH/bin:$PATH"
-fi
-
-## Doom #######################################################################################
-if [[ -d "$HOME/.doom-emacs/bin" ]]; then
-	export PATH="$HOME/.doom-emacs/bin:$PATH"
 fi

@@ -597,7 +597,7 @@ laptop() {
 	xorg
 	youtube-dl
 	zathura
-
+	zshenv
 	thinkpad
 	amd
 	pacman
