@@ -5,9 +5,9 @@
     "icon": "/home/bryan/.config/nwg-launchers/nwgbar/images/lock.svg"
   },
   {
-  	"name": "Suspend",
-  	"exec": "systemctl suspend;swaylock -C ~/.config/swaylock/config",
-  	"icon": "/home/bryan/.config/nwg-launchers/nwgbar/images/suspend.svg"
+    "name": "Suspend",
+    "exec": "systemctl suspend;swaylock -C ~/.config/swaylock/config",
+    "icon": "/home/bryan/.config/nwg-launchers/nwgbar/images/suspend.svg"
   },
   {
     "name": "Logout",
