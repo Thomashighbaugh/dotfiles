@@ -31,5 +31,5 @@ if [ $# -gt 0 ]; then
 		;;
 	esac
 else
-	exec xfce # this is the default choice without any arguments
+	exec awesome # this is the default choice without any arguments
 fi
