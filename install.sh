@@ -323,7 +323,7 @@ function picom() {
 }
 ####################################################################################
 function pulseaudio() {
-	yay -S --noconfirm --sudoloop --needed amixer pavucontrol pulseaudio pulseaudio-alsa pulseaudio-bluetooth volumeicon
+	yay -S --noconfirm --sudoloop --needed pavucontrol pulseaudio pulseaudio-alsa pulseaudio-bluetooth volumeicon
 	return
 }
 ####################################################################################
