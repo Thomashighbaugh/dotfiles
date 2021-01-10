@@ -389,7 +389,9 @@ function sshinit() {
 }
 ####################################################################################
 function sway() {
-	yay -S --noconfirm --sudoloop --needed sway-borders-git swayidle grimshot wofi swaybg waybar wf-recorder autotiling nwg-launcher i3title swayimg swaylock wofer mako
+	yay -S --noconfirm --sudoloop --needed sway-borders-git swayidle grimshot wofi swaybg waybar wf-recorder autotiling nwg-launcher i3title swayimg swaylock wofer mako swaymgr swaytools i3keys
+
+	nkdir -p $HOME/.config/sway
 
 	ln -svf $HOME/dotfiles/topics/sway/config $HOME/.config/sway/config
 

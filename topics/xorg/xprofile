@@ -68,7 +68,7 @@ run tp-battery-icon
 run xscreensaver
 
 ### Dropbox
-run ~/dropbox-dist/dropboxd &
+run ~/.dropbox-dist/dropboxd &
 
 ## Merging Xresources
 xrdb -merge $HOME/.Xresources

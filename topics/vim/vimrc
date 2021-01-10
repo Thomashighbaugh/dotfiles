@@ -17,7 +17,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 " source plugins file in .vim/plugins.vim
-so ~/.vim/plugins.vim
+so ~/dotfiles/topics/vim/plugins.vim
 
 "------------------------------------------------------------
     " Features
