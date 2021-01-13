@@ -183,14 +183,22 @@ so ~/dotfiles/topics/vim/plugins.vim
         let &t_EI = "\<Esc>]50;CursorShape=0\x7"
     endif
 
+"------------------------------------------------------------------------------
+" Autoload Changes to ~/.vimrc as they are saved
+"
+" Note:I know this is pretty useful, you are welcome 
+"------------------------------------------------------------------------------
+autocmd! bufwritepost .vimrc source %
+
+
 "--------------------------------------------------------------------------------
     " Rofi's .rasi Configuration
     au BufNewFile,BufRead /*.rasi setf css
 "---------------------------------------------------------------------------------
     "plugin configurations
     
-    :let g:lightline = {
-      \     'active': {
+    let g:lightline = {
+     \     'active': {
      \         'left': [['mode', 'paste' ], ['readonly', 'filename', 'modified']],
      \         'right': [['lineinfo'], ['percent'], ['gitbranch', 'fileformat', 'fileencoding']]
      \     },
@@ -199,7 +207,19 @@ so ~/dotfiles/topics/vim/plugins.vim
      \     }
      \ }
     
-    :let NERDTreeShowHidden = 1
-     
-    :let g:notes_directories = ['~/256/Notes', '~/Documents/VimNotes', '~/Dropbox/Notes']
-    :let g:notes_suffix = '.md'
+    let NERDTreeShowHidden = 1
+    let g:notes_directories = ['~/256/Notes', '~/Documents/VimNotes', '~/Dropbox/Notes']
+    let g:notes_suffix = '.md'
+
+    "vimwiki 
+    
+    "wiki list
+    let wiki_1 = {}
+    let wiki_1.path = '~/vimwiki'
+    let wiki_1.links_space_char = '-'
+
+    let wiki_2 = {}
+    let wiki_2.path = '~/Dropbox/HinduismWiki'
+    let wiki_2.links_space_char = '-'
+
+    let g:vimwiki_list = [wiki_1, wiki_2]

@@ -19,37 +19,37 @@
 #define base0F #a86fe6
 #define base10 #ff29a8
 
-*foreground:   base05
+*foreground:    #8b9cbe
 #ifdef background_opacity
-*background:   [background_opacity]base00
+*background:   [background_opacity]#1f2023
 #else
-*background:   base00
+*background:   #1f2023
 #endif
-*cursorColor:  base05
+*cursorColor:   #8b9cbe
 
-*color0:       base00
-*color1:       base08
-*color2:       base0B
-*color3:       base0A
-*color4:       base0D
-*color5:       base0E
-*color6:       base0C
-*color7:       base05
+*color0:       #1f2023
+*color1:       #ff29a8
+*color2:       #6c71c4
+*color3:       #796af5
+*color4:       #00caff
+*color5:       #61aeee
+*color6:       #00eaff
+*color7:       #8b9cbe
 
-*color8:       base03
-*color9:       base10
-*color10:      base0B
-*color11:      base0A
-*color12:      base0D
-*color13:      base0E
-*color14:      base0C
-*color15:      base07
+*color8:       #555e70
+*color9:       #ff29a8
+*color10:      #6c71c4
+*color11:      #f0ee6e
+*color12:      #00caff
+*color13:      #61aeee
+*color14:      #00eaff
+*color15:      #e9efff
 
 ! Note: colors beyond 15 might not be loaded (e.g., xterm, urxvt),
 ! use 'shell' template to set these if necessary
-*color16:      base09
-*color17:      base0F
-*color18:      base01
-*color19:      base02
-*color20:      base04
-*color21:      base06
+*color16:      #796af5
+*color17:      #a86fe6
+*color18:      #23262c
+*color19:      #313040
+*color20:      #0b0c0f
+*color21:      #b2bfd9
