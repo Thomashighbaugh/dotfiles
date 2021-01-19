@@ -20,5 +20,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'itchyny/lightline.vim'
     
     Plug 'scrooloose/nerdtree'
+
+    Plug 'mhinz/vim-startify'
+
 call plug#end()
 

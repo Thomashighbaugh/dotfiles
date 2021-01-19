@@ -131,8 +131,17 @@ so ~/dotfiles/topics/vim/plugins.vim
 
     " allow backspacing over everything.
      set backspace=indent,eol,start
+   
+     " disable swap files, most of the time they are just annoying
+      set noswapfile 
 
+      " write when switching files 
+      set autowrite
+      " set spellcheck language
+      set spelllang=en_us
 
+    " tab completion for command mode 
+    set wildmenu
 "------------------------------------------------------------
     " Indentation options
     "
@@ -169,6 +178,7 @@ so ~/dotfiles/topics/vim/plugins.vim
      " Navigate Tabs Control+n Control+m 
      map <C-m> :tabp<CR>
      map <C-n> :tabn<CR>
+
 "------------------------------------------------------------- 
     
 "------------------------------------------------------------- 
@@ -208,6 +218,11 @@ autocmd! bufwritepost .vimrc source %
      \ }
     
     let NERDTreeShowHidden = 1
+" Use a single click to fold/unfold directories and a double click to open
+" files
+let NERDTreeMouseMode=2
+
+
     let g:notes_directories = ['~/256/Notes', '~/Documents/VimNotes', '~/Dropbox/Notes']
     let g:notes_suffix = '.md'
 
@@ -217,9 +232,32 @@ autocmd! bufwritepost .vimrc source %
     let wiki_1 = {}
     let wiki_1.path = '~/vimwiki'
     let wiki_1.links_space_char = '-'
+    let wiki_1.auto_diary_index = 1
+    let wiki_1.auto_generate_links = 1
+   " let wiki_1.auto_export = 1
+    let wiki_1.auto_toc = 1
+
+
 
     let wiki_2 = {}
     let wiki_2.path = '~/Dropbox/HinduismWiki'
     let wiki_2.links_space_char = '-'
-
+    let wiki_2.auto_diary_index = 1
+    let wiki_2.auto_generate_links = 1
+    let wiki_2.auto_toc = 1
     let g:vimwiki_list = [wiki_1, wiki_2]
+
+
+
+" For startify
+let g:startify_custom_header = [
+\ '                                                                ',
+\'     ____             __      ___               _     ___  __    ',
+\'    / __ )____ ______/ /__   /   | ____ _____ _(_)___/__ \/ /    ',
+\'   / __  / __ `/ ___/ //_/  / /| |/ __ `/ __ `/ / __ \/ _/ /     ',
+\'  / /_/ / /_/ / /__/ ,<    / ___ / /_/ / /_/ / / / / /_//_/      ',
+\' /_____/\__,_/\___/_/|_|  /_/  |_\__, /\__,_/_/_/ /_(_)(_)       ',
+\'                                /____/                           ',
+\ '',
+\ '',
+\]
