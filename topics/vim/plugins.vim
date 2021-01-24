@@ -23,5 +23,8 @@ call plug#begin('~/.vim/plugged')
 
     Plug 'mhinz/vim-startify'
 
+    Plug 'chiel92/vim-autoformat'
+    
+    Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 call plug#end()
 

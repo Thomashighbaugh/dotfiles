@@ -15,9 +15,12 @@ fi
 if [[ -d "$HOME/.config/nvm" ]]; then
 	export PATH="$HOME/.config/nvm:$PATH"
 fi
+ if [[ -d "$HOME/.nvm" ]]; then
+ 	export PATH="$HOME/.nvm/versions/node/v12.20.1:$PATH"
+ fi 
 
-## Scripts ################################################################################################
-
+# Scripts ################################################################################################
+  
 if [[ -d "$HOME/bin" ]]; then
 	export PATH="$HOME/bin:$PATH"
 fi
