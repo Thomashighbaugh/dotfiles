@@ -20,12 +20,8 @@
 #define base10 #ff29a8
 
 *foreground:    #8b9cbe
-#ifdef background_opacity
-*background:   [background_opacity]#1f2023
-#else
-*background:   #1f2023
-#endif
-*cursorColor:   #8b9cbe
+*background:    #1f2023
+*cursorColor:   #e9efff
 
 *color0:       #1f2023
 *color1:       #ff29a8
