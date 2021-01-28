@@ -132,9 +132,6 @@ set pastetoggle=<F11>
 " allow backspacing over everything.
 set backspace=indent,eol,start
 
-" disable swap files, most of the time they are just annoying
-set noswapfile
-
 " write when switching files
 set autowrite
 " set spellcheck language
