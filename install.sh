@@ -1,34 +1,34 @@
-# #!/usr/bin/env bash
+#!/usr/bin/env bash
 
 echo -n "
-  _____         __    ___ __ __                   
- |     \.-----.|  |_.'  _|__|  |.-----.-----.     
- |  --  |  _  ||   _|   _|  |  ||  -__|__ --|     
- |_____/|_____||____|__| |__|__||_____|_____|     
-  __               __          __ __              
- |__|.-----.-----.|  |_.---.-.|  |  |.-----.----. 
- |  ||     |__ --||   _|  _  ||  |  ||  -__|   _| 
- |__||__|__|_____||____|___._||__|__||_____|__|   "
+  _____         __    ___ __ __
+ |     \.-----.|  |_.'  _|__|  |.-----.-----.
+ |  --  |  _  ||   _|   _|  |  ||  -__|__ --|
+ |_____/|_____||____|__| |__|__||_____|_____|
+  __               __          __ __
+ |__|.-----.-----.|  |_.---.-.|  |  |.-----.----.
+ |  ||     |__ --||   _|  _  ||  |  ||  -__|   _|
+|__||__|__|_____||____|___._||__|__||_____|__|   "
 echo
 echo
 echo
 echo "First let's make sure we get the basics out of the way."
 echo "Press any key to install the dependencies and set up your system:"
-read continue
-
+read -r continue
+$continue
 function yayinit() {
-	git clone https://aur.archlinux.org/yay.git $HOME/yay && cd $HOME/yay && makepkg -si && cd .. && sudo rm -rf $HOME/yay
+	git clone https://aur.archlinux.org/yay.git "$HOME"/yay && cd "$HOME"/yay && makepkg -si && cd .. && sudo rm -rf "$HOME"/yay
 }
 
 deps() {
 	clear
 	echo "Set up local directories"
-	mkdir -p $HOME/Pictures $HOME/.local/share $HOME/.config $HOME/.cache $HOME/.local/lib $HOME/Desktop $HOME/Documents $HOME/Downloads
+	mkdir -p "$HOME"/Pictures "$HOME"/.local/share "$HOME"/.config "$HOME"/.cache "$HOME"/.local/lib "$HOME"/Desktop "$HOME"/Documents "$HOME"/Downloads
 	sudo pacman -S --noconfirm git pacutils fakeroot perl-libwww perl-term-ui perl-json perl-data-dump perl-lwp-protocol-https perl-term-readline-gnu
 
 	echo "Install Yay"
-	git clone https://aur.archlinux.org/yay.git $HOME/yay 
-    cd $HOME/yay && makepkg -si && cd .. && sudo rm -rf $HOME/yay
+	git clone https://aur.archlinux.org/yay.git "$HOME"/yay
+	cd "$HOME"/yay && makepkg -si && cd .. && sudo rm -rf "$HOME"/yay
 	echo "Install some other packages useful for the rest of the installation process."
 	gpg --receive-keys EC3CBE7F607D11E663149E811D1F0DC78F173680
 	yay -S --needed --sudoloop --noconfirm atool autoconf autocutsel automake binutils bison
@@ -65,13 +65,13 @@ function awesomewm() {
 	yay -S --noconfirm --sudoloop awmtt thunar thunar-archive-plugin thunar-media-tags-plugin thunar-volman
 
 	yay -S --noconfirm --sudoloop firefox luarocks nitrogen
-	
+
 	if [[ -r "$HOME/.config/awesome" ]]; then
-		rm -rvf $HOME/.config/awesome
+		rm -rvf "$HOME"/.config/awesome
 	fi
-	
+
 	## Install My Configuration
-	git clone https://github.com/Thomashighbaugh/awesomewm $HOME/.config/awesome
+	git clone https://github.com/Thomashighbaugh/awesomewm "$HOME"/.config/awesome
 	return
 }
 ####################################################################################
@@ -80,8 +80,8 @@ function bashinit() {
 	sudo pacman -S bash shellharden bashlint
 
 	## Link Files
-	ln -svf $HOME/dotfiles/topics/bash/bashenv $HOME/.bashenv
-	ln -svf $HOME/dotfiles/topics/bash/bashrc $HOME/.bashrc
+	ln -svf "$HOME"/dotfiles/topics/bash/bashenv "$HOME"/.bashenv
+	ln -svf "$HOME"/dotfiles/topics/bash/bashrc "$HOME"/.bashrc
 	return
 }
 ####################################################################################
@@ -97,7 +97,7 @@ function bluetooth() {
 ####################################################################################
 function bspwm() {
 	yay --noconfirm --sudoloop --needed bspwm-rounded-corners-git bsp-layout sxhkd-git bar-aint-recursive xtitle-git sutils-git
-	ln -svf $HOME/dotfiles/topics/bspwm $HOME/.config/bspwm
+	ln -svf "$HOME"/dotfiles/topics/bspwm "$HOME"/.config/bspwm
 	return
 }
 ####################################################################################
@@ -119,22 +119,22 @@ function disks() {
 ####################################################################################
 function docker() {
 	yay -S --noconfirm --sudoloop --needed docker docker-compose docker-machine python-docker containerd
-	sudo usermod -aG docker ${USER}
+	sudo usermod -aG docker "$USER"
 	sudo systemctl enable --now docker.service
 	sudo systemctl enable --now docker.socket
 	return
 }
 ####################################################################################
 function dunst() {
-	ln -svf $HOME/dotfiles/topics/dunst/dunstrc $HOME/.config/dunst/dunstrc
+	ln -svf "$HOME"/dotfiles/topics/dunst/dunstrc "$HOME"/.config/dunst/dunstrc
 	return
 }
 ####################################################################################
 function firefox() {
 	sudo pacman -S --noconfirm firefo
-	git clone https://github.com/Thomashighbaugh/firefox $HOME/.local/share/firefox/chrome
-	cp -rvf $HOME/.local/share/firefox/chrome $HOME/.mozilla/firefox/*.default
-	cp -rvf $HOME/.local/share/firefox/chrome $HOME/.mozilla/firefox/*.default-release
+	git clone https://github.com/Thomashighbaugh/firefox "$HOME"/.local/share/firefox/chrome
+	cp -rvf "$HOME"/.local/share/firefox/chrome "$HOME"/.mozilla/firefox/*.default
+	cp -rvf "$HOME"/.local/share/firefox/chrome "$HOME"/.mozilla/firefox/*.default-release
 	return
 }
 ####################################################################################
@@ -146,21 +146,21 @@ function font() {
 }
 ####################################################################################
 function gimp() {
-	yay -S --noconfirm --needed gimp gimp-plugin-gmic xsane gimp-plugin-registry  gimp-extras gimp-paint-studio 
+	yay -S --noconfirm --needed gimp gimp-plugin-gmic xsane gimp-plugin-registry gimp-extras gimp-paint-studio
 	return
 }
 ####################################################################################
 function gitinit() {
 	# Enter your git credentials once, forget it for the rest of the install
 	git config --global credential.helper store
-	ln -svf $HOME/dotfiles/topics/git/gitconfig %HOME/.gitconfig
-	ln -svf $HOME/dotfiles/topics/git/gitignore %HOME/.gitignore
+	ln -svf "$HOME"/dotfiles/topics/git/gitconfig %HOME/.gitconfig
+	ln -svf "$HOME"/dotfiles/topics/git/gitignore %HOME/.gitignore
 	return
 }
 ####################################################################################
 function gnupg() {
 	sudo pacman -S --noconfirm gnupg gmime3 libcryptui seahorse mcabber hopenpgp-tools
-	ln -svf $HOME/dotfiles/topics/gnupg/gpg.conf $HOME/.gnupg/gpg.conf
+	ln -svf "$HOME"/dotfiles/topics/gnupg/gpg.conf "$HOME"/.gnupg/gpg.conf
 	return
 }
 ####################################################################################
@@ -171,32 +171,32 @@ function gparted() {
 }
 ####################################################################################
 function grubinit() {
-	git clone https://github.com/Thomashighbaugh/Bhairava-Grub-Theme $HOME/.local/share/Bhairava-Grub-Theme
-	sudo sh $HOME/.local/share/Bhairava-Grub-Theme/svg2png.sh
-	sudo sh $HOME/.local/share/Bhairava-Grub-Theme/set-grub.sh
+	git clone https://github.com/Thomashighbaugh/Bhairava-Grub-Theme "$HOME"/.local/share/Bhairava-Grub-Theme
+	sudo sh "$HOME"/.local/share/Bhairava-Grub-Theme/svg2png.sh
+	sudo sh "$HOME"/.local/share/Bhairava-Grub-Theme/set-grub.sh
 	return
 }
 ####################################################################################
 function gtk() {
 	yay -S --noconfirm gtk-engine-murrine gtk-engines xfce4-settings qt5ct kvantum colord-gtk gst-plugin-gtk glade gtkglext gtkspell xdg-desktop-portal-gtk wxgtk3 gpg-crypter gtk-chtheme gtkd gtkglarea libfm-gtk3
 
-	mkdir -p $HOME/.config/gtk-2.0
+	mkdir -p "$HOME"/.config/gtk-2.0
 
-	ln -svf $HOME/dotfiles/topics/gtk/gtk-2.0/gtkfilechooser.ini $HOME/.config/gtk-2.0/gtkfilechooser.ini
+	ln -svf "$HOME"/dotfiles/topics/gtk/gtk-2.0/gtkfilechooser.ini "$HOME"/.config/gtk-2.0/gtkfilechooser.ini
 
-	mkdir -p $HOME/.config/gtk-3.0
+	mkdir -p "$HOME"/.config/gtk-3.0
 
-	ln -svf $HOME/dotfiles/topics/gtk/gtk-3.0/bookmarks $HOME/.config/gtk-3.0/bookmarks
+	ln -svf "$HOME"/dotfiles/topics/gtk/gtk-3.0/bookmarks "$HOME"/.config/gtk-3.0/bookmarks
 
-	ln -svf $HOME/dotfiles/topics/gtk/gtk-3.0/gtk.css $HOME/.config/gtk-3.0/gtk.css
+	ln -svf "$HOME"/dotfiles/topics/gtk/gtk-3.0/gtk.css "$HOME"/.config/gtk-3.0/gtk.css
 
-	ln -svf $HOME/dotfiles/topics/gtk/gtk-3.0/settings.ini $HOME/.config/gtk-3.0/settings.ini
+	ln -svf "$HOME"/dotfiles/topics/gtk/gtk-3.0/settings.ini "$HOME"/.config/gtk-3.0/settings.ini
 
-	ln -svf $HOME/dotfiles/topics/gtk/gtkrc-2.0 $HOME/.gtkrc-2.0
+	ln -svf "$HOME"/dotfiles/topics/gtk/gtkrc-2.0 "$HOME"/.gtkrc-2.0
 
-	mkdir -p $HOME/.config/Kvantum
+	mkdir -p "$HOME"/.config/Kvantum
 
-	ln -svf $HOME/dotfiles/topics/gtk/kvantum.kvconfig $HOME/.config/Kvantum/kvantum.kvconfig
+	ln -svf "$HOME"/dotfiles/topics/gtk/kvantum.kvconfig "$HOME"/.config/Kvantum/kvantum.kvconfig
 	return
 }
 ####################################################################################
@@ -222,16 +222,16 @@ function kitty() {
 	sudo pacman -S --noconfirm kitty kitty-terminfo catimg
 
 	if [[ -r "$HOME/.config/kitty" ]]; then
-		rm -rvf $HOME/.config/kitty
+		rm -rvf "$HOME"/.config/kitty
 	fi
 
-	mkdir -p $HOME/.config/kitty
+	mkdir -p "$HOME"/.config/kitty
 
-	sudo ln -sf $HOME/dotfiles/topics/kitty/kitty.conf $HOME/.config/kitty/kitty.conf
+	sudo ln -sf "$HOME"/dotfiles/topics/kitty/kitty.conf "$HOME"/.config/kitty/kitty.conf
 
-	sudo ln -sf $HOME/dotfiles/topics/kitty/theme.conf $HOME/.config/kitty/theme.conf
+	sudo ln -sf "$HOME"/dotfiles/topics/kitty/theme.conf "$HOME"/.config/kitty/theme.conf
 
-	sudo ln -sf $HOME/dotfiles/topics/kitty/motd /etc/motd
+	sudo ln -sf "$HOME"/dotfiles/topics/kitty/motd /etc/motd
 
 	return
 }
@@ -239,8 +239,8 @@ function kitty() {
 function lightdm() {
 
 	yay -S --noconfirm --sudoloop --needed lightdm-gtk-greeter-settings lightdm lightdm-gtk-greeter
-	sudo ln -svf $HOE/dotfiles/topics/lightdm/lightdm.conf /etc/lightdm
-	sudo ln -svf $HOE/dotfiles/topics/lightdm/lightdm-gtk-greeter.conf /etc/lightdm
+	sudo ln -svf "$HOME"/dotfiles/topics/lightdm/lightdm.conf /etc/lightdm
+	sudo ln -svf "$HOME"/dotfiles/topics/lightdm/lightdm-gtk-greeter.conf /etc/lightdm
 	return
 }
 ####################################################################################
@@ -262,15 +262,15 @@ function lxd() {
 }
 ####################################################################################
 function makepkg() {
-	sudo cp -rvf $HOME/dotfiles/topics/makepkg/makepkg.conf /etc/makepkg.conf
+	sudo cp -rvf "$HOME"/dotfiles/topics/makepkg/makepkg.conf /etc/makepkg.conf
 
 	return
 }
 ####################################################################################
 function motd() {
 
-	sudo ln -svf $HOME/dotfiles/topics/motd/motd /etc/motd
-	sudo ln -vf $HOME/dotfiles/topics/motd/motd.sh /etc/motd.sh
+	sudo ln -svf "$HOME"/dotfiles/topics/motd/motd /etc/motd
+	sudo ln -vf "$HOME"/dotfiles/topics/motd/motd.sh /etc/motd.sh
 
 	return
 }
@@ -278,7 +278,7 @@ function motd() {
 function neofetch() {
 	sudo pacman -S --noconfirm neofetch
 
-	ln -svf $HOME/dotfiles/topics/neofetch $HOME/.config/neofetch
+	ln -svf "$HOME"/dotfiles/topics/neofetch "$HOME"/.config/neofetch
 	return
 }
 ####################################################################################
@@ -298,18 +298,18 @@ function nvidia() {
 ####################################################################################
 function nvm() {
 	yay -S --noconfirm --sudoloop --batchinstall nvm
-	sudo nvm install node
-	sudo nvm use node
-	sudo nvm alias default node
-	sudo npm --global install yarn
-	sudo yarn upgrade
+	sh -c "sudo nvm install node && \\
+    sudo nvm use node && \\
+    sudo nvm alias default node && \\
+    sudo npm --global install yarn && \\
+    sudo yarn upgrade "
 	return
 }
 ####################################################################################
 function pacmaninit() {
 	sudo rm -rvf /etc/pacman.conf
 
-	sudo cp -rvf $HOME/dotfiles/topics/pacman/pacman.conf /etc/pacman.conf
+	sudo cp -rvf "$HOME"/dotfiles/topics/pacman/pacman.conf /etc/pacman.conf
 
 	yay -S --needed --sudoloop --noconfirm systemd-boot-pacman-hook grub-hook mirrorlist-rankmirrors-hook kernel-modules-hook mkinitcpio-kms pacman-kernel-install-git
 	yay -S --needed --sudoloop --noconfirm smkinitcpio-modconf-hook-git mkinitcpio-archiso-git systemd-removed-services-hook
@@ -319,7 +319,7 @@ function pacmaninit() {
 function picom() {
 	yay -S --noconfirm --needed --sudoloop picom-ibhagwan-git
 
-	ln -svf $HOME/dotfiles/topics/picom/picom.conf $HOME/.config
+	ln -svf "$HOME"/dotfiles/topics/picom/picom.conf "$HOME"/.config
 	return
 }
 ####################################################################################
@@ -337,7 +337,7 @@ function qtile() {
 	yay -S --needed --noconfirm --sudoloop qtile rofi-git sensors
 
 	## Clone and Provision my QTile Configuration
-	git clone https://github.com/Thomashighbaugh/qtile $HOME/.config/qtile
+	git clone https://github.com/Thomashighbaugh/qtile "$HOME"/.config/qtile
 	return
 }
 ####################################################################################
@@ -350,14 +350,13 @@ function rofi() {
 
 	yay -S --noconfirm --sudoloop --needed rofi-git rofi-todo
 	sudo pip install python-rofi
-
-	mkdir -p $HOME/.config/rofi
-	ln -svf $HOME/dotfiles/topics/rofi/config $HOME/.config/rofi
-	ln -svf $HOME/dotfiles/topics/rofi/themes $HOME/.config/rofi
-	sudo ln -svf $HOME/dotfiles/topics/rofi/themes /usr/share/rofi
-	ln -svf $HOME/dotfiles/topics/rofi/config.rasi $HOME/.config/rofi/config.rasi
-	ln -svf $HOME/dotfiles/topics/rofi/three.rasi $HOME/.config/rofi/three.rasi
-	sudo cp -rvf $HOME/dotfiles/topics/rofi/rofi-todo /usr/bin
+	mkdir -p "$HOME"/.config/rofi
+	ln -svf "$HOME"/dotfiles/topics/rofi/config "$HOME"/.config/rofi
+	ln -svf "$HOME"/dotfiles/topics/rofi/themes "$HOME"/.config/rofi
+	sudo ln -svf "$HOME"/dotfiles/topics/rofi/themes /usr/share/rofi
+	ln -svf "$HOME"/dotfiles/topics/rofi/config.rasi "$HOME"/.config/rofi/config.rasi
+	ln -svf "$HOME"/dotfiles/topics/rofi/three.rasi "$HOME"/.config/rofi/three.rasi
+	sudo cp -rvf "$HOME"/dotfiles/topics/rofi/rofi-todo /usr/bin
 	return
 }
 ####################################################################################
@@ -373,18 +372,18 @@ function rubyinit() {
 }
 ####################################################################################
 function shell() {
-	git clone https://github.com/Thomashighbaugh/bin $HOME/.local/share/bin
-	ln -svf $HOME/dotfiles/topics/sh/profile $HOME/.profile
-	ln -svf $HOME/dotfiles/topics/sh/aliases $HOME/.aliases
-	yay -S --noconfirm --batchinstall --needed --sudoloop autojump 
+	git clone https://github.com/Thomashighbaugh/bin "$HOME"/.local/share/bin
+	ln -svf "$HOME"/dotfiles/topics/sh/profile "$HOME"/.profile
+	ln -svf "$HOME"/dotfiles/topics/sh/aliases "$HOME"/.aliases
+	yay -S --noconfirm --batchinstall --needed --sudoloop autojump
 	return
 }
 ####################################################################################
 function sshinit() {
 
-	sudo cp -rvf $HOME/dotfiles/topics/ssh/ssh_config /etc/ssh/
-	sudo cp -rvf $HOME/dotfiles/topics/ssh/sshd_config /etc/ssh/
-		sudo pacman -S --noconfirm openssh keychain seahorse
+	sudo cp -rvf "$HOME"/dotfiles/topics/ssh/ssh_config /etc/ssh/
+	sudo cp -rvf "$HOME"/dotfiles/topics/ssh/sshd_config /etc/ssh/
+	sudo pacman -S --noconfirm openssh keychain seahorse
 
 	return
 }
@@ -392,15 +391,15 @@ function sshinit() {
 function sway() {
 	yay -S --noconfirm --sudoloop --needed sway-borders-git swayidle grimshot wofi swaybg waybar wf-recorder autotiling nwg-launcher i3title swayimg swaylock wofer mako swaymgr swaytools i3keys
 
-	nkdir -p $HOME/.config/sway
+	nkdir -p "$HOME"/.config/sway
 
-	ln -svf $HOME/dotfiles/topics/sway/config $HOME/.config/sway/config
+	ln -svf "$HOME"/dotfiles/topics/sway/config "$HOME"/.config/sway/config
 
-	ln -svf $HOME/dotfiles/topics/sway/lockman.sh $HOME/.config/sway/lockman.sh
+	ln -svf "$HOME"/dotfiles/topics/sway/lockman.sh "$HOME"/.config/sway/lockman.sh
 
-	ln -svf $HOME/dotfiles/topics/sway/window.sh $HOME/.config/sway/window.sh
+	ln -svf "$HOME"/dotfiles/topics/sway/window.sh "$HOME"/.config/sway/window.sh
 
-	ln -svf $HOME/dotfiles/topics/sway/nwg-launchers $HOME/.config/nwg-launchers
+	ln -svf "$HOME"/dotfiles/topics/sway/nwg-launchers "$HOME"/.config/nwg-launchers
 	return
 }
 ####################################################################################
@@ -455,15 +454,15 @@ function vagrant() {
 function viminit() {
 	yay -S --noconfirm --sudoloop --needed vim vi sudo vim-runtime vim-spell-en
 
-	ln -svf $HOME/dotfiles/topics/vim/vimrc $HOME/.vimrc
-	ln -svf $HOME/dotfiles/topics/vim/vim/plugged $HOME/.vim/plugged
-	ln -svf $HOME/dotfiles/topics/vim/plugins.vim $HOME/.vim/plugins.vim
-	ln -svf $HOME/dotfiles/topics/vim/vim/autoload $HOME/.vim/autoload
+	ln -svf "$HOME"/dotfiles/topics/vim/vimrc "$HOME"/.vimrc
+	ln -svf "$HOME"/dotfiles/topics/vim/vim/plugged "$HOME"/.vim/plugged
+	ln -svf "$HOME"/dotfiles/topics/vim/plugins.vim "$HOME"/.vim/plugins.vim
+	ln -svf "$HOME"/dotfiles/topics/vim/vim/autoload "$HOME"/.vim/autoload
 	return
 }
 ####################################################################################
 function virtmanager() {
-	yay -S --noconfirm --sudoloop --needed  virt-manager libvirt-python libvirt libvirt-dbus libvirt-glib perl-sys-virt ruby-libvirt zenity qemu libvirt-storage-gluster libvirt-storage-iscsi-direct libvirt-storage-rbd openbsd-netcat radvdqemu open-iscsi
+	yay -S --noconfirm --sudoloop --needed virt-manager libvirt-python libvirt libvirt-dbus libvirt-glib perl-sys-virt ruby-libvirt zenity qemu libvirt-storage-gluster libvirt-storage-iscsi-direct libvirt-storage-rbd openbsd-netcat radvdqemu open-iscsi
 
 	## Enable the Daemon
 	sudo systemctl enable --now libvirtd
@@ -491,19 +490,19 @@ function xorg() {
 	yay -S --noconfirm --sudoloop xorg xorg-apps xorg-drivers xorg-fonts
 	yay -S --needed --noconfirm --sudoloop pa-applet-git gnome-keyring polkit-gnome libgnome-keyring xscreensaver
 
-	mkdir -p $HOME/.Xresources.d
+	mkdir -p "$HOME"/.Xresources.d
 
-	ln -svf $HOME/dotfiles/topics/xorg/Xresources $HOME/.Xresources
-	ln -svf $HOME/dotfiles/topics/xorg/color $HOME/.Xresources.d/color
-	ln -svf $HOME/dotfiles/topics/xorg/font $HOME/.Xresources.d/font
-	ln -svf $HOME/dotfiles/topics/xorg/rxvt-unicode $HOME/.Xresources.d/rxvt-unicode
-	ln -svf $HOME/dotfiles/topics/xorg/uxterm $HOME/.Xresources.d/uxterm
-	ln -svf $HOME/dotfiles/topics/xorg/xterm $HOME/.Xresources.d/xterm
-	ln -svf $HOME/dotfiles/topics/xorg/xscreensaver $HOME/.xscreensaver
-	ln -fvs $HOME/dotfiles/topics/xorg/xinitrc $HOME/.xinitrc
-	ln -fvs $HOME/dotfiles/topics/xorg/xprofile $HOME/.xprofile
-	ln -fvs $HOME/dotfiles/topics/xorg/xsettingsd $HOME/.xsettingsd
-	ln -fvs $HOME/dotfiles/topics/xorg/xsessionrc $HOME/.xsessionrc
+	ln -svf "$HOME"/dotfiles/topics/xorg/Xresources "$HOME"/.Xresources
+	ln -svf "$HOME"/dotfiles/topics/xorg/color "$HOME"/.Xresources.d/color
+	ln -svf "$HOME"/dotfiles/topics/xorg/font "$HOME"/.Xresources.d/font
+	ln -svf "$HOME"/dotfiles/topics/xorg/rxvt-unicode "$HOME"/.Xresources.d/rxvt-unicode
+	ln -svf "$HOME"/dotfiles/topics/xorg/uxterm "$HOME"/.Xresources.d/uxterm
+	ln -svf "$HOME"/dotfiles/topics/xorg/xterm "$HOME"/.Xresources.d/xterm
+	ln -svf "$HOME"/dotfiles/topics/xorg/xscreensaver "$HOME"/.xscreensaver
+	ln -fvs "$HOME"/dotfiles/topics/xorg/xinitrc "$HOME"/.xinitrc
+	ln -fvs "$HOME"/dotfiles/topics/xorg/xprofile "$HOME"/.xprofile
+	ln -fvs "$HOME"/dotfiles/topics/xorg/xsettingsd "$HOME"/.xsettingsd
+	ln -fvs "$HOME"/dotfiles/topics/xorg/xsessionrc "$HOME"/.xsessionrc
 	return
 }
 ####################################################################################
@@ -517,7 +516,7 @@ function zathura() {
 
 	yay -S --noconfirm --sudoloop --needed zathura zathura-pdf-mupdf zathura-ps
 
-	ln -svf $HOME/dotfiles/topics/zathura/zathurarc $HOME/.config/zathura
+	ln -svf "$HOME"/dotfiles/topics/zathura/zathurarc "$HOME"/.config/zathura
 
 	return
 }
@@ -529,11 +528,11 @@ function zshenv() {
 	yay -S --noconfirm --sudoloop --needed alias-tips-git zsh-system-clipboard-git
 	yay -S --noconfirm --sudoloop zsh-completions keybase-zsh-completion-git python-click-completion
 	## Symlink Files
-	ln -svf $HOME/dotfiles/topics/zsh/zprofile $HOME/.zprofile
-	ln -svf $HOME/dotfiles/topics/zsh/zshenv $HOME/.zshenv
-	ln -svf $HOME/dotfiles/topics/zsh/zshrc $HOME/.zshrc
-	ln -svf $HOME/dotfiles/topics/zsh/zlogout $HOME/.zlogout
-	ln -svf $HOME/dotfiles/topics/zsh/functions $HOME/.zsh.d/functions
+	ln -svf "$HOME"/dotfiles/topics/zsh/zprofile "$HOME"/.zprofile
+	ln -svf "$HOME"/dotfiles/topics/zsh/zshenv "$HOME"/.zshenv
+	ln -svf "$HOME"/dotfiles/topics/zsh/zshrc "$HOME"/.zshrc
+	ln -svf "$HOME"/dotfiles/topics/zsh/zlogout "$HOME"/.zlogout
+	ln -svf "$HOME"/dotfiles/topics/zsh/functions "$HOME"/.zsh.d/functions
 	return
 }
 ####################################################################################
@@ -693,14 +692,14 @@ menu() {
 	clear
 
 	echo -n "
-  _____         __    ___ __ __                   
- |     \.-----.|  |_.'  _|__|  |.-----.-----.     
- |  --  |  _  ||   _|   _|  |  ||  -__|__ --|     
- |_____/|_____||____|__| |__|__||_____|_____|     
-  __               __          __ __              
- |__|.-----.-----.|  |_.---.-.|  |  |.-----.----. 
- |  ||     |__ --||   _|  _  ||  |  ||  -__|   _| 
- |__||__|__|_____||____|___._||__|__||_____|__|   "
+  _____         __    ___ __ __
+ |     \.-----.|  |_.'  _|__|  |.-----.-----.
+ |  --  |  _  ||   _|   _|  |  ||  -__|__ --|
+ |_____/|_____||____|__| |__|__||_____|_____|
+  __               __          __ __
+ |__|.-----.-----.|  |_.---.-.|  |  |.-----.----.
+ |  ||     |__ --||   _|  _  ||  |  ||  -__|   _|
+    |__||__|__|_____||____|___._||__|__||_____|__|   "
 
 	echo
 	echo
@@ -713,7 +712,7 @@ menu() {
 	echo "   |----------------------|                            "
 	echo "   | 3 | Raspberry Pi 4   |                            "
 	echo "   |______________________|                            "
-	read system
+	read -r system
 	echo
 	echo
 	echo
