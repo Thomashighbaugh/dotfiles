@@ -27,7 +27,8 @@ deps() {
 	sudo pacman -S --noconfirm git pacutils fakeroot perl-libwww perl-term-ui perl-json perl-data-dump perl-lwp-protocol-https perl-term-readline-gnu
 
 	echo "Install Yay"
-	$(yayinit)
+	git clone https://aur.archlinux.org/yay.git $HOME/yay 
+    cd $HOME/yay && makepkg -si && cd .. && sudo rm -rf $HOME/yay
 	echo "Install some other packages useful for the rest of the installation process."
 	gpg --receive-keys EC3CBE7F607D11E663149E811D1F0DC78F173680
 	yay -S --needed --sudoloop --noconfirm atool autoconf autocutsel automake binutils bison
