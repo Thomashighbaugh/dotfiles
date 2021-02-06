@@ -2,6 +2,8 @@
 ##########################################################################
 
 ## Install Packages
+alias yay="bauerbill --aur "
+alias pacman="powerpill"
 alias yu="yay -S --needed "
 alias pu="sudo pacman -S "
 
