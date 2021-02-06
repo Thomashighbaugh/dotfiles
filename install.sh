@@ -684,7 +684,7 @@ function rpi4() {
 	xorg
 	youtubedl
 	zathura
-	zshenv)
+	zshenv
 	return
 }
 
