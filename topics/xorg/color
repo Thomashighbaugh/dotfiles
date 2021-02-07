@@ -3,7 +3,7 @@
 
 #define base00 #1f2023
 #define base01 #23262c
-#define base02 #313040
+#define base02 #3c3f4c
 #define base03 #555e70
 #define base04 #0b0c0f
 #define base05 #8b9cbe
@@ -12,7 +12,7 @@
 #define base08 #ff29a8
 #define base09 #796af5
 #define base0A #f0ee6e
-#define base0B #6c71c4
+#define base0B #878eff
 #define base0C #00eaff
 #define base0D #00caff
 #define base0E #61aeee
@@ -34,7 +34,7 @@
 
 *color8:       #555e70
 *color9:       #ff29a8
-*color10:      #6c71c4
+*color10:      #878eff
 *color11:      #f0ee6e
 *color12:      #00caff
 *color13:      #61aeee
@@ -46,6 +46,6 @@
 *color16:      #796af5
 *color17:      #a86fe6
 *color18:      #23262c
-*color19:      #313040
+*color19:      #3c3f4c
 *color20:      #0b0c0f
 *color21:      #b2bfd9

@@ -229,9 +229,11 @@ let g:lightline = {
 
     "wiki list
     let wiki_1 = {}
-    let wiki_1.path = '~/vimwiki'
+    let wiki_1.path = '~/.vimwiki-tech'
     let wiki_1.links_space_char = '-'
     let wiki_1.auto_diary_index = 1
+    let wiki_1.format="markdown"
+    let wiki_1.ext=".md"
     let wiki_1.auto_generate_links = 1
     " let wiki_1.auto_export = 1
     let wiki_1.auto_toc = 1
