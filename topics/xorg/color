@@ -1,8 +1,8 @@
 ! Base16 oomox-base16-vice-scheme
 ! Scheme: oomox-base16-vice-scheme
 
-#define base00 #1f2023
-#define base01 #23262c
+#define base00 #17191E
+#define base01 #22262D
 #define base02 #3c3f4c
 #define base03 #555e70
 #define base04 #0b0c0f
@@ -20,10 +20,10 @@
 #define base10 #ff29a8
 
 *foreground:    #8b9cbe
-*background:    #1f2023
+*background:    #17191E
 *cursorColor:   #e9efff
 
-*color0:       #1f2023
+*color0:       #17191E
 *color1:       #ff29a8
 *color2:       #6c71c4
 *color3:       #796af5
