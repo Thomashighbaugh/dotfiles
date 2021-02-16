@@ -32,7 +32,7 @@ source "$HOME/dotfiles/topics/sh/aliases"
 
 ## scm #########################################################################
 
-export SCM_WORKSPACE_DIR="~/Dropbox/Workspace"         # defaults to ~/Workspace
+export SCM_WORKSPACE_DIR="~/Dropbox/Workspace/Repositories"         # defaults to ~/Workspace
 export SCM_WORKSPACE_DIR_DEFAULT_PERM="0755"  # defaults to 0755
 
 export SCM_POST_CLONE_CMD=""  # defaults to ""
