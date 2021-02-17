@@ -12,5 +12,3 @@ for file in $(find "$HOME/dotfiles/topics/zsh" -name '*.post.zsh'); do
 done
 
 
-# Only load Liquidprompt in interactive shells, not from a script or from scp
-[[ $- = *i* ]] && source ~/.config/liquidprompt/liquidprompt
