@@ -16,8 +16,12 @@ if [[ -d "$HOME/.config/nvm" ]]; then
 	export PATH="$HOME/.config/nvm:$PATH"
 fi
  if [[ -d "$HOME/.nvm" ]]; then
- 	export PATH="$HOME/.nvm/versions/node/v12.20.1:$PATH"
+ 	export PATH="$HOME/.nvm:$PATH"
  fi 
+ if [[ -d "$HOME/.config/nvm/versions/node/v15.8.0" ]]; then
+ 	export PATH="$HOME/.config/nvm/versions/node/v15.8.0:$PATH"
+ fi 
+
 
 # Scripts ################################################################################################
   
@@ -33,6 +37,9 @@ if [[ -d "$HOME/.local/share/bin" ]]; then
 	export PATH="$HOME/.local/share/bin:$PATH"
 fi
 
+if [[ -d "$HOME"/.config/nvm/versions/node/v15.8.0 ]]; then
+ 	export PATH="$HOME/.config/nvm/versions/node/v15.8.0:$PATH"
+ fi
 ## Cargo #######################################################################################
 if [[ -d "$HOME/.cargo/bin" ]]; then
 	export PATH="$HOME/.cargo/bin:$PATH"
