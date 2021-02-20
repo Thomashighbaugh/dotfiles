@@ -1,5 +1,7 @@
-! Base16 oomox-base16-vice-scheme
-! Scheme: oomox-base16-vice-scheme
+! Author: Thomas Leon Highbaugh
+! File: colors 
+! Project: X11 Settings
+! Scheme: Vice
 
 #define base00 #17191E
 #define base01 #22262D
@@ -15,9 +17,9 @@
 #define base0B #878eff
 #define base0C #00eaff
 #define base0D #00caff
-#define base0E #61aeee
-#define base0F #a86fe6
-#define base10 #ff29a8
+#define base0E #209afe
+#define base0F #00fae9
+#define base10 #ff3d81
 
 *foreground:    #8b9cbe
 *background:    #17191E
@@ -28,24 +30,25 @@
 *color2:       #6c71c4
 *color3:       #796af5
 *color4:       #00caff
-*color5:       #61aeee
+*color5:       #209afe
 *color6:       #00eaff
 *color7:       #8b9cbe
 
 *color8:       #555e70
-*color9:       #ff29a8
+*color9:       #ff3d81
 *color10:      #878eff
 *color11:      #f0ee6e
 *color12:      #00caff
 *color13:      #61aeee
-*color14:      #00eaff
+*color14:      #00fae9
 *color15:      #e9efff
 
 ! Note: colors beyond 15 might not be loaded (e.g., xterm, urxvt),
 ! use 'shell' template to set these if necessary
-*color16:      #796af5
-*color17:      #a86fe6
-*color18:      #22262D
-*color19:      #3c3f4c
-*color20:      #0b0c0f
-*color21:      #b2bfd9
+*color16:      #22262D
+*color17:      #3c3f4c
+*color18:      #0b0c0f
+! alternative to 16
+*color19:      #2F303D
+! alternative to 17
+*color20:      #383A47
