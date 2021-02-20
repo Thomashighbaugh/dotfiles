@@ -19,13 +19,11 @@ setopt globdots
 setopt pushdtohome
 setopt cdablevars
 setopt correctall
-setopt autocd
 setopt recexact
 setopt longlistjobs
 setopt pushdsilent
 setopt autopushd
 setopt pushdminus
-setopt extendedglob
 setopt rcquotes
 unsetopt bgnice
 unsetopt autoparamslash
@@ -37,8 +35,6 @@ setopt rcexpandparam   # Array expension with parameters
 setopt nocheckjobs     # Don't warn about running processes when exiting
 setopt numericglobsort # Sort filenames numerically when it makes sense
 setopt autocd          # if only directory path is entered, cd there.
-
-### Autoload zsh modules when they are referenced
 
 autoload -U history-search-end
 

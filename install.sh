@@ -29,13 +29,20 @@ deps() {
     sudo pacman -S --noconfirm git pacutils fakeroot perl-libwww perl-term-ui perl-json perl-data-dump perl-lwp-protocol-https perl-term-readline-gnu
 
     echo "Install Yay"
-    git clone https://aur.archlinux.org/yay.git "$HOME"/yay
-    cd "$HOME"/yay && makepkg -si && cd .. && sudo rm -rf "$HOME"/yay
-    echo "Install some other packages useful for the rest of the installation process."
+    echo "You must run the following command in another terminal to continue, when done press any key (sorry its resistant to scripting)"
+    echo "$ git clone https://aur.archlinux.org/yay.git &&  cd yay && makepkg -si &&    sudo rm -rf yay "
+    echo
+    echo
+    echo
+    read -rp continue
+    echo
+    echo
+    echo
+    echo "Installing some other packages useful for the rest of the installation process."
     gpg --receive-keys EC3CBE7F607D11E663149E811D1F0DC78F173680
     yay -S --needed --sudoloop --noconfirm atool autoconf autocutsel automake binutils bison
     yay -S --needed --sudoloop --noconfirm gcc gcc-libs gettext glibc dialog dmidecode
-    yay -S --needed --sudoloop --noconfirm keychain grep ntp pacman-contrib pkgconf pkgfile pciutils sed powerpill bauerbill
+    yay -S --needed --sudoloop --noconfirm keychain grep ntp pacman-contrib pkgconf pkgfile pciutils sed
     return
 }
 
@@ -286,7 +293,7 @@ function neofetch() {
 ####################################################################################
 function networkmanager() {
     yay -S --noconfirm --sudoloop --needed network-manager-applet networkmanager
-
+    return
 }
 ####################################################################################
 function nvidia() {
@@ -600,6 +607,9 @@ menu() {
         46 "zshenv" off
         47 "nvm" off
         48 "bluetooth" off
+        49 "sway" off
+        50 "Raspberry Pi" off
+        51 "tlp" off
     )
 
     choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
@@ -607,152 +617,165 @@ menu() {
     for choice in $choices; do
         case $choice in
         1)
-            amd return
+            amd
             ;; # any option can be set to default to "on"
         2)
             awesomewm
-            return
+
             ;;
         3)
-            bashinit return
+            bashinit
             ;;
         4)
             bitwarden
-            return
+
             ;;
         5)
             bspwm
-            return
+
             ;;
         6)
-            cups return
+            cups
             ;;
         7)
-            disks return
+            disks
             ;;
         8)
-            docker return
+            docker
             ;;
         9)
-            dunst return
+            dunst
             ;;
         10)
-            firefox return
+            firefox
             ;;
         11)
-            font return
+            font
             ;;
         12)
-            gparted return
+            gparted
             ;;
         13)
-            gimp return
+            gimp
             ;;
         14)
-            gitinit return
+            gitinit
             ;;
         15)
-            gtk return
+            gtk
             ;;
         16)
-            grubinit return
+            grubinit
             ;;
         17)
-            hosts return
+            hosts
             ;;
         18)
-            htopinit return
+            htopinit
             ;;
         19)
-            inkscape return
+            inkscape
             ;;
         20)
-            kitty return
+            kitty
             ;;
         21)
-            lightdm return
+            lightdm
             ;;
         22)
-            luainit return
+            luainit
             ;;
         23)
-            lxd return
+            lxd
             ;;
         24)
-            neofetch return
+            neofetch
             ;;
         25)
-            networkmanager return
+            networkmanager
             ;;
         26)
-            nvidia return
+            nvidia
             ;;
         27)
-            pacmaninit return
+            pacmaninit
             ;;
         28)
-            picom return
+            picom
             ;;
         29)
-            pulseaudio return
+            pulseaudio
             ;;
         30)
-            pythoninit return
+            pythoninit
             ;;
         31)
-            qtile return
+            qtile
             ;;
         32)
-            ranger return
+            ranger
             ;;
         33)
-            rofi return
+            rofi
             ;;
         34)
-            rubyinit return
+            rubyinit
             ;;
         35)
-            shell return
+            shell
             ;;
         36)
-            sshinit return
+            sshinit
             ;;
         37)
-            tor return
+            tor
             ;;
         38)
-            vagrant return
+            vagrant
             ;;
         39)
-            viminit return
+            viminit
             ;;
         40)
-            virtmanager return
+            virtmanager
             ;;
         41)
-            virtualbox return
+            virtualbox
             ;;
         42)
-            vmware return
+            vmware
             ;;
         43)
-            xorg return
+            xorg
             ;;
         44)
-            youtube-dl return
+            youtube-dl
             ;;
         45)
-            zathura return
+            zathura
             ;;
         46)
-            zshenv return
+            zshenv
             ;;
         47)
-            nvm return
+            nvm
             ;;
         48)
             bluetooth
-            return
+
+            ;;
+        49)
+            sway
+
+            ;;
+        50)
+            rpi
+
+            ;;
+
+        51)
+            tlp
+
             ;;
         esac
     done

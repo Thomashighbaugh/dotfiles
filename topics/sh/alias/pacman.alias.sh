@@ -20,3 +20,7 @@ alias yupRM="yay -Rcns "
 ## Search
 alias yupss="yay -Ss "
 alias pupss="sudo pacman -Ss "
+
+## No Dependencies 
+alias yupxdeps="yay -Sdd "
+alias pupxdeps="sudo pacman -Sdd "

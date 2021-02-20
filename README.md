@@ -18,8 +18,7 @@ A repo, on Github featuring dotfiles and an installation script bring an Arch sy
 - Install script
   - Idemponent
   - Unattended Installation/Configuration
-  - Customizable to Your System/Needs
-
+  - Customizable to Your System/Needs Using TUI Selection Menu
 ## How To
 
 Brave soul I presume? Well lucky you, if you have nothing to do these relatively painless steps on a fresh install of Arch Linux and you are good to go.
