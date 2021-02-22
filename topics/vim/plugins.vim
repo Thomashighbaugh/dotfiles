@@ -9,6 +9,12 @@ call plug#begin('~/.vim/plugged')
     
     Plug 'vimwiki/vimwiki'
 
+    Plug 'junegunn/fzf'
+    
+    Plug 'junegunn/fzf.vim'
+    
+    Plug 'michal-h21/vim-zettel'
+
     Plug 'junegunn/vim-easy-align'
     
     Plug 'dense-analysis/ale'
@@ -26,5 +32,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'chiel92/vim-autoformat'
     
     Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
-call plug#end()
+
+    Plug 'reedes/vim-pencil'
+
+    call plug#end()
 

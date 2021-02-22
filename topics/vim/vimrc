@@ -134,11 +134,21 @@ set backspace=indent,eol,start
 
 " write when switching files
 set autowrite
-" set spellcheck language
+
+
+" spellcheck
+set spell spelllang=en_us
 set spelllang=en_us
 
 " tab completion for command mode
 set wildmenu
+
+"doesn't split words
+set linebreak
+
+" 'fix' backspace
+set backspace=indent,eol,start
+
 "------------------------------------------------------------
 " Indentation options
 "
@@ -152,6 +162,17 @@ set expandtab
 " Indentation settings for using hard tabs for indent. Display tabs as
 " four characters wide.
 set tabstop=4
+
+"doesn't split words
+set linebreak
+
+" 'fix' backspace
+set backspace=indent,eol,start
+
+" Autoload Changes to ~/.vimrc as they are saved
+" Note:I know this is pretty useful, you are welcome
+
+autocmd! bufwritepost .vimrc source %
 
 "+------------------------------------------------------------
 "Mappings
@@ -178,19 +199,13 @@ map <C-n> :tabn<CR>
 " AutoFormat Command
 noremap <F3> :Autoformat<CR>
 
-"-------------------------------------------------------------
+function! FixLastSpellingError()
+    normal! mm[s1z=`m"
+endfunction
+nnoremap <leader>sc :call FixLastSpellingError()<cr>
 
 "-------------------------------------------------------------
-"Launch Configuration
 
-"allows cursor change in tmux mode
-if exists('$TMUX')
-    let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-    let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-else
-    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-endif
 
 "------------------------------------------------------------------------------
 " Autoload Changes to ~/.vimrc as they are saved
@@ -216,49 +231,72 @@ let g:lightline = {
                     \     }
                     \ }
 
-    let NERDTreeShowHidden = 1
-    " Use a single click to fold/unfold directories and a double click to open
-    " files
-    let NERDTreeMouseMode=2
+let NERDTreeShowHidden = 1
+" Use a single click to fold/unfold directories and a double click to open
+" files
+let NERDTreeMouseMode=2
 
 
-    let g:notes_directories = ['~/256/Notes', '~/Documents/VimNotes', '~/Dropbox/Notes']
-    let g:notes_suffix = '.md'
+let g:notes_directories = ['~/256/Notes', '~/Documents/VimNotes', '~/Dropbox/Notes']
+let g:notes_suffix = '.md'
 
-    "vimwiki
+"vimwiki
 
-    "wiki list
-    let wiki_1 = {}
-    let wiki_1.path = '~/.vimwiki-tech'
-    let wiki_1.links_space_char = '-'
-    let wiki_1.auto_diary_index = 1
-    let wiki_1.format="markdown"
-    let wiki_1.ext=".md"
-    let wiki_1.auto_generate_links = 1
-    " let wiki_1.auto_export = 1
-    let wiki_1.auto_toc = 1
-
-
-
-    let wiki_2 = {}
-    let wiki_2.path = '~/Dropbox/HinduismWiki'
-    let wiki_2.links_space_char = '-'
-    let wiki_2.auto_diary_index = 1
-    let wiki_2.auto_generate_links = 1
-    let wiki_2.auto_toc = 1
-    let g:vimwiki_list = [wiki_1, wiki_2]
+"wiki list
+let wiki_1 = {}
+let wiki_1.path = '~/.vimwiki-tech'
+let wiki_1.links_space_char = '-'
+let wiki_1.auto_diary_index = 1
+let wiki_1.format="markdown"
+let wiki_1.ext=".md"
+let wiki_1.auto_generate_links = 1
+" let wiki_1.auto_export = 1
+let wiki_1.auto_toc = 1
 
 
 
-    " For startify
-    let g:startify_custom_header = [
-                \ '                                                                ',
-                \'     ____             __      ___               _     ___  __    ',
-                \'    / __ )____ ______/ /__   /   | ____ _____ _(_)___/__ \/ /    ',
-                \'   / __  / __ `/ ___/ //_/  / /| |/ __ `/ __ `/ / __ \/ _/ /     ',
-                \'  / /_/ / /_/ / /__/ ,<    / ___ / /_/ / /_/ / / / / /_//_/      ',
-                \' /_____/\__,_/\___/_/|_|  /_/  |_\__, /\__,_/_/_/ /_(_)(_)       ',
-                \'                                /____/                           ',
-                \ '',
-                \ '',
-                \]
+let wiki_2 = {}
+let wiki_2.path = '~/1TiB/DroppedBox/Dropbox/HinduismWiki'
+let wiki_2.links_space_char = '-'
+let wiki_2.auto_diary_index = 1
+let wiki_2.auto_generate_links = 1
+let wiki_2.format="markdown"
+let wiki_2.ext=".md"
+let wiki_2.auto_toc = 1
+let g:vimwiki_list = [wiki_1, wiki_2]
+
+let g:nv_search_paths = ['~/path/to/Zettelkasten']
+let g:zettel_options = [{"front_matter" : [["tags", ""], ["citation", ""]]}]
+let g:zettel_fzf_command = "rg --column --line-number --ignore-case --no-heading --color=always "
+"Look, I know the command is ZettleNew, but in my brain mapping it to nz for new zettel makes more sense
+nnoremap <leader>nz :ZettelNew<space>
+
+" Adds #tags in addition to wiki tags for use in Zettlr
+function! AddTags()
+    normal! mm0wly$$p`mlv$:s/\%V:/ #/g
+endfunction
+nnoremap <leader>tt :call AddTags()<cr>
+
+
+"=====[ Pencil ]===================
+
+let g:pencil#wrapModeDefault = 'soft'   " default is 'hard'
+augroup pencil
+    autocmd!
+    autocmd FileType markdown,mkd call pencil#init()
+    autocmd FileType text         call pencil#init({'wrap': 'hard'})
+augroup END
+
+
+" For startify
+let g:startify_custom_header = [
+            \ '                                                                ',
+            \'     ____             __      ___               _     ___  __    ',
+            \'    / __ )____ ______/ /__   /   | ____ _____ _(_)___/__ \/ /    ',
+            \'   / __  / __ `/ ___/ //_/  / /| |/ __ `/ __ `/ / __ \/ _/ /     ',
+            \'  / /_/ / /_/ / /__/ ,<    / ___ / /_/ / /_/ / / / / /_//_/      ',
+            \' /_____/\__,_/\___/_/|_|  /_/  |_\__, /\__,_/_/_/ /_(_)(_)       ',
+            \'                                /____/                           ',
+            \ '',
+            \ '',
+            \]

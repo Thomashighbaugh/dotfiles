@@ -240,7 +240,7 @@ function kitty() {
 
     sudo ln -sf "$HOME"/dotfiles/topics/kitty/theme.conf "$HOME"/.config/kitty/theme.conf
 
-    sudo ln -sf "$HOME"/dotfiles/topics/kitty/motd /etc/motd
+    sudo ln -sf "$HOME"/dotfiles/topics/motd/motd /etc/motd
 
     return
 }
