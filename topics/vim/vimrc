@@ -9,6 +9,13 @@
 "-----------------------------------------------------------
 "vim-plug plugin manager
 
+set fileencoding=utf-8     " utf-8 forever
+set fileencodings=utf-8
+
+set fileformats=unix       " only UNIX
+
+set shell=/bin/zsh         " ZSH
+
 " Install and run vim-plug on first run
 if empty(glob('~/.vim/autoload/plug.vim'))
     silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -18,6 +25,7 @@ endif
 
 " source plugins file in .vim/plugins.vim
 so ~/dotfiles/topics/vim/plugins.vim
+
 
 "------------------------------------------------------------
 " Features
@@ -212,14 +220,14 @@ nnoremap <leader>sc :call FixLastSpellingError()<cr>
 "
 " Note:I know this is pretty useful, you are welcome
 "------------------------------------------------------------------------------
-autocmd! bufwritepost .vimrc source %
+autocmd! bufwritepost $MYVIMRC source $MYVIMRC %
 
 
-"--------------------------------------------------------------------------------
-" Rofi's .rasi Configuration
+"=====[ Rofi ]===================
+
 au BufNewFile,BufRead /*.rasi setf css
-"---------------------------------------------------------------------------------
-"plugin configurations
+
+"=====[ Lightline ]===================
 
 let g:lightline = {
             \     'active': {
@@ -235,37 +243,26 @@ let NERDTreeShowHidden = 1
 " Use a single click to fold/unfold directories and a double click to open
 " files
 let NERDTreeMouseMode=2
+"=====[ Pencil ]===================
+
+let g:pencil#wrapModeDefault = 'soft'   " default is 'hard'
+augroup pencil
+  autocmd!
+  autocmd FileType markdown,mkd call pencil#init()
+  autocmd FileType text         call pencil#init({'wrap': 'hard'})
+augroup END
 
 
-"vimwiki
-" Auto Commit vimwiki pages https://superuser.com/questions/286290/is-there-any-way-to-hook-saving-in-vim-up-to-commiting-in-git
-"	autocmd BufWritePost *.md silent exec '!git add "%"; git commit -m "% (auto commit)"; git push --force > /dev/null'
-"wiki list
 
-
-
-"let wiki_2 = {}
-"let wiki_2.path = '~/1TiB/DroppedBox/Dropbox/HinduismWiki'
-"let wiki_2.links_space_char = '-'
-"let wiki_2.auto_diary_index = 1
-"let wiki_2.auto_generate_links = 1
-"let wiki_2.format="markdown"
-"let wiki_2.ext=".md"
-"let wiki_2.list_margin = 0
-"let wiki_2.auto_toc = 1
-
-"let g:vimwiki_global_ext = 0
-"let g:vimwiki_markdown_link_ext = 1
-"let g:vimwiki_list = [wiki_1, wiki_2]
    set runtimepath+=~/.vimwiki-tech
-    
+
     let wiki = {}
     let wiki.path = '~/.vimwiki-tech'
     let wiki.path_html = '~/.vimwiki-tech/html'
     let wiki.syntax = 'markdown'
     let wiki.ext = '.md'
 	let wiki.list_margin = 0
-	let wiki.auto_toc = 1   	
+	let wiki.auto_toc = 1
 	let wiki.auto_generate_links = 1
 
     let wiki2 = {}
@@ -274,41 +271,16 @@ let NERDTreeMouseMode=2
     let wiki2.syntax = 'markdown'
     let wiki2.ext = '.md'
 	let wiki2.list_margin = 0
-	let wiki2.auto_toc = 1   	
+	let wiki2.auto_toc = 1
 	let wiki2.auto_generate_links = 1
-	
+
+    let g:vimwiki_autowriteall = 1
 	let g:vimwiki_global_ext = 0
     let g:vimwiki_list = [wiki, wiki2]
     let g:vimwiki_use_mouse = 1
     let g:vimwiki_folding = 'expr'
     let g:vimwiki_auto_chdir = 1
-    
-    let g:zettel_options = [{"front_matter": [["tags", ""]]}, {"front_matter": [["tags", ""]]}]
 
-let g:zettel_format = '%Y%m%d%H%M%S'
-" inoremap [[ [[<esc>:ZettelSearch<CR>
-imap <silent> [[ [[<esc><Plug>ZettelSearchMap
-
-nmap T <Plug>ZettelYankNameMap
-
-" xnoremap z :call zettel#vimwiki#zettel_new_selected()<CR>
-xmap z <Plug>ZettelNewSelectedMap
-
-nmap gZ <Plug>ZettelReplaceFileWithLink
-
-nnoremap <leader>vt :VimwikiSearchTags<space>
-
-nnoremap <leader>vt :VimwikiSearchTags<space>
-
-nnoremap <leader>gt :VimwikiRebuildTags!<cr>:VimwikiGenerateTagLinks<cr><c-l>
-
-nnoremap <leader>zl :ZettelSearch<cr>
-
-nnoremap <leader>zn :ZettelNew<cr><cr>:4d<cr>:w<cr>ggA
-
-nnoremap <leader>bl :VimwikiBacklinks<cr>
-
-nnoremap <leader>zn :ZettelNew<cr><cr>:4d<cr>:w<cr>ggA
 " For startify
 let g:startify_custom_header = [
             \ '                                                                ',

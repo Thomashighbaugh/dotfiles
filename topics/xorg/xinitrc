@@ -46,7 +46,7 @@ i3 | i3wm) exec i3 ;;
 gnome) exec gnome-session ;;
 kde | plasma) exec startplasma-x11 ;;
 sway) exec sway ;;
-xfce | xfce4) exec startxfce4 ;;
+xfce) exec startxfce4 ;;
 # No known session, try to run it as command
 *) exec $1 ;;
 esac
