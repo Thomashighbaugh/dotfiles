@@ -38,7 +38,7 @@ if [ -f "$HOME/.xprofile" ]; then
 fi
 
 # Here Xfce is kept as default
-session=${1:-awesome}
+#session=${1:-awesome}
 
 case $session in
 awesome) exec awesome ;;
@@ -50,3 +50,6 @@ xfce) exec startxfce4 ;;
 # No known session, try to run it as command
 *) exec $1 ;;
 esac
+
+exec /home/tlh/.display-manager
+
