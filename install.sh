@@ -18,23 +18,28 @@ echo "First let's make sure we get the basics out of the way."
 echo "Press any key to install the dependencies and set up your system:"
 read -r continue
 $continue
-function yayinit() {
-    git clone https://aur.archlinux.org/yay.git "$HOME"/yay && cd "$HOME"/yay && makepkg -si && cd .. && sudo rm -rf "$HOME"/yay
-}
 
-deps() {
+function deps() {
     clear
-    echo "Set up local directories"
-    mkdir -p "$HOME"/Pictures "$HOME"/.local/share "$HOME"/.config "$HOME"/.cache "$HOME"/.local/lib "$HOME"/Desktop "$HOME"/Documents "$HOME"/Downloads
-    sudo pacman -S --noconfirm git pacutils fakeroot perl-libwww perl-term-ui perl-json perl-data-dump perl-lwp-protocol-https perl-term-readline-gnu
 
+    echo "Set up local directories"
+    
+    mkdir -p "$HOME"/Pictures "$HOME"/.local/share "$HOME"/.config "$HOME"/.cache "$HOME"/.local/lib "$HOME"/Desktop "$HOME"/Documents "$HOME"/Downloads
+    
+    sudo pacman -S --noconfirm git pacutils fakeroot perl-libwww perl-term-ui perl-json perl-data-dump perl-lwp-protocol-https perl-term-readline-gnu
+    
+    echo "################################################################################################################################"
     echo "Install Yay"
+    echo "################################################################################################################################"
+    echo
     echo "You must run the following command in another terminal to continue, when done press any key (sorry its resistant to scripting)"
+    echo
     echo "$ git clone https://aur.archlinux.org/yay.git &&  cd yay && makepkg -si &&    sudo rm -rf yay "
+    echo "################################################################################################################################"
     echo
     echo
-    echo
-    read -rp continue
+    read -rp continue2
+    $continue2
     echo
     echo
     echo
@@ -45,7 +50,6 @@ deps() {
     yay -S --needed --sudoloop --noconfirm keychain grep ntp pacman-contrib pkgconf pkgfile pciutils sed
     return
 }
-
 ####################################################################################
 ## Application Installation Functions ##############################################
 ####################################################################################
@@ -59,6 +63,8 @@ function amd() {
     sudo mkinitcpio -P
     return
 }
+
+## android #########################################################################
 function android() {
     yay -S --noconfirm --needed --sudoloop pulse-sms android-tools
     return
@@ -95,7 +101,7 @@ function bashinit() {
 }
 ####################################################################################
 function bitwarden() {
-    yay -S --noconfirm --sudoloop bitwarden
+    yay -S --noconfirm --sudoloop bitwarden keepassxc
     return
 }
 ####################################################################################
@@ -112,6 +118,7 @@ function bspwm() {
 ####################################################################################
 function cups() {
     yay -S --noconfirm --sudoloop --batchinstall cups cups-filters cups-pdf cups-pk-helper foomatic-db foomatic-db-engine foomatic-db-gutenprint-ppds cups cups-filters cups-pdf cndrvcups-lb-bin cnijfilter2-bin cups-pk-helper
+    sudo systemctl enable --now cups
     return
 }
 ####################################################################################
@@ -141,14 +148,15 @@ function dunst() {
 ####################################################################################
 function firefox() {
     sudo pacman -S --noconfirm firefo
-    git clone https://github.com/Thomashighbaugh/firefox "$HOME"/.local/share/firefox/chrome
-    cp -rvf "$HOME"/.local/share/firefox/chrome "$HOME"/.mozilla/firefox/*.default
-    cp -rvf "$HOME"/.local/share/firefox/chrome "$HOME"/.mozilla/firefox/*.default-release
+    git clone https://github.com/Thomashighbaugh/firefox /tmp/firefox 
+    sudo chmod +x /tmp/firefox
+    sh /tmp/firefox/install.sh
     return
 }
 ####################################################################################
 function font() {
-    yay -S --noconfirm --batchinstall --needed bdf-unifont gnome-font-viewer freetype2 libfontenc libxft libotf woff2 fontconfig sdl2_ttf t1lib birdfont
+    cp -rvf "$HOME"/.local/share/firefox/chrome "$HOME"/.mozilla/firefox/*.default-release
+    yay -S --noconfirm --batchinstall --needed bdf-unifont gnome-font-viewer freetype2 libfontenc libxft libotf woff2 awesome-terminal-fonts nerd-fonts-complete  fontconfig sdl2_ttf t1lib birdfont
     sudo fc-cache -vf
     fc-cache -vf
     return
@@ -261,7 +269,7 @@ function luainit() {
 }
 ####################################################################################
 function lxd() {
-    yay -S --noconfirm --sudoloop --needed lxd lxc lxcfs
+    yay -S --noconfirm --sudoloop --needed lxd lxc lxcfs lxc-templates 
 
     sudo systemctl enable --now lxc
     sudo systemctl enable --now lxc-auto
@@ -271,9 +279,10 @@ function lxd() {
 }
 ####################################################################################
 function makepkg() {
+        yay -S --noconfirm --sudoloop --needed  makepkg-tidy-scripts-git makepkg-meta  remakepkg 
     sudo cp -rvf "$HOME"/dotfiles/topics/makepkg/makepkg.conf /etc/makepkg.conf
 
-    return
+   return
 }
 ####################################################################################
 function motd() {
@@ -612,7 +621,8 @@ menu() {
         50 "Raspberry Pi" off
         51 "tlp" off
         52 "thinkpad" off
-        53 "Exit" off
+        53 "android" off
+        54 "Exit" off
     )
 
     choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
@@ -783,7 +793,10 @@ menu() {
         52)
             thinkpad
             ;;
-        53) 
+        53)
+            android
+            ;;
+        54) 
            exit 
             ;;
         esac
