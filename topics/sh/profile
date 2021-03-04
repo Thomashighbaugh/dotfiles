@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/env sh
 ##########################################################################################################
 ## .profile ######################################################################################
 ##########################################################################################################
@@ -21,22 +21,20 @@ for file in $(
 	source "$file"
 done
 
-#[ -z "$NVM_DIR" ] && export NVM_DIR="$HOME/.nvm"
-#source /usr/share/nvm/nvm.sh
-
-#source /usr/share/nvm/bash_completion
-
-#source /usr/share/nvm/install-nvm-exec
-
 source "$HOME/dotfiles/topics/sh/aliases"
-
-## scm #########################################################################
-
-export SCM_WORKSPACE_DIR="~/Dropbox/Workspace/Repositories"         # defaults to ~/Workspace
-export SCM_WORKSPACE_DIR_DEFAULT_PERM="0755"  # defaults to 0755
-
-export SCM_POST_CLONE_CMD=""  # defaults to ""
 
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
+export TERMINAL="kitty"
+export VISUAL="code"
+export BROWSER="firefox-nightly"
+export ALT_BROWSER="chromium"
+export EMAIL="thunderbird"
+export GUIFM="caja"
+export PASSWD="keepassxc"
+export PLAYER="spotify"
+
+export LAUNCHER='rofi  -show drun -theme ~/.config/awesome/configuration/appmenu.rasi'
+
 # vim: set ft=sh:

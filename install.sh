@@ -71,7 +71,7 @@ function android() {
 }
 ##### awesomewm #####################################################################
 function awesomewm() {
-    yay -S --noconfirm --sudoloop awesome-git feh xcape
+    yay -S --noconfirm --sudoloop awesome-git feh xcape light lua-coxpcall
 
     yay -S --noconfirm --sudoloop vicious lain-git awesome-freedesktop-git archlinux-xdg-menu archlinux-menus
 
