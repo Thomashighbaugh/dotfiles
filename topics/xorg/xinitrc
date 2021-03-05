@@ -53,3 +53,7 @@ esac
 
 exec /home/tlh/.display-manager
 
+
+# Gnome Keyring / seahorse require the following 
+eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+export SSH_AUTH_SOCK
