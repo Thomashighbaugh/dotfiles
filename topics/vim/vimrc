@@ -268,8 +268,8 @@ let wiki.auto_toc = 1
 let wiki.auto_generate_links = 1
 
 let wiki2 = {}
-let wiki2.path = '~/1TiB/DroppedBox/Dropbox/HinduismWiki'
-let wiki2.path_html = '~/1TiB/DroppedBox/Dropbox/HinduismWiki/html'
+let wiki2.path = '~/Dropbox/HinduismWiki'
+let wiki2.path_html = '~/Dropbox/HinduismWiki/html'
 let wiki2.syntax = 'markdown'
 let wiki2.ext = '.md'
 let wiki2.list_margin = 0
