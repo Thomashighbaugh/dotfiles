@@ -42,41 +42,15 @@ Plug 'reedes/vim-pencil'
 Plug  'chrisbra/Replay' 
 
 
-    " packadd! pinnacle
-    " packadd! replay
-    " packadd! scalpel
-    " packadd! tcomment_vim
-    " packadd! terminus
-    " packadd! typescript-vim
-    " packadd! ultisnips
-    " packadd! vcs-jump
-    " packadd! vim-ansible-yaml
-    " packadd! vim-clipper
-    " packadd! vim-dirvish
-    " packadd! vim-dispatch
-    " packadd! vim-docvim
-    " packadd! vim-easydir
-    " packadd! vim-eunuch
-    " packadd! vim-fugitive
-    " packadd! vim-git
-    " packadd! vim-javascript
-    " packadd! vim-json
-    " packadd! vim-jsx
-    " packadd! vim-lion
-    " packadd! vim-markdown
-    " packadd! vim-operator-user
-    " packadd! vim-projectionist
-    " packadd! vim-reason-plus
-    " packadd! vim-repeat
-    " packadd! vim-signature
-    " packadd! vim-slime
-    " packadd! vim-soy
-    " packadd! vim-speeddating
-    " packadd! vim-surround
-    " packadd! vim-textobj-comment
-    " packadd! vim-textobj-rubyblock
-    " packadd! vim-textobj-user
-    " packadd! vim-zsh
+
+" React, JavaScript 
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+Plug 'jparise/vim-graphql'
+
+  Plug 'mxw/vim-jsx'
+  Plug 'pangloss/vim-javascript'
+  Plug 'leafgarland/typescript-vim'
+  Plug 'peitalin/vim-jsx-typescript'
 
 call plug#end()
 

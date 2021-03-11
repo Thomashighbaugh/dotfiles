@@ -71,7 +71,7 @@ function android() {
 }
 ##### awesomewm #####################################################################
 function awesomewm() {
-    yay -S --noconfirm --sudoloop awesome-git feh xcape light lua-coxpcall
+    yay -S --noconfirm --sudoloop awesome-git feh xcape light lua-coxpcall maim
 
     yay -S --noconfirm --sudoloop vicious lain-git awesome-freedesktop-git archlinux-xdg-menu archlinux-menus
 
@@ -541,7 +541,7 @@ function zshenv() {
     ## Install Necessary Packages
     yay -S --noconfirm --sudoloop --needed zsh alias-tips-git zsh-auto-notify zsh-doc lsd lshw
     yay -S --noconfirm --sudoloop --needed zsh-syntax-highlighting zsh-lovers zsh-autosuggestions
-    yay -S --noconfirm --sudoloop --needed alias-tips-git zsh-system-clipboard-git
+    yay -S --noconfirm --sudoloop --needed alias-tips-git zsh-system-clipboard-git zsh-doc powerline zsh-history-substring-search zshdb chruby find-the-command           
     yay -S --noconfirm --sudoloop zsh-completions keybase-zsh-completion-git python-click-completion
     ## Symlink Files
     ln -svf "$HOME"/dotfiles/topics/zsh/zprofile "$HOME"/.zprofile
