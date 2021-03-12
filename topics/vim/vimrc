@@ -53,6 +53,7 @@ set hidden
 "------------------------------------------------------------
 "Options
 
+set noswapfile
 " Allows leaving buffer without save
 set hidden
 
@@ -179,10 +180,8 @@ set linebreak
 " 'fix' backspace
 set backspace=indent,eol,start
 
-" Autoload Changes to ~/.vimrc as they are saved
-" Note:I know this is pretty useful, you are welcome
 
-autocmd! bufwritepost .vimrc source %
+
 
 "+------------------------------------------------------------
 "Mappings
@@ -219,8 +218,6 @@ nnoremap <leader>sc :call FixLastSpellingError()<cr>
 
 "------------------------------------------------------------------------------
 " Autoload Changes to ~/.vimrc as they are saved
-"
-" Note:I know this is pretty useful, you are welcome
 "------------------------------------------------------------------------------
 autocmd! bufwritepost $MYVIMRC source $MYVIMRC %
 

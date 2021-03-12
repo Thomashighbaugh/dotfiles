@@ -45,12 +45,28 @@ Plug  'chrisbra/Replay'
 
 " React, JavaScript 
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+
 Plug 'jparise/vim-graphql'
 
-  Plug 'mxw/vim-jsx'
-  Plug 'pangloss/vim-javascript'
-  Plug 'leafgarland/typescript-vim'
-  Plug 'peitalin/vim-jsx-typescript'
+Plug 'sheerun/vim-polyglot'
+
+Plug 'othree/html5.vim'
+
+Plug 'cakebaker/scss-syntax.vim'
+
+Plug 'mxw/vim-jsx'
+
+Plug 'pangloss/vim-javascript'
+
+Plug 'leafgarland/typescript-vim'
+
+Plug 'peitalin/vim-jsx-typescript'
+
+Plug 'scrooloose/nerdcommenter'
+
+Plug 'jiangmiao/auto-pairs'
+
+Plug 'farmergreg/vim-lastplace'
 
 call plug#end()
 
