@@ -27,3 +27,5 @@ done
 
 
  source /usr/share/doc/find-the-command/ftc.zsh
+ eval "$(rbenv init -)"
+

@@ -36,5 +36,6 @@ export PASSWD="keepassxc"
 export PLAYER="spotify"
 
 export LAUNCHER='rofi  -show drun -theme ~/.config/awesome/configuration/appmenu.rasi'
+export MOZ_X11_EG=1
 
 # vim: set ft=sh:
