@@ -4,16 +4,18 @@
 # @date 2/18/2021
 
 ## Awesome Window Manager
-cd "$HOME"/.config/awesome && git add . && read -rp "Enter The AwesomeWM Commit Message : " input && git commit -m "$input" && git push --force
-
+cd "$HOME"/.config/awesome && sh ~/.local/share/bin/gita
 ## QTile
-cd "$HOME"/.config/qtile && git add . && read -rp "Enter The AwesomeWM Commit Message : " input && git commit -m "$input" && git push --force
+cd "$HOME"/.config/qtile && sh ~/.local/share/bin/gita
 
 ## Binaries Directory
-cd "$HOME"/.local/share/bin && git add . && read -rp "Enter The Binaries Directory Commit Message : " input && git commit -m "$input" && git push --force
+cd "$HOME"/.local/share/bin && sh ~/.local/share/bin/gita
 
 ## Vimwiki
-cd "$HOME"/.vimwiki-tech && git add . && read -rp "Enter The vimwiki Commit Message : " input && git commit -m "$input" && git push --force
+cd "$HOME"/.vimwiki-tech && sh ~/.local/share/bin/gita
+
+## Vim Configuration
+cd "$HOME"/.vim && sh ~/.local/share/bin/gita
 
 ## Dotfiles
-cd "$HOME"/dotfiles && git add . && read -rp "Enter The Dotfiles Commit Message : " input && git commit -m "$input" && git push --force
+cd "$HOME"/dotfiles && sh ~/.local/share/bin/gita
