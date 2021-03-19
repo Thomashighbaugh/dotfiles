@@ -17,6 +17,10 @@ alias yuprm="yay -Rns "
 alias pupRM="sudo pacman -Rcns "
 alias yupRM="yay -Rcns "
 
+## Uninstall Without Uninstalling Dependencies
+alias yudel="yay -Rdd "
+alias pudel="sudo pacman -Rdd "
+
 ## Search
 alias yupss="yay -Ss "
 alias pupss="sudo pacman -Ss "
@@ -24,3 +28,5 @@ alias pupss="sudo pacman -Ss "
 ## No Dependencies 
 alias yupxdeps="yay -Sdd "
 alias pupxdeps="sudo pacman -Sdd "
+
+alias cower="yay"

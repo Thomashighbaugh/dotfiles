@@ -566,11 +566,14 @@ menu() {
             45)
                 print t "Vim Modal Text Editor"
                 yay -S --noconfirm --sudoloop --needed vim vi sudo vim-runtime vim-spell-en
-
+                print s "Personal Vim Configuration"
                 git clone https://github.com/Thomashighbaugh/vim ~/.vim
+                print s "Linking Personal Configuration with System"
                 ln -s ~/.vim/vimrc ~/.vimrc
+                print s "Downloading Plugin Manager"
                 cd ~/.vim && curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
                     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+                print s "Installing Plugins"
                 vim +PlugUpdate +qa
 
                 # Personal Vimwiki

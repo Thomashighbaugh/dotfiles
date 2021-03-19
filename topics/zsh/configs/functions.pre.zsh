@@ -12,24 +12,24 @@ function extract {
     echo "Usage: extract <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
   else
     if [ -f $1 ]; then
-      # NAME=${1%.*}
-      # mkdir $NAME && cd $NAME
+       NAME=${1%.*}
+      mkdir $NAME 
       case $1 in
-      *.tar.bz2) tar xvjf ../$1 ;;
-      *.tar.gz) tar xvzf ../$1 ;;
-      *.tar.xz) tar xvJf ../$1 ;;
-      *.lzma) unlzma ../$1 ;;
-      *.bz2) bunzip2 ../$1 ;;
-      *.rar) unrar x -ad ../$1 ;;
-      *.gz) gunzip ../$1 ;;
-      *.tar) tar xvf ../$1 ;;
-      *.tbz2) tar xvjf ../$1 ;;
-      *.tgz) tar xvzf ../$1 ;;
-      *.zip) unzip ../$1 ;;
-      *.Z) uncompress ../$1 ;;
-      *.7z) 7z x ../$1 ;;
-      *.xz) unxz ../$1 ;;
-      *.exe) cabextract ../$1 ;;
+      *.tar.bz2) tar xvjf "$PWD"/$1 $NAME;;
+      *.tar.gz) tar xvzf "$PWD"/$1 $NAME;;
+      *.tar.xz) tar xvJf "$PWD"/$1 $NAME;;
+      *.lzma) unlzma  "$PWD"/$1 $NAME;;
+      *.bz2) bunzip2  "$PWD"/$1 $NAME;;
+      *.rar) unrar x -ad  "$PWD"/$1 $NAME;;
+      *.gz) gunzip  "$PWD"/$1 $NAME;;
+      *.tar) tar xvf  "$PWD"/$1 $NAME;;
+      *.tbz2) tar xvjf  "$PWD"/$1 $NAME;;
+      *.tgz) tar xvzf  "$PWD"/$1 $NAME;;
+      *.zip) unzip  "$PWD"/$1 $NAME;;
+      *.Z) uncompress  "$PWD"/$1 $NAME;;
+      *.7z) 7z x  "$PWD"/$1 $NAME;;
+      *.xz) unxz  "$PWD"/$1 $NAME;;
+      *.exe) cabextract  "$PWD"/$1 $NAME;;
       *) echo "extract: '$1' - unknown archive method" ;;
       esac
     else

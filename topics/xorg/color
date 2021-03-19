@@ -1,29 +1,29 @@
 ! Author: Thomas Leon Highbaugh
 ! File: colors 
-! Project: X11 Settings
-! Scheme: Vice
+! Project: X11 Color Settings
+! Scheme: Vice (Base16)
 
 *foreground:    #8b9cbe
 *background:    #17191E
 *cursorColor:   #f4f4f7
 
-*color0:       #17191E
-*color1:       #ff29a8
-*color2:       #85ffe0
-*color3:       #f0ffaa
-*color4:       #0badff
-*color5:       #8265ff
-*color6:       #00eaff
-*color7:       #8b9cbe
+*color0:        #17191E
+*color1:        #ff29a8
+*color2:        #85ffe0
+*color3:        #f0ffaa
+*color4:        #0badff
+*color5:        #8265ff
+*color6:        #00eaff
+*color7:        #8b9cbe
 
-*color8:       #555e70
-*color9:       #ff3d81
-*color10:      #00ffcc
-*color11:      #f9f871
-*color12:      #00caff
-*color13:      #6C71C4
-*color14:      #00fae9
-*color15:      #f4f4f7
+*color8:        #555e70
+*color9:        #ff3d81
+*color10:       #00ffcc
+*color11:       #f9f871
+*color12:       #00caff
+*color13:       #6C71C4
+*color14:       #00fae9
+*color15:       #f4f4f7
 
 ! Note: colors beyond 15 might not be loaded (e.g., xterm, urxvt),
 ! use 'shell' template to set these if necessary
