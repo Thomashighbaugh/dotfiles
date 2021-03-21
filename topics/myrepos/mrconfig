@@ -1,0 +1,24 @@
+
+[dotfiles]
+checkout = git clone 'https://github.com/Thomashighbaugh/dotfiles' 'dotfiles'
+
+[.local/share/bin]
+checkout = git clone 'https://github.com/Thomashighbaugh/bin' 'bin'
+
+[.config/awesome]
+checkout = git clone 'https://github.com/Thomashighbaugh/awesomewm' 'awesome'
+
+[.config/qtile]
+checkout = git clone 'https://github.com/Thomashighbaugh/qtile' 'qtile'
+
+[.vim]
+checkout = git clone 'https://github.com/Thomashighbaugh/vim.git' '.vim'
+
+[.vimwiki]
+checkout = git clone 'https://github.com/Thomashighbaugh/vimwiki' '.vimwiki-tech'
+
+[Dropbox/Workspace/electric-tantra-linux-iso]
+checkout = git clone 'https://github.com/Thomashighbaugh/electric-tantra-linux-iso' 'electric-tantra-linux-iso'
+
+[Dropbox/Workspace/project-dashboard]
+checkout = git clone 'https://github.com/Thomashighbaugh/project-dashboard' 'project-dashboard'
