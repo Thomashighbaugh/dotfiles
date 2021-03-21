@@ -1,6 +1,9 @@
 # Arch-based (and Kaos Linux) Package Management
 ##########################################################################
 
+alias pacman='pacman --color=auto '
+alias yay='yay --color=auto '
+
 ## Install Packages
 alias yu="yay -S --needed "
 alias pu="sudo pacman -S "

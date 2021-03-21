@@ -22,3 +22,12 @@ checkout = git clone 'https://github.com/Thomashighbaugh/electric-tantra-linux-i
 
 [Dropbox/Workspace/project-dashboard]
 checkout = git clone 'https://github.com/Thomashighbaugh/project-dashboard' 'project-dashboard'
+
+[Dropbox/Workspace/resume]
+checkout = git clone 'https://github.com/Thomashighbaugh/resume' 'resume'
+
+[Dropbox/Workspace/ThomasLeonHighbaugh-Personal-Site]
+checkout = git clone 'https://github.com/Thomashighbaugh/ThomasLeonHighbaugh-Personal-Site' 'ThomasLeonHighbaugh-Personal-Site'
+
+[Dropbox/Workspace/Dhumavati-Theme]
+checkout = git clone 'https://github.com/Thomashighbaugh/Dhumavati-Theme' 'Dhumavati-Theme'
