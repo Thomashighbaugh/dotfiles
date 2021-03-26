@@ -1,36 +1,41 @@
 * {
     // black
-    color0:       #2d2f3d;
-    color8:       #3C3F4C;
+    color0:       #17191e;
+    color8:       #555e70;
     // red
-    color1:       #f850ac;
-    color9:       #ff9cff;
+    color1:       #ff29a8;
+    color9:       #ff3d81;
     // green
-    color2:       #76dcdd;
-    color10:      #00b6b2;
+    color2:       #85ffe0;
+    color10:      #00ffcc;
     // yellow
-    color3:       #f9f871;
-    color11:      #f0ee6e;
+    color3:       #f0ffaa;
+    color11:      #f9f871;
     // blue
-    color4:       #00caff;
-    color12:      #61aeee;
+    color4:       #0badff;
+    color12:      #00caff;
     // magenta
-    color5:        #6c71c4;
-    color13:       #796af5;
+    color5:        #8265ff;
+    color13:       #6c71c4;
     // cyan
     color6:      #00eaff;
-    color14:     #6FFFFF;
+    color14:     #00fae9;
     // white
-    color7:       #e9e9ff;
-    color15:      #edeeff;
+    color7:       #8b9cbe;
+    color15:      #f4f4f7;
     //alt black
-    color16: #24262D;
+    color16: #22262d;
+    color17: #3c3f4c;
+    color18: #0b0c0f;
+    color19: #2f303d;
+    color20: #383a47;
+    color21: #b2bfd9;
     red:                         @color1;
-    blue:                        @color6;
-    lightfg:                     #e5e5e9;
-    lightbg:                     @color16;
-    foreground:                  #edeeff;
-    background:                  #17161B;
+    blue:                        @color4;
+    lightfg:                     @color15;
+    lightbg:                     @color17;
+    foreground:                  @color7;
+    background:                  @color0;
     background-color:            @color0;
     accent:                      @blue;
     accent1:                     @red;
@@ -67,7 +72,6 @@ textbox {
 }
 listview {
     border-color:     @foreground;
-    border-radius:    25px;
 }
 element normal.normal {
     background-color: @normal-background;

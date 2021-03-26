@@ -217,7 +217,7 @@ menu()
                     print t "BASH shell"
                     print t "#################################################"
                     ## Install Packages
-                    sudo pacman -S bash shellharden bashlint
+                    PACIN bash shellharden bashlint argbash bash-bats-support bash-bats beautysh bashlint 
                     ## Link Files
                     ln -svf "$HOME"/dotfiles/topics/bash/bashenv "$HOME"/.bashenv
                     ln -svf "$HOME"/dotfiles/topics/bash/bashrc "$HOME"/.bashrc
@@ -243,7 +243,7 @@ menu()
                     print t "BSP Window Manager"
                     print t "#################################################"
                     
-                    yay --noconfirm --sudoloop --needed bspwm-rounded-corners-git bsp-layout sxhkd-git bar-aint-recursive xtitle-git sutils-git
+                    YAYIN bspwm-rounded-corners-git bsp-layout sxhkd-git bar-aint-recursive xtitle-git sutils-git
                     ln -svf "$HOME"/dotfiles/topics/bspwm "$HOME"/.config/bspwm
                     print t  "BSP Window Manager Provisioned and Configured"
                 ;;
@@ -283,20 +283,25 @@ menu()
                     print t "#################################################"
                     print t "Docker Container Environment"
                     print t "#################################################"
-                    
+                    print s "Installing the Docker-related programs"
                     YAYIN docker docker-compose docker-machine python-docker containerd
                     sudo usermod -aG docker "$USER"
+                    print s "Enable the Daemon"
                     SYSCTL docker.service
                     SYSCTL docker.socket
+                    print s "Copy the Daemon configuration file for Experimental Mode Features."
+                    sudo cp -rvf "$HOME"/dotfiles/topics/docker/daemon.json /etc/docker
                     print t  "Docker Container Environment"
                 ;;
                 12)
                     print t "#################################################"
                     print t "Dunst Notification System"
                     print t "#################################################"
+                    print s "Installing Dunst"
                     YAYIN dunst
+                    print s "Linking Dunst Configuration Files"
                     ln -svf "$HOME"/dotfiles/topics/dunst/dunstrc "$HOME"/.config/dunst/dunstrc
-                    print t  "Dunst Notification System"
+                    print t  "Dunst Notification System Provisioned and Configured"
                 ;;
                 13)
                     print t "#################################################"
