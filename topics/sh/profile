@@ -27,6 +27,7 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 export TERMINAL="kitty"
+export TERM=xterm-256color
 export VISUAL="vim"
 export BROWSER="firefox-nightly"
 export ALT_BROWSER="chromium"
