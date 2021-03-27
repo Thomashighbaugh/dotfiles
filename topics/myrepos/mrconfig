@@ -34,3 +34,6 @@ checkout = git clone 'https://github.com/Thomashighbaugh/Dhumavati-Theme' 'Dhuma
 
 [.vimwiki-tech]
 checkout = git clone 'https://github.com/Thomashighbaugh/vimwiki' '.vimwiki-tech'
+
+[Dhumavati-Theme]
+checkout = git clone 'https://github.com/Thomashighbaugh/Dhumavati-Theme' 'Dhumavati-Theme'
