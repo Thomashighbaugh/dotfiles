@@ -12,7 +12,6 @@
     follow = keyboard
     geometry = "0x150-15-15" # this should be in sync with dwm gaps
     indicate_hidden = yes
-    transparency = 20
     notification_height = 0
     separator_height = 2
     padding = 0
@@ -29,7 +28,7 @@
     sort = yes
     idle_threshold = 120
 
-    font = Monospace 14
+    font = Encode Sans SemiExpanded Black 14
 
     line_height = 0
     markup = full
@@ -43,7 +42,7 @@
     #   %n  progress value if set without any extra characters
     #   %%  Literal %
     # Markup is allowed
-    format = "<b>%s</b>\n%b"
+    format = "<b>%a</b>\n<b>%s</b>\n%b"
 
     alignment = left
     show_age_threshold = 60
@@ -54,7 +53,7 @@
     hide_duplicate_count = true
     show_indicators = yes
     icon_position = left
-    icon_path = /usr/share/icons/gruvbox-dark-icons-gtk/16x16/status:/usr/share/icons/gruvbox-dark-icons-gtk/16x16/devices:/usr/share/icons/gruvbox-dark-icons-gtk/symbolic/status:/usr/share/icons/gruvbox-dark-icons-gtk/symbolic/devices:/usr/share/icons/gruvbox-dark-icons-gtk/16x16/apps:/usr/share/icons/gruvbox-dark-icons-gtk/16x16/panel
+    icon_path = /usr/share/icons/chhinamasta/16x16/status:/usr/share/icons/chhinamasta/16x16/devices:/usr/share/icons/chhinamasta/symbolic/status:/usr/share/icons/chhinamasta/symbolic/devices:/usr/share/icons/chhinamasta/16x16/apps:/usr/share/icons/chhinamasta/16x16/panel
     max_icon_size = 64
     sticky_history = no
     history_length = 20
@@ -91,5 +90,5 @@ separator_color = "#8b9cbe"
 
 [base16_critical]
     msg_urgency = critical
-    background = "#ff9cff"
+    background = "#ff29a8"
     foreground = "#b2bfd9"

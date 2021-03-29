@@ -2,14 +2,14 @@
 ## .bashenv  #################################################################
 ##############################################################################
 
-## The files sourced here are the same as the ones sourced by sh and zsh, 
-## they are included here primarily to insure consistency and quality of 
-## life in times so desperate as I need to use BASH as a login shell. 
+## The files sourced here are the same as the ones sourced by sh and zsh,
+## they are included here primarily to insure consistency and quality of
+## life in times so desperate as I need to use BASH as a login shell.
 
 ## Profile ###################################################################
-source $HOME/.profile
+source "$HOME"/.profile
 
 ## Aliases ###################################################################
-source $HOME/.aliases
+source "$HOME"/.aliases
 
 

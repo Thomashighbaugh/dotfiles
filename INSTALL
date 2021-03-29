@@ -69,6 +69,54 @@ YAYIN() {
 }
 
 #########################################################
+## Main Menu
+#########################################################
+mainmenu(){
+    while true;do
+        choice=$(dialog --backtitle "Dotfiles Installer - Thomas Leon Highbaugh" \
+            --title     "Main Menu" \
+            --clear \
+            --nocancel \
+            --menu  "Choose one" 32 76 16 \
+            "Core Dependencies"     "- Start Here" \
+            "Hardware" "- for Specific Systems" \
+            "TUI" "- Shell Interfaces" \
+            "GUI"    "- Graphical Interfaces" \
+            "Apps" "- Additional Applications" \
+            "Dev" "- Useful for Development Purposes" \
+        "Quit"      "- Exit to desktop" 3>&1 1>&2 2>&3)
+        
+        case "$choice" in
+            "Core Dependencies")
+                deps                   #calls users function
+            ;;
+            "Hardware")
+                hardware              #calls passwords function
+            ;;
+            "TUI")
+                TUI                 #calls groups function
+            ;;
+            "GUI")
+                GUI
+            ;;
+            "Apps")
+                APPs
+            ;;
+            "Dev")
+                Dev
+            ;;
+            "Quit")
+                exit
+            ;;
+            *)
+                echo "Something else.  Where Am I?"
+            ;;
+        esac
+    done
+}
+
+
+#########################################################
 ## Core Dependencies
 #########################################################
 function deps()
@@ -131,7 +179,7 @@ function deps()
 
 function hardware(){
     while true; do
-        cmd=(dialog --backtitle "Dotfiles Installer - Thomas Leon Highbaugh"  --title     "Hardware Specific" --clear --separate-output --checklist "Select Options:" 32 76 16 )
+        cmd=(dialog --backtitle "Dotfiles Installer - Thomas Leon Highbaugh"  --title     "Hardware Specific Provisioning" --clear --separate-output --checklist "Select Options:" 32 76 16 )
         options=(
             "AMD Processors"     "- for Ryzen Based Systems" off
             "Android" "Interacting with an Android Phone" off
@@ -139,7 +187,7 @@ function hardware(){
             "Nvidia" "- for Nvidia GPUs" off
             "RPi4"    "- Raspberry Pi 4 8GB" off
             "Disks" "- Filesystem Management" off
-            "Bluetooth" "- software for using bluetooth on Linux"
+            "Bluetooth" "- software for using bluetooth on Linux" off
         "Quit"      "- Return to Main Menu" off)
         choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
         for choice in $choices; do
@@ -221,7 +269,7 @@ function hardware(){
                     print t  "Bluetooth Interfacing Provisioned"
                 ;;
                 "Quit")
-                    return
+                    mainmenu
                 ;;
                 *)
                     echo "Something else.  Where Am I?"
@@ -236,14 +284,14 @@ function hardware(){
 
 function TUI(){
     while true; do
-        cmd=(dialog --backtitle "Dotfiles Installer - Thomas Leon Highbaugh"  --title     "Hardware Specific" --clear --separate-output --checklist "Select Options:" 32 76 16 )
+        cmd=(dialog --backtitle "Dotfiles Installer - Thomas Leon Highbaugh"  --title     "Console Applications" --clear --separate-output --checklist "Select Options:" 32 76 16 )
         options=(
-            "BASH"     "- for Ryzen Based Systems" off
-            "Docker" "Interacting with an Android Phone" off
-            "GPG" "- for E495 laptops" off
-            "Git" "- for Nvidia GPUs" off
+            "BASH"     "- System's Default Shell" off
+            "Docker" "- Containerization Platform" off
+            "GPG" "- Key Management" off
+            "Git" "- Version Control" off
             "Grub"    "- Raspberry Pi 4 8GB" off
-            "Hosts" "- Filesystem Management" off
+            "Hosts" "- IP Address Translator" off
             "HTOP" "- System Monitor for Console" off
             "LXD" "- Open Sourced Container Service" off
             "Makepkg" "- Arch Linux Build System" off
@@ -402,9 +450,11 @@ function TUI(){
                     print t "#################################################"
                     print t "Shell Environment"
                     print t "#################################################"
+                    print s "Installing personal scripts"
                     git clone https://github.com/Thomashighbaugh/bin "$HOME"/.local/share/bin
-                    ln -svf "$HOME"/dotfiles/home/sh/profile "$HOME"/.profile
-                    ln -svf "$HOME"/dotfiles/home/sh/aliases "$HOME"/.aliases
+                    print s "Configurations for All Shells"
+                    ln -vf "$HOME"/dotfiles/home/sh/profile "$HOME"/.profile
+                    ln -vf "$HOME"/dotfiles/home/sh/aliases "$HOME"/.aliases
                     YAYIN  autojump
                     print t  " Provisioned and Configured"
                 ;;
@@ -472,6 +522,9 @@ function TUI(){
                     ln -svf "$HOME"/dotfiles/home/zsh/zlogout "$HOME"/.zlogout
                     print t  "ZSH shell Provisioned and Configured"
                 ;;
+                "Quit")
+                    mainmenu
+                ;;
                 *)
                     echo "Something else.  Where Am I?"
             esac
@@ -483,7 +536,7 @@ function TUI(){
 #########################################################
 function GUI(){
     while true; do
-        cmd=(dialog --backtitle "Dotfiles Installer - Thomas Leon Highbaugh"  --title     "Hardware Specific" --clear --separate-output --checklist "Select Options:" 32 76 16 )
+        cmd=(dialog --backtitle "Dotfiles Installer - Thomas Leon Highbaugh"  --title     "GUI Environments" --clear --separate-output --checklist "Select Options:" 32 76 16 )
         options=(
             "Awesome"     "- primary window manager" off
             "BSPWM" " - binary tree window splitting window manager" off
@@ -509,7 +562,7 @@ function GUI(){
                     
                     YAYIN zathura zathura-pdf-mupdf zathura-ps youtube-dl
                     
-                    ln -svf "$HOME"/dotfiles/topics/zathura/zathurarc "$HOME"/.config/zathura
+                    ln -svf "$HOME"/dotfiles/home/zathura/zathurarc "$HOME"/.config/zathura
                     
                     if [[ -r "$HOME/.config/awesome" ]]; then
                         rm -rvf "$HOME"/.config/awesome
@@ -525,7 +578,7 @@ function GUI(){
                     print t "#################################################"
                     
                     YAYIN bspwm-rounded-corners-git bsp-layout sxhkd-git bar-aint-recursive xtitle-git sutils-git
-                    ln -svf "$HOME"/dotfiles/topics/bspwm "$HOME"/.config/bspwm
+                    ln -svf "$HOME"/dotfiles/home/bspwm "$HOME"/.config/bspwm
                     print t  "BSP Window Manager Provisioned and Configured"
                 ;;
                 "GTK")
@@ -550,7 +603,7 @@ function GUI(){
                     print t "Picom Desktop Compostitor"
                     print t "#################################################"
                     YAYIN  picom-ibhagwan-git
-                    ln -svf "$HOME"/dotfiles/topics/picom/picom.conf "$HOME"/.config
+                    ln -svf "$HOME"/dotfiles/home/picom/picom.conf "$HOME"/.config
                     print t  "Picom Desktop Compostitor Provisioned and Configured"
                 ;;
                 "Qtile")
@@ -569,12 +622,12 @@ function GUI(){
                     YAYIN rofi-git
                     sudo pip install python-rofi
                     mkdir -p "$HOME"/.config/rofi
-                    ln -svf "$HOME"/dotfiles/topics/rofi/config "$HOME"/.config/rofi
-                    ln -svf "$HOME"/dotfiles/topics/rofi/themes "$HOME"/.config/rofi
-                    sudo ln -svf "$HOME"/dotfiles/topics/rofi/themes /usr/share/rofi
-                    ln -svf "$HOME"/dotfiles/topics/rofi/config.rasi "$HOME"/.config/rofi/config.rasi
-                    ln -svf "$HOME"/dotfiles/topics/rofi/three.rasi "$HOME"/.config/rofi/three.rasi
-                    sudo cp -rvf "$HOME"/dotfiles/topics/rofi/rofi-todo /usr/bin
+                    ln -svf "$HOME"/dotfiles/home/rofi/config "$HOME"/.config/rofi
+                    ln -svf "$HOME"/dotfiles/home/rofi/themes "$HOME"/.config/rofi
+                    sudo ln -svf "$HOME"/dotfiles/home/rofi/themes /usr/share/rofi
+                    ln -svf "$HOME"/dotfiles/home/rofi/config.rasi "$HOME"/.config/rofi/config.rasi
+                    ln -svf "$HOME"/dotfiles/home/rofi/three.rasi "$HOME"/.config/rofi/three.rasi
+                    sudo cp -rvf "$HOME"/dotfiles/home/rofi/rofi-todo /usr/bin
                     print t  " Provisioned and Configured"
                 ;;
                 "Sway")
@@ -583,10 +636,10 @@ function GUI(){
                     print t "#################################################"
                     YAYIN sway-borders-git swayidle grimshot wofi swaybg waybar wf-recorder autotiling nwg-launcher i3title swayimg swaylock wofer mako swaymgr swaytools i3keys
                     mkdir -p "$HOME"/.config/sway
-                    ln -svf "$HOME"/dotfiles/topics/sway/config "$HOME"/.config/sway/config
-                    ln -svf "$HOME"/dotfiles/topics/sway/lockman.sh "$HOME"/.config/sway/lockman.sh
-                    ln -svf "$HOME"/dotfiles/topics/sway/window.sh "$HOME"/.config/sway/window.sh
-                    ln -svf "$HOME"/dotfiles/topics/sway/nwg-launchers "$HOME"/.config/nwg-launchers
+                    ln -svf "$HOME"/dotfiles/home/sway/config "$HOME"/.config/sway/config
+                    ln -svf "$HOME"/dotfiles/home/sway/lockman.sh "$HOME"/.config/sway/lockman.sh
+                    ln -svf "$HOME"/dotfiles/home/sway/window.sh "$HOME"/.config/sway/window.sh
+                    ln -svf "$HOME"/dotfiles/home/sway/nwg-launchers "$HOME"/.config/nwg-launchers
                     print t  " Provisioned and Configured"
                 ;;
                 "LightDM")
@@ -618,7 +671,7 @@ function GUI(){
 
 function APPs(){
     while true; do
-        cmd=(dialog --backtitle "Dotfiles Installer - Thomas Leon Highbaugh"  --title     "Hardware Specific" --clear --separate-output --checklist "Select Options:" 32 76 16 )
+        cmd=(dialog --backtitle "Dotfiles Installer - Thomas Leon Highbaugh"  --title "Applications"  --checklist "Select Options:" 32 76 16 )
         options=(
             "Bitwarden"     "- password management" off
             "Caja" "- File Manager" off
@@ -629,12 +682,13 @@ function APPs(){
             "GIMP" "- image editing suite" off
             "Inkscape" "- SVG editing" off
             "Kitty" "- GPU accelerated terminal emulator" off
-            "NetworkManager" "- means of connecting to wifi networks"off
+            "NetworkManager" "- means of connecting to wifi networks" off
             "PulseAudio" "- audio driver and controls" off
-            "Virt-Manager" "- open source virtualization source" off
-            "Virtualbox" "- virtualization solution allowing easy management" off
+            "VirtManager" "- open source virtualization source" off
+            "Virtualbox" "- virtualization solution" off
             "vmware" "- powerful virtualization solution" off
-        "Quit"      "- Return to Main Menu" off)
+            "Quit" "- Return to Main Menu" off
+        )
         choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
         for choice in $choices; do
             case "$choice" in
@@ -643,17 +697,13 @@ function APPs(){
                     print t "Bitwarden Password Manager"
                     print t "#################################################"
                     YAYIN  bitwarden keepassxc
-                    print t  "Bitwarden Password Manager Provisioned"
-                    
                 ;;
                 "Caja")
                     print t "#################################################"
                     print t "Caja File Manager"
                     print t "#################################################"
-                    
                     YAYIN caja engrampa caja-extensions-common python-caja caja-xattr-tags caja-share caja-sendto caja-open-terminal caja-image-converter
                     YAYIN caja-dropbox gtkhash-caja caja-rename
-                    print t  "Caja File Manager"
                 ;;
                 "Cups")
                     print t "#################################################"
@@ -662,7 +712,6 @@ function APPs(){
                     
                     YAYIN   cups cups-filters cups-pdf cups-pk-helper foomatic-db foomatic-db-engine foomatic-db-gutenprint-ppds cups cups-filters cups-pdf cndrvcups-lb-bin cnijfilter2-bin cups-pk-helper
                     SYSCTL cups
-                    print t  "CUPs Printer Interfacing Provisioned and Configured"
                 ;;
                 "Dunst")
                     print t "#################################################"
@@ -671,44 +720,37 @@ function APPs(){
                     print s "Installing Dunst"
                     YAYIN dunst
                     print s "Linking Dunst Configuration Files"
-                    ln -svf "$HOME"/dotfiles/topics/dunst/dunstrc "$HOME"/.config/dunst/dunstrc
-                print t  "Dunst Notification System Provisioned and Configured"             ;;
+                    ln -svf "$HOME"/dotfiles/home/dunst/dunstrc "$HOME"/.config/dunst/dunstrc
+                ;;
                 "Firefox")
                     print t "#################################################"
                     print t "Firefox Internet Browser"
                     print t "#################################################"
                     
-                    PACIN firefox firefox-nightly
+                    YAYIN firefox firefox-nightly
                     git clone https://github.com/Thomashighbaugh/firefox /tmp/firefox
                     sudo chmod +x /tmp/firefox
                     sh /tmp/firefox/install.sh
-                    print t  "Firefox Internet Browser"
                 ;;
                 "Fonts")
                     print t "#################################################"
                     print t "Fonts"
                     print t "#################################################"
-                    
                     YAYIN bdf-unifont gnome-font-viewer freetype2 libfontenc libxft libotf woff2 awesome-terminal-fonts nerd-fonts-complete fontconfig sdl2_ttf t1lib birdfont
                     sudo fc-cache -vf
                     fc-cache -vf
-                    print t  "Fonts Provisioned"
                 ;;
                 "GIMP")
                     print t "#################################################"
                     print t "GIMP Image Editor"
                     print t "#################################################"
-                    
                     YAYIN  gimp gimp-plugin-gmic xsane gimp-plugin-registry gimp-extras gimp-paint-studio
-                    print t  "GIMP Image Editor Provisioned"
                 ;;
                 "Inkscape")
                     print t "#################################################"
                     print t "Inkscape SVG Editor"
                     print t "#################################################"
-                    
                     YAYIN inkscape
-                    print t  " Provisioned and Configured"
                     
                 ;;
                 "Kitty")
@@ -721,10 +763,9 @@ function APPs(){
                         rm -rvf "$HOME"/.config/kitty
                     fi
                     mkdir -p "$HOME"/.config/kitty
-                    sudo ln -sf "$HOME"/dotfiles/topics/kitty/kitty.conf "$HOME"/.config/kitty/kitty.conf
-                    sudo ln -sf "$HOME"/dotfiles/topics/kitty/theme.conf "$HOME"/.config/kitty/theme.conf
-                    sudo ln -sf "$HOME"/dotfiles/topics/motd/motd /etc/motd
-                    print t  " Provisioned and Configured"
+                    sudo ln -sf "$HOME"/dotfiles/home/kitty/kitty.conf "$HOME"/.config/kitty/kitty.conf
+                    sudo ln -sf "$HOME"/dotfiles/home/kitty/theme.conf "$HOME"/.config/kitty/theme.conf
+                    sudo ln -sf "$HOME"/dotfiles/home/motd/motd /etc/motd
                     
                 ;;
                 "NetworkManager")
@@ -732,7 +773,6 @@ function APPs(){
                     print t "Network Manager"
                     print t "#################################################"
                     YAYIN network-manager-applet networkmanager
-                    print t  "Network Manager Provisioned and Configured"
                     
                 ;;
                 "PulseAudio")
@@ -740,20 +780,18 @@ function APPs(){
                     print t "Pulse Audio"
                     print t "#################################################"
                     YAYIN pavucontrol pulseaudio pulseaudio-alsa pulseaudio-bluetooth volumeicon
-                    print t  " Provisioned and Configured"
                 ;;
-                "Virt-Manager")
+                "VirtManager")
                     print t "#################################################"
                     print t "Virt-Manager"
                     print t "#################################################"
                     YAYIN virt-manager libvirt-python libvirt libvirt-dbus libvirt-glib perl-sys-virt ruby-libvirt zenity qemu libvirt-storage-gluster libvirt-storage-iscsi-direct libvirt-storage-rbd openbsd-netcat radvdqemu open-iscsi vagrant python-vagrant
-                    ## Enable the Daemon
+                    ## Enable the Daemons
                     SYSCTL libvirtid
                     SYSCTL virtnetworkd.service
                     SYSCTL virtinterfaced.service
                     SYSCTL virtqemud.service
                     SYSCTL libvirtd-admin.socket
-                    print t  "Virt-Manager Provisioned and Configured"
                     
                 ;;
                 "Virtualbox")
@@ -761,20 +799,21 @@ function APPs(){
                     print t "Virtualbox VM Type 2 Hypervisor"
                     print t "#################################################"
                     YAYIN virtualbox-ext-vnc virtualbox-guest-iso virtualbox-host-dkms virtualbox virtualbox virtualbox-ext-oracle virtualbox-guest-goodies
-                    print t  "Virtualbox VM Type 2 Hypervisor Provisioned and Configured"
                 ;;
                 "vmware")
                     print t "#################################################"
                     print t "vmware Workstation Type 2 Hypervisor"
                     print t "#################################################"
                     YAYIN  createvm open-vm-tools vmware-workstation vagrant-vmware-utility libview vmware-auto-unlocker-git vmware-modules-dkms-git vmware-component-extractor-git
-                    sudo modprobe -a vmw_vmci vmmo print t  "vmware Workstation Type 2 Hypervisor Provisioned and Configured"
+                    sudo modprobe -a vmw_vmci vmmo
+                    
                 ;;
                 "Quit")
-                    return
+                    mainmenu
                 ;;
                 *)
                     echo "Something else.  Where Am I?"
+                ;;
             esac
         done
     done
@@ -823,12 +862,12 @@ function Dev(){
                     print t "#################################################"
                     YAYIN   rustup rust-docs lib32-rust-libs rust-racer rust-analyzer
                 print t  " Provisioned and Configured"                ;;
-            ;;
-            "Quit")
-                return
-            ;;
-            *)
-                echo "Something else.  Where Am I?"
+                
+                "Quit")
+                    mainmenu
+                ;;
+                *)
+                    echo "Something else.  Where Am I?"
             esac
         done
     done
@@ -853,46 +892,15 @@ __               __          __ __
 print
 print
 print
-read -n1 -s -r -p $'Press any key to continue...\n' key
+dialog --title "Proceed?" \
+--backtitle "Dotfiles Installation - Thomas Leon Highbaugh" \
+--yesno "Are You Ready to Begin?" 7 60
+response=$?
+case $response in
+    0) echo ;;
+    1) exit;;
+    255) exit;;
+esac
 
 
-
-while :
-do
-    
-    choice=$(dialog --backtitle "Dotfiles Installer - Thomas Leon Highbaugh" \
-        --title     "Main Menu" \
-        --clear \
-        --nocancel \
-        --menu  "Choose one" 32 76 16 \
-        "Core Dependencies"     "- Start Here" \
-        "Hardware" "- for Specific Systems" \
-        "TUI" "- Shell Interfaces" \
-        "GUI"    "- Graphical Interfaces" \
-        "Apps" "- Additional Applications" \
-        "Dev" "- Useful for Development Purposes"
-    "Quit"      "- Exit to desktop" 3>&1 1>&2 2>&3)
-    
-    case "$choice" in
-        "Core Dependencies")
-            deps                   #calls users function
-        ;;
-        "Hardware")
-            hardware              #calls passwords function
-        ;;
-        "TUI")
-            TUI                 #calls groups function
-        ;;
-        "GUI")
-            GUI
-        ;;
-        "Apps")
-            APPs
-        ;;
-        "Dev")
-            Dev
-        ;;
-        *)
-            echo "Something else.  Where Am I?"
-    esac
-done
+mainmenu
