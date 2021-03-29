@@ -1,7 +1,15 @@
-#!/usr/bin/env bash
-####################################################################################
-## Introduction & Deps Installation ################################################
-####################################################################################
+It really works, hence my posting the hindu gods around the swatiska thing. #!/usr/bin/env bash
+#  _______               __          __ __
+# |_     _|.-----.-----.|  |_.---.-.|  |  |
+#  _|   |_ |     |__ --||   _|  _  ||  |  |
+# |_______||__|__|_____||____|___._||__|__|
+################################################################################
+# Thomas Leon Highbaugh
+# Dotfiles Installer
+
+################################################################################
+## Introduction & Deps Installation ############################################
+################################################################################
 cr="$(tput setaf 1)"
 cg="$(tput setaf 2)"
 cy="$(tput setaf 3)"
@@ -29,7 +37,7 @@ print()
             shift
             printf "%s\n" "${sb}${cy}[:::]$*${sn}"
         ;;
-        *):w
+        *)
             printf '%s\n' "$*"
         ;;
     esac
@@ -43,7 +51,7 @@ SYSCTL() {
 PACIN() {
     while (( $# > 0 ))
     do
-        sudo pacman -S --noconfirm "$1"
+        sudo pacman --sync --sysupgrade --refresh --noconfirm --needed "$1"
         shift
     done
     return
@@ -53,7 +61,7 @@ PACIN() {
 YAYIN() {
     while (( $# > 0 ))
     do
-        yay -S --noconfirm --sudoloop --needed "$1"
+        yay -S --sync --sysupgrade --refresh --noconfirm --needed "$1"
         shift
     done
     return
@@ -88,7 +96,7 @@ function deps()
     
     gpg --receive-keys EC3CBE7F607D11E663149E811D1F0DC78F173680
     
-    print s "Dependency Installation"
+    print s "Package Dependencies Installation"
     
     PACIN git pacutils fakeroot perl-libwww perl-term-ui perl-json perl-data-dump perl-lwp-protocol-https perl-term-readline-gnu
     
@@ -102,9 +110,18 @@ function deps()
     print t "###########################################################"
     print t "Install Yay"
     print t "###########################################################"
-    print w "You must run the following command in another terminal to continue, when done press any key (sorry its resistant to scripting)"
     print
-    print s "$ git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si && cd .. && sudo rm -rf yay "
+    if [ ! -x "$(command -v 'yay')" ]; then
+        PACIN git base-devel
+        git clone 'https://aur.archlinux.org/yay.git' "$TEMPORARY/yay"
+        cd "$TEMPORARY/yay" || exit 1
+        makepkg -si
+        cd "$WD" || exit 1
+    else
+        print s "Yay has been installed"
+    fi
+    print
+    print s "Dependencies Have Been Installed"
     print
     print
     read -n1 -s -r -p $'Press any key to continue...\n' key2
@@ -217,10 +234,10 @@ menu()
                     print t "BASH shell"
                     print t "#################################################"
                     ## Install Packages
-                    PACIN bash shellharden bashlint argbash bash-bats-support bash-bats beautysh bashlint 
+                    PACIN bash shellharden bashlint argbash bash-bats-support bash-bats beautysh bashlint
                     ## Link Files
-                    ln -svf "$HOME"/dotfiles/topics/bash/bashenv "$HOME"/.bashenv
-                    ln -svf "$HOME"/dotfiles/topics/bash/bashrc "$HOME"/.bashrc
+                    ln -svf "$HOME"/dotfiles/home/bash/bashenv "$HOME"/.bashenv
+                    ln -svf "$HOME"/dotfiles/home/bash/bashrc "$HOME"/.bashrc
                     print t  "BASH Shell Configured"
                 ;;
                 5)
@@ -290,7 +307,7 @@ menu()
                     SYSCTL docker.service
                     SYSCTL docker.socket
                     print s "Copy the Daemon configuration file for Experimental Mode Features."
-                    sudo cp -rvf "$HOME"/dotfiles/topics/docker/daemon.json /etc/docker
+                    sudo ln -f "$HOME"/dotfiles/root/docker/daemon.json /etc/docker
                     print t  "Docker Container Environment"
                 ;;
                 12)
@@ -348,8 +365,8 @@ menu()
                     
                     # Enter your git credentials once, forget it for the rest of the install
                     git config --global credential.helper store
-                    ln -svf "$HOME"/dotfiles/topics/git/gitconfig "$HOME"/.gitconfig
-                    ln -svf "$HOME"/dotfiles/topics/git/gitignore "$HOME"/.gitignore
+                    ln -svf "$HOME"/dotfiles/home/git/gitconfig "$HOME"/.gitconfig
+                    ln -svf "$HOME"/dotfiles/home/git/gitignore "$HOME"/.gitignore
                     print t  "Git Version Control Provisioned and Configured"
                 ;;
                 18)
@@ -359,14 +376,14 @@ menu()
                     
                     YAYIN  gtk-engine-murrine gtk-engines xfce4-settings qt5ct kvantum colord-gtk gst-plugin-gtk glade gtkglext gtkspell xdg-desktop-portal-gtk wxgtk3 gpg-crypter gtk-chtheme gtkd gtkglarea libfm-gtk3
                     mkdir -p "$HOME"/.config/gtk-2.0
-                    ln -svf "$HOME"/dotfiles/topics/gtk/gtk-2.0/gtkfilechooser.ini "$HOME"/.config/gtk-2.0/gtkfilechooser.ini
+                    ln -svf "$HOME"/dotfiles/home/gtk/gtk-2.0/gtkfilechooser.ini "$HOME"/.config/gtk-2.0/gtkfilechooser.ini
                     mkdir -p "$HOME"/.config/gtk-3.0
-                    ln -svf "$HOME"/dotfiles/topics/gtk/gtk-3.0/bookmarks "$HOME"/.config/gtk-3.0/bookmarks
-                    ln -svf "$HOME"/dotfiles/topics/gtk/gtk-3.0/gtk.css "$HOME"/.config/gtk-3.0/gtk.css
-                    ln -svf "$HOME"/dotfiles/topics/gtk/gtk-3.0/settings.ini "$HOME"/.config/gtk-3.0/settings.ini
-                    ln -svf "$HOME"/dotfiles/topics/gtk/gtkrc-2.0 "$HOME"/.gtkrc-2.0
+                    ln -svf "$HOME"/dotfiles/home/gtk/gtk-3.0/bookmarks "$HOME"/.config/gtk-3.0/bookmarks
+                    ln -svf "$HOME"/dotfiles/home/gtk/gtk-3.0/gtk.css "$HOME"/.config/gtk-3.0/gtk.css
+                    ln -svf "$HOME"/dotfiles/home/gtk/gtk-3.0/settings.ini "$HOME"/.config/gtk-3.0/settings.ini
+                    ln -svf "$HOME"/dotfiles/home/gtk/gtkrc-2.0 "$HOME"/.gtkrc-2.0
                     mkdir -p "$HOME"/.config/Kvantum
-                    ln -svf "$HOME"/dotfiles/topics/gtk/kvantum.kvconfig "$HOME"/.config/Kvantum/kvantum.kvconfig
+                    ln -svf "$HOME"/dotfiles/home/gtk/kvantum.kvconfig "$HOME"/.config/Kvantum/kvantum.kvconfig
                     print t  "GTK Window Theming Provisioned and Configured"
                 ;;
                 19)
@@ -565,191 +582,202 @@ menu()
                 ;;
                 39)
                     print t "#################################################"
-                    print t "Raspberry Pi 4"
+                    print t "Lightdm"
                     print t "#################################################"
-                    YAYIN linux-raspberrypi4-aarch64 linux-raspberrypi4-aarch64-headers argonone-git
-                    print t  " Provisioned and Configured"
+                    YAYIN lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
+                   
+                    sudo ln -f $HOME/dotfiles/root/lightdm/lightdm-gtk-greeter.conf /etc/lightdm/lightdm-gtk-greeter.conf
                     
-                ;;
-                
-                40)
-                    print t "#################################################"
-                    print t "Rofi Menu Script"
-                    print t "#################################################"
-                    YAYIN rofi-git
-                    sudo pip install python-rofi
-                    mkdir -p "$HOME"/.config/rofi
-                    ln -svf "$HOME"/dotfiles/topics/rofi/config "$HOME"/.config/rofi
-                    ln -svf "$HOME"/dotfiles/topics/rofi/themes "$HOME"/.config/rofi
-                    sudo ln -svf "$HOME"/dotfiles/topics/rofi/themes /usr/share/rofi
-                    ln -svf "$HOME"/dotfiles/topics/rofi/config.rasi "$HOME"/.config/rofi/config.rasi
-                    ln -svf "$HOME"/dotfiles/topics/rofi/three.rasi "$HOME"/.config/rofi/three.rasi
-                    sudo cp -rvf "$HOME"/dotfiles/topics/rofi/rofi-todo /usr/bin
-                    print t  " Provisioned and Configured"
+                    sudo ln -f $HOME/dotfiles/root/lightdm/lightdm.conf /etc/lightdm/lightdm.conf
                     
-                ;;
-                41)
-                    print t "#################################################"
-                    print t "Ruby Programming Language"
-                    print t "#################################################"
-                    YAYIN rbenv rbenv-binstubs ruby-sassc chruby ruby-build
-                    rbenv init
-                    rbenv install 3.0.0
-                    print t  " Provisioned and Configured"
+                    print t "Lightdm Provisioned and Configured"
+                    39)
+                        print t "#################################################"
+                        print t "Raspberry Pi 4"
+                        print t "#################################################"
+                        YAYIN linux-raspberrypi4-aarch64 linux-raspberrypi4-aarch64-headers argonone-git
+                        print t  " Provisioned and Configured"
+                        
+                    ;;
                     
-                ;;
-                42)
-                    print t "#################################################"
-                    print t "Shell Environment"
-                    print t "#################################################"
-                    git clone https://github.com/Thomashighbaugh/bin "$HOME"/.local/share/bin
-                    ln -svf "$HOME"/dotfiles/topics/sh/profile "$HOME"/.profile
-                    ln -svf "$HOME"/dotfiles/topics/sh/aliases "$HOME"/.aliases
-                    YAYIN  autojump
-                    print t  " Provisioned and Configured"
+                    40)
+                        print t "#################################################"
+                        print t "Rofi Menu Script"
+                        print t "#################################################"
+                        YAYIN rofi-git
+                        sudo pip install python-rofi
+                        mkdir -p "$HOME"/.config/rofi
+                        ln -svf "$HOME"/dotfiles/topics/rofi/config "$HOME"/.config/rofi
+                        ln -svf "$HOME"/dotfiles/topics/rofi/themes "$HOME"/.config/rofi
+                        sudo ln -svf "$HOME"/dotfiles/topics/rofi/themes /usr/share/rofi
+                        ln -svf "$HOME"/dotfiles/topics/rofi/config.rasi "$HOME"/.config/rofi/config.rasi
+                        ln -svf "$HOME"/dotfiles/topics/rofi/three.rasi "$HOME"/.config/rofi/three.rasi
+                        sudo cp -rvf "$HOME"/dotfiles/topics/rofi/rofi-todo /usr/bin
+                        print t  " Provisioned and Configured"
+                        
+                    ;;
+                    41)
+                        print t "#################################################"
+                        print t "Ruby Programming Language"
+                        print t "#################################################"
+                        YAYIN rbenv rbenv-binstubs ruby-sassc chruby ruby-build
+                        rbenv init
+                        rbenv install 3.0.0
+                        print t  " Provisioned and Configured"
+                        
+                    ;;
+                    42)
+                        print t "#################################################"
+                        print t "Shell Environment"
+                        print t "#################################################"
+                        git clone https://github.com/Thomashighbaugh/bin "$HOME"/.local/share/bin
+                        ln -svf "$HOME"/dotfiles/topics/sh/profile "$HOME"/.profile
+                        ln -svf "$HOME"/dotfiles/topics/sh/aliases "$HOME"/.aliases
+                        YAYIN  autojump
+                        print t  " Provisioned and Configured"
+                        
+                    ;;
+                    43)
+                        print t "#################################################"
+                        print t "Secure Shell"
+                        print t "#################################################"
+                        sudo cp -rvf "$HOME"/dotfiles/topics/ssh/ssh_config /etc/ssh/
+                        sudo cp -rvf "$HOME"/dotfiles/topics/ssh/sshd_config /etc/ssh/
+                        PACIN openssh keychain seahorse
+                        print t  " Provisioned and Configured"
+                        
+                    ;;
                     
-                ;;
-                43)
-                    print t "#################################################"
-                    print t "Secure Shell"
-                    print t "#################################################"
-                    sudo cp -rvf "$HOME"/dotfiles/topics/ssh/ssh_config /etc/ssh/
-                    sudo cp -rvf "$HOME"/dotfiles/topics/ssh/sshd_config /etc/ssh/
-                    PACIN openssh keychain seahorse
-                    print t  " Provisioned and Configured"
+                    44)
+                        print t "#################################################"
+                        print t "Sway Window Manager"
+                        print t "#################################################"
+                        YAYIN sway-borders-git swayidle grimshot wofi swaybg waybar wf-recorder autotiling nwg-launcher i3title swayimg swaylock wofer mako swaymgr swaytools i3keys
+                        mkdir -p "$HOME"/.config/sway
+                        ln -svf "$HOME"/dotfiles/topics/sway/config "$HOME"/.config/sway/config
+                        ln -svf "$HOME"/dotfiles/topics/sway/lockman.sh "$HOME"/.config/sway/lockman.sh
+                        ln -svf "$HOME"/dotfiles/topics/sway/window.sh "$HOME"/.config/sway/window.sh
+                        ln -svf "$HOME"/dotfiles/topics/sway/nwg-launchers "$HOME"/.config/nwg-launchers
+                        print t  " Provisioned and Configured"
+                        
+                    ;;
+                    45)
+                        print t "#################################################"
+                        print t "Thinkpad E495 Settings"
+                        print t "#################################################"
+                        YAYIN tp_smapi tp-battery-mode hdaps-gl tpfand-git threshy libthinkpad i2c-tools
+                        YAYIN cpufreqctl auto-cpufreq aocl-gcc aocl-aocc hipcpu-git zenpower-dkms-git zenmonitor
+                        YAYIN ryzen_smu-dkms-git rapl-read-ryzen-git amf-headers opencl-mesa
+                        YAYIN opencl-amd mhwd-amdgpu zenstates-git aocl-gcc tpc-git amdcovc rapl-read-ryzen-git
+                        YAYIN zenmonitor ryzenadj-git tuned perf-tools-git smartmontools tp_smapi x86_energy_perf_policy bash-completion acpi_call
+                        YAYIN tlp powertop acpid tlp-rdw acpi acpid acpica acpitool
+                        sudo systemctl enable auto-cpufreq.service
+                        sudo systemctl enable acpid.service
+                        SYSCTL cpupower.service
+                        SYSCTL lm_sensors.service
+                        SYSCTL ryzen-stabilizator.service
+                        SYSCTL tuned.service
+                        SYSCTL tlp
+                        tuned-adm profiles laptop-ac-powersave
+                        sudo mkinitcpio -Psv
+                        sudo grub-mkconfig -o /boot/grub/grub.conf
+                        print t  " Provisioned and Configured"
+                        
+                    ;;
+                    46)
+                        print t "#################################################"
+                        print t "Vim Modal Text Editor"
+                        print t "#################################################"
+                        YAYIN vim vi sudo vim-runtime vim-spell-en
+                        print s "Personal Vim Configuration"
+                        git clone https://github.com/Thomashighbaugh/vim ~/.vim
+                        print s "Linking Personal Configuration with System"
+                        ln -s ~/.vim/vimrc ~/.vimrc
+                        print s "Downloading Plugin Manager"
+                        cd ~/.vim && curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+                        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+                        print s "Installing Plugins"
+                        vim +PlugUpdate +qa
+                        print t "#################################################"
+                        print t "Personal Vimwiki"
+                        git clone https://github.com/Thomashighbaugh/vimwiki
+                        print t  "Vim Modal Text Editor Provisioned and Configured"
+                        
+                    ;;
+                    47)
+                        print t "#################################################"
+                        print t "Virt-Manager"
+                        print t "#################################################"
+                        YAYIN virt-manager libvirt-python libvirt libvirt-dbus libvirt-glib perl-sys-virt ruby-libvirt zenity qemu libvirt-storage-gluster libvirt-storage-iscsi-direct libvirt-storage-rbd openbsd-netcat radvdqemu open-iscsi vagrant python-vagrant
+                        ## Enable the Daemon
+                        SYSCTL libvirtid
+                        SYSCTL virtnetworkd.service
+                        SYSCTL virtinterfaced.service
+                        SYSCTL virtqemud.service
+                        SYSCTL libvirtd-admin.socket
+                        print t  "Virt-Manager Provisioned and Configured"
+                        
+                    ;;
+                    48)
+                        print t "#################################################"
+                        print t "Virtualbox VM Type 2 Hypervisor"
+                        print t "#################################################"
+                        YAYIN virtualbox-ext-vnc virtualbox-guest-iso virtualbox-host-dkms virtualbox virtualbox virtualbox-ext-oracle virtualbox-guest-goodies
+                        print t  "Virtualbox VM Type 2 Hypervisor Provisioned and Configured"
+                    ;;
+                    49)
+                        print t "#################################################"
+                        print t "vmware Workstation Type 2 Hypervisor"
+                        print t "#################################################"
+                        YAYIN  createvm open-vm-tools vmware-workstation vagrant-vmware-utility libview vmware-auto-unlocker-git vmware-modules-dkms-git vmware-component-extractor-git
+                        sudo modprobe -a vmw_vmci vmmo print t  "vmware Workstation Type 2 Hypervisor Provisioned and Configured"
+                        
+                    ;;
+                    50)
+                        print t "#################################################"
+                        print t "X11 Window Server"
+                        print t "#################################################"
+                        YAYIN  xorg xorg-apps xorg-drivers xorg-fonts
+                        YAYIN pa-applet-git gnome-keyring polkit-gnome libgnome-keyring xscreensaver
+                        mkdir -p "$HOME"/.Xresources.d
+                        ln -svf "$HOME"/dotfiles/topics/xorg/Xresources "$HOME"/.Xresources
+                        ln -svf "$HOME"/dotfiles/topics/xorg/color "$HOME"/.Xresources.d/color
+                        ln -svf "$HOME"/dotfiles/topics/xorg/font "$HOME"/.Xresources.d/font
+                        ln -svf "$HOME"/dotfiles/topics/xorg/rxvt-unicode "$HOME"/.Xresources.d/rxvt-unicode
+                        ln -svf "$HOME"/dotfiles/topics/xorg/uxterm "$HOME"/.Xresources.d/uxterm
+                        ln -svf "$HOME"/dotfiles/topics/xorg/xterm "$HOME"/.Xresources.d/xterm
+                        ln -svf "$HOME"/dotfiles/topics/xorg/xscreensaver "$HOME"/.xscreensaver
+                        ln -fvs "$HOME"/dotfiles/topics/xorg/xinitrc "$HOME"/.xinitrc
+                        ln -fvs "$HOME"/dotfiles/topics/xorg/xprofile "$HOME"/.xprofile
+                        ln -fvs "$HOME"/dotfiles/topics/xorg/xsettingsd "$HOME"/.xsettingsd
+                        ln -fvs "$HOME"/dotfiles/topics/xorg/xsessionrc "$HOME"/.xsessionrc
+                        print t  "X11 Window Server Provisioned and Configured"
+                    ;;
                     
-                ;;
-                
-                44)
-                    print t "#################################################"
-                    print t "Sway Window Manager"
-                    print t "#################################################"
-                    YAYIN sway-borders-git swayidle grimshot wofi swaybg waybar wf-recorder autotiling nwg-launcher i3title swayimg swaylock wofer mako swaymgr swaytools i3keys
-                    mkdir -p "$HOME"/.config/sway
-                    ln -svf "$HOME"/dotfiles/topics/sway/config "$HOME"/.config/sway/config
-                    ln -svf "$HOME"/dotfiles/topics/sway/lockman.sh "$HOME"/.config/sway/lockman.sh
-                    ln -svf "$HOME"/dotfiles/topics/sway/window.sh "$HOME"/.config/sway/window.sh
-                    ln -svf "$HOME"/dotfiles/topics/sway/nwg-launchers "$HOME"/.config/nwg-launchers
-                    print t  " Provisioned and Configured"
-                    
-                ;;
-                45)
-                    print t "#################################################"
-                    print t "Thinkpad E495 Settings"
-                    print t "#################################################"
-                    YAYIN tp_smapi tp-battery-mode hdaps-gl tpfand-git threshy libthinkpad i2c-tools
-                    YAYIN cpufreqctl auto-cpufreq aocl-gcc aocl-aocc hipcpu-git zenpower-dkms-git zenmonitor
-                    YAYIN ryzen_smu-dkms-git rapl-read-ryzen-git amf-headers opencl-mesa
-                    YAYIN opencl-amd mhwd-amdgpu zenstates-git aocl-gcc tpc-git amdcovc rapl-read-ryzen-git
-                    YAYIN zenmonitor ryzenadj-git tuned perf-tools-git smartmontools tp_smapi x86_energy_perf_policy bash-completion acpi_call
-                    YAYIN tlp powertop acpid tlp-rdw acpi acpid acpica acpitool
-                    sudo systemctl enable auto-cpufreq.service
-                    sudo systemctl enable acpid.service
-                    SYSCTL cpupower.service
-                    SYSCTL lm_sensors.service
-                    SYSCTL ryzen-stabilizator.service
-                    SYSCTL tuned.service
-                    SYSCTL tlp
-                    tuned-adm profiles laptop-ac-powersave
-                    sudo mkinitcpio -Psv
-                    sudo grub-mkconfig -o /boot/grub/grub.conf
-                    print t  " Provisioned and Configured"
-                    
-                ;;
-                46)
-                    print t "#################################################"
-                    print t "Vim Modal Text Editor"
-                    print t "#################################################"
-                    YAYIN vim vi sudo vim-runtime vim-spell-en
-                    print s "Personal Vim Configuration"
-                    git clone https://github.com/Thomashighbaugh/vim ~/.vim
-                    print s "Linking Personal Configuration with System"
-                    ln -s ~/.vim/vimrc ~/.vimrc
-                    print s "Downloading Plugin Manager"
-                    cd ~/.vim && curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-                    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-                    print s "Installing Plugins"
-                    vim +PlugUpdate +qa
-                    print t "#################################################"
-                    print t "Personal Vimwiki"
-                    git clone https://github.com/Thomashighbaugh/vimwiki
-                    print t  "Vim Modal Text Editor Provisioned and Configured"
-                    
-                ;;
-                47)
-                    print t "#################################################"
-                    print t "Virt-Manager"
-                    print t "#################################################"
-                    YAYIN virt-manager libvirt-python libvirt libvirt-dbus libvirt-glib perl-sys-virt ruby-libvirt zenity qemu libvirt-storage-gluster libvirt-storage-iscsi-direct libvirt-storage-rbd openbsd-netcat radvdqemu open-iscsi vagrant python-vagrant
-                    ## Enable the Daemon
-                    SYSCTL libvirtid
-                    SYSCTL virtnetworkd.service
-                    SYSCTL virtinterfaced.service
-                    SYSCTL virtqemud.service
-                    SYSCTL libvirtd-admin.socket
-                    print t  "Virt-Manager Provisioned and Configured"
-                    
-                ;;
-                48)
-                    print t "#################################################"
-                    print t "Virtualbox VM Type 2 Hypervisor"
-                    print t "#################################################"
-                    YAYIN virtualbox-ext-vnc virtualbox-guest-iso virtualbox-host-dkms virtualbox virtualbox virtualbox-ext-oracle virtualbox-guest-goodies
-                    print t  "Virtualbox VM Type 2 Hypervisor Provisioned and Configured"
-                ;;
-                49)
-                    print t "#################################################"
-                    print t "vmware Workstation Type 2 Hypervisor"
-                    print t "#################################################"
-                    YAYIN  createvm open-vm-tools vmware-workstation vagrant-vmware-utility libview vmware-auto-unlocker-git vmware-modules-dkms-git vmware-component-extractor-git
-                    sudo modprobe -a vmw_vmci vmmo print t  "vmware Workstation Type 2 Hypervisor Provisioned and Configured"
-                    
-                ;;
-                50)
-                    print t "#################################################"
-                    print t "X11 Window Server"
-                    print t "#################################################"
-                    YAYIN  xorg xorg-apps xorg-drivers xorg-fonts
-                    YAYIN pa-applet-git gnome-keyring polkit-gnome libgnome-keyring xscreensaver
-                    mkdir -p "$HOME"/.Xresources.d
-                    ln -svf "$HOME"/dotfiles/topics/xorg/Xresources "$HOME"/.Xresources
-                    ln -svf "$HOME"/dotfiles/topics/xorg/color "$HOME"/.Xresources.d/color
-                    ln -svf "$HOME"/dotfiles/topics/xorg/font "$HOME"/.Xresources.d/font
-                    ln -svf "$HOME"/dotfiles/topics/xorg/rxvt-unicode "$HOME"/.Xresources.d/rxvt-unicode
-                    ln -svf "$HOME"/dotfiles/topics/xorg/uxterm "$HOME"/.Xresources.d/uxterm
-                    ln -svf "$HOME"/dotfiles/topics/xorg/xterm "$HOME"/.Xresources.d/xterm
-                    ln -svf "$HOME"/dotfiles/topics/xorg/xscreensaver "$HOME"/.xscreensaver
-                    ln -fvs "$HOME"/dotfiles/topics/xorg/xinitrc "$HOME"/.xinitrc
-                    ln -fvs "$HOME"/dotfiles/topics/xorg/xprofile "$HOME"/.xprofile
-                    ln -fvs "$HOME"/dotfiles/topics/xorg/xsettingsd "$HOME"/.xsettingsd
-                    ln -fvs "$HOME"/dotfiles/topics/xorg/xsessionrc "$HOME"/.xsessionrc
-                    print t  "X11 Window Server Provisioned and Configured"
-                ;;
-                
-                51)
-                    print t "#################################################"
-                    print t "ZSH shell"
-                    print t "#################################################"
-                    ## Install Necessary Packages
-                    YAYIN zsh alias-tips-git zsh-auto-notify zsh-doc lsd lshw
-                    YAYIN zsh-syntax-highlighting zsh-lovers zsh-autosuggestions
-                    YAYIN alias-tips-git zsh-system-clipboard-git zsh-doc powerline zsh-history-substring-search zshdb find-the-command
-                    YAYIN  zsh-completions keybase-zsh-completion-git python-click-completion
-                    ## Symlink Files
-                    ln -svf "$HOME"/dotfiles/topics/zsh/zprofile "$HOME"/.zprofile
-                    ln -svf "$HOME"/dotfiles/topics/zsh/zshenv "$HOME"/.zshenv
-                    ln -svf "$HOME"/dotfiles/topics/zsh/zshrc "$HOME"/.zshrc
-                    ln -svf "$HOME"/dotfiles/topics/zsh/zlogout "$HOME"/.zlogout
-                    print t  "ZSH shell Provisioned and Configured"
-                ;;
-                52)
-                    print t "#################################################"
-                    print t "Goodbye, please reboot as soon as possible"
-                    print t "#################################################"
-                    read -n1 -s -r -p $'Press any key to continue...\n' key3
-                    
-                    exit
-                ;;
+                    51)
+                        print t "#################################################"
+                        print t "ZSH shell"
+                        print t "#################################################"
+                        ## Install Necessary Packages
+                        YAYIN zsh alias-tips-git zsh-auto-notify zsh-doc lsd lshw
+                        YAYIN zsh-syntax-highlighting zsh-lovers zsh-autosuggestions
+                        YAYIN alias-tips-git zsh-system-clipboard-git zsh-doc powerline zsh-history-substring-search zshdb find-the-command
+                        YAYIN  zsh-completions keybase-zsh-completion-git python-click-completion
+                        ## Symlink Files
+                        ln -svf "$HOME"/dotfiles/topics/zsh/zprofile "$HOME"/.zprofile
+                        ln -svf "$HOME"/dotfiles/topics/zsh/zshenv "$HOME"/.zshenv
+                        ln -svf "$HOME"/dotfiles/topics/zsh/zshrc "$HOME"/.zshrc
+                        ln -svf "$HOME"/dotfiles/topics/zsh/zlogout "$HOME"/.zlogout
+                        print t  "ZSH shell Provisioned and Configured"
+                    ;;
+                    52)
+                        print t "#################################################"
+                        print t "Goodbye, please reboot as soon as possible"
+                        print t "#################################################"
+                        read -n1 -s -r -p $'Press any key to continue...\n' key3
+                        
+                        exit
+                    ;;
             esac
         done
     done

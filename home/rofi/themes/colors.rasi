@@ -1,0 +1,143 @@
+* {
+    // black
+    color0:       #17191e;
+    color8:       #555e70;
+    // red
+    color1:       #ff29a8;
+    color9:       #ff3d81;
+    // green
+    color2:       #85ffe0;
+    color10:      #00ffcc;
+    // yellow
+    color3:       #f0ffaa;
+    color11:      #f9f871;
+    // blue
+    color4:       #0badff;
+    color12:      #00caff;
+    // magenta
+    color5:        #8265ff;
+    color13:       #6c71c4;
+    // cyan
+    color6:      #00eaff;
+    color14:     #00fae9;
+    // white
+    color7:       #8b9cbe;
+    color15:      #f4f4f7;
+    //alt black
+    color16: #22262d;
+    color17: #3c3f4c;
+    color18: #0b0c0f;
+    color19: #2f303d;
+    color20: #383a47;
+    color21: #b2bfd9;
+    red:                         @color1;
+    blue:                        @color4;
+    lightfg:                     @color15;
+    lightbg:                     @color17;
+    foreground:                  @color7;
+    background:                  @color0;
+    background-color:            @color0;
+    accent:                      @blue;
+    accent1:                     @red;
+    separatorcolor:              @foreground;
+    border-color:                @foreground;
+    selected-normal-foreground:  @lightbg;
+    selected-normal-background:  @lightfg;
+    selected-active-foreground:  @background;
+    selected-active-background:  @blue;
+    selected-urgent-foreground:  @background;
+    selected-urgent-background:  @red;
+    normal-foreground:           @foreground;
+    normal-background:           @background;
+    active-foreground:           @blue;
+    active-background:           @background;
+    urgent-foreground:           @red;
+    urgent-background:           @background;
+    alternate-normal-foreground: @foreground;
+    alternate-normal-background: @lightbg;
+    alternate-active-foreground: @blue;
+    alternate-active-background: @lightbg;
+    alternate-urgent-foreground: @red;
+    alternate-urgent-background: @lightbg;
+
+}
+window {
+    background-color: #17161B;
+}
+message {
+    border-color:     @foreground;
+}
+textbox {
+    text-color:       @foreground;
+}
+listview {
+    border-color:     @foreground;
+}
+element normal.normal {
+    background-color: @normal-background;
+    text-color:       @normal-foreground;
+}
+element normal.urgent {
+    background-color: @background;
+    text-color:       @urgent-background;
+    border-color: @red;
+}
+element normal.active {
+    background-color: @background;
+    text-color:       @accent1;
+}
+element selected.normal {
+    background-color: @background;
+    text-color:       @accent;
+    border-color: @accent;
+}
+element selected.urgent {
+    background-color: @background;
+    text-color:       @red;
+    border-color:     @red;
+}
+element selected.active {
+    background-color: @lightbg;
+    text-color:       @accent1;
+    border-color:     @accent1;
+}
+element alternate.normal {
+    background-color: @lightbg;
+    text-color:       @lightfg;
+}
+element alternate.urgent {
+    background-color: @lightbg;
+    text-color:       @red;
+    border-color: @red;
+}
+element alternate.active {
+    background-color: @lightbg;
+    text-color:       @lightfg;
+}
+scrollbar {
+    handle-color:     @normal-foreground;
+}
+sidebar {
+    border-color:     @accent;
+}
+button {
+    text-color:       @normal-foreground;
+}
+button selected {
+    background-color: @selected-normal-background;
+    text-color:       @selected-normal-foreground;
+}
+inputbar {
+    text-color:       @normal-foreground;
+}
+case-indicator {
+    text-color:       @normal-foreground;
+}
+entry {
+    text-color:       @normal-foreground;
+}
+prompt {
+    text-color:       @normal-foreground;
+}
+
+

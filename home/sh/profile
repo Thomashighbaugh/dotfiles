@@ -1,0 +1,42 @@
+#!/bin/env sh
+##########################################################################################################
+## .profile ######################################################################################
+##########################################################################################################
+
+## This file setsenvironmental variables available across the shells installed on
+## this system. Edit with care, or learn to use startx ;]
+
+################################################################################
+## Config Directory
+################################################################################
+
+## Dotfiles Location ###########################################################
+cd "$(readlink ~/.zshrc | xargs dirname)"
+export DOTFILES="$(git rev-parse --show-toplevel)"
+cd - >/dev/null
+
+for file in $(
+	find "$DOTFILES/topics/sh/configs" -name '*.posix.sh'
+); do
+	source "$file"
+done
+
+source "$HOME/dotfiles/topics/sh/aliases"
+
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
+export TERMINAL="kitty"
+export TERM=xterm-256color
+export VISUAL="vim"
+export BROWSER="firefox-nightly"
+export ALT_BROWSER="chromium"
+export EMAIL="thunderbird"
+export GUIFM="caja"
+export PASSWD="keepassxc"
+export PLAYER="spotify"
+
+export LAUNCHER='rofi  -show drun -theme ~/.config/awesome/configuration/appmenu.rasi'
+export MOZ_X11_EG=1
+
+ #vim: set ft=sh:

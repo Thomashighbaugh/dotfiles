@@ -1,0 +1,21 @@
+
+!----------------
+!  Xft Settings
+!----------------
+
+Xcursor.size: 48
+Xcursor.theme: Mato
+
+Xft*antialias:  true
+Xft*hinting:    true
+Xft*rgba:       rgba
+Xft*autohint:   true
+Xft*hintstyle:  hintfull
+Xft*lcdfilter:  lcddefault
+Xft.dpi: 96
+XTerm*selectToClipboard: true
+XTerm*reverseVideo: on
+
+xterm*faceName: Share Tech Mono:style=Black
+xterm*faceSize: 12
+xterm*termName: xterm-256color

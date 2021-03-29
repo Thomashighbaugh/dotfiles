@@ -1,0 +1,15 @@
+configuration {
+	modi: "window,run,ssh,drun,combi,windowcd,keys";
+	width: 120;
+	lines: 15;
+	font: "ProFontIIx Nerd Font Mono 11";
+	bw: 1;
+	padding: 5;
+	show-icons: true;
+	combi-modi: "window,run, drun";
+	fake-transparency: true;
+	dpi: 96;
+	theme: "/home/tlh/dotfiles/topics/rofi/themes/colors.rasi" ;
+}
+
+
