@@ -44,6 +44,8 @@ case $session in
 awesome) exec awesome ;;
 i3 | i3wm) exec i3 ;;
 gnome) exec gnome-session ;;
+plasma) exec startplasma ;; 
+openbox) exec openbox-session ;;
 kde | plasma) exec startplasma-x11 ;;
 sway) exec sway ;;
 xfce) exec startxfce4 ;;
