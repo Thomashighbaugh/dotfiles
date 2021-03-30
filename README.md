@@ -32,10 +32,11 @@ sh install.sh
 ```
 
 Then the `./INSTALL` will:
+
 - Display a prompt then take you to a categorical menu
 - From there you can select a category, but first select the first item `Core Dependencies ` (**You must do this for the rest of the installer to work**)
 - in each submenu you will be able to select options with the the arrow keys and spacebar
-- then hit enter and they will install and provision as needed. 
+- then hit enter and they will install and provision as needed.
 
 ## Inspiration
 
