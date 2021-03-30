@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # Arch-based (and Kaos Linux) Package Management
 ##########################################################################
 
@@ -28,7 +29,7 @@ alias pudel="sudo pacman -Rdd "
 alias yupss="yay -Ss "
 alias pupss="sudo pacman -Ss "
 
-## No Dependencies 
+## No Dependencies
 alias yupxdeps="yay -Sdd "
 alias pupxdeps="sudo pacman -Sdd "
 

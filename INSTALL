@@ -170,7 +170,15 @@ function deps()
     
     print
     print
-    read -n1 -s -r -p $'Press any key to continue...\n' key2
+    dialog --title "Proceed?" \
+    --backtitle "Dotfiles Installation - Thomas Leon Highbaugh" \
+    --yesno "Are You Ready to Begin?" 7 60
+    response=$?
+    case $response in
+        0) echo ;;
+        1) exit;;
+        255) exit;;
+    esac
 }
 
 #########################################################
@@ -579,6 +587,8 @@ function GUI(){
                     
                     YAYIN bspwm-rounded-corners-git bsp-layout sxhkd-git bar-aint-recursive xtitle-git sutils-git
                     ln -svf "$HOME"/dotfiles/home/bspwm "$HOME"/.config/bspwm
+                    mkdir "$HOME"/.config/sxhkd
+                    ln -svf "$HOME"/dotfiles/home/bspwm/sxhkdrc "$HOME"/.config/sxhkd
                     print t  "BSP Window Manager Provisioned and Configured"
                 ;;
                 "GTK")

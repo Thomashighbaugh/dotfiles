@@ -51,3 +51,33 @@ if [[ "$TERM" == (alacritty*|gnome*|konsole*|kitty*|putty*|rxvt*|screen*|tmux*|x
 fi
 autoload -U compinit
 compinit
+
+##-----------------------------------------------------
+## synth-shell-greeter.sh
+if [ -f /home/tlh/.config/synth-shell/synth-shell-greeter.sh ] && [ -n "$( echo $- | grep i )" ]; then
+	source /home/tlh/.config/synth-shell/synth-shell-greeter.sh
+fi
+
+##-----------------------------------------------------
+## synth-shell-prompt.sh
+if [ -f /home/tlh/.config/synth-shell/synth-shell-prompt.sh ] && [ -n "$( echo $- | grep i )" ]; then
+	source /home/tlh/.config/synth-shell/synth-shell-prompt.sh
+fi
+
+##-----------------------------------------------------
+## better-ls
+if [ -f /home/tlh/.config/synth-shell/better-ls.sh ] && [ -n "$( echo $- | grep i )" ]; then
+	source /home/tlh/.config/synth-shell/better-ls.sh
+fi
+
+##-----------------------------------------------------
+## alias
+if [ -f /home/tlh/.config/synth-shell/alias.sh ] && [ -n "$( echo $- | grep i )" ]; then
+	source /home/tlh/.config/synth-shell/alias.sh
+fi
+
+##-----------------------------------------------------
+## better-history
+if [ -f /home/tlh/.config/synth-shell/better-history.sh ] && [ -n "$( echo $- | grep i )" ]; then
+	source /home/tlh/.config/synth-shell/better-history.sh
+fi

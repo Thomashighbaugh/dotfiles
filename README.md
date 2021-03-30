@@ -31,24 +31,11 @@ cd dotfiles
 sh install.sh
 ```
 
-Then the `install.sh` will:
-
-1. Install some necessary programs that are needed to install more programs, run the menu's dialog backend, etc
-2. Prompt you to run a one-liner in another terminal that will install yay (AUR helper and pacman wrapper that I bet you heard of before now)
-3. Use yay to install a few more programs from AUR you need for the aforementioned reasons
-4. Present you with a menu that you can use to select applications/categories of applications to install and provision individually
-
-### Selecting Applications on the Menu
-
-Use the up and down arrows to select applications, then use spacebar to toggle them on or off.
-
-When you are satisfied with your selections, they will be gone through top-to-bottom and if the last item isn't toggled, you will be brought back to the menu
-
-## **In order to exit the script, you must select the last item, otherwise it will loop through the selections and bring you right back to the menu!**
-
-## 'Why Even Use an Installation Script, Options Exist Doing This For You'
-
-## And those options don't work for my purposes. I hope to create a single script to use after rebooting into my system after freshly installing and downloading this repository without need for additional, awkward software to do so. These options are great for other purposes, but despite a lot of experimentation, I have found that a shell script is the best way to achieve my intended system, with Makefile coming in close second.
+Then the `./INSTALL` will:
+- Display a prompt then take you to a categorical menu
+- From there you can select a category, but first select the first item `Core Dependencies ` (**You must do this for the rest of the installer to work**)
+- in each submenu you will be able to select options with the the arrow keys and spacebar
+- then hit enter and they will install and provision as needed. 
 
 ## Inspiration
 

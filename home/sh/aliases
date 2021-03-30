@@ -1,4 +1,4 @@
-#!/bin/env sh
+#!/bin/env bash
 ###########################################################################
 # Aliases
 #
@@ -13,7 +13,7 @@ export DOTFILES="$(git rev-parse --show-toplevel)"
 cd - >/dev/null
 
 for file in $(
-	find "$DOTFILES/topics/sh/alias" -name '*.alias.sh'
-); do
-	source "$file"
+    find "$DOTFILES"/topics/sh/alias -name '*.alias.sh'
+    ); do
+    source "$file"
 done

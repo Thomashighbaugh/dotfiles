@@ -1,8 +1,8 @@
-#!/bin/env sh 
+#!/bin/env bash
 
 # Youtube DL
 ##########################################################################
-#### Warning: Do not use to download videos or audio 
+#### Warning: Do not use to download videos or audio
 #### without the express permission of the copyright owner
 
 # Download Audio Track only

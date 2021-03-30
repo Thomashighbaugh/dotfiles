@@ -1,3 +1,3 @@
-#!/bin/env sh
+#!/bin/env bash
 
 alias c="clear"
