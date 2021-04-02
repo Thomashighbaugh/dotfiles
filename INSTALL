@@ -649,6 +649,7 @@ function GUI(){
                     ln -svf "$HOME"/dotfiles/home/sway/config "$HOME"/.config/sway/config
                     ln -svf "$HOME"/dotfiles/home/sway/lockman.sh "$HOME"/.config/sway/lockman.sh
                     ln -svf "$HOME"/dotfiles/home/sway/window.sh "$HOME"/.config/sway/window.sh
+                    ln -svf "$HOME"/dotfiles/home/sway/autostart.sh "$HOME"/.config/sway/autostart.sh
                     ln -svf "$HOME"/dotfiles/home/sway/nwg-launchers "$HOME"/.config/nwg-launchers
                     print t  " Provisioned and Configured"
                 ;;

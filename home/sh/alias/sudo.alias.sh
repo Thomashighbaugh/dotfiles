@@ -9,8 +9,3 @@ alias shutdown="sudo poweroff "
 alias reboot="sudo reboot -i "
 
 
-alias sudo='\sudo '
-
-if [ "$PS1" ]; then
-    complete -cf sudo
-fi

@@ -4,7 +4,7 @@
 ##########################################################################
 #### Warning: Do not use to download videos or audio 
 #### without the express permission of the copyright owner
-
+## Usage: yt-audio "link-to-content"
 # Download Audio Track only
 alias yt-audio="youtube-dl -x  --audio-format mp3 --audio-quality 0"
 
