@@ -13,49 +13,49 @@ sysmodmap=/etc/X11/xinit/.Xmodmap
 
 if [ -f $sysresources ]; then
 
-	xrdb -merge $sysresources
+    xrdb -merge $sysresources
 
 fi
 
 if [ -f $sysmodmap ]; then
-	xmodmap $sysmodmap
+    xmodmap $sysmodmap
 fi
 
 if [ -f "$userresources" ]; then
 
-	xrdb -merge "$userresources"
+    xrdb -merge "$userresources"
 
 fi
 
 if [ -f "$usermodmap" ]; then
-	xmodmap "$usermodmap"
+    xmodmap "$usermodmap"
 fi
 
 # The source of my woes, the default being somewhat faulty, see I knew I wasn't crazy!
 
 if [ -f "$HOME/.xprofile" ]; then
-	source "$HOME/.xprofile"
+    source "$HOME/.xprofile"
 fi
 
 # Here Xfce is kept as default
 #session=${1:-awesome}
 
 case $session in
-awesome) exec awesome ;;
-i3 | i3wm) exec i3 ;;
-gnome) exec gnome-session ;;
-plasma) exec startplasma ;; 
-openbox) exec openbox-session ;;
-kde | plasma) exec startplasma-x11 ;;
-sway) exec sway ;;
-xfce) exec startxfce4 ;;
-# No known session, try to run it as command
-*) exec $1 ;;
+    awesome) exec awesome ;;
+    i3 | i3wm) exec i3 ;;
+    gnome) exec gnome-session ;;
+    plasma) exec startplasma ;;
+    openbox) exec openbox-session ;;
+    kde | plasma) exec startplasma-x11 ;;
+    sway) exec sway ;;
+    xfce) exec startxfce4 ;;
+    # No known session, try to run it as command
+    *) exec $1 ;;
 esac
 
 exec /home/tlh/.display-manager
 
 
-# Gnome Keyring / seahorse require the following 
+# Gnome Keyring / seahorse require the following
 eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
 export SSH_AUTH_SOCK
