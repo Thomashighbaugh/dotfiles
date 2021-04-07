@@ -1,1 +1,0 @@
-/home/tlh/dotfiles/topics/sway/window.sh

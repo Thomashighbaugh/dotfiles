@@ -113,3 +113,5 @@ export LAUNCHER='rofi  -show drun -theme ~/.config/awesome/configuration/appmenu
 export MOZ_X11_EG=1
 
 
+export PYENV_ROOT="$HOME/.pyenv"
+eval "$(pyenv init -)"

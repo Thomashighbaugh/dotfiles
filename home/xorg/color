@@ -1,5 +1,5 @@
 ! Author: Thomas Leon Highbaugh
-! File: colors 
+! File: colors
 ! Project: X11 Color Settings
 ! Scheme: Vice (Base16)
 
@@ -26,12 +26,10 @@
 *color15:       #f4f4f7
 
 ! Note: colors beyond 15 might not be loaded (e.g., xterm, urxvt),
-! use 'shell' template to set these if necessary
-*color16:      #22262D
-*color17:      #3c3f4c
-*color18:      #0b0c0f
-! alternative to 16
-*color19:      #2F303D
-! alternative to 17
-*color20:      #383A47
-*color21       #b2bfd9
+    ! use 'shell' template to set these if necessary
+    *color16:      #22262D
+    *color17:      #3c3f4c
+    *color18:      #0b0c0f
+    *color19:      #2F303D
+    *color20:      #383A47
+    *color21:       #b2bfd9
