@@ -156,10 +156,12 @@ function deps()
     print
     if [ ! -x "$(command -v 'yay')" ]; then
         PACIN git base-devel
+        TEMPORARY=$PWD/temp
+        mkdir $TEMPORARY
         git clone 'https://aur.archlinux.org/yay.git' "$TEMPORARY/yay"
-        cd "$TEMPORARY/yay" || exit 1
+        cd "$TEMPORARY/yay"
         makepkg -si
-        cd "$WD" || exit 1
+        cd "$WD"
     else
         print s "Yay has been installed"
     fi
@@ -196,7 +198,7 @@ function hardware(){
             "RPi4"    "- Raspberry Pi 4 8GB" off
             "Disks" "- Filesystem Management" off
             "Bluetooth" "- software for using bluetooth on Linux" off
-            "Quit"      "- Return to Main Menu" off)
+            "Back"      "- Return to Main Menu" off)
             choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
             for choice in $choices; do
                 case "$choice" in
@@ -277,14 +279,25 @@ function hardware(){
                         print t  "Bluetooth Interfacing Provisioned"
                         ;;
                     "Quit")
-                        mainmenu
-                        ;;
-                    *)
-                        echo "Something else.  Where Am I?"
-                esac
-            done
-        done
-    }
+                        dialog --title "Proceed?" \
+                            --backtitle "Dotfiles Installation - Thomas Leon Highbaugh" \
+                            --yesno "Are You Ready to Begin?" 7 60
+                                                    response=$?
+                                                    case $response in
+                                                        0) echo ;;
+                                                        1) exit;;
+                                                        255) exit;;
+                                                    esac
+                                                }
+
+                                            mainmenu
+                                            ;;
+                                        *)
+                                            echo "Something else.  Where Am I?"
+                                    esac
+                                done
+                            done
+                        }
 
 #########################################################
 ## TUI
@@ -313,7 +326,7 @@ function TUI(){
             "Vim" "- terminal text editing for the hardcore" off
             "X11" "- the basis for the GUI" off
             "ZSH" "- Primary Shell Used" off
-            "Quit"      "- Exit to desktop" off)
+            "Back"      "- Return to the Main Menu" off)
             choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
             for choice in $choices; do
                 case "$choice" in
@@ -479,205 +492,236 @@ function TUI(){
                     print t "#################################################"
                     print t "Vim Modal Text Editor"
                     print t "#################################################"
-                    YAYIN vim vi sudo vim-runtime vim-spell-en
+                    YAYIN vim vi sudo vim-runtime vim-spell-en python-pip python2-pip
+                    pip install neovim pynvim --user
+                    pip2 install neovim pynvim --user
+                    gem install
                     print s "Personal Vim Configuration"
                     git clone https://github.com/Thomashighbaugh/vim ~/.vim
                     print s "Linking Personal Configuration with System"
                     ln -s ~/.vim/vimrc ~/.vimrc
-                    ln -s ~/.vim/vimrc ~/.confi/nvim/init
+                    ln -s ~/.vim/vimrc ~/.config/nvim/init.vim
                     print s "Downloading Plugin Manager"
                     cd ~/.vim && curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
                         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-                                            print s "Installing Plugins"
-                                            vim +PlugUpdate +qa
-                                            print t "#################################################"
-                                            print t "Personal Vimwiki"
-                                            git clone https://github.com/Thomashighbaugh/vimwiki ~/.vimwiki
 
-                                            ln -svf .vimwiki .vimwiki-tech
-                                            ln -svf .vimwiki vimwiki
-                                            print t  "Vim Modal Text Editor Provisioned and Configured"
-                                            ;;
-                                        "X11")
-                                            print t "#################################################"
-                                            print t "X11 Window Server"
-                                            print t "#################################################"
-                                            YAYIN  xorg xorg-apps xorg-drivers xorg-fonts
-                                            YAYIN pa-applet-git gnome-keyring polkit-gnome libgnome-keyring xscreensaver
-                                            mkdir -p "$HOME"/.Xresources.d
-                                            ln -svf "$HOME"/dotfiles/home/xorg/Xresources "$HOME"/.Xresources
-                                            ln -svf "$HOME"/dotfiles/home/xorg/color "$HOME"/.Xresources.d/color
-                                            ln -svf "$HOME"/dotfiles/home/xorg/font "$HOME"/.Xresources.d/font
-                                            ln -svf "$HOME"/dotfiles/home/xorg/rxvt-unicode "$HOME"/.Xresources.d/rxvt-unicode
-                                            ln -svf "$HOME"/dotfiles/home/xorg/uxterm "$HOME"/.Xresources.d/uxterm
-                                            ln -svf "$HOME"/dotfiles/home/xorg/xterm "$HOME"/.Xresources.d/xterm
-                                            ln -svf "$HOME"/dotfiles/home/xorg/xscreensaver "$HOME"/.xscreensaver
-                                            ln -fvs "$HOME"/dotfiles/home/xorg/xinitrc "$HOME"/.xinitrc
-                                            ln -fvs "$HOME"/dotfiles/home/xorg/xprofile "$HOME"/.xprofile
-                                            ln -fvs "$HOME"/dotfiles/home/xorg/xsettingsd "$HOME"/.xsettingsd
-                                            ln -fvs "$HOME"/dotfiles/home/xorg/xsessionrc "$HOME"/.xsessionrc
-                                            print t  "X11 Window Server Provisioned and Configured"
-                                            ;;
-                                        "ZSH")
-                                            print t "#################################################"
-                                            print t "ZSH shell"
-                                            print t "#################################################"
-                                            ## Install Necessary Packages
-                                            YAYIN zsh alias-tips-git zsh-auto-notify zsh-doc lsd lshw
-                                            YAYIN zsh-syntax-highlighting zsh-lovers zsh-autosuggestions
-                                            YAYIN alias-tips-git zsh-system-clipboard-git zsh-doc powerline zsh-history-substring-search zshdb find-the-command
-                                            YAYIN  zsh-completions keybase-zsh-completion-git python-click-completion
-                                            ## Symlink Files
-                                            ln -svf "$HOME"/dotfiles/home/zsh/zprofile "$HOME"/.zprofile
-                                            ln -svf "$HOME"/dotfiles/home/zsh/zshenv "$HOME"/.zshenv
-                                            ln -svf "$HOME"/dotfiles/home/zsh/zshrc "$HOME"/.zshrc
-                                            ln -svf "$HOME"/dotfiles/home/zsh/zlogout "$HOME"/.zlogout
-                                            print t  "ZSH shell Provisioned and Configured"
-                                            ;;
-                                        "Quit")
-                                            mainmenu
-                                            ;;
-                                        *)
-                                            echo "Something else.  Where Am I?"
-                                    esac
-                                done
-                            done
-                        }
-                    #########################################################
-                    ## GUI
-                    #########################################################
-                    function GUI(){
-                        while true; do
-                            cmd=(dialog --backtitle "Dotfiles Installer - Thomas Leon Highbaugh"  --title     "GUI Environments" --clear --separate-output --checklist "Select Options:" 32 76 16 )
-                            options=(
-                                "Awesome"     "- primary window manager" off
-                                "BSPWM" " - binary tree window splitting window manager" off
-                                "GTK" "- easily themed windows" off
-                                "Picom" "- X11 desktop effects" off
-                                "Qtile"    "- window manager in Python" off
-                                "Rofi" "- DMenu replacement" off
-                                "Sway" "- Wayland replacement for i3" off
-                                "LightDM" "- sometimes functional Display Manager" off
-                                "Quit"      "- Return to Main Menu" off)
-                                choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
-                                for choice in $choices; do
-                                    case "$choice" in
-                                        "Awesome")
-                                            print t "#################################################"
-                                            print t "Awesome Window Manager"
-                                            print t "#################################################"
-                                            YAYIN  awesome-git feh xcape light lua-coxpcall maim
+                    curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+                        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-                                            YAYIN  vicious lain-git awesome-freedesktop-git archlinux-xdg-menu archlinux-menus
+                    print s "Installing Plugins"
+                    vim +PlugUpdate +qa
+                    print t "#################################################"
 
-                                            YAYIN  luarocks awmtt caja
+                    print t "Personal Vimwiki"
 
-                                            YAYIN zathura zathura-pdf-mupdf zathura-ps youtube-dl
+                    git clone https://github.com/Thomashighbaugh/vimwiki ~/.vimwiki
+                    ln -svf .vimwiki .vimwiki-tech
+                    ln -svf .vimwiki vimwiki
+                    print t  "Vim Modal Text Editor Provisioned and Configured"
+                    ;;
+                "X11")
+                    print t "#################################################"
+                    print t "X11 Window Server"
+                    print t "#################################################"
+                    YAYIN  xorg xorg-apps xorg-drivers xorg-fonts
+                    YAYIN pa-applet-git gnome-keyring polkit-gnome libgnome-keyring xscreensaver
+                    mkdir -p "$HOME"/.Xresources.d
+                    ln -svf "$HOME"/dotfiles/home/xorg/Xresources "$HOME"/.Xresources
+                    ln -svf "$HOME"/dotfiles/home/xorg/color "$HOME"/.Xresources.d/color
+                    ln -svf "$HOME"/dotfiles/home/xorg/font "$HOME"/.Xresources.d/font
+                    ln -svf "$HOME"/dotfiles/home/xorg/rxvt-unicode "$HOME"/.Xresources.d/rxvt-unicode
+                    ln -svf "$HOME"/dotfiles/home/xorg/uxterm "$HOME"/.Xresources.d/uxterm
+                    ln -svf "$HOME"/dotfiles/home/xorg/xterm "$HOME"/.Xresources.d/xterm
+                    ln -svf "$HOME"/dotfiles/home/xorg/xscreensaver "$HOME"/.xscreensaver
+                    ln -fvs "$HOME"/dotfiles/home/xorg/xinitrc "$HOME"/.xinitrc
+                    ln -fvs "$HOME"/dotfiles/home/xorg/xprofile "$HOME"/.xprofile
+                    ln -fvs "$HOME"/dotfiles/home/xorg/xsettingsd "$HOME"/.xsettingsd
+                    ln -fvs "$HOME"/dotfiles/home/xorg/xsessionrc "$HOME"/.xsessionrc
+                    print t  "X11 Window Server Provisioned and Configured"
+                    ;;
+                "ZSH")
+                    print t "#################################################"
+                    print t "ZSH shell"
+                    print t "#################################################"
+                    ## Install Necessary Packages
+                    YAYIN zsh alias-tips-git zsh-auto-notify zsh-doc lsd lshw
+                    YAYIN zsh-syntax-highlighting zsh-lovers zsh-autosuggestions
+                    YAYIN alias-tips-git zsh-system-clipboard-git zsh-doc powerline zsh-history-substring-search zshdb find-the-command
+                    YAYIN  zsh-completions keybase-zsh-completion-git python-click-completion
+                    ## Symlink Files
+                    ln -svf "$HOME"/dotfiles/home/zsh/zprofile "$HOME"/.zprofile
+                    ln -svf "$HOME"/dotfiles/home/zsh/zshenv "$HOME"/.zshenv
+                    ln -svf "$HOME"/dotfiles/home/zsh/zshrc "$HOME"/.zshrc
+                    ln -svf "$HOME"/dotfiles/home/zsh/zlogout "$HOME"/.zlogout
+                    print t  "ZSH shell Provisioned and Configured"
+                    ;;
+                "Quit")
 
-                                            ln -svf "$HOME"/dotfiles/home/zathura/zathurarc "$HOME"/.config/zathura
+                    dialog --title "Proceed?" \
+                        --backtitle "Dotfiles Installation - Thomas Leon Highbaugh" \
+                        --yesno "Are You Ready to Begin?" 7 60
+                                            response=$?
+                                            case $response in
+                                                0) echo ;;
+                                                1) exit;;
+                                                255) exit;;
+                                            esac
+                                        }
 
-                                            if [[ -r "$HOME/.config/awesome" ]]; then
-                                                rm -rvf "$HOME"/.config/awesome
-                                            fi
-                                            ## Install My Configuration
-                                            git clone https://github.com/Thomashighbaugh/awesomewm "$HOME"/.config/awesome
-                                            return
-                                            print t  "Awesome Window Manager Provisioned and Configured"
-                                            ;;
-                                        "BSPWM")
-                                            print t "#################################################"
-                                            print t "BSP Window Manager"
-                                            print t "#################################################"
+                                    mainmenu
+                                    ;;
+                                *)
+                                    echo "Something else.  Where Am I?"
+                            esac
+                        done
+                    done
+                }
+            #########################################################
+            ## GUI
+            #########################################################
+            function GUI(){
+                while true; do
+                    cmd=(dialog --backtitle "Dotfiles Installer - Thomas Leon Highbaugh"  --title     "GUI Environments" --clear --separate-output --checklist "Select Options:" 32 76 16 )
+                    options=(
+                        "Awesome"     "- primary window manager" off
+                        "BSPWM" " - binary tree window splitting window manager" off
+                        "GTK" "- easily themed windows" off
+                        "Picom" "- X11 desktop effects" off
+                        "Qtile"    "- window manager in Python" off
+                        "Rofi" "- DMenu replacement" off
+                        "Sway" "- Wayland replacement for i3" off
+                        "LightDM" "- sometimes functional Display Manager" off
+                        "Back"      "- Return to Main Menu" off)
+                        choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
+                        for choice in $choices; do
+                            case "$choice" in
+                                "Awesome")
+                                    print t "#################################################"
+                                    print t "Awesome Window Manager"
+                                    print t "#################################################"
+                                    YAYIN  awesome-git feh xcape light lua-coxpcall maim
 
-                                            YAYIN bspwm-rounded-corners-git bsp-layout sxhkd-git bar-aint-recursive xtitle-git sutils-git
-                                            ln -svf "$HOME"/dotfiles/home/bspwm "$HOME"/.config/bspwm
-                                            mkdir "$HOME"/.config/sxhkd
-                                            ln -svf "$HOME"/dotfiles/home/bspwm/sxhkdrc "$HOME"/.config/sxhkd
-                                            print t  "BSP Window Manager Provisioned and Configured"
-                                            ;;
-                                        "GTK")
-                                            print t "#################################################"
-                                            print t "GTK Window Theming"
-                                            print t "#################################################"
+                                    YAYIN  vicious lain-git awesome-freedesktop-git archlinux-xdg-menu archlinux-menus
 
-                                            YAYIN  gtk-engine-murrine gtk-engines xfce4-settings qt5ct kvantum colord-gtk gst-plugin-gtk glade gtkglext gtkspell xdg-desktop-portal-gtk wxgtk3 gpg-crypter gtk-chtheme gtkd gtkglarea libfm-gtk3
-                                            mkdir -p "$HOME"/.config/gtk-2.0
-                                            ln -svf "$HOME"/dotfiles/home/gtk/gtk-2.0/gtkfilechooser.ini "$HOME"/.config/gtk-2.0/gtkfilechooser.ini
-                                            mkdir -p "$HOME"/.config/gtk-3.0
-                                            ln -svf "$HOME"/dotfiles/home/gtk/gtk-3.0/bookmarks "$HOME"/.config/gtk-3.0/bookmarks
-                                            ln -svf "$HOME"/dotfiles/home/gtk/gtk-3.0/gtk.css "$HOME"/.config/gtk-3.0/gtk.css
-                                            ln -svf "$HOME"/dotfiles/home/gtk/gtk-3.0/settings.ini "$HOME"/.config/gtk-3.0/settings.ini
-                                            ln -svf "$HOME"/dotfiles/home/gtk/gtkrc-2.0 "$HOME"/.gtkrc-2.0
-                                            mkdir -p "$HOME"/.config/Kvantum
-                                            ln -svf "$HOME"/dotfiles/home/gtk/kvantum.kvconfig "$HOME"/.config/Kvantum/kvantum.kvconfig
-                                            print t  "GTK Window Theming Provisioned and Configured"
-                                            ;;
-                                        "Picom")
-                                            print t "#################################################"
-                                            print t "Picom Desktop Compostitor"
-                                            print t "#################################################"
-                                            YAYIN  picom-ibhagwan-git
-                                            ln -svf "$HOME"/dotfiles/home/picom/picom.conf "$HOME"/.config
-                                            print t  "Picom Desktop Compostitor Provisioned and Configured"
-                                            ;;
-                                        "Qtile")
-                                            print t "#################################################"
-                                            print t "Qtile Window Manager"
-                                            print t "#################################################"
-                                            YAYIN qtile rofi-git sensors
-                                            ## Clone and Provision my QTile Configuration
-                                            git clone https://github.com/Thomashighbaugh/qtile "$HOME"/.config/qtile
-                                            print t  "QTile Provisioned and Configured"
-                                            ;;
-                                        "Rofi")
-                                            print t "#################################################"
-                                            print t "Rofi Menu Script"
-                                            print t "#################################################"
-                                            YAYIN rofi-git
-                                            sudo pip install python-rofi
-                                            mkdir -p "$HOME"/.config/rofi
-                                            ln -svf "$HOME"/dotfiles/home/rofi/config "$HOME"/.config/rofi
-                                            ln -svf "$HOME"/dotfiles/home/rofi/themes "$HOME"/.config/rofi
-                                            sudo ln -svf "$HOME"/dotfiles/home/rofi/themes /usr/share/rofi
-                                            ln -svf "$HOME"/dotfiles/home/rofi/config.rasi "$HOME"/.config/rofi/config.rasi
-                                            ln -svf "$HOME"/dotfiles/home/rofi/three.rasi "$HOME"/.config/rofi/three.rasi
-                                            sudo cp -rvf "$HOME"/dotfiles/home/rofi/rofi-todo /usr/bin
-                                            print t  " Provisioned and Configured"
-                                            ;;
-                                        "Sway")
-                                            print t "#################################################"
-                                            print t "Sway Window Manager"
-                                            print t "#################################################"
-                                            YAYIN sway-borders-git swayidle grimshot wofi swaybg waybar wf-recorder autotiling nwg-launcher i3title swayimg swaylock wofer mako swaymgr swaytools i3keys
-                                            mkdir -p "$HOME"/.config/sway
-                                            ln -svf "$HOME"/dotfiles/home/sway/config "$HOME"/.config/sway/config
-                                            ln -svf "$HOME"/dotfiles/home/sway/lockman.sh "$HOME"/.config/sway/lockman.sh
-                                            ln -svf "$HOME"/dotfiles/home/sway/window.sh "$HOME"/.config/sway/window.sh
-                                            ln -svf "$HOME"/dotfiles/home/sway/autostart.sh "$HOME"/.config/sway/autostart.sh
-                                            ln -svf "$HOME"/dotfiles/home/sway/nwg-launchers "$HOME"/.config/nwg-launchers
-                                            print t  " Provisioned and Configured"
-                                            ;;
-                                        "LightDM")
-                                            print t "#################################################"
-                                            print t "Lightdm"
-                                            print t "#################################################"
-                                            YAYIN lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
+                                    YAYIN  luarocks awmtt caja
 
-                                            sudo ln -f $HOME/dotfiles/root/lightdm/lightdm-gtk-greeter.conf /etc/lightdm/lightdm-gtk-greeter.conf
+                                    YAYIN zathura zathura-pdf-mupdf zathura-ps youtube-dl
 
-                                            sudo ln -f $HOME/dotfiles/root/lightdm/lightdm.conf /etc/lightdm/lightdm.conf
+                                    ln -svf "$HOME"/dotfiles/home/zathura/zathurarc "$HOME"/.config/zathura
 
-                                            print t "Lightdm Provisioned and Configured"
-                                            ;;
-                                        "Quit")
-                                            return
-                                            ;;
-                                        *)
-                                            echo "Something else.  Where Am I?"
-                                    esac
-                                done
-                            done
-                        }
+                                    if [[ -r "$HOME/.config/awesome" ]]; then
+                                        rm -rvf "$HOME"/.config/awesome
+                                    fi
+                                    ## Install My Configuration
+                                    git clone https://github.com/Thomashighbaugh/awesomewm "$HOME"/.config/awesome
+                                    return
+                                    print t  "Awesome Window Manager Provisioned and Configured"
+                                    ;;
+                                "BSPWM")
+                                    print t "#################################################"
+                                    print t "BSP Window Manager"
+                                    print t "#################################################"
+
+                                    YAYIN bspwm-rounded-corners-git bsp-layout sxhkd-git bar-aint-recursive xtitle-git sutils-git
+                                    ln -svf "$HOME"/dotfiles/home/bspwm "$HOME"/.config/bspwm
+                                    mkdir "$HOME"/.config/sxhkd
+                                    ln -svf "$HOME"/dotfiles/home/bspwm/sxhkdrc "$HOME"/.config/sxhkd
+                                    print t  "BSP Window Manager Provisioned and Configured"
+                                    ;;
+                                "GTK")
+                                    print t "#################################################"
+                                    print t "GTK Window Theming"
+                                    print t "#################################################"
+
+                                    YAYIN  gtk-engine-murrine gtk-engines xfce4-settings qt5ct kvantum colord-gtk gst-plugin-gtk glade gtkglext gtkspell xdg-desktop-portal-gtk wxgtk3 gpg-crypter gtk-chtheme gtkd gtkglarea libfm-gtk3
+                                    mkdir -p "$HOME"/.config/gtk-2.0
+                                    ln -svf "$HOME"/dotfiles/home/gtk/gtk-2.0/gtkfilechooser.ini "$HOME"/.config/gtk-2.0/gtkfilechooser.ini
+                                    mkdir -p "$HOME"/.config/gtk-3.0
+                                    ln -svf "$HOME"/dotfiles/home/gtk/gtk-3.0/bookmarks "$HOME"/.config/gtk-3.0/bookmarks
+                                    ln -svf "$HOME"/dotfiles/home/gtk/gtk-3.0/gtk.css "$HOME"/.config/gtk-3.0/gtk.css
+                                    ln -svf "$HOME"/dotfiles/home/gtk/gtk-3.0/settings.ini "$HOME"/.config/gtk-3.0/settings.ini
+                                    ln -svf "$HOME"/dotfiles/home/gtk/gtkrc-2.0 "$HOME"/.gtkrc-2.0
+                                    mkdir -p "$HOME"/.config/Kvantum
+                                    ln -svf "$HOME"/dotfiles/home/gtk/kvantum.kvconfig "$HOME"/.config/Kvantum/kvantum.kvconfig
+                                    print t  "GTK Window Theming Provisioned and Configured"
+                                    ;;
+                                "Picom")
+                                    print t "#################################################"
+                                    print t "Picom Desktop Compostitor"
+                                    print t "#################################################"
+                                    YAYIN  picom-ibhagwan-git
+                                    ln -svf "$HOME"/dotfiles/home/picom/picom.conf "$HOME"/.config
+                                    print t  "Picom Desktop Compostitor Provisioned and Configured"
+                                    ;;
+                                "Qtile")
+                                    print t "#################################################"
+                                    print t "Qtile Window Manager"
+                                    print t "#################################################"
+                                    YAYIN qtile rofi-git sensors
+                                    ## Clone and Provision my QTile Configuration
+                                    git clone https://github.com/Thomashighbaugh/qtile "$HOME"/.config/qtile
+                                    print t  "QTile Provisioned and Configured"
+                                    ;;
+                                "Rofi")
+                                    print t "#################################################"
+                                    print t "Rofi Menu Script"
+                                    print t "#################################################"
+                                    YAYIN rofi-git
+                                    sudo pip install python-rofi
+                                    mkdir -p "$HOME"/.config/rofi
+                                    ln -svf "$HOME"/dotfiles/home/rofi/config "$HOME"/.config/rofi
+                                    ln -svf "$HOME"/dotfiles/home/rofi/themes "$HOME"/.config/rofi
+                                    sudo ln -svf "$HOME"/dotfiles/home/rofi/themes /usr/share/rofi
+                                    ln -svf "$HOME"/dotfiles/home/rofi/config.rasi "$HOME"/.config/rofi/config.rasi
+                                    ln -svf "$HOME"/dotfiles/home/rofi/three.rasi "$HOME"/.config/rofi/three.rasi
+                                    sudo cp -rvf "$HOME"/dotfiles/home/rofi/rofi-todo /usr/bin
+                                    print t  " Provisioned and Configured"
+                                    ;;
+                                "Sway")
+                                    print t "#################################################"
+                                    print t "Sway Window Manager"
+                                    print t "#################################################"
+                                    YAYIN sway-borders-git swayidle grimshot wofi swaybg waybar wf-recorder autotiling nwg-launcher i3title swayimg swaylock wofer mako swaymgr swaytools i3keys
+                                    mkdir -p "$HOME"/.config/sway
+                                    ln -svf "$HOME"/dotfiles/home/sway/config "$HOME"/.config/sway/config
+                                    ln -svf "$HOME"/dotfiles/home/sway/lockman.sh "$HOME"/.config/sway/lockman.sh
+                                    ln -svf "$HOME"/dotfiles/home/sway/window.sh "$HOME"/.config/sway/window.sh
+                                    ln -svf "$HOME"/dotfiles/home/sway/autostart.sh "$HOME"/.config/sway/autostart.sh
+                                    ln -svf "$HOME"/dotfiles/home/sway/nwg-launchers "$HOME"/.config/nwg-launchers
+                                    print t  " Provisioned and Configured"
+                                    ;;
+                                "LightDM")
+                                    print t "#################################################"
+                                    print t "Lightdm"
+                                    print t "#################################################"
+                                    YAYIN lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
+
+                                    sudo ln -f $HOME/dotfiles/root/lightdm/lightdm-gtk-greeter.conf /etc/lightdm/lightdm-gtk-greeter.conf
+
+                                    sudo ln -f $HOME/dotfiles/root/lightdm/lightdm.conf /etc/lightdm/lightdm.conf
+
+                                    print t "Lightdm Provisioned and Configured"
+                                    ;;
+                                "Back")
+                                    dialog --title "Proceed?" \
+                                        --backtitle "Dotfiles Installation - Thomas Leon Highbaugh" \
+                                        --yesno "Are You Ready to Begin?" 7 60
+                                                                            response=$?
+                                                                            case $response in
+                                                                                0) echo ;;
+                                                                                1) exit;;
+                                                                                255) exit;;
+                                                                            esac
+                                                                        }
+
+                                                                    mainmenu
+                                                                    ;;
+                                                                *)
+                                                                    echo "Something else.  Where Am I?"
+                                                            esac
+                                                        done
+                                                    done
+                                                }
 
 
 #########################################################
@@ -702,7 +746,7 @@ function APPs(){
             "VirtManager" "- open source virtualization source" off
             "Virtualbox" "- virtualization solution" off
             "vmware" "- powerful virtualization solution" off
-            "Quit" "- Return to Main Menu" off
+            "Back" "- Return to Main Menu" off
         )
         choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
         for choice in $choices; do
@@ -823,99 +867,115 @@ function APPs(){
                     sudo modprobe -a vmw_vmci vmmo
 
                     ;;
-                "Quit")
-                    mainmenu
-                    ;;
-                *)
-                    echo "Something else.  Where Am I?"
-                    ;;
-            esac
-        done
-    done
-}
-#########################################################
-## Dev
-#########################################################
-function Dev(){
-    while true; do
-        cmd=(dialog --backtitle "Dotfiles Installer - Thomas Leon Highbaugh"  --title     "Local Development" --clear --separate-output --checklist "Select Options:" 32 76 16 )
-        options=(
-            "Python"     "- Scritping language with understandable syntax" off
-            "Lua" "- Used in AwesomeWM for configuration, finds employment in seemingly random contexts." off
-            "Ruby" "- Often used in backends or frameworks." off
-            "Rust" "- trendy new language developed by Mozilla" off
-            "Quit"      "- Return to Main Menu" off)
+                "Back")
+                    dialog --title "Proceed?" \
+                        --backtitle "Dotfiles Installation - Thomas Leon Highbaugh" \
+                        --yesno "Are You Ready to Begin?" 7 60
+                                            response=$?
+                                            case $response in
+                                                0) echo ;;
+                                                1) exit;;
+                                                255) exit;;
+                                            esac
+                                        }
 
-            choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
-            for choice in $choices; do
-                case "$choice" in
-                    "Python")
-                        print t "#################################################"
-                        print t "Python"
-                        print t "#################################################"
-                        YAYIN python-pip python2-pip pyenv python python2 python-virtualenv python2-virtualenv python-pipenv python-pytest-virtualenv python-virtualenvwrapper pyenv-virtualenv
-                        ;;
-                    "Lua")
-                        print t "#################################################"
-                        print t "Lua Programming Language"
-                        print t "#################################################"
-                        YAYIN lua-dbi lua-socket luakit luarocks luakit lua-socket lua-dbi
-                        print t  " Provisioned and Configured"
-                        ;;
-                    "Ruby")
-                        print t "#################################################"
-                        print t "Ruby Programming Language"
-                        print t "#################################################"
-                        YAYIN rbenv rbenv-binstubs ruby-sassc chruby ruby-build
-                        rbenv init
-                        rbenv install 3.0.0
-                        print t  " Provisioned and Configured"
-                        ;;
-                    "Rust")
-                        print t "#################################################"
-                        print t "Rust Programming Language"
-                        print t "#################################################"
-                        YAYIN   rustup rust-docs lib32-rust-libs rust-racer rust-analyzer
-                        print t  " Provisioned and Configured"                ;;
+                                    mainmenu
+                                    ;;
 
-                    "Quit")
-                        mainmenu
-                        ;;
-                    *)
-                        echo "Something else.  Where Am I?"
-                esac
-            done
-        done
-    }
+
+                                *)
+                                    echo "Something else.  Where Am I?"
+                                    ;;
+                            esac
+                        done
+                    done
+                }
+            #########################################################
+            ## Dev
+            #########################################################
+            function Dev(){
+                while true; do
+                    cmd=(dialog --backtitle "Dotfiles Installer - Thomas Leon Highbaugh"  --title     "Local Development" --clear --separate-output --checklist "Select Options:" 32 76 16 )
+                    options=(
+                        "Python"     "- Scritping language with understandable syntax" off
+                        "Lua" "- Used in AwesomeWM for configuration, finds employment in seemingly random contexts." off
+                        "Ruby" "- Often used in backends or frameworks." off
+                        "Rust" "- trendy new language developed by Mozilla" off
+                        "Quit"      "- Return to Main Menu" off)
+
+                        choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
+                        for choice in $choices; do
+                            case "$choice" in
+                                "Python")
+                                    print t "#################################################"
+                                    print t "Python"
+                                    print t "#################################################"
+                                    YAYIN python-pip python2-pip pyenv python python2 python-virtualenv python2-virtualenv python-pipenv python-pytest-virtualenv python-virtualenvwrapper pyenv-virtualenv
+                                    ;;
+                                "Lua")
+                                    print t "#################################################"
+                                    print t "Lua Programming Language"
+                                    print t "#################################################"
+                                    YAYIN lua-dbi lua-socket luakit luarocks luakit lua-socket lua-dbi
+                                    print t  " Provisioned and Configured"
+                                    ;;
+                                "Ruby")
+                                    print t "#################################################"
+                                    print t "Ruby Programming Language"
+                                    print t "#################################################"
+                                    YAYIN rbenv rbenv-binstubs ruby-sassc chruby ruby-build
+                                    rbenv init
+                                    rbenv install 3.0.0
+                                    print t  " Provisioned and Configured"
+                                    ;;
+                                "Rust")
+                                    print t "#################################################"
+                                    print t "Rust Programming Language"
+                                    print t "#################################################"
+                                    YAYIN   rustup rust-docs lib32-rust-libs rust-racer rust-analyzer
+                                    print t  " Provisioned and Configured"                ;;
+
+                                "Back")
+                                    dialog --title "Proceed?" \
+                                        --backtitle "Dotfiles Installation - Thomas Leon Highbaugh" \
+                                        --yesno "Are You Ready to Begin?" 7 60
+                                                                            response=$?
+                                                                            case $response in
+                                                                                0) echo ;;
+                                                                                1) exit;;
+                                                                                255) exit;;
+                                                                            esac
+                                                                        }
+
+                                                                    mainmenu
+                                                                    ;;
+
+                                                                *)
+                                                                    echo "Something else.  Where Am I?"
+                                                            esac
+                                                        done
+                                                    done
+                                                }
 
 
 #############################################################################
 ## Main Menu
 #############################################################################
-
-print s "
-_____         __    ___ __ __
-|     \.-----.|  |_.'  _|__|  |.-----.-----.
-|  --  |  _  ||   _|   _|  |  ||  -__|__ --|
-    |_____/|_____||____|__| |__|__||_____|_____|
-    __               __          __ __
-    |__|.-----.-----.|  |_.---.-.|  |  |.-----.----.
-    |  ||     |__ --||   _|  _  ||  |  ||  -__|   _|
-        |__||__|__|_____||____|___._||__|__||_____|__|
-        "
-
-    print
-    print
-    print
-    dialog --title "Proceed?" \
-        --backtitle "Dotfiles Installation - Thomas Leon Highbaugh" \
-        --yesno "Are You Ready to Begin?" 7 60
-            response=$?
-            case $response in
-                0) echo ;;
-                1) exit;;
-                255) exit;;
-            esac
+print t "#################################################"
+print t "Dotfiles Installer Script"
+print t "#################################################"
+print
+print
+print
+dialog --title "Proceed?" \
+    --backtitle "Dotfiles Installation - Thomas Leon Highbaugh" \
+    --yesno "Are You Ready to Begin?" 7 60
+    response=$?
+    case $response in
+        0) echo ;;
+        1) exit;;
+        255) exit;;
+    esac
 
 
-            mainmenu
+    mainmenu

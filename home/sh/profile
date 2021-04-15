@@ -20,3 +20,4 @@ done
 
 # shellcheck source=/dev/null
 source "$HOME"/dotfiles/home/sh/aliases
+source "$HOME/.cargo/env"

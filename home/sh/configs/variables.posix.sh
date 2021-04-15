@@ -15,7 +15,7 @@ unset EDITORD
 
 if [[ -s $(which /usr/bin/vim) ]]; then
     export EDITOR=/usr/bin/vim
-    elif [[ -s $(which /usr/bin/nvim) ]]; then
+elif [[ -s $(which /usr/bin/nvim) ]]; then
     export EDITOR=/usr/bin/nvim
 else
     export EDITOR=vi
@@ -115,3 +115,6 @@ export MOZ_X11_EG=1
 
 export PYENV_ROOT="$HOME/.pyenv"
 eval "$(pyenv init -)"
+
+
+GENCOMPL_FPATH=$HOME/dotfiles/home/zsh/completions
