@@ -33,7 +33,7 @@ cd dotfiles
 sh install.sh
 ```
 
-Then the `./INSTALL` will show you a menu, use <kbd>Space</kbd> to select and <kbd></kbd> / <kbd></kbd> to select then <kbd>Enter</kbd> to get the showboat on the river!
+<p>Then the `./INSTALL` will show you a menu, use <kbd>Space</kbd> to select and <kbd></kbd> / <kbd></kbd> to select then <kbd>Enter</kbd> to get the showboat on the river!</p>
 
 > Note: Just make sure you run the first item on the first menu before trying to install anything else as it installs `yay` and that's what everything else uses to install programs!
 
