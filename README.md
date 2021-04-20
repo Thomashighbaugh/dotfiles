@@ -4,6 +4,14 @@
 
 ---
 
+## Disclaimers
+
+I probably shouldn't even have to say the following, but will just in case these truths are not so self-evident.
+
+1. This repository is a work in progress (like the Winchester Mystery Dotfiles)
+2. Please don't blindly copy these into your system or run the install script without reading it first (it will delete stuff!)
+3. While I encourage anyone so inclined to use these dotfiles freely, I do not intend them (nor will support them) outside of my own needs and use cases
+
 ## Introduction
 
 A repo, on Github featuring dotfiles and an installation script bring an Arch system from first boot to totally useful to me and just the way I like it. Your tastes will vary, inevitably, so you can use this as the basis for your own repo, steal ideas from it, fork it, whatever you want to do.
@@ -12,15 +20,15 @@ But **beware** minimalism and other trendiness are not to be found here. These f
 
 ## Features
 
-- Extensive
-- Modular
-- Install script
-  - Idemponent
-  - Menu driven
-  - Modular
-  - Pulls in other repos
-  - installs programs
-  - provisions programs
+-   Extensive
+-   Modular
+-   Install script
+    -   Idempotent
+    -   Menu driven
+    -   Modular
+    -   Pulls in other repos
+    -   installs programs
+    -   provisions programs
 
 ## How To
 
@@ -39,7 +47,7 @@ sh install.sh
 
 ## But Why No Submodules
 
-In this case, the avoidance of a useful, if badly documented, git feature known as submodules is due to the nature of a dotfiles repository. Were my awesomewm configuration (for example) pulled in as a submodule, I would still have to symlink it to `.config/awesome` which has the potential to break whereas having the installation script pull the repo into the `.config/awesome` directory directly mitigates that and I can eaisly then add it to eh `myrepos` configuration to insure when batch committing repositories related to my dotfiles, which generally I seek avoiding as I should just be committing to each as I change things directly in the repository at the time I am so changing them. `myrepos` serves as a backup for critical moments before a reinstall or bed time, to give some examples.
+In this case, the avoidance of a useful, if badly documented, git feature known as submodules is due to **the nature of a dotfiles repository**. Were my awesomewm configuration (for example) pulled in as a submodule, I would **still have to symlink it to** `.config/awesome` which has the potential to break and/or find some other means of frustrating me, whereas having the installation script pull the repo into the `.config/awesome` directory directly mitigates that and I can eaisly then add it to my `myrepos` configuration to insure when batch committing repositories related to my dotfiles, which generally I seek avoiding as I should just be committing to each as I change things directly in the repository at the time I am so changing them. `myrepos` serves as a backup for critical moments before a reinstall or bed time, to give some examples.
 
 ## Directory Structure
 
@@ -62,6 +70,7 @@ These additional repositories are listed in the table below for the purposes of 
 
 ## Inspiration
 
-- [Holman Does Dotfiles](https://github.com/holman/dotfiles)
+-   [Holman Does Dotfiles](https://github.com/holman/dotfiles)
 
-- [wafflepie/dotfiles](https://github.com/wafflepie/dotfiles)
+-   [wafflepie/dotfiles](https://github.com/wafflepie/dotfiles)
+    -   this configuration is really an unsung hero of dotfiles, unique approaches to common issues I was having that helped push me over to into a fuller knowledge.
