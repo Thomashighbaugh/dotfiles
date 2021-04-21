@@ -4,7 +4,7 @@
 ## rofi installer ##############################################################
 ################################################################################
 
-yay -S --noconfirm --sudoloop --needed rofi-git rofi-todo 
+yay -S --noconfirm --sudoloop --needed rofi-git rofi-todo
 sudo pip install python-rofi
 
 mkdir -p $HOME/.config/rofi

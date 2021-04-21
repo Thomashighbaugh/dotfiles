@@ -1,4 +1,3 @@
-
 #!/usr/bin/env bash
 # Node Package Management
 ###########################################################################
@@ -14,4 +13,3 @@ alias nvmNow="nvm use node"e
 alias clear-yarn="rm .cache && rm yarn.lock && rm node_modules && rm package.json.lock "
 ## Same as above, but if NPM is primary package manager
 alias clear-npm="rm .cache && rm package.json.lock && node_modules && rm yarn.lock "e
-

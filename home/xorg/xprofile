@@ -18,26 +18,25 @@ export XDG_CONFIG_HOME="$HOME/.config"
 
 ## Gnome Keyring
 if (command -v gnome-keyring-daemon && ! pgrep gnome-keyring-d); then
-    gnome-keyring-daemon ---start --components=pkcs11 --login &
-    /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+	gnome-keyring-daemon ---start --components=pkcs11 --login &
+	/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 fi
 
 ## Pulse Audio for X11
 if (command -v start-pulseaudio-x11 && ! pgrep pulseaudio); then
-    start-pulseaudio-x11 &
+	start-pulseaudio-x11 &
 fi
 
 ## Function Definition
 function run {
-    if (command -v $1 && ! pgrep $1); then
+	if (command -v $1 && ! pgrep $1); then
 
-        $@ &
-    fi
+		$@ &
+	fi
 }
 
 ## Functions
 # Note: Most of these are now commented out, as I have an autostart script for awesome (and other window managers) which includes these but allow for a per-situation customization level not present in this generalized file. I have left them present for purposes of reference for the others.
-
 
 ### Hitting Left Super == L Super + L Control + Escape (for rofi)
 # run xcape -e 'Super_L=Super_L|Control_L|Escape'
@@ -74,6 +73,5 @@ run ~/.dropbox-dist/dropboxd &
 
 ## Merging Xresources
 xrdb -merge $HOME/.Xresources
-
 
 run sudo env -u SUDO_GID -u SUDO_COMMAND -u SUDO_USER -u SUDO_UID .local/share/bin/sound/BeverlyHillsCop

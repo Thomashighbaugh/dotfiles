@@ -21,7 +21,7 @@ ALERT_LOW="${ALERT_LOW:-10}" # color will turn red under this value (default: 10
 
 LOCAL_FLAG="-l"
 if [ "$1" = "-n" ] || [ "$2" = "-n" ]; then
-    LOCAL_FLAG=""
+	LOCAL_FLAG=""
 fi
 
 df -h -P $LOCAL_FLAG "$DIR" | awk -v label="$LABEL" -v alert_low=$ALERT_LOW '

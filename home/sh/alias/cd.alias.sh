@@ -21,16 +21,13 @@ alias desk="cd ~/Desktop"
 alias pic="cd ~/Pictures"
 alias home="cd ~ "
 
-
 ## brings up the navigation menu
-better_cd()
-{
-	read_key_input()
-	{
-		local esc=$( printf "\033")
+better_cd() {
+	read_key_input() {
+		local esc=$(printf "\033")
 
 		read -s -n 1 key 2>/dev/null >&2
-		if [[ $key = ""     ]]; then echo "enter"; fi;
+		if [[ $key = "" ]]; then echo "enter"; fi
 		if [[ $key = $esc ]]; then
 			read -s -n 2 key 2>/dev/null >&2
 			if [[ $key = [A ]]; then echo "up"; fi
@@ -40,15 +37,11 @@ better_cd()
 		fi
 	}
 
-
-
 	local submenu_sel_index=""
 	local submenu_sel_key=""
-	print_submenu()
-	{
+	print_submenu() {
 
-
-		local dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+		local dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
 		if [ "$(type -t getFormatCode)" != 'function' ]; then
 			source "$dir/../bash-tools/bash-tools/print_utils.sh"
 		fi
@@ -56,9 +49,7 @@ better_cd()
 			source "$dir/../bash-tools/bash-tools/color.sh"
 		fi
 
-
-		eraseLines()
-		{
+		eraseLines() {
 			local num_lines=$1
 			moveCursorUp $num_lines
 			local i=$num_lines
@@ -69,19 +60,15 @@ better_cd()
 			moveCursorUp $num_lines
 		}
 
-
-
 		## SETUP
 		local options_array=("$@")
 		local index=0
 		local num_options="$#"
-		local last_index=$(($num_options -1))
-
+		local last_index=$(($num_options - 1))
 
 		## COLOR CONFIGURATION
 		local no_color=$(getFormatCode -e reset)
 		local text_format=$(getFormatCode -e reverse)
-
 
 		local loop=true
 		while $loop; do
@@ -94,7 +81,6 @@ better_cd()
 					echo "${options_array[$i]}"
 				fi
 			done
-
 
 			## READ USER KEY
 			local user_key=$(read_key_input)
@@ -117,18 +103,12 @@ better_cd()
 
 			fi
 
-
 			## CLEAR OUTPUT
 			eraseLines $num_options
 
-
-
-
-
 		done
+
 	}
-
-
 
 	## IF NO ARGUMENTS PASSED -> run better cd version on current folder
 	if [ $# -eq 0 ]; then
@@ -140,7 +120,7 @@ better_cd()
 			## GET CURRENT DIRECTORY TREE
 			local dirs=$("ls" -F "${dir_base}" | "grep" \/)
 
-			readarray -t dir_array <<< "$dirs" ## Split array
+			readarray -t dir_array <<<"$dirs" ## Split array
 
 			for i in ${!dir_array[@]}; do
 				dir_array[$i]="${dir_base}${dir_array[$i]}"
@@ -166,4 +146,3 @@ better_cd()
 }
 
 alias cd='better_cd'
-

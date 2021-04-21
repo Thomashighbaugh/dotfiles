@@ -4,4 +4,4 @@
 
 alias isobuild="sudo mkarchiso -v -w /tmp/mkarchiso-tmp ./releng"
 
-alias isoclean="mv out/*.iso ../ && sudo rm -rvf out && sudo rm -rvf /tmp/mkarchiso-tmp && echo 'ISO build has been cleaned up... hopefully'" 
+alias isoclean="mv out/*.iso ../ && sudo rm -rvf out && sudo rm -rvf /tmp/mkarchiso-tmp && echo 'ISO build has been cleaned up... hopefully'"

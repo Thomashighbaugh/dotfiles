@@ -14,11 +14,11 @@ unset EDITOR
 unset EDITORD
 
 if [[ -s $(which /usr/bin/vim) ]]; then
-    export EDITOR=/usr/bin/vim
+	export EDITOR=/usr/bin/vim
 elif [[ -s $(which /usr/bin/nvim) ]]; then
-    export EDITOR=/usr/bin/nvim
+	export EDITOR=/usr/bin/nvim
 else
-    export EDITOR=vi
+	export EDITOR=vi
 fi
 export EDITORD=${EDITORD:-$EDITOR}
 export GUI_EDITOR=/usr/share/applications/sublime-text.desktop
@@ -108,13 +108,10 @@ ARCH="$(uname -m | sed 's/^..86$$/386/; s/^.86$$/386/; s/x86_64/amd64/; s/arm.*/
 export OS
 export ARCH
 
-
 export LAUNCHER='rofi  -show drun -theme ~/.config/awesome/configuration/appmenu.rasi'
 export MOZ_X11_EG=1
 
-
 export PYENV_ROOT="$HOME/.pyenv"
 eval "$(pyenv init -)"
-
 
 GENCOMPL_FPATH=$HOME/dotfiles/home/zsh/completions

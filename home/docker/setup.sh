@@ -12,7 +12,7 @@ cd "$HOME"
 
 # ensure the user has a /bin directory, and add it to the path
 if [ ! -d "$ELECTRIC_TANTRA_BIN_DIR" ]; then
-      mkdir "$ELECTRIC_TANTRA_BIN_DIR"
+	mkdir "$ELECTRIC_TANTRA_BIN_DIR"
 fi
 
 export PATH="$ELECTRIC_TANTRA_BIN_DIR:$PATH"
@@ -21,9 +21,9 @@ export PATH="$ELECTRIC_TANTRA_BIN_DIR:$PATH"
 yay_dir="$HOME/yay"
 
 if [ ! -d "$yay_dir" ]; then
-      git clone https://github.com/thelocehiliosan/yay.git "$yay_dir" >/dev/null
+	git clone https://github.com/thelocehiliosan/yay.git "$yay_dir" >/dev/null
 
-      cd $yay_dir && makepkg -s
+	cd $yay_dir && makepkg -s
 fi
 
 # clone our system config and update origin to use SSL in the future
@@ -31,6 +31,5 @@ git clone https://github.com/Thomashighbaugh/dotfiles >/dev/null
 
 # check out a specific commit if it's been specified e.g. CI pull request
 if [ -n "$ELECTRIC_TANTRA_CHECKOUT_SHA1" ]; then
-      yadm checkout "$ELECTRIC_TANTRA_CHECKOUT_SHA1"
+	yadm checkout "$ELECTRIC_TANTRA_CHECKOUT_SHA1"
 fi
-

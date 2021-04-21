@@ -13,9 +13,10 @@ cd "$(readlink ~/.zshrc | xargs dirname)" || return
 export DOTFILES="$(git rev-parse --show-toplevel)"
 cd - >/dev/null || return
 # shellcheck source=/dev/null
-for file in $(find  "$DOTFILES"/home/sh/configs -name '*.posix.sh'
-    ); do
-    source "$file"
+for file in $(
+	find "$DOTFILES"/home/sh/configs -name '*.posix.sh'
+); do
+	source "$file"
 done
 
 # shellcheck source=/dev/null

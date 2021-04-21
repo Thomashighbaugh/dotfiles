@@ -7,5 +7,3 @@ alias brightnessctl="sudo brightnessctl "
 ###########################################################################
 alias shutdown="sudo poweroff "
 alias reboot="sudo reboot -i "
-
-
