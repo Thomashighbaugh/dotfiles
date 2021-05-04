@@ -30,7 +30,7 @@ fi
 ## Function Definition
 function run {
     if (command -v $1 && ! pgrep $1); then
-
+        
         $@ &
     fi
 }
@@ -64,8 +64,6 @@ function run {
 
 ### Screen Saver
 # run xscreensaver
-
-run tp-battery-icon
 
 # These two are generalized in terms of wanting them turned on even with Gnome or other DEs
 ### Dropbox
