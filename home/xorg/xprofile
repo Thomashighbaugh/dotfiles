@@ -17,10 +17,10 @@ export XDG_CONFIG_HOME="$HOME/.config"
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
 ## Gnome Keyring
-if (command -v gnome-keyring-daemon && ! pgrep gnome-keyring-d); then
-    gnome-keyring-daemon ---start --components=pkcs11 --login &
-    /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-fi
+#if (command -v gnome-keyring-daemon && ! pgrep gnome-keyring-d); then
+#    gnome-keyring-daemon ---start --components=pkcs11 --login &
+#    /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+#fi
 
 ## Pulse Audio for X11
 if (command -v start-pulseaudio-x11 && ! pgrep pulseaudio); then
@@ -30,7 +30,7 @@ fi
 ## Function Definition
 function run {
     if (command -v $1 && ! pgrep $1); then
-        
+
         $@ &
     fi
 }

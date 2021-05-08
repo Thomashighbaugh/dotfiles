@@ -15,11 +15,10 @@ Gtk/ColorPalette "black:white:gray50:red:purple:blue:light blue:green:yellow:ora
 Net/DoubleClickTime 400
 Gtk/CanChangeAccels 1
 Gtk/MenuBarAccel "F10"
-Net/ThemeName "Dhumavati-dark"
+Net/ThemeName "dhumavati"
 Gtk/ButtonImages 1
 Net/DoubleClickDistance 5
-Gtk/MonospaceFontName "Iceland Bold  15"
-Xft/DPI 94208
+Gtk/MonospaceFontName "Hurmit Nerd Font Mono medium 12"
 Gtk/CursorThemeName ""
 Gtk/ToolbarIconSize 32
 Net/DndDragThreshold 8
