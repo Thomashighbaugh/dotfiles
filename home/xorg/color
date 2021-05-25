@@ -26,8 +26,8 @@
 *color15:       #f4f4f7
 
 ! Note: colors beyond 15 might not be loaded (e.g., xterm, urxvt),
-    *color16:      #3c3f4c
-    *color17:      #0b0c0f
-    *color18:      #2F303D
-    *color19:      #383A47
-    *color20:       #b2bfd9
+*color16:      #3c3f4c
+*color17:      #0b0c0f
+*color18:      #2F303D
+*color19:      #383A47
+*color20:      #b2bfd9

@@ -18,64 +18,64 @@ wtf:
     columns: [35, 35, 35, 35]
     # How _high_ the rows are, in terminal lines. In this case we have four rows
     # that support ten line of text and one of four.
-  rows: [10, 10, 10, 10, 4]
+    rows: [10, 10, 10, 10, 4]
   refreshInterval: 1
-  openFileUtil: "open"
+  openFileUtil: 'open'
   mods:
     # You can have multiple widgets of the same type.
     # The "key" is the name of the widget and the type is the actual
     # widget you want to implement.
     europe_time:
-      title: "Europe"
+      title: 'Europe'
       type: clocks
       colors:
         rows:
-          even: "lightblue"
-          odd: "white"
+          even: 'lightblue'
+          odd: 'white'
       enabled: true
       locations:
-        GMT: "Etc/GMT"
-        Amsterdam: "Europe/Amsterdam"
-        Berlin: "Europe/Berlin"
-        Barcelona: "Europe/Madrid"
-        Copenhagen: "Europe/Copenhagen"
-        London: "Europe/London"
-        Rome: "Europe/Rome"
-        Stockholm: "Europe/Stockholm"
+        GMT: 'Etc/GMT'
+        Amsterdam: 'Europe/Amsterdam'
+        Berlin: 'Europe/Berlin'
+        Barcelona: 'Europe/Madrid'
+        Copenhagen: 'Europe/Copenhagen'
+        London: 'Europe/London'
+        Rome: 'Europe/Rome'
+        Stockholm: 'Europe/Stockholm'
       position:
         top: 0
         left: 0
         height: 1
         width: 1
       refreshInterval: 15
-      sort: "alphabetical"
+      sort: 'alphabetical'
     americas_time:
-      title: "Americas"
+      title: 'Americas'
       type: clocks
       colors:
         rows:
-          even: "lightblue"
-          odd: "white"
+          even: 'lightblue'
+          odd: 'white'
       enabled: true
       locations:
-        UTC: "Etc/UTC"
-        Vancouver: "America/Vancouver"
-        New_York: "America/New_York"
-        Sao_Paulo: "America/Sao_Paulo"
-        Denver: "America/Denver"
-        Iqaluit: "America/Iqaluit"
-        Bahamas: "America/Nassau"
-        Chicago: "America/Chicago"
+        UTC: 'Etc/UTC'
+        Vancouver: 'America/Vancouver'
+        New_York: 'America/New_York'
+        Sao_Paulo: 'America/Sao_Paulo'
+        Denver: 'America/Denver'
+        Iqaluit: 'America/Iqaluit'
+        Bahamas: 'America/Nassau'
+        Chicago: 'America/Chicago'
       position:
         top: 0
         left: 1
         height: 1
         width: 1
       refreshInterval: 15
-      sort: "alphabetical"
+      sort: 'alphabetical'
     battery:
       type: power
-      title: "⚡️"
+      title: '⚡️'
       enabled: true
       position:
         top: 1
@@ -85,14 +85,14 @@ wtf:
       refreshInterval: 15
     todolist:
       type: todo
-      checkedIcon: "X"
+      checkedIcon: 'X'
       colors:
         checked: gray
         highlight:
-          fore: "black"
-          back: "orange"
+          fore: 'black'
+          back: 'orange'
       enabled: true
-      filename: "todo.yml"
+      filename: 'todo.yml'
       position:
         top: 1
         left: 0
@@ -101,10 +101,10 @@ wtf:
       refreshInterval: 3600
     ip:
       type: ipinfo
-      title: "My IP"
+      title: 'My IP'
       colors:
-        name: "lightblue"
-        value: "white"
+        name: 'lightblue'
+        value: 'white'
       enabled: true
       position:
         top: 0
@@ -114,7 +114,7 @@ wtf:
       refreshInterval: 150
     security_info:
       type: security
-      title: "Staying safe"
+      title: 'Staying safe'
       enabled: true
       position:
         top: 1
@@ -126,9 +126,9 @@ wtf:
       type: textfile
       enabled: true
       filePaths:
-        - "~/.config/wtf/config.yml"
+        - '~/.config/wtf/config.yml'
       format: true
-      formatStyle: "monokai"
+      formatStyle: 'monokai'
       position:
         top: 1
         left: 1
@@ -137,7 +137,7 @@ wtf:
       refreshInterval: 15
     news:
       type: hackernews
-      title: "HackerNews"
+      title: 'HackerNews'
       enabled: true
       numberOfStories: 10
       position:
@@ -158,8 +158,8 @@ wtf:
       refreshInterval: 1
     uptime:
       type: cmdrunner
-      args: [""]
-      cmd: "uptime"
+      args: ['']
+      cmd: 'uptime'
       enabled: true
       position:
         top: 4
@@ -169,8 +169,8 @@ wtf:
       refreshInterval: 30
     disks:
       type: cmdrunner
-      cmd: "df"
-      args: ["-h"]
+      cmd: 'df'
+      args: ['-h']
       enabled: true
       position:
         top: 3
