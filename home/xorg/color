@@ -3,7 +3,7 @@
 ! Project: X11 Color Settings
 ! Scheme: Vice (Base16)
 
-*foreground:    #8b9cbe
+*foreground:    #b2bfd9
 *background:    #17191E
 *cursorColor:   #f4f4f7
 

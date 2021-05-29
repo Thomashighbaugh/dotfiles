@@ -40,21 +40,8 @@ fi
 # Here Xfce is kept as default
 #session=${1:-awesome}
 
-case $session in
-awesome) exec awesome ;;
-i3 | i3wm) exec i3 ;;
-gnome) exec gnome-session ;;
-plasma) exec startplasma ;;
-openbox) exec openbox-session ;;
-kde | plasma) exec startplasma-x11 ;;
-sway) exec sway ;;
-xfce) exec startxfce4 ;;
-# No known session, try to run it as command
-*) exec $1 ;;
-esac
-
-exec /home/tlh/.display-manager
-
+#exec /home/tlh/.display-manager
+exec awesome
 # Gnome Keyring / seahorse require the following
 eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
 export SSH_AUTH_SOCK

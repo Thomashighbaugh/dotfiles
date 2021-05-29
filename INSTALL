@@ -241,7 +241,7 @@ function hardware() {
                      print t "Performance Tweaks"
                     print t "#################################################"
                     sudo cp -rvf $HOME/dotfiles/root/etc/* /etc/
-
+		    ;;
                 "RPi4")
                     print t "#################################################"
                     print t "Raspberry Pi 4"
@@ -340,6 +340,8 @@ function TUI() {
                     ## Link Files
                     ln -svf "$HOME"/dotfiles/home/bash/bashenv "$HOME"/.bashenv
                     ln -svf "$HOME"/dotfiles/home/bash/bashrc "$HOME"/.bashrc
+                    ln -svf "$HOME"/dotfiles/home/sh/profile "$HOME"/.profile
+                    ln -svf "$HOME"/dotfiles/home/sh/aliases "$HOME"/.aliases
                     print t "BASH Shell Configured"
                 ;;
                 "Docker")
