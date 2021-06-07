@@ -8,9 +8,6 @@
 ###########################################################################
 
 ## Dotfiles Location ###########################################################
-cd "$(readlink ~/.zshrc | xargs dirname)"
-export DOTFILES="$(git rev-parse --show-toplevel)"
-cd - >/dev/null
 
 for file in $(
 	find "$HOME"/dotfiles/home/sh/alias -name '*.alias.sh'

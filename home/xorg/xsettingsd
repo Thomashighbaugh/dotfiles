@@ -1,10 +1,10 @@
-Xft/Hinting -1
+Xft/Hinting 1
 Gtk/FontName "Hurmit Nerd Font Mono medium 15"
 Xft/HintStyle "hintfull"
 Gtk/KeyThemeName ""
 Net/IconThemeName "chhinamasta"
 Xft/Antialias 1
-Xft/RGBA "none"
+Xft/rgba "rgba"
 Net/CursorBlinkTime 1200
 Gtk/CursorThemeSize 48
 Gtk/ToolbarStyle "icons"
