@@ -372,9 +372,9 @@ function TUI() {
                     print t "#################################################"
                     print t "Git Version Control"
                     print t "#################################################"
-                    
+                    YAYIN libsecret
                     # Enter your git credentials once, forget it for the rest of the install
-                    git config --global credential.helper store
+git config --global credential.helper /usr/share/doc/git/contrib/credential/libsecret/git-credential-libsecret
                     ln -svf "$HOME"/dotfiles/home/git/gitconfig "$HOME"/.gitconfig
                     ln -svf "$HOME"/dotfiles/home/git/gitignore "$HOME"/.gitignore
                     print t "Git Version Control Provisioned and Configured"
@@ -623,7 +623,7 @@ function GUI() {
                         rm -rvf "$HOME"/.config/awesome
                     fi
                     ## Install My Configuration
-                    git clone https://github.com/Thomashighbaugh/awesomewm "$HOME"/.config/awesome
+                    git clone https://github.com/the-Electric-Tantra-Linux/awesome "$HOME"/.config/awesome
                     return
                     print t "Awesome Window Manager Provisioned and Configured"
                 ;;
