@@ -82,7 +82,7 @@ function deps() {
     print s "Set up local directories"
     print s "###########################################################"
     mkdir -p "$HOME"/Pictures "$HOME"/.local/share "$HOME"/.config "$HOME"/.cache "$HOME"/.local/lib "$HOME"/Desktop "$HOME"/Documents "$HOME"/Downloads
-    
+
     print s "###########################################################"
     print s "Adding Keys"
     print s "###########################################################"
