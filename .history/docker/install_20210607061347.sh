@@ -68,49 +68,6 @@ YAYIN() {
 #########################################################
 ## Main Menu
 #########################################################
-mainmenu() {
-    while true; do
-        choice=$(dialog --backtitle "Dotfiles Installer - Thomas Leon Highbaugh" \
-            --title "Main Menu" \
-            --clear \
-            --nocancel \
-            --menu "Choose one" 32 76 16 \
-            "Core Dependencies" "- Start Here" \
-            "Hardware" "- for Specific Systems" \
-            "TUI" "- Shell Interfaces" \
-            "GUI" "- Graphical Interfaces" \
-            "Apps" "- Additional Applications" \
-            "Dev" "- Useful for Development Purposes" \
-        "Quit" "- Exit to desktop" 3>&1 1>&2 2>&3)
-        
-        case "$choice" in
-            "Core Dependencies")
-                deps #calls users function
-            ;;
-            "Hardware")
-                hardware #calls passwords function
-            ;;
-            "TUI")
-                TUI #calls groups function
-            ;;
-            "GUI")
-                GUI
-            ;;
-            "Apps")
-                APPs
-            ;;
-            "Dev")
-                Dev
-            ;;
-            "Quit")
-                exit
-            ;;
-            *)
-                echo "Something else.  Where Am I?"
-            ;;
-        esac
-    done
-}
 
 #########################################################
 ## Core Dependencies
@@ -166,15 +123,6 @@ function deps() {
     
     print
     print
-    dialog --title "Proceed?" \
-    --backtitle "Dotfiles Installation - Thomas Leon Highbaugh" \
-    --yesno "Are You Ready to Begin?" 7 60
-    response=$?
-    case $response in
-        0) echo ;;
-        1) exit ;;
-        255) exit ;;
-    esac
 }
 
 #########################################################
@@ -182,42 +130,9 @@ function deps() {
 #########################################################
 
 function hardware() {
-    while true; do
-        cmd=(dialog --backtitle "Dotfiles Installer - Thomas Leon Highbaugh" --title "Hardware Specific Provisioning" --clear --separate-output --checklist "Select Options:" 32 76 16)
-        options=(
-            "AMD Processors" "- for Ryzen Based Systems" off
-            "Android" "Interacting with an Android Phone" off
-            "Thinkpad" "- for E495 laptops" off
-            "Nvidia" "- for Nvidia GPUs" off
-            "RPi4" "- Raspberry Pi 4 8GB" off
-            "Disks" "- Filesystem Management" off
-            "Bluetooth" "- software for using bluetooth on Linux" off
-        "Back" "- Return to Main Menu" off)
-        choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
-        for choice in $choices; do
-            case "$choice" in
-                "AMD Processors")
-                    print t "#################################################"
-                    print t "AMD Processors"
-                    print t "#################################################"
                     YAYIN amd-ucode ryzenadj-git zenstates-git
                     sudo grub-mkconfig -o /boot/grub/grub.conf
                     sudo mkinitcpio -P
-                    print t "AMD Processors Provisioned"
-                ;;
-                "Android")
-                    print t "#################################################"
-                    print t "Android OS Interfacing"
-                    print t "#################################################"
-                    YAYIN android-tools android-messages-desktop android-file-transfer android-udev jadx repo smali android-sdk-platform-tools android-sdk-build-tools
-                    YAYIN android-apktool scrcpy android-bash-completion abootimg-git simg-tools sdat2img-git bootimgtool-git
-                    print t "Android Phone Interfacing Provisioned"
-                ;;
-                "Disks")
-                    print t "#################################################"
-                    print t "Disks and Archive Management"
-                    print t "#################################################"
-                    
                     YAYIN gpart gparted mtools nilfs-utils ntfs-3g polkit
                     YAYIN dosfstools findutils gzip lzip p7zip tar
                     YAYIN bzip2 lzop udftools cpio file file-roller filesystem gnome-disk-utility
@@ -226,8 +141,6 @@ function hardware() {
                     YAYIN gvfs-gphoto2 gvfs-mtp gvfs-nfs lrzip hardinfo hddtemp bzip2
                     YAYIN gvfs-smb xarchiver unrar unarj unzip borg btrfs-progs
                     print t "Disks and Archive Management Provisioned" #calls groups function
-                ;;
-                "Nvidia")
                     print t "#################################################"
                     print t "Nvidia Firmware and Drivers"
                     print t "#################################################"
@@ -235,22 +148,16 @@ function hardware() {
                     YAYIN cuda cudnn mesa egl-wayland libxnvctrl ffnvcodec-headers8.1
                     YAYIN nvtop opencl-nvidia nvidia-utils nvidia-container-runtime
                     print t " Provisioned and Configured"
-                ;;
-            "Performance")
                      print t "#################################################"
                      print t "Performance Tweaks"
                     print t "#################################################"
                     sudo cp -rvf $HOME/dotfiles/root/etc/* /etc/
-		    ;;
-                "RPi4")
                     print t "#################################################"
                     print t "Raspberry Pi 4"
                     print t "#################################################"
                     YAYIN linux-raspberrypi4-aarch64 linux-raspberrypi4-aarch64-headers argonone-git
                     print t " Provisioned and Configured"
                     
-                ;;
-                "Thinkpad")
                     print t "#################################################"
                     print t "Thinkpad E495 Settings"
                     print t "#################################################"
@@ -271,33 +178,11 @@ function hardware() {
                     sudo mkinitcpio -Psv
                     sudo grub-mkconfig -o /boot/grub/grub.conf
                     print t " Provisioned and Configured"
-                ;;
-                "Bluetooth")
                     print t "#################################################"
                     print t "Bluetooth Interfacing"
                     print t "#################################################"
                     YAYIN blueberry blueman bluez-hid2hci bluez-tools bluez-utils python-pybluez
                     print t "Bluetooth Interfacing Provisioned"
-                ;;
-                "Quit")
-                    dialog --title "Proceed?" \
-                    --backtitle "Dotfiles Installation - Thomas Leon Highbaugh" \
-                    --yesno "Are You Ready to Go Back or Quit?" 7 60
-                    response=$?
-                    case $response in
-                        0) echo ;;
-                        1) exit ;;
-                        255) exit ;;
-                    esac
-                    
-                    mainmenu
-                ;;
-                *)
-                    echo "Something else.  Where Am I?"
-                ;;
-            esac
-        done
-    done
 }
 
 #########################################################
@@ -305,33 +190,6 @@ function hardware() {
 #########################################################
 
 function TUI() {
-    while true; do
-        cmd=(dialog --backtitle "Dotfiles Installer - Thomas Leon Highbaugh" --title "Console Applications" --clear --separate-output --checklist "Select Options:" 32 76 16)
-        options=(
-            "BASH" "- System's Default Shell" off
-            "Docker" "- Containerization Platform" off
-            "GPG" "- Key Management" off
-            "Git" "- Version Control" off
-            "Grub" "- Raspberry Pi 4 8GB" off
-            "Hosts" "- IP Address Translator" off
-            "HTOP" "- System Monitor for Console" off
-            "LXD" "- Open Sourced Container Service" off
-            "Makepkg" "- Arch Linux Build System" off
-            "MOTD" "- Message of the Day" off
-            "Neofetch" "- System Information Gatherer" off
-            "NVM" "- Node Version Manager" off
-            "Pacman" "- Modifications for the Arch Package Manager" off
-            "Ranger" "- Terminal File Manager" off
-            "Shell" "- General Shell Configuration" off
-            "SSH" "- Connecting to Other Computers' Shells" off
-            "Vim" "- terminal text editing for the hardcore" off
-            "X11" "- the basis for the GUI" off
-            "ZSH" "- Primary Shell Used" off
-        "Back" "- Return to the Main Menu" off)
-        choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
-        for choice in $choices; do
-            case "$choice" in
-                "BASH")
                     print t "#################################################"
                     print t "BASH shell"
                     print t "#################################################"
@@ -340,11 +198,7 @@ function TUI() {
                     ## Link Files
                     ln -svf "$HOME"/dotfiles/home/bash/bashenv "$HOME"/.bashenv
                     ln -svf "$HOME"/dotfiles/home/bash/bashrc "$HOME"/.bashrc
-                    ln -svf "$HOME"/dotfiles/home/sh/profile "$HOME"/.profile
-                    ln -svf "$HOME"/dotfiles/home/sh/aliases "$HOME"/.aliases
                     print t "BASH Shell Configured"
-                ;;
-                "Docker")
                     print t "#################################################"
                     print t "Docker Container Environment"
                     print t "#################################################"
@@ -357,8 +211,6 @@ function TUI() {
                     print s "Copy the Daemon configuration file for Experimental Mode Features."
                     sudo ln -f "$HOME"/dotfiles/root/docker/daemon.json /etc/docker
                     print t "Docker Container Environment"
-                ;;
-                "GPG")
                     print t "#################################################"
                     print t "GPG Key Configuration"
                     print t "#################################################"
@@ -366,20 +218,15 @@ function TUI() {
                     PACIN gnupg gmime3 libcryptui seahorse mcabber hopenpgp-tools
                     ln -svf "$HOME"/dotfiles/home/gnupg/gpg.conf "$HOME"/.gnupg/gpg.conf
                     print t "GPG Key Configuration Provisioned"
-                ;;
-                
-                "Git")
                     print t "#################################################"
                     print t "Git Version Control"
                     print t "#################################################"
-                    YAYIN libsecret
+                    
                     # Enter your git credentials once, forget it for the rest of the install
-git config --global credential.helper /usr/share/doc/git/contrib/credential/libsecret/git-credential-libsecret
+                    git config --global credential.helper store
                     ln -svf "$HOME"/dotfiles/home/git/gitconfig "$HOME"/.gitconfig
                     ln -svf "$HOME"/dotfiles/home/git/gitignore "$HOME"/.gitignore
                     print t "Git Version Control Provisioned and Configured"
-                ;;
-                "Grub")
                     print t "#################################################"
                     print t "Grub Bootloader"
                     print t "#################################################"
@@ -388,8 +235,6 @@ git config --global credential.helper /usr/share/doc/git/contrib/credential/libs
                     sudo sh "$HOME"/.local/share/Bhairava-Grub-Theme/svg2png.sh
                     sudo sh "$HOME"/.local/share/Bhairava-Grub-Theme/set-grub.sh
                     print t "Grub Bootloader Provisioned and Configured"
-                ;;
-                "Hosts")
                     print t "#################################################"
                     print t "Hosts File"
                     print t "#################################################"
@@ -398,16 +243,12 @@ git config --global credential.helper /usr/share/doc/git/contrib/credential/libs
                     sudo wget https://someonewhocares.org/hosts/hosts -O /etc/hosts
                     sudo bash -c "cat hosts /etc/hosts | sponge /etc/hosts"
                     print t "Hosts File Provisioned and Configured"
-                ;;
-                "HTOP")
                     print t "#################################################"
                     print t "HTOP Process Monitor"
                     print t "#################################################"
                     
                     PACIN htop
                     print t " Provisioned and Configured"
-                ;;
-                "LXD")
                     print t "#################################################"
                     print t "LXD Container Environment"
                     print t "#################################################"
@@ -417,8 +258,6 @@ git config --global credential.helper /usr/share/doc/git/contrib/credential/libs
                     SYSCTL lxcfs
                     SYSCTL containerd
                     print t " Provisioned and Configured"
-                ;;
-                "Makepkg")
                     print t "#################################################"
                     print t "Makepkg Package Build System"
                     print t "#################################################"
@@ -427,24 +266,18 @@ git config --global credential.helper /usr/share/doc/git/contrib/credential/libs
                     sudo cp -rvf "$HOME"/dotfiles/root/makepkg/makepkg.conf /etc/makepkg.conf
                     
                     print t "Makepkg Package Build System Provisioned and Configured"
-                ;;
-                "MOTD")
                     print t "#################################################"
                     print t "Message of the Day"
                     print t "#################################################"
                     sudo ln -svf "$HOME"/dotfiles/root/motd/motd /etc/motd
                     sudo ln -vf "$HOME"/dotfiles/root/motd/motd.sh /etc/motd.sh
                     print t " Provisioned and Configured"
-                ;;
-                "Neofetch")
                     print t "#################################################"
                     print t "Neofetch System Information Display"
                     print t "#################################################"
                     PACIN neofetch
                     ln -svf "$HOME"/dotfiles/home/neofetch "$HOME"/.config/neofetch
                     print t "Neofetch System Information Display Provisioned and Configured"
-                ;;
-                "NVM")
                     print t "#################################################"
                     print t "Node Version Manager"
                     print t "#################################################"
@@ -452,8 +285,6 @@ git config --global credential.helper /usr/share/doc/git/contrib/credential/libs
                     sh -c "nvm install node && nvm use node && nvm install 12 && nvm install 10"
                     sh -c "npm install --global yarn"
                     print t "Node Version Manager Provisioned and Configured"
-                ;;
-                "Pacman")
                     print t "#################################################"
                     print t "Pacman Modifications, Hooks and Extensions"
                     print t "#################################################"
@@ -462,15 +293,11 @@ git config --global credential.helper /usr/share/doc/git/contrib/credential/libs
                     YAYIN systemd-boot-pacman-hook grub-hook mirrorlist-rankmirrors-hook kernel-modules-hook mkinitcpio-kms pacman-kernel-install-git
                     YAYIN smkinitcpio-modconf-hook-git mkinitcpio-archiso-git systemd-removed-services-hook
                     print t "Pacman Modifications, Hooks and Extensions Provisioned and Configured"
-                ;;
-                "Ranger")
                     print t "#################################################"
                     print t "Ranger File Manager"
                     print t "#################################################"
                     YAYIN ranger w3m ueberzug transmission-cli perl-image-exiftool odt2txt mediainfo lynx highlight elinks
                     print t " Provisioned and Configured"
-                ;;
-                "Shell")
                     print t "#################################################"
                     print t "Shell Environment"
                     print t "#################################################"
@@ -481,8 +308,6 @@ git config --global credential.helper /usr/share/doc/git/contrib/credential/libs
                     ln -vf "$HOME"/dotfiles/home/sh/aliases "$HOME"/.aliases
                     YAYIN autojump
                     print t " Provisioned and Configured"
-                ;;
-                "SSH")
                     print t "#################################################"
                     print t "Secure Shell"
                     print t "#################################################"
@@ -490,8 +315,6 @@ git config --global credential.helper /usr/share/doc/git/contrib/credential/libs
                     sudo cp -rvf "$HOME"/dotfiles/root/ssh/sshd_config /etc/ssh/
                     PACIN openssh keychain seahorse
                     print t " Provisioned and Configured"
-                ;;
-                "Vim")
                     print t "#################################################"
                     print t "Vim Modal Text Editor"
                     print t "#################################################"
@@ -525,12 +348,8 @@ git config --global credential.helper /usr/share/doc/git/contrib/credential/libs
                     ln -svf .vimwiki .vimwiki-tech
                     ln -svf .vimwiki vimwiki
                     print t "Vim Modal Text Editor Provisioned and Configured"
-                ;;
-                "WTF")
                     YAYIN wtfutil
                     ln -svf "$HOME"/dotfiles/home/wtf/config.yml "$HOME"/.config/wtf/config.yml
-                ;;
-                "X11")
                     print t "#################################################"
                     print t "X11 Window Server"
                     print t "#################################################"
@@ -549,12 +368,9 @@ git config --global credential.helper /usr/share/doc/git/contrib/credential/libs
                     ln -fvs "$HOME"/dotfiles/home/xorg/xsettingsd "$HOME"/.xsettingsd
                     ln -fvs "$HOME"/dotfiles/home/xorg/xsessionrc "$HOME"/.xsessionrc
                     print t "X11 Window Server Provisioned and Configured"
-                ;;
-                "ZSH")
                     print t "#################################################"
                     print t "ZSH shell"
                     print t "#################################################"
-                    ## Install Necessary Packages
                     YAYIN zsh alias-tips-git zsh-auto-notify zsh-doc lsd lshw
                     YAYIN zsh-syntax-highlighting zsh-lovers zsh-autosuggestions
                     YAYIN alias-tips-git zsh-system-clipboard-git zsh-doc powerline zsh-history-substring-search zshdb find-the-command
@@ -564,48 +380,11 @@ git config --global credential.helper /usr/share/doc/git/contrib/credential/libs
                     sh "$HOME"/.zsh/install.sh
                     wait 5
                     print t "ZSH shell Provisioned and Configured"
-                ;;
-                "Quit")
-                    
-                    dialog --title "Return to the main menu?" \
-                    --backtitle "Dotfiles Installation - Thomas Leon Highbaugh" \
-                    --yesno "Are You Ready to Go Back or Quit?" 7 60
-                    response=$?
-                    case $response in
-                        0) echo ;;
-                        1) exit ;;
-                        255) exit ;;
-                    esac
-                    
-                    mainmenu
-                ;;
-                *)
-                    echo "Something else.  Where Am I?"
-                ;;
-            esac
-        done
-    done
 }
 #########################################################
 ## GUI
 #########################################################
 function GUI() {
-    while true; do
-        cmd=(dialog --backtitle "Dotfiles Installer - Thomas Leon Highbaugh" --title "GUI Environments" --clear --separate-output --checklist "Select Options:" 32 76 16)
-        options=(
-            "Awesome" "- primary window manager" off
-            "BSPWM" " - binary tree window splitting window manager" off
-            "GTK" "- easily themed windows" off
-            "Picom" "- X11 desktop effects" off
-            "Qtile" "- window manager in Python" off
-            "Rofi" "- DMenu replacement" off
-            "Sway" "- Wayland replacement for i3" off
-            "LightDM" "- sometimes functional Display Manager" off
-        "Back" "- Return to Main Menu" off)
-        choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
-        for choice in $choices; do
-            case "$choice" in
-                "Awesome")
                     print t "#################################################"
                     print t "Awesome Window Manager"
                     print t "#################################################"
@@ -623,11 +402,9 @@ function GUI() {
                         rm -rvf "$HOME"/.config/awesome
                     fi
                     ## Install My Configuration
-                    git clone https://github.com/the-Electric-Tantra-Linux/awesome "$HOME"/.config/awesome
+                    git clone https://github.com/Thomashighbaugh/awesomewm "$HOME"/.config/awesome
                     return
                     print t "Awesome Window Manager Provisioned and Configured"
-                ;;
-                "BSPWM")
                     print t "#################################################"
                     print t "BSP Window Manager"
                     print t "#################################################"
@@ -637,8 +414,6 @@ function GUI() {
                     mkdir "$HOME"/.config/sxhkd
                     ln -svf "$HOME"/dotfiles/home/bspwm/sxhkdrc "$HOME"/.config/sxhkd
                     print t "BSP Window Manager Provisioned and Configured"
-                ;;
-                "GTK")
                     print t "#################################################"
                     print t "GTK Window Theming"
                     print t "#################################################"
@@ -656,16 +431,12 @@ function GUI() {
                     mkdir -p "$HOME"/.config/Kvantum
                     ln -svf "$HOME"/dotfiles/home/gtk/kvantum.kvconfig "$HOME"/.config/Kvantum/kvantum.kvconfig
                     print t "GTK Window Theming Provisioned and Configured"
-                ;;
-                "Picom")
                     print t "#################################################"
                     print t "Picom Desktop Compostitor"
                     print t "#################################################"
                     YAYIN picom-ibhagwan-git
                     ln -svf "$HOME"/dotfiles/home/picom/picom.conf "$HOME"/.config
                     print t "Picom Desktop Compostitor Provisioned and Configured"
-                ;;
-                "Qtile")
                     print t "#################################################"
                     print t "Qtile Window Manager"
                     print t "#################################################"
@@ -673,8 +444,6 @@ function GUI() {
                     ## Clone and Provision my QTile Configuration
                     git clone https://github.com/Thomashighbaugh/qtile "$HOME"/.config/qtile
                     print t "QTile Provisioned and Configured"
-                ;;
-                "Rofi")
                     print t "#################################################"
                     print t "Rofi Menu Script"
                     print t "#################################################"
@@ -688,8 +457,6 @@ function GUI() {
                     ln -svf "$HOME"/dotfiles/home/rofi/three.rasi "$HOME"/.config/rofi/three.rasi
                     sudo cp -rvf "$HOME"/dotfiles/home/rofi/rofi-todo /usr/bin
                     print t " Provisioned and Configured"
-                ;;
-                "Sway")
                     print t "#################################################"
                     print t "Sway Window Manager"
                     print t "#################################################"
@@ -701,8 +468,6 @@ function GUI() {
                     ln -svf "$HOME"/dotfiles/home/sway/autostart.sh "$HOME"/.config/sway/autostart.sh
                     ln -svf "$HOME"/dotfiles/home/sway/nwg-launchers "$HOME"/.config/nwg-launchers
                     print t " Provisioned and Configured"
-                ;;
-                "LightDM")
                     print t "#################################################"
                     print t "Lightdm"
                     print t "#################################################"
@@ -713,26 +478,6 @@ function GUI() {
                     sudo ln -f "$HOME"/dotfiles/root/lightdm/lightdm.conf /etc/lightdm/lightdm.conf
                     
                     print t "Lightdm Provisioned and Configured"
-                ;;
-                "Back")
-                    dialog --title "Proceed?" \
-                    --backtitle "Dotfiles Installation - Thomas Leon Highbaugh" \
-                    --yesno "Are You Ready to Go Back or Quit?" 7 60
-                    response=$?
-                    case $response in
-                        0) echo ;;
-                        1) exit ;;
-                        255) exit ;;
-                    esac
-                    
-                    mainmenu
-                ;;
-                *)
-                    echo "Something else.  Where Am I?"
-                ;;
-            esac
-        done
-    done
 }
 
 #########################################################
@@ -740,50 +485,20 @@ function GUI() {
 #########################################################
 
 function APPs() {
-    while true; do
-        cmd=(dialog --backtitle "Dotfiles Installer - Thomas Leon Highbaugh" --title "Applications" --checklist "Select Options:" 32 76 16)
-        options=(
-            "Bitwarden" "- password management" off
-            "Caja" "- File Manager" off
-            "CUPs" "- printer driver support" off
-            "Dunst" "- Notifications" off
-            "Firefox" "- Web Browser" off
-            "Fonts" "- for icon heavy ZSH prompt" off
-            "GIMP" "- image editing suite" off
-            "Inkscape" "- SVG editing" off
-            "Kitty" "- GPU accelerated terminal emulator" off
-            "NetworkManager" "- means of connecting to wifi networks" off
-            "PulseAudio" "- audio driver and controls" off
-            "VirtManager" "- open source virtualization source" off
-            "Virtualbox" "- virtualization solution" off
-            "vmware" "- powerful virtualization solution" off
-            "Back" "- Return to Main Menu" off
-        )
-        choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
-        for choice in $choices; do
-            case "$choice" in
-                "Bitwarden")
                     print t "#################################################"
                     print t "Bitwarden Password Manager"
                     print t "#################################################"
                     YAYIN bitwarden keepassxc
-                ;;
-                "Caja")
                     print t "#################################################"
                     print t "Caja File Manager"
                     print t "#################################################"
                     YAYIN caja engrampa caja-extensions-common python-caja caja-xattr-tags caja-share caja-sendto caja-open-terminal caja-image-converter
                     YAYIN caja-dropbox gtkhash-caja caja-rename
-                ;;
-                "Cups")
                     print t "#################################################"
                     print t "CUPs Printer Interfacing"
                     print t "#################################################"
-                    
                     YAYIN cups cups-filters cups-pdf cups-pk-helper foomatic-db foomatic-db-engine foomatic-db-gutenprint-ppds cups cups-filters cups-pdf cndrvcups-lb-bin cnijfilter2-bin cups-pk-helper
                     SYSCTL cups
-                ;;
-                "Dunst")
                     print t "#################################################"
                     print t "Dunst Notification System"
                     print t "#################################################"
@@ -791,39 +506,27 @@ function APPs() {
                     YAYIN dunst
                     print s "Linking Dunst Configuration Files"
                     ln -svf "$HOME"/dotfiles/home/dunst/dunstrc "$HOME"/.config/dunst/dunstrc
-                ;;
-                "Firefox")
                     print t "#################################################"
                     print t "Firefox Internet Browser"
                     print t "#################################################"
-                    
                     YAYIN firefox firefox-nightly
                     git clone https://github.com/Thomashighbaugh/firefox /tmp/firefox
                     sudo chmod +x /tmp/firefox
                     sh /tmp/firefox/install.sh
-                ;;
-                "Fonts")
                     print t "#################################################"
                     print t "Fonts"
                     print t "#################################################"
-                    YAYIN bdf-unifont gnome-font-viewer freetype2 libfontenc libxft libotf woff2 awesome-terminal-fonts nerd-fonts-complete fontconfig-infinality-remix  sdl2_ttf t1lib birdfont
+                    YAYIN bdf-unifont gnome-font-viewer freetype2 libfontenc libxft libotf woff2 awesome-terminal-fonts nerd-fonts-complete fontconfig sdl2_ttf t1lib birdfont
                     sudo fc-cache -vf
                     fc-cache -vf
-                ;;
-                "GIMP")
                     print t "#################################################"
                     print t "GIMP Image Editor"
                     print t "#################################################"
                     YAYIN gimp gimp-plugin-gmic xsane gimp-plugin-registry gimp-extras gimp-paint-studio
-                ;;
-                "Inkscape")
                     print t "#################################################"
                     print t "Inkscape SVG Editor"
                     print t "#################################################"
                     YAYIN inkscape
-                    
-                ;;
-                "Kitty")
                     print t "#################################################"
                     print t "Kitty Terminal Emulator"
                     print t "#################################################"
@@ -837,21 +540,15 @@ function APPs() {
                     sudo ln -sf "$HOME"/dotfiles/home/kitty/theme.conf "$HOME"/.config/kitty/theme.conf
                     sudo ln -sf "$HOME"/dotfiles/home/motd/motd /etc/motd
                     
-                ;;
-                "NetworkManager")
                     print t "#################################################"
                     print t "Network Manager"
                     print t "#################################################"
                     YAYIN network-manager-applet networkmanager
                     
-                ;;
-                "PulseAudio")
                     print t "#################################################"
                     print t "Pulse Audio"
                     print t "#################################################"
                     YAYIN pavucontrol pulseaudio pulseaudio-alsa pulseaudio-bluetooth volumeicon
-                ;;
-                "VirtManager")
                     print t "#################################################"
                     print t "Virt-Manager"
                     print t "#################################################"
@@ -863,108 +560,42 @@ function APPs() {
                     SYSCTL virtqemud.service
                     SYSCTL libvirtd-admin.socket
                     
-                ;;
-                "Virtualbox")
                     print t "#################################################"
                     print t "Virtualbox VM Type 2 Hypervisor"
                     print t "#################################################"
                     YAYIN virtualbox-ext-vnc virtualbox-guest-iso virtualbox-host-dkms virtualbox virtualbox virtualbox-ext-oracle virtualbox-guest-goodies
-                ;;
-                "vmware")
                     print t "#################################################"
                     print t "vmware Workstation Type 2 Hypervisor"
                     print t "#################################################"
                     YAYIN createvm open-vm-tools vmware-workstation vagrant-vmware-utility libview vmware-auto-unlocker-git vmware-modules-dkms-git vmware-component-extractor-git
                     sudo modprobe -a vmw_vmci vmmo
                     
-                ;;
-                "Back")
-                    dialog --title "Proceed?" \
-                    --backtitle "Dotfiles Installation - Thomas Leon Highbaugh" \
-                    --yesno "Are You Ready to Begin?" 7 60
-                    response=$?
-                    case $response in
-                        0) echo ;;
-                        1) exit ;;
-                        255) exit ;;
-                    esac
-                    
-                    mainmenu
-                ;;
-                
-                \
-                *)
-                    echo "Something else.  Where Am I?"
-                ;;
-            esac
-        done
-    done
 }
 #########################################################
 ## Dev
 #########################################################
 function Dev() {
-    while true; do
-        cmd=(dialog --backtitle "Dotfiles Installer - Thomas Leon Highbaugh" --title "Local Development" --clear --separate-output --checklist "Select Options:" 32 76 16)
-        options=(
-            "Python" "- Scritping language with understandable syntax" off
-            "Lua" "- Used in AwesomeWM for configuration, finds employment in seemingly random contexts." off
-            "Ruby" "- Often used in backends or frameworks." off
-            "Rust" "- trendy new language developed by Mozilla" off
-        "Quit" "- Return to Main Menu" off)
-        
-        choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
-        for choice in $choices; do
-            case "$choice" in
-                "Python")
                     print t "#################################################"
                     print t "Python"
                     print t "#################################################"
                     YAYIN python-pip python2-pip pyenv python python2 python-virtualenv python2-virtualenv python-pipenv python-pytest-virtualenv python-virtualenvwrapper pyenv-virtualenv
-                ;;
-                "Lua")
                     print t "#################################################"
                     print t "Lua Programming Language"
                     print t "#################################################"
                     YAYIN lua-dbi lua-socket luakit luarocks luakit lua-socket lua-dbi
                     print t " Provisioned and Configured"
-                ;;
-                "Ruby")
                     print t "#################################################"
                     print t "Ruby Programming Language"
                     print t "#################################################"
                     YAYIN rbenv rbenv-binstubs ruby-sassc chruby ruby-build
                     rbenv init
-                    rbenv install 3.0.0
+                    rbenv install 3.0.0:w
                     print t " Provisioned and Configured"
-                ;;
-                "Rust")
                     print t "#################################################"
                     print t "Rust Programming Language"
                     print t "#################################################"
                     YAYIN rustup rust-docs lib32-rust-libs rust-racer rust-analyzer
                     print t " Provisioned and Configured"
-                ;;
-                
-                "Back")
-                    dialog --title "Proceed?" \
-                    --backtitle "Dotfiles Installation - Thomas Leon Highbaugh" \
-                    --yesno "Are You Ready to Begin?" 7 60
-                    response=$?
-                    case $response in
-                        0) echo ;;
-                        1) exit ;;
-                        255) exit ;;
-                    esac
-                    mainmenu
-                ;;
-                
-                *)
-                    echo "Something else.  Where Am I?"
-                ;;
-            esac
-        done
-    done
 }
 
 #############################################################################
@@ -976,14 +607,12 @@ print t "#################################################"
 print
 print
 print
-dialog --title "Proceed?" \
---backtitle "Dotfiles Installation - Thomas Leon Highbaugh" \
---yesno "Are You Ready to Begin?" 7 60
-response=$?
-case $response in
-    0) echo ;;
-    1) exit ;;
-    255) exit ;;
-esac
 
-mainmenu
+
+
+deps
+hardware
+Dev
+APPs
+TUI
+GUI
