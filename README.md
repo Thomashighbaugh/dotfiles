@@ -20,15 +20,15 @@ But **beware** minimalism and other trendiness are not to be found here. These f
 
 ## Features
 
--   Extensive
--   Modular
--   Install script
-    -   Idempotent
-    -   Menu driven
-    -   Modular
-    -   Pulls in other repos
-    -   installs programs
-    -   provisions programs
+- Extensive
+- Modular
+- Install script
+  - Idempotent
+  - Menu driven
+  - Modular
+  - Pulls in other repos
+  - installs programs
+  - provisions programs
 
 ## How To
 
@@ -43,11 +43,13 @@ sh INSTALL
 ```
 
 It is also possible that you want to just install all of the packages contained within the menu, to which end selecting them each individually may be rather tedious. Luckily, I have a script prepared for this as well!
+
 ```bash
 git clone https://github.com/Thomashighbaugh/dotfiles
 cd dotfiles
-sh docker/install.sh 
+sh docker/install.sh
 ```
+
 <p>Then the `./INSTALL` will show you a menu, use <kbd>Space</kbd> to select and <kbd></kbd> / <kbd></kbd> to select then <kbd>Enter</kbd> to get the showboat on the river!</p>
 
 > Note: Just make sure you run the first item on the first menu before trying to install anything else as it installs `yay` and that's what everything else uses to install programs!
@@ -77,9 +79,7 @@ These additional repositories are listed in the table below for the purposes of 
 
 ## Inspiration
 
--   [Holman Does Dotfiles](https://github.com/holman/dotfiles)
+- [Holman Does Dotfiles](https://github.com/holman/dotfiles)
 
--   [wafflepie/dotfiles](https://github.com/wafflepie/dotfiles)
-    -   this configuration is really an unsung hero of dotfiles, unique approaches to common issues I was having that helped push me over to into a fuller knowledge.
-
-
+- [wafflepie/dotfiles](https://github.com/wafflepie/dotfiles)
+  - this configuration is really an unsung hero of dotfiles, unique approaches to common issues I was having that helped push me over to into a fuller knowledge.
