@@ -38,9 +38,16 @@ Brave soul I presume? Well lucky you, if you have nothing to do, try these relat
 
 git clone https://github.com/Thomashighbaugh/dotfiles
 cd dotfiles
-sh install.sh
+sh INSTALL
+
 ```
 
+It is also possible that you want to just install all of the packages contained within the menu, to which end selecting them each individually may be rather tedious. Luckily, I have a script prepared for this as well!
+```bash
+git clone https://github.com/Thomashighbaugh/dotfiles
+cd dotfiles
+sh docker/install.sh 
+```
 <p>Then the `./INSTALL` will show you a menu, use <kbd>Space</kbd> to select and <kbd></kbd> / <kbd></kbd> to select then <kbd>Enter</kbd> to get the showboat on the river!</p>
 
 > Note: Just make sure you run the first item on the first menu before trying to install anything else as it installs `yay` and that's what everything else uses to install programs!
