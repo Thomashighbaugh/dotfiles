@@ -70,7 +70,7 @@ Once a configuration gets to a large enough size, it is spun out into its own re
 These additional repositories are listed in the table below for the purposes of providing the most exact account of the actual size of my dotfiles now that I have quite a few of these additional repositories.
 
 | Name | Path | Notes |
-|------x------x-------|
+|------|------|-------|
 | [Awesome](https://github.com/Thomashighbaugh/awesomewm) | ~/.config/awesome | configuration of my window manager configured in lua |
 | [bin](https://github.com/Thomashighbaugh/bin) | ~/.local/share/bin | scripts that I use locally, includes the scripts that display terminal colors in ASCii art |
 | [firefox](https://github.com/Thomashighbaugh/firefox) | ~/.mozilla/firefox/[profile directory]/chrome | theme for webbrowser using CSS |
