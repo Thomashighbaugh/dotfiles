@@ -16,8 +16,7 @@ I probably shouldn't even have to say the following, but will just in case these
 
 A repo, on Github featuring dotfiles and an installation script bring an Arch system from first boot to totally useful to me and just the way I like it. Your tastes will vary, inevitably, so you can use this as the basis for your own repo, steal ideas from it, fork it, whatever you want to do.
 
-This is just how I like my systems to work, which works as a decent starting place for others and comes with a nice little installation script to ease the process of incorporating the parts you want to, that makes the installation process a nice, menu driven alternative to annoying dotfiles applications like `stow` that are always more of a hassle than a specific `ln` command, which are written out for you with the installation included with this repo. 
-
+This is just how I like my systems to work, which works as a decent starting place for others and comes with a nice little installation script to ease the process of incorporating the parts you want to, that makes the installation process a nice, menu driven alternative to annoying dotfiles applications like `stow` that are always more of a hassle than a specific `ln` command, which are written out for you with the installation included with this repo.
 
 ## Features
 
@@ -43,7 +42,7 @@ sh INSTALL
 
 ```
 
-It is also possible that you want to just install all of the packages contained within the menu, to which end selecting them each individually may be rather tedious. Luckily, I have a script prepared for this as well! I use it to test for broken packages in a docker container but feel free to adapt it to your use cases. 
+It is also possible that you want to just install all of the packages contained within the menu, to which end selecting them each individually may be rather tedious. Luckily, I have a script prepared for this as well! I use it to test for broken packages in a docker container but feel free to adapt it to your use cases.
 
 ```bash
 git clone https://github.com/Thomashighbaugh/dotfiles
@@ -69,14 +68,14 @@ Once a configuration gets to a large enough size, it is spun out into its own re
 
 These additional repositories are listed in the table below for the purposes of providing the most exact account of the actual size of my dotfiles now that I have quite a few of these additional repositories.
 
-| Name | Path | Notes |
-|------|------|-------|
-| [Awesome](https://github.com/Thomashighbaugh/awesomewm) | ~/.config/awesome | configuration of my window manager configured in lua |
-| [bin](https://github.com/Thomashighbaugh/bin) | ~/.local/share/bin | scripts that I use locally, includes the scripts that display terminal colors in ASCii art |
-| [firefox](https://github.com/Thomashighbaugh/firefox) | ~/.mozilla/firefox/[profile directory]/chrome | theme for webbrowser using CSS |
-| [nvim](https://github.com/Thomashighbaugh/nvim) | ~/.config/nvim | My lua based nvim configuration |
-| [qtile](https://github.com/Thomashighbaugh/qtile) | ~/.config/qtile | Alternative window manager configured in python |
-| [zsh](https://github.com/Thomashighbaugh/zsh) | ~/.zsh | My z shell configuration, similar set up to the vim configuration above |
+| Name                                                    | Path                                          | Notes                                                                                      |
+| ------------------------------------------------------- | --------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| [Awesome](https://github.com/Thomashighbaugh/awesomewm) | ~/.config/awesome                             | configuration of my window manager configured in lua                                       |
+| [bin](https://github.com/Thomashighbaugh/bin)           | ~/.local/share/bin                            | scripts that I use locally, includes the scripts that display terminal colors in ASCii art |
+| [firefox](https://github.com/Thomashighbaugh/firefox)   | ~/.mozilla/firefox/[profile directory]/chrome | theme for webbrowser using CSS                                                             |
+| [nvim](https://github.com/Thomashighbaugh/nvim)         | ~/.config/nvim                                | My lua based nvim configuration                                                            |
+| [qtile](https://github.com/Thomashighbaugh/qtile)       | ~/.config/qtile                               | Alternative window manager configured in python                                            |
+| [zsh](https://github.com/Thomashighbaugh/zsh)           | ~/.zsh                                        | My z shell configuration, similar set up to the vim configuration above                    |
 
 ## Inspiration
 
