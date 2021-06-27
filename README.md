@@ -74,8 +74,8 @@ These additional repositories are listed in the table below for the purposes of 
 | [Awesome](https://github.com/Thomashighbaugh/awesomewm) | ~/.config/awesome | configuration of my window manager configured in lua |
 | [bin](https://github.com/Thomashighbaugh/bin) | ~/.local/share/bin | scripts that I use locally, includes the scripts that display terminal colors in ASCii art |
 | [firefox](https://github.com/Thomashighbaugh/firefox) | ~/.mozilla/firefox/[profile directory]/chrome | theme for webbrowser using CSS |
+| [nvim](https://github.com/Thomashighbaugh/nvim) | ~/.config/nvim | My lua based nvim configuration |
 | [qtile](https://github.com/Thomashighbaugh/qtile) | ~/.config/qtile | Alternative window manager configured in python |
-| [vim](https://github.com/Thomashighbaugh/vim) | ~/.vim | My editor configuration |
 | [zsh](https://github.com/Thomashighbaugh/zsh) | ~/.zsh | My z shell configuration, similar set up to the vim configuration above |
 
 ## Inspiration
