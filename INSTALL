@@ -627,6 +627,9 @@ function GUI() {
                 sudo ln -svf "$HOME"/dotfiles/root/images /usr/share/backgrounds
                 mkdir -p "$HOME"/.config/Kvantum
                 ln -svf "$HOME"/dotfiles/home/gtk/kvantum.kvconfig "$HOME"/.config/Kvantum/kvantum.kvconfig
+                print s "Cloning and Installing the Dhumavati GTK Theme"
+                git clone https://github.com/Thomashighbaugh/Dhumavati-Theme
+                bash Dhumavati-Theme/install.sh 
                 print t "GTK Window Theming Provisioned and Configured"
                 ;;
             "Picom")
