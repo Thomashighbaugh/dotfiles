@@ -14,10 +14,9 @@ I probably shouldn't even have to say the following, but will just in case these
 
 ## Introduction
 
-A repo, on Github featuring dotfiles and an installation script bring an Arch system from first boot to totally useful to me and just the way I like it. Your tastes will vary, inevitably, so you can use this as the basis for your own repo, steal ideas from it, fork it, whatever you want to do. 
+A repo, on Github featuring dotfiles and an installation script bring an Arch system from first boot to totally useful to me and just the way I like it. Your tastes will vary, inevitably, so you can use this as the basis for your own repo, steal ideas from it, fork it, whatever you want to do.
 
-This is just how I like my systems to work, which works as a decent starting place for others and comes with a nice little installation script to ease the process of incorporating the parts you want to, that makes the installation process a nice, menu driven alternative to annoying dotfiles applications like `stow`. 
-
+This is just how I like my systems to work, which works as a decent starting place for others and comes with a nice little installation script to ease the process of incorporating the parts you want to, that makes the installation process a nice, menu driven alternative to annoying dotfiles applications like `stow`.
 
 ## Features
 
