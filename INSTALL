@@ -613,8 +613,9 @@ function GUI() {
                 print t "#################################################"
                 print t "GTK Window Theming"
                 print t "#################################################"
-
+                # Package Installation
                 YAYIN gtk-engine-murrine gtk-engines xfce4-settings qt5ct kvantum colord-gtk gst-plugin-gtk glade gtkglext gtkspell xdg-desktop-portal-gtk wxgtk3 gpg-crypter gtk-chtheme gtkd gtkglarea libfm-gtk3
+                # Link in configurations
                 mkdir -p "$HOME"/.config/gtk-2.0
                 ln -svf "$HOME"/dotfiles/home/gtk/gtk-2.0/gtkfilechooser.ini "$HOME"/.config/gtk-2.0/gtkfilechooser.ini
                 mkdir -p "$HOME"/.config/gtk-3.0
