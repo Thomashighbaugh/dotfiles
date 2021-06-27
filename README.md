@@ -10,13 +10,14 @@ I probably shouldn't even have to say the following, but will just in case these
 
 1. This repository is a work in progress (like the Winchester Mystery Dotfiles)
 2. Please don't blindly copy these into your system or run the install script without reading it first (it will delete stuff!)
-3. While I encourage anyone so inclined to use these dotfiles freely, I do not intend them (nor will support them) outside of my own needs and use cases
+3. Please feel free to adapt these to your needs, in fact if you want to use these locally, you will probably need to adapt them heavily for your use case. I can always help you if you are unsure how to proceed since I know the code pretty well, just note that the installation scripts are specific to Arch-based distros. (there maybe now its good enough)
 
 ## Introduction
 
-A repo, on Github featuring dotfiles and an installation script bring an Arch system from first boot to totally useful to me and just the way I like it. Your tastes will vary, inevitably, so you can use this as the basis for your own repo, steal ideas from it, fork it, whatever you want to do.
+A repo, on Github featuring dotfiles and an installation script bring an Arch system from first boot to totally useful to me and just the way I like it. Your tastes will vary, inevitably, so you can use this as the basis for your own repo, steal ideas from it, fork it, whatever you want to do. 
 
-But **beware** minimalism and other trendiness are not to be found here. These files are about how **I** like my system and not how everyone else likes it.
+This is just how I like my systems to work, which works as a decent starting place for others and comes with a nice little installation script to ease the process of incorporating the parts you want to, that makes the installation process a nice, menu driven alternative to annoying dotfiles applications like `stow`. 
+
 
 ## Features
 
@@ -26,7 +27,7 @@ But **beware** minimalism and other trendiness are not to be found here. These f
   - Idempotent
   - Menu driven
   - Modular
-  - Pulls in other repos
+  - Pulls in other repos (via installation script, not as subrepos easing the maintenance process)
   - installs programs
   - provisions programs
 

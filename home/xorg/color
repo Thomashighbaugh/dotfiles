@@ -16,7 +16,7 @@
 *color6:        #00eaff
 *color7:        #8b9cbe
 
-*color8:        #2f303d
+*color8:       #555e70
 *color9:        #ff3d81
 *color10:       #00ffcc
 *color11:       #f9f871
@@ -26,9 +26,9 @@
 *color15:       #f4f4f7
 
 ! Note: colors beyond 15 might not be loaded (e.g., xterm, urxvt),
-*color16:      #3c3f4c
+*color16:      #2f303d
 *color17:      #0b0c0f
-*color18:      #383A47
-*color19:      #555e70
+*color18:      #3c3f4c
+*color19:      #555566
 *color20:      #727f96
-*color21:      #555566
+*color21:      #383A47
