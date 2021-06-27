@@ -16,7 +16,8 @@ I probably shouldn't even have to say the following, but will just in case these
 
 A repo, on Github featuring dotfiles and an installation script bring an Arch system from first boot to totally useful to me and just the way I like it. Your tastes will vary, inevitably, so you can use this as the basis for your own repo, steal ideas from it, fork it, whatever you want to do.
 
-This is just how I like my systems to work, which works as a decent starting place for others and comes with a nice little installation script to ease the process of incorporating the parts you want to, that makes the installation process a nice, menu driven alternative to annoying dotfiles applications like `stow`.
+This is just how I like my systems to work, which works as a decent starting place for others and comes with a nice little installation script to ease the process of incorporating the parts you want to, that makes the installation process a nice, menu driven alternative to annoying dotfiles applications like `stow` that are always more of a hassle than a specific `ln` command, which are written out for you with the installation included with this repo. 
+
 
 ## Features
 
@@ -42,7 +43,7 @@ sh INSTALL
 
 ```
 
-It is also possible that you want to just install all of the packages contained within the menu, to which end selecting them each individually may be rather tedious. Luckily, I have a script prepared for this as well!
+It is also possible that you want to just install all of the packages contained within the menu, to which end selecting them each individually may be rather tedious. Luckily, I have a script prepared for this as well! I use it to test for broken packages in a docker container but feel free to adapt it to your use cases. 
 
 ```bash
 git clone https://github.com/Thomashighbaugh/dotfiles
