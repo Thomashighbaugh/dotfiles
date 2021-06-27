@@ -85,13 +85,13 @@ mainmenu() {
 
         case "$choice" in
         "Core Dependencies")
-            deps #calls users function
+            deps
             ;;
         "Hardware")
-            hardware #calls passwords function
+            hardware
             ;;
         "TUI")
-            TUI #calls groups function
+            TUI
             ;;
         "GUI")
             GUI
@@ -279,19 +279,11 @@ function hardware() {
                 YAYIN blueberry blueman bluez-hid2hci bluez-tools bluez-utils python-pybluez
                 print t "Bluetooth Interfacing Provisioned"
                 ;;
-            "Quit")
-                dialog --title "Proceed?" \
-                    --backtitle "Dotfiles Installation - Thomas Leon Highbaugh" \
-                    --yesno "Are You Ready to Go Back or Quit?" 7 60
-                response=$?
-                case $response in
-                0) echo ;;
-                1) exit ;;
-                255) exit ;;
-                esac
+            "Back")
 
                 mainmenu
                 ;;
+
             *)
                 echo "Something else.  Where Am I?"
                 ;;
@@ -568,17 +560,7 @@ function TUI() {
                 wait 5
                 print t "ZSH shell Provisioned and Configured"
                 ;;
-            "Quit")
-
-                dialog --title "Return to the main menu?" \
-                    --backtitle "Dotfiles Installation - Thomas Leon Highbaugh" \
-                    --yesno "Are You Ready to Go Back or Quit?" 7 60
-                response=$?
-                case $response in
-                0) echo ;;
-                1) exit ;;
-                255) exit ;;
-                esac
+            "Back")
 
                 mainmenu
                 ;;
@@ -597,12 +579,10 @@ function GUI() {
         cmd=(dialog --backtitle "Dotfiles Installer - Thomas Leon Highbaugh" --title "GUI Environments" --clear --separate-output --checklist "Select Options:" 32 76 16)
         options=(
             "Awesome" "- primary window manager" off
-            "BSPWM" " - binary tree window splitting window manager" off
             "GTK" "- easily themed windows" off
             "Picom" "- X11 desktop effects" off
             "Qtile" "- window manager in Python" off
             "Rofi" "- DMenu replacement" off
-            "Sway" "- Wayland replacement for i3" off
             "LightDM" "- sometimes functional Display Manager" off
             "Back" "- Return to Main Menu" off)
         choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
@@ -613,12 +593,10 @@ function GUI() {
                 print t "Awesome Window Manager"
                 print t "#################################################"
                 YAYIN awesome-git feh xcape light lua-coxpcall maim
-
                 YAYIN vicious lain-git awesome-freedesktop-git archlinux-xdg-menu archlinux-menus
-
-                YAYIN luarocks awmtt caja
-
-                YAYIN zathura zathura-pdf-mupdf zathura-ps youtube-dl
+                YAYIN luarocks awmtt thunar thunar-archive-plugin thunar-media-tags-plugin thunar-volman thunar-secure-delete
+                YAYIN thunar-dropbox bcompare-thunar thunarx-python thunar-custom-actions python-thunar-plugins-git
+                YAYIN zathura-git zathura-pdf-mupdf zathura-ps youtube-dl libzathura-git
 
                 ln -svf "$HOME"/dotfiles/home/zathura/zathurarc "$HOME"/.config/zathura
 
@@ -694,15 +672,6 @@ function GUI() {
                 print t "Lightdm Provisioned and Configured"
                 ;;
             "Back")
-                dialog --title "Proceed?" \
-                    --backtitle "Dotfiles Installation - Thomas Leon Highbaugh" \
-                    --yesno "Are You Ready to Go Back or Quit?" 7 60
-                response=$?
-                case $response in
-                0) echo ;;
-                1) exit ;;
-                255) exit ;;
-                esac
 
                 mainmenu
                 ;;
@@ -858,21 +827,10 @@ function APPs() {
 
                 ;;
             "Back")
-                dialog --title "Proceed?" \
-                    --backtitle "Dotfiles Installation - Thomas Leon Highbaugh" \
-                    --yesno "Are You Ready to Begin?" 7 60
-                response=$?
-                case $response in
-                0) echo ;;
-                1) exit ;;
-                255) exit ;;
-                esac
 
                 mainmenu
                 ;;
-
-            \
-                *)
+            *)
                 echo "Something else.  Where Am I?"
                 ;;
             esac
@@ -890,7 +848,7 @@ function Dev() {
             "Lua" "- Used in AwesomeWM for configuration, finds employment in seemingly random contexts." off
             "Ruby" "- Often used in backends or frameworks." off
             "Rust" "- trendy new language developed by Mozilla" off
-            "Quit" "- Return to Main Menu" off)
+            "Back" "- Return to Main Menu" off)
 
         choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
         for choice in $choices; do
@@ -924,20 +882,9 @@ function Dev() {
                 YAYIN rustup rust-docs lib32-rust-libs rust-racer rust-analyzer
                 print t " Provisioned and Configured"
                 ;;
-
             "Back")
-                dialog --title "Proceed?" \
-                    --backtitle "Dotfiles Installation - Thomas Leon Highbaugh" \
-                    --yesno "Are You Ready to Begin?" 7 60
-                response=$?
-                case $response in
-                0) echo ;;
-                1) exit ;;
-                255) exit ;;
-                esac
                 mainmenu
                 ;;
-
             *)
                 echo "Something else.  Where Am I?"
                 ;;
@@ -966,4 +913,3 @@ case $response in
 esac
 
 mainmenu
-
