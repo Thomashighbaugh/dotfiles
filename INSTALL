@@ -632,7 +632,7 @@ function GUI() {
                 print t "#################################################"
                 print t "Awesome Window Manager"
                 print t "#################################################"
-                YAYIN awesome-git feh xcape light lua-coxpcall maim
+                YAYIN awesome-git feh xcape light lua-coxpcall maim lua-socket lua-posix lua-cjson
                 YAYIN vicious lain-git awesome-freedesktop-git archlinux-xdg-menu archlinux-menus
                 YAYIN luarocks awmtt thunar thunar-archive-plugin thunar-media-tags-plugin thunar-volman thunar-secure-delete
                 YAYIN thunar-dropbox bcompare-thunar thunarx-python thunar-custom-actions python-thunar-plugins-git
