@@ -1,4 +1,4 @@
-FROM ruby:2.5.3-alpine
+FROM ruby:2.7.3-alpine
 
 RUN apk add --no-cache autoconf
 RUN apk add --no-cache libtool
