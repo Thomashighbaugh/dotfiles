@@ -10,11 +10,23 @@ I probably shouldn't even have to say the following, but will just in case these
 
 1. This repository is a work in progress (like the Winchester Mystery Dotfiles)
 2. Please don't blindly copy these into your system or run the install script without reading it first (it will delete stuff!)
-3. Please feel free to adapt these to your needs, in fact if you want to use these locally, you will probably need to adapt them heavily for your use case. I can always help you if you are unsure how to proceed since I know the code pretty well, just note that the installation scripts are specific to Arch-based distros. (there maybe now its good enough)
+3. Please feel free to adapt these to your needs, in fact if you want to use these locally, you will probably need to adapt them heavily for your use case. I can always help you if you are unsure how to proceed since I know the code pretty well, just note that the installation scripts are specific to Arch-based distros. (there maybe now its a good enough fit for the Awesome Dotfiles maintainer...)
+
+## Related Repositories
+
+I don't like managing a huge monorepo personally, so some of my other `dotfiles` are housed entirely in other repositories for purposes of keeping things straight and cutting down on excess pushes to this one repo alone (and because that way I can feature them...). Due to my **homerolled installation script** this is not any more time or additional terminal commands, all of that is handled by the script and the user input it asks for, thus mitigating the nightmare this would be with stow or the equivalent. Here are the goods, navigate to those repos if you are looking for those specific portions. 
+
+| Name                                                    | Path                                          | Notes                                                                                      |
+| ------------------------------------------------------- | --------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| [Awesome](https://github.com/Thomashighbaugh/awesomewm) | ~/.config/awesome                             | configuration of my window manager configured in lua                                       |
+| [bin](https://github.com/Thomashighbaugh/bin)           | ~/.local/share/bin                            | scripts that I use locally, includes the scripts that display terminal colors in ASCii art |
+| [firefox](https://github.com/Thomashighbaugh/firefox)   | ~/.mozilla/firefox/[profile directory]/chrome | theme for webbrowser using CSS                                                             |
+| [nvim](https://github.com/Thomashighbaugh/nvim)         | ~/.config/nvim                                | My lua based nvim configuration                                                            |
+| [qtile](https://github.com/Thomashighbaugh/qtile)       | ~/.config/qtile                               | Alternative window manager configured in python                                            |
+| [zsh](https://github.com/Thomashighbaugh/zsh)           | ~/.zsh                                        | My z shell configuration, similar set up to the vim configuration above                    |
+
 
 ## Introduction
-
-A repo, on Github featuring dotfiles and an installation script bring an Arch system from first boot to totally useful to me and just the way I like it. Your tastes will vary, inevitably, so you can use this as the basis for your own repo, steal ideas from it, fork it, whatever you want to do.
 
 This is just how I like my systems to work, which works as a decent starting place for others and comes with a nice little installation script to ease the process of incorporating the parts you want to, that makes the installation process a nice, menu driven alternative to annoying dotfiles applications like `stow` that are always more of a hassle than a specific `ln` command, which are written out for you with the installation included with this repo.
 
@@ -62,20 +74,6 @@ In this case, the avoidance of a useful, if badly documented, git feature known 
 
 The two subdirectories at the repositories top level represent files that are contained within the user's home directory (aka `home/`) and those which are meant to be contained within the system's directories (or `root`). This division is merely to make it easier to appreciate the intended locations of these files on board the system without referencing the Installation Script. Inside of each, another subdirectory exists for topical divisions that often correspond to the names of the installation functions they relate to which in turn get their names from the programs that are being installed.
 
-## Related Repositories Spun Out of This One
-
-Once a configuration gets to a large enough size, it is spun out into its own repository and, as mentioned above, the installation script will clone this new repository in the position the system expects it instead of within this directory and symlinking, as the former is a more reliable method overall.
-
-These additional repositories are listed in the table below for the purposes of providing the most exact account of the actual size of my dotfiles now that I have quite a few of these additional repositories.
-
-| Name                                                    | Path                                          | Notes                                                                                      |
-| ------------------------------------------------------- | --------------------------------------------- | ------------------------------------------------------------------------------------------ |
-| [Awesome](https://github.com/Thomashighbaugh/awesomewm) | ~/.config/awesome                             | configuration of my window manager configured in lua                                       |
-| [bin](https://github.com/Thomashighbaugh/bin)           | ~/.local/share/bin                            | scripts that I use locally, includes the scripts that display terminal colors in ASCii art |
-| [firefox](https://github.com/Thomashighbaugh/firefox)   | ~/.mozilla/firefox/[profile directory]/chrome | theme for webbrowser using CSS                                                             |
-| [nvim](https://github.com/Thomashighbaugh/nvim)         | ~/.config/nvim                                | My lua based nvim configuration                                                            |
-| [qtile](https://github.com/Thomashighbaugh/qtile)       | ~/.config/qtile                               | Alternative window manager configured in python                                            |
-| [zsh](https://github.com/Thomashighbaugh/zsh)           | ~/.zsh                                        | My z shell configuration, similar set up to the vim configuration above                    |
 
 ## Inspiration
 
@@ -83,3 +81,5 @@ These additional repositories are listed in the table below for the purposes of 
 
 - [wafflepie/dotfiles](https://github.com/wafflepie/dotfiles)
   - this configuration is really an unsung hero of dotfiles, unique approaches to common issues I was having that helped push me over to into a fuller knowledge.
+
+- Odds and Ends from anywhere and everywhere I can't remember but am awfully thankful for!
