@@ -29,9 +29,9 @@ fi
 
 ## Function Definition
 function run {
-    if (command -v $1 && ! pgrep $1); then
+    if (command -v "$1" && ! pgrep "$1"); then
 
-        $@ &
+        "$@" &
     fi
 }
 
@@ -70,6 +70,6 @@ run xfce4-settings-daemon
 run dropbox
 
 ## Merging Xresources
-xrdb -merge $HOME/.Xresources
+xrdb -merge "$HOME"/.Xresources
 
 #run sudo env -u SUDO_GID -u SUDO_COMMAND -u SUDO_USER -u SUDO_UID .local/share/bin/sound/BeverlyHillsCop
