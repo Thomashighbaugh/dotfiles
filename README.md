@@ -20,9 +20,12 @@ I don't like managing a huge monorepo personally, so some of my other `dotfiles`
 | ------------------------------------------------------- | --------------------------------------------- | ------------------------------------------------------------------------------------------ |
 | [Awesome](https://github.com/Thomashighbaugh/awesomewm) | ~/.config/awesome                             | configuration of my window manager configured in lua                                       |
 | [bin](https://github.com/Thomashighbaugh/bin)           | ~/.local/share/bin                            | scripts that I use locally, includes the scripts that display terminal colors in ASCii art |
+| [Chhinamasta Icon Theme](https://github.com/Thomashighbaugh/chhinamasta-icon-theme) | /usr/share/icons  | My personal icon theme that uses the Vice Color Scheme                                     |
+| [Dhumavati GTK](https://github.com/Thomashighbaugh/Dhumavati-Theme) | /usr/share/themes           |  my personal GTK theme written in SCSS and using the Vice Color Scheme                           |
 | [firefox](https://github.com/Thomashighbaugh/firefox)   | ~/.mozilla/firefox/[profile directory]/chrome | theme for webbrowser using CSS                                                             |
 | [nvim](https://github.com/Thomashighbaugh/nvim)         | ~/.config/nvim                                | My lua based nvim configuration                                                            |
 | [qtile](https://github.com/Thomashighbaugh/qtile)       | ~/.config/qtile                               | Alternative window manager configured in python                                            |
+| [vice Color Scheme](https://github.com/Thomashighbaugh/base16-vice-scheme) | N/A                        | My base16 scheme specifically designed for comfortable, long term dark theme use.          |
 | [zsh](https://github.com/Thomashighbaugh/zsh)           | ~/.zsh                                        | My z shell configuration, similar set up to the vim configuration above                    |
 
 
