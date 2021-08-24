@@ -532,6 +532,8 @@ function TUI() {
                 git clone https://github.com/neovim/neovim && cd neovim && sudo make CMAKE_BUILD_TYPE=Release install && cd .. && rm neovim
                 pip install neovim pynvim --user
                 pip2 install neovim pynvim --user
+                gem install neovim
+                sudo npm i -g neovim
                 # print s "Personal Vim Configuration"
                 # git clone https://github.com/Thomashighbaugh/vim ~/.vim
                 # print s "Linking Personal Configuration with System"
@@ -634,7 +636,11 @@ function GUI() {
                 print t "#################################################"
                 YAYIN awesome-git feh xcape light lua-coxpcall maim lua-socket lua-posix lua-cjson
                 YAYIN vicious lain-git awesome-freedesktop-git archlinux-xdg-menu archlinux-menus
-                YAYIN luarocks awmtt thunar thunar-archive-plugin thunar-media-tags-plugin thunar-volman thunar-secure-delete
+                YAYIN luarocks awmtt caja
+                YAYIN caja-extensions-common caja-pdf-tools-git caja-image-converter
+                YAYIN caja-open-terminal caja-sendto caja-share caja-xattr-tags python-caja
+                YAYIN caja-dropbox stl-thumbnailer thunar thunar-archive-plugin
+                YAYIN thunar-media-tags-plugin thunar-volman thunar-secure-delete
                 YAYIN thunar-dropbox bcompare-thunar thunarx-python thunar-custom-actions python-thunar-plugins-git
                 YAYIN zathura-git zathura-pdf-mupdf zathura-ps youtube-dl libzathura-git
 

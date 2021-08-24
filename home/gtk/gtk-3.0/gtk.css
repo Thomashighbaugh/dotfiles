@@ -3,7 +3,7 @@
   box-shadow: none;
   margin: 0;
 }
-@import "colors.css";
+
 
 
 window.xfce4-panel widget > box > button > image{

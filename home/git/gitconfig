@@ -15,7 +15,7 @@
 [core]
 	excludesfile = ~/.gitignore
 	whitespace = trailing-space,space-before-tab,blank-at-eol
-	editor = vim 
+	editor = nvim 
 [apply]
 	whitespace = fix
 [push]
@@ -35,7 +35,7 @@
 [rebase]
 	autoStash = true
 	stat = true
-[credential]
-	helper = store
 [init]
 	defaultBranch = main
+[credential]
+	helper = libsecret
