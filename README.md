@@ -85,6 +85,10 @@ The two subdirectories at the repositories top level represent files that are co
 
 There is now also a docker subdirectory that is where a variant of the installation script (without interaction) is stored and dockerfile that builds an arch linux docker container than attempts to install the programs, insuring my logic and packages are functional if I have need to test them, due to a mangled install or other issue I cannot foresee arising. In theory, you could use this as a docker container for other purposes, but I do not know why you would want to as it installs mostly GUI packages but `whatever is clever`.
 
+## Known Issues
+
+- In order to insure that a single package not building doesn't take a whole suite out, which one tends not to know about until they are in dire need, I have the installation script install each package by itself, which comes at the cost of pacman's new multithreaded functionality and can get slow where yay is pulling in a lot of packages and building them like in the `GTK` section. So I usually run it and work on something else on another machine or in another window, checking back here and there to go between categorical submenus when its done installing a section.
+
 ## Inspiration
 
 - [Holman Does Dotfiles](https://github.com/holman/dotfiles)
