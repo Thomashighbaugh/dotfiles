@@ -598,7 +598,7 @@ function TUI() {
                 YAYIN zsh-completions keybase-zsh-completion-git python-click-completion
                 ## Symlink Files
                 git clone https://github.com/Thomashighbaugh/zsh "$HOME"/.zsh
-                cd "$HOME"/.zsh && sh install
+                cd "$HOME"/.zsh && sh install && git submodule update --init --recursive
                 wait 5
                 print t "ZSH shell Provisioned and Configured"
                 ;;
@@ -674,7 +674,7 @@ function GUI() {
                 mkdir -p "$HOME"/.config/Kvantum
                 ln -svf "$HOME"/dotfiles/home/gtk/kvantum.kvconfig "$HOME"/.config/Kvantum/kvantum.kvconfig
                 print s "Cloning and Installing the Dhumavati GTK Theme"
-                git clone https://github.com/Thomashighbaugh/Dhumavati-Theme
+                git clone https://github.com/Thomashighbaugh/Dhumavati-Theme ~/.local/share/themes
                 bash Dhumavati-Theme/install.sh
                 print t "GTK Window Theming Provisioned and Configured"
                 ;;
