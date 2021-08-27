@@ -682,7 +682,7 @@ function GUI() {
                 print t "#################################################"
                 print t "Picom Desktop Compostitor"
                 print t "#################################################"
-                YAYIN picom-ibhagwan-git
+                YAYIN picom-jonaburg-git
                 ln -svf "$HOME"/dotfiles/home/picom/picom.conf "$HOME"/.config
                 print t "Picom Desktop Compostitor Provisioned and Configured"
                 ;;
