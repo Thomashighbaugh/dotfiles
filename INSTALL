@@ -913,7 +913,11 @@ function Dev() {
                 print t "#################################################"
                 print t "Lua Programming Language"
                 print t "#################################################"
-                YAYIN lua-dbi lua-socket luakit luarocks luakit lua-socket lua-dbi
+                YAYIN lua-dbi lua-socket hererocks luakit luarocks luakit lua-socket lua-dbi
+                YAYIN lua-lgi lua-lpeg lua51 lua52 lua53 lua53-lgi ldoc lua-argparse
+                YAYIN lua-filesystem lua-penlight lua-socket lua53-socket luacheck lua-cjson lua53-posix lua-format
+                YAYIN lua53-std-normalize lua53-std-_debug
+                sudo luarocks install
                 print t " Provisioned and Configured"
                 ;;
             "Ruby")
@@ -930,6 +934,8 @@ function Dev() {
                 print t "Rust Programming Language"
                 print t "#################################################"
                 YAYIN rustup rust-docs lib32-rust-libs rust-racer rust-analyzer
+                rustup install stable
+                rustup default stable
                 print t " Provisioned and Configured"
                 ;;
             "Back")
