@@ -267,7 +267,7 @@ function deps() {
     print
     if [ ! -x "$(command -v 'yay')" ]; then
         PACIN git base-devel
-        TEMPORARY=$PWD/temp
+        TEMPORARY=$HOME/temp
         mkdir "$TEMPORARY"
         git clone 'https://aur.archlinux.org/yay.git' "$TEMPORARY/yay"
         cd "$TEMPORARY/yay" || exit
@@ -280,18 +280,6 @@ function deps() {
     print t "###########################################################"
     print t "Dependencies Have Been Installed"
     print t "###########################################################"
-
-    print
-    print
-    dialog --title "Proceed?" \
-        --backtitle "Dotfiles Installation - Thomas Leon Highbaugh" \
-        --yesno "Are You Ready to Begin?" 7 60
-    response=$?
-    case $response in
-    0) echo ;;
-    1) exit ;;
-    255) exit ;;
-    esac
 }
 
 #########################################################
@@ -529,25 +517,12 @@ function TUI() {
                 print t "#################################################"
                 YAYIN vim vi sudo vim-runtime vim-spell-en python-pip python2-pip ripgrep fzf ranger
                 print s "Installing Neovim Nightly"
-                git clone https://github.com/neovim/neovim && cd neovim && sudo make CMAKE_BUILD_TYPE=Release install && cd .. && rm neovim
+                git clone https://github.com/neovim/neovim "$HOME"/neovim && cd "$HOME"/neovim && sudo make CMAKE_BUILD_TYPE=Release install && cd .. && rm $HOME/neovim
                 pip install neovim pynvim --user
                 pip2 install neovim pynvim --user
                 gem install neovim
                 sudo npm i -g neovim
-                # print s "Personal Vim Configuration"
-                # git clone https://github.com/Thomashighbaugh/vim ~/.vim
-                # print s "Linking Personal Configuration with System"
-                # ln -s ~/.vim/vimrc ~/.vimrc
-                # ln -s ~/.vim/vimrc ~/.config/nvim/init.vim
-                # print s "Downloading Plugin Manager"
-                # cd ~/.vim && curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-                # https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-                # curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-                # https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-                # print s "Installing Plugins"
-                # vim +PlugUpdate +qa
-                # print t "#################################################"
-                # print s "Installing NeoVim Configuration"
+                print s "Installing NeoVim Configuration"
                 git clone https://github.com/Thomashighbaugh/nvim "$HOME"/.config/nvim
                 print s "Installing Neovim Package Manager"
                 git clone https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
@@ -915,7 +890,7 @@ function Dev() {
                 print t "#################################################"
                 YAYIN lua-dbi lua-socket hererocks luakit luarocks luakit lua-socket lua-dbi
                 YAYIN lua-lgi lua-lpeg lua51 lua52 lua53 lua53-lgi ldoc lua-argparse
-                YAYIN lua-filesystem lua-penlight lua-socket lua53-socket luacheck lua-cjson lua53-posix lua-format
+                YAYIN lua-filesystem lua-penlight lua-socket lua53-socket luacheck lua-cjson lua53-posix lua-format cjson
                 YAYIN lua53-std-normalize lua53-std-_debug
                 sudo luarocks install
                 print t " Provisioned and Configured"
