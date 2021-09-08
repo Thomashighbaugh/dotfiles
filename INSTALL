@@ -520,6 +520,7 @@ Fonts() {
     print t "Fonts"
     print t "#################################################"
     YAYIN bdf-unifont gnome-font-viewer freetype2 libfontenc libxft libotf woff2 awesome-terminal-fonts nerd-fonts-complete fontconfig-infinality-remix sdl2_ttf t1lib birdfont
+    sudo fc-presets set remix
     sudo fc-cache -vf
     fc-cache -vf
 }
@@ -527,7 +528,8 @@ GIMP() {
     print t "#################################################"
     print t "GIMP Image Editor"
     print t "#################################################"
-    YAYIN gimp gimp-plugin-gmic xsane gimp-plugin-registry gimp-extras gimp-paint-studio
+    YAYIN gimp gimp-plugin-gmic xsane gimp-plugin-registry gimp-extras gimp-paint-studio xsane-gimp gimp-nufraw gimp-plugin-pandora gimp-plugin-bimp gimp-lensfun
+    YAYIN gimp-font-rendering-fix
 }
 Inkscape() {
     print t "#################################################"
@@ -807,6 +809,7 @@ function TUI() {
             "Shell" "- General Shell Configuration" off
             "SSH" "- Connecting to Other Computers' Shells" off
             "Vim" "- terminal text editing for the hardcore" off
+            "WTF" "- A terminal dashboard with easy configuration options" off
             "X11" "- the basis for the GUI" off
             "ZSH" "- Primary Shell Used" off
             "Back" "- Return to the Main Menu" off)

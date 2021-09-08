@@ -48,13 +48,13 @@ run xcape -e 'Super_L=Super_L|Control_L|Escape'
 # run blueman-applet
 
 ### Notifications
-#run dunst
+run dunst
 
 ### PulseAudio Tray Applet
 run pa-applet
 
 ### Settings
-# run xfsettingsd
+ run xfsettingsd
 
 ### XFCE Settings for GTK theme consistency
 run xfce4-settings-daemon
