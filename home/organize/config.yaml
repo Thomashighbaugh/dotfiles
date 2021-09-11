@@ -1,67 +1,66 @@
 rules:
-    - folders: ~/Downloads
-      subfolders: true
-      filters:
-          - extension: mp3
-      actions:
-          - echo: "Found MP3!"
-          - move: ~/256/Dropbox/Dropbox/Music/
-    - folders: ~/Downloads
-      subfolders: true
-      filters:
-          - extension: pdf
-      actions:
-          - echo: "Found PDF!"
-          - move: ~/256/Dropbox/Dropbox/Books/
-    - folders: ~/256
-      subfolders: false
-      filters:
-          - extension: pdf
-      actions:
-          - echo: "Found PDF!"
-          - move: ~/256/Dropbox/Dropbox/Books/
-    - folders: ~/256
-      subfolders: false
-      filters:
-          - extension:
-                - jpg
-                - jpeg
-                - png
-                - gif
-                - webp
-      actions:
-        - echo: "Found Picture"
-        - move: ~/256/Dropbox/Dropbox/Pictures
-    - folders: ~/Downloads
-      subfolders: false
-      filters:
-          - extension:
-                - jpg
-                - jpeg
-                - png
-                - gif
-                - webp
-      actions:
-        - echo: "Found Picture"
-        - move: ~/256/Dropbox/Dropbox/Pictures
-    - folders: ~/256
-      subfolders: false
-      filters:
-          - extension:
-                - zip 
-                - tar
-                - gz
-      actions:
-        - echo: "Found Archive"
-        - move: ~/256/Dropbox/Dropbox/Workspace/Repositories/
-    - folders: ~/Downloads/
-      subfolders: false
-      filters:
-          - extension:
-                - zip 
-                - tar
-                - gz
-      actions:
-        - echo: "Found Archive"
-        - move: ~/256/Dropbox/Dropbox/Workspace/Repositories/
-
+  - folders: ~/Downloads
+    subfolders: true
+    filters:
+      - extension: mp3
+    actions:
+      - echo: "Found MP3!"
+      - move: ~/256/Dropbox/Dropbox/Music/
+  - folders: ~/Downloads
+    subfolders: true
+    filters:
+      - extension: pdf
+    actions:
+      - echo: "Found PDF!"
+      - move: ~/256/Dropbox/Dropbox/Books/
+  - folders: ~/256
+    subfolders: false
+    filters:
+      - extension: pdf
+    actions:
+      - echo: "Found PDF!"
+      - move: ~/256/Dropbox/Dropbox/Books/
+  - folders: ~/256
+    subfolders: false
+    filters:
+      - extension:
+          - jpg
+          - jpeg
+          - png
+          - gif
+          - webp
+    actions:
+      - echo: "Found Picture"
+      - move: ~/256/Dropbox/Dropbox/Pictures
+  - folders: ~/Downloads
+    subfolders: false
+    filters:
+      - extension:
+          - jpg
+          - jpeg
+          - png
+          - gif
+          - webp
+    actions:
+      - echo: "Found Picture"
+      - move: ~/256/Dropbox/Dropbox/Pictures
+  - folders: ~/256
+    subfolders: false
+    filters:
+      - extension:
+          - zip
+          - tar
+          - gz
+    actions:
+      - echo: "Found Archive"
+      - move: ~/256/Dropbox/Dropbox/Workspace/Repositories/
+  - folders: ~/Downloads/
+    subfolders: false
+    filters:
+      - extension:
+          - zip
+          - tar
+          - gz
+    actions:
+      - echo: "Found Archive"
+      - move: ~/256/Dropbox/Dropbox/Workspace/Repositories/
