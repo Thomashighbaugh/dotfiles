@@ -279,7 +279,15 @@ NVM() {
     sh -c "npm install --global yarn"
     print t "Node Version Manager Provisioned and Configured"
 }
-Pacman() {
+Organize() {
+   print t "#################################################"
+   print t "File Organization Utilities"       
+   print t "#################################################"
+   YAYIN organize  classifier-git 
+   ln -svf $HOME/dotfiles/home/organize/config.yaml $HOME/.config/organize/config.yaml
+
+ }
+   Pacman() {
     print t "#################################################"
     print t "Pacman Modifications, Hooks and Extensions"
     print t "#################################################"
