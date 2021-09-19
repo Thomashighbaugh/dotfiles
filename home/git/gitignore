@@ -27,3 +27,7 @@ node_modules/
 
 # Webstorm Files
 .idea/
+
+
+# VSCode files 
+.vscode/

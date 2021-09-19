@@ -1,5 +1,0 @@
-[user]
-  name = USER_NAME
-  email = USER_EMAIL
-[credential]
-  helper = CREDENTIAL_HELPER

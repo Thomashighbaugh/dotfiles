@@ -1,9 +1,9 @@
-@define-color bg_color #17191E;
+@define-color bg_color #2f303d;
 @define-color fg_color #f4f4f7;
-@define-color base_color #22262d;
-@define-color text_color #b2bfd9;
-@define-color text_color_disabled #646c7b;
-@define-color selected_bg_color #8265ff;
+@define-color base_color #2f303d;
+@define-color text_color #f4f4f7;
+@define-color text_color_disabled #555e70;
+@define-color selected_bg_color #8b9cbe;
 @define-color selected_fg_color #f4f4f7;
-@define-color tooltip_bg_color #17191E;
-@define-color tooltip_fg_color #b2bfd9;
+@define-color tooltip_bg_color #2f303d;
+@define-color tooltip_fg_color #f4f4f7;

@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/bin/bash
 ####################################################################
 ## shell variables #################################################
 ####################################################################
@@ -21,7 +21,7 @@ else
 	export EDITOR=vi
 fi
 export EDITORD=${EDITORD:-$EDITOR}
-export GUI_EDITOR=/usr/share/applications/sublime-text.desktop
+export GUI_EDITOR="$EDITOR"
 
 ## XDG #############################################################
 export XDG_CONFIG_DIRS=/etc/xdg
@@ -59,8 +59,6 @@ export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;36m'
 export LESS=-r
 
-## NVM #############################################################
-export NVM_DIR="$HOME/.nvm"
 
 ## DATE  ###########################################################
 DATE=$(date +%s)
@@ -88,28 +86,34 @@ export LANGUAGE=en_US.UTF-8
 ## Personal Email ##############################################################
 export EMAIL="thighbaugh@zoho.com"
 
+##  NVM ########################################################################
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
+## Git Options #################################################################
 export GIT_DISCOVERY_ACROSS_FILESYSTEM=1
 
+## Applications ################################################################
 export TERMINAL="kitty"
 export TERM=xterm-256color
 export VISUAL="vim"
 export BROWSER="firefox"
 export EMAIL="thunderbird"
-export GUIFM="thunar"
+export GUIFM="caja"
 export PASSWD="keepassxc"
 export PLAYER="spotify"
-OS="$(uname | tr A-Z a-z | sed 's/mingw/windows/; s/.*windows.*/windows/')"
-ARCH="$(uname -m | sed 's/^..86$$/386/; s/^.86$$/386/; s/x86_64/amd64/; s/arm.*/arm/; s/aarch64/arm64/')"
-export OS
-export ARCH
-
 export LAUNCHER='rofi  -show drun -theme ~/.config/awesome/configuration/appmenu.rasi'
 export MOZ_X11_EG=1
 
 export PYENV_ROOT="$HOME/.pyenv"
 
-GENCOMPL_FPATH=$HOME/dotfiles/home/zsh/completions
+## OS and Arch Names ###########################################################
+OS="$(uname | tr A-Z a-z | sed 's/mingw/windows/; s/.*windows.*/windows/')"
+ARCH="$(uname -m | sed 's/^..86$$/386/; s/^.86$$/386/; s/x86_64/amd64/; s/arm.*/arm/; s/aarch64/arm64/')"
+export OS
+export ARCH
+
+## Dropbox Present Location ####################################################
+
+export DROPBOXDIR="/home/tlh/256/Dropbox/Dropbox/" 

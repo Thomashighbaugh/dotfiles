@@ -14,9 +14,9 @@
     indicate_hidden = yes
     notification_height = 0
     separator_height = 2
-    padding = 0
+    padding = 4
     horizontal_padding = 8
-    frame_width = 2
+    frame_width = 3
     # Define a color for the separator.
     # possible values are:
     #  * auto: dunst tries to find a color fitting to the background;
@@ -26,7 +26,7 @@
     separator_color = auto
     # Sort messages by urgency.
     sort = yes
-    idle_threshold = 120
+    idle_threshold = 20
 
     font = Encode Sans SemiExpanded Black 14
 
@@ -53,19 +53,19 @@
     hide_duplicate_count = true
     show_indicators = yes
     icon_position = left
-    icon_path = /usr/share/icons/chhinamasta/16x16/status:/usr/share/icons/chhinamasta/16x16/devices:/usr/share/icons/chhinamasta/symbolic/status:/usr/share/icons/chhinamasta/symbolic/devices:/usr/share/icons/chhinamasta/16x16/apps:/usr/share/icons/chhinamasta/16x16/panel
+    icon_path = /usr/share/icons/chhinamasta
     max_icon_size = 64
     sticky_history = no
     history_length = 20
     dmenu = /usr/local/bin/dmenu -p dunst:
-    browser = /usr/bin/chromium
+    browser = /usr/bin/librewolf
     # Always run rule-defined scripts, even if the notification is suppressed
     always_run_script = true
     title = Dunst
     class = Dunst
     startup_notification = false
     verbosity = crit
-    # corner_radius = 7
+    corner_radius = 4
     force_xinerama = false
 [experimental]
     per_monitor_dpi = true
@@ -75,20 +75,20 @@
     history = ctrl+Escape
     context = ctrl+shift+period
 
-frame_color = "#8b9cbe"
-separator_color = "#8b9cbe"
+frame_color = "#b2bfd9"
+separator_color = "#b2bfd9"
 
 [base16_low]
     msg_urgency = low
-    background = "#23262c"
-    foreground = "#555e70"
+    background = "#17191e"
+    foreground = "#b2bfd9"
 
 [base16_normal]
     msg_urgency = normal
-    background = "#313040"
-    foreground = "#8b9cbe"
+    background = "#22262d"
+    foreground = "#b2bfd9"
 
 [base16_critical]
     msg_urgency = critical
-    background = "#ff29a8"
-    foreground = "#b2bfd9"
+    background = "#3c3f4c"
+    foreground = "#ff3d81"

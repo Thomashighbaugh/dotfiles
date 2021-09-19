@@ -3,7 +3,6 @@
 	email = thighbaugh@zoho.com
 [alias]
 	a = add
-	a = commit
 	b = branch
 	c = commit
 	cl = clone
@@ -11,7 +10,8 @@
 	ls = branch
 	ph = push
 	pl = pull --rebase
-	rho = reset --hard origin/master
+    rho = reset --hard origin/main
+	rhom = reset --hard origin/master
 [core]
 	excludesfile = ~/.gitignore
 	whitespace = trailing-space,space-before-tab,blank-at-eol

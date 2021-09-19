@@ -1,29 +1,30 @@
 Xft/Hinting 1
-Gtk/FontName "SFMono Nerd Font Heavy 15"
+Gtk/FontName "Minimal Mono Black 15"
 Xft/HintStyle "hintfull"
 Gtk/KeyThemeName ""
 Net/IconThemeName "chhinamasta"
 Xft/Antialias 1
 Xft/rgba "rgba"
-Net/CursorBlinkTime 1200
-Gtk/CursorThemeSize 48
+Net/CursorBlinkTime 600
+Gtk/CursorThemeSize 32
+Gtk/CursorThemeName "chhinamasta"
 Gtk/ToolbarStyle "icons"
-Net/SoundThemeName "Pop"
+Net/SoundThemeName "osmo"
 Net/EnableEventSounds 1
 Net/CursorBlink 1
 Gtk/ColorPalette "black:white:gray50:red:purple:blue:light blue:green:yellow:orange:lavender:brown:goldenrod4:dodger blue:pink:light green:gray10:gray30:gray75:gray90"
 Net/DoubleClickTime 400
 Gtk/CanChangeAccels 1
 Gtk/MenuBarAccel "F10"
-Net/ThemeName "dhumavati"
+Net/ThemeName "Dhumavati-Grey-Dark"
 Gtk/ButtonImages 1
 Net/DoubleClickDistance 5
-Gtk/MonospaceFontName "SFMono Nerd Font Heavy 12"
+Gtk/MonospaceFontName "Minimal Mono Black 12"
 Gtk/CursorThemeName "chhinamasta"
-Gtk/ToolbarIconSize 32
+Gtk/ToolbarIconSize 48
 Net/DndDragThreshold 8
 Gtk/DecorationLayout "menu:minimize,maximize,close"
 Net/EnableInputFeedbackSounds 1
 Gdk/WindowScalingFactor 1
-Gtk/IconSizes "128"
+Gtk/IconSizes 64
 Gtk/MenuImages 1

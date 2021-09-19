@@ -511,18 +511,10 @@ Firefox() {
     print t "#################################################"
     print t "Firefox Internet Browser"
     print t "#################################################"
-    YAYIN firefox firefox-userchromejs librewolf-bin librewolf-extension-localcdn librewolf-ublock-origin 
-    git clone https://github.com/Izheil/Quantum-Nox-Firefox-Dark-Full-Theme /tmp/firefox-userchromejs
-    librewolf & 
-    firefox &
-    mkdir ~/.librewolf/*.default-release/chrome
-    cp -rvf /tmp/firefox-userchromejs/Multirow\ and\ other\ functions/JS\ Loader/utils ~/.librewolf/*.default-release/chrome
-    sudo cp -rvf /tmp/firefox-userchromejs/Multirow\ and\ other\ functions/JS\ Loader/defaults /usr/lib/librewolf 
-    sudo cp -rvf /tmp/firefox-userchromejs/Multirow\ and\ other\ functions/JS\ Loader/config.js /usr/lib/librewolf 
+    YAYIN firefox /firefox-userchromejs
     git clone https://github.com/Thomashighbaugh/firefox /tmp/firefox
     sudo chmod +x /tmp/firefox/install.sh
-    sh /tmp/firefox/install.sh librewolf
-    sh /tmp/firefox/install.sh 
+    sh /tmp/firefox/install.sh
 }
 Fonts() {
     print t "#################################################"
