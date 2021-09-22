@@ -1,0 +1,66 @@
+map r reload
+map p print
+map i recolor
+map - zoom out
+map = zoom in
+map R rotate
+unmap f
+map f toggle_fullscreen
+map [fullscreen] f toggle_fullscreen
+
+# Open document in fit-width mode by default
+set adjust-open "best-fit"
+
+# One page per row by default
+set pages-per-row 1
+
+# Stop at page boundries
+set scroll-page-aware "true"
+set scroll-full-overlap 0.01
+set scroll-step 100
+
+# zoom settings
+set zoom-min 10
+set guioptions ""
+
+set font "Minimal-Mono-Black-15"
+
+# zathurarc-dark
+set notification-error-bg "#22262d"
+set notification-error-fg "#ff00aa"
+set notification-warning-bg "#22262d"
+set notification-warning-fg "#ffffaa"
+set notification-bg "#22262d"
+set notification-fg "#e9efff"
+
+set completion-group-bg "#22262d"
+set completion-group-fg "#efe999"
+set completion-bg "#22262d"
+set completion-fg "#8b9cbe"
+set completion-highlight-bg "#17191e"
+set completion-highlight-fg "#b2bfd9"
+
+set index-bg "#22262d" 
+set index-fg "#b2bfd9" 
+set index-active-bg "#22262d"
+set index-active-fg "#b2bfd9"
+
+set inputbar-bg "#22262d"
+set inputbar-fg "#b2bfd9"
+
+set statusbar-bg "#22262d"
+set statusbar-fg "#b2bfd9"
+
+set highlight-color "#"
+set highlight-active-color "#4061cf"
+
+set default-bg "#22262d"
+set default-fg "#f4f4f7"
+set render-loading true
+set render-loading-fg "#8b9cbe"
+set render-loading-bg "#22262d"
+
+set recolor true
+set recolor-lightcolor "#17191e"
+set recolor-darkcolor "#f4f4f7"
+set recolor-keephue true  
