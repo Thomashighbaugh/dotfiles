@@ -511,10 +511,11 @@ Firefox() {
     print t "#################################################"
     print t "Firefox Internet Browser"
     print t "#################################################"
-    YAYIN firefox /firefox-userchromejs
+    YAYIN firefox firefox-userchromejs librewolf-bin librewolf-extension-localcdn librewolf-ublock-origin 
+    git clone https://github.com/Izheil/Quantum-Nox-Firefox-Dark-Full-Theme /tmp/firefox-userchromejs
     git clone https://github.com/Thomashighbaugh/firefox /tmp/firefox
     sudo chmod +x /tmp/firefox/install.sh
-    sh /tmp/firefox/install.sh
+    sh /tmp/firefox/install.sh 
 }
 Fonts() {
     print t "#################################################"
@@ -732,53 +733,16 @@ function deps() {
 #########################################################
 
 function hardware() {
-    while true; do
-        cmd=(dialog --backtitle "Dotfiles Installer - Thomas Leon Highbaugh" --title "Hardware Specific Provisioning" --clear --separate-output --checklist "Select Options:" 32 76 16)
-        options=(
-            "Android" "Interacting with an Android Phone" off
-            "Thinkpad" "- for E495 laptops" off
-            "Nvidia" "- for Nvidia GPUs" off
-            "RPi4" "- Raspberry Pi 4 8GB" off
-            "Disks" "- Filesystem Management" off
-            "Bluetooth" "- software for using bluetooth on Linux" off
-            "Back" "- Return to Main Menu" off)
-        choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
-        for choice in $choices; do
-            case "$choice" in
-            "Android")
                 Android
-                ;;
-            "Disks")
                 Disks
-                ;;
-
-            "Nvidia")
-                Nvidia
-                ;;
-
-            "Performance")
+       #         Nvidia
                 Performance
-                ;;
-            "RPi4")
-                RPi4
-                ;;
-            "Thinkpad")
-                Thinkpad
-                ;;
-            "Bluetooth")
+      #          RPi4
+             Thinkpad
                 Bluetooth
-                ;;
-            "Back")
-
                 mainmenu
-                ;;
 
-            *)
-                echo "Something else.  Where Am I?"
-                ;;
-            esac
-        done
-    done
+
 }
 
 #########################################################
@@ -786,155 +750,43 @@ function hardware() {
 #########################################################
 
 function TUI() {
-    while true; do
-        cmd=(dialog --backtitle "Dotfiles Installer - Thomas Leon Highbaugh" --title "Console Applications" --clear --separate-output --checklist "Select Options:" 32 76 16)
-        options=(
-            "BASH" "- System's Default Shell" off
-            "Docker" "- Containerization Platform" off
-            "GPG" "- Key Management" off
-            "Git" "- Version Control" off
-            "Grub" "- Raspberry Pi 4 8GB" off
-            "Hosts" "- IP Address Translator" off
-            "HTOP" "- System Monitor for Console" off
-            "LXD" "- Open Sourced Container Service" off
-            "Makepkg" "- Arch Linux Build System" off
-            "MOTD" "- Message of the Day" off
-            "Neofetch" "- System Information Gatherer" off
-            "NVM" "- Node Version Manager" off
-            "Pacman" "- Modifications for the Arch Package Manager" off
-            "Ranger" "- Terminal File Manager" off
-            "Shell" "- General Shell Configuration" off
-            "SSH" "- Connecting to Other Computers' Shells" off
-            "Vim" "- terminal text editing for the hardcore" off
-            "WTF" "- A terminal dashboard with easy configuration options" off
-            "X11" "- the basis for the GUI" off
-            "ZSH" "- Primary Shell Used" off
-            "Back" "- Return to the Main Menu" off)
-        choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
-        for choice in $choices; do
-            case "$choice" in
-            "BASH")
                 BASH
-                ;;
-            "Docker")
                 Docker
-                ;;
-
-            "GPG")
-
                 GPG
-                ;;
-
-            "Git")
                 Git
-                ;;
-            "Grub")
                 Grub
-                ;;
-            "Hosts")
                 Hosts
-                ;;
-            "HTOP")
                 HTOP
-                ;;
-            "LXD")
                 LXD
-                ;;
-            "Makepkg")
                 Makepkg
-                ;;
-            "MOTD")
                 MOTD
-                ;;
-            "Neofetch")
                 Neofetch
-                ;;
-            "NVM")
                 NVM
-                ;;
-            "Pacman")
                 Pacman
-                ;;
-            "Ranger")
                 Ranger
-                ;;
-            "Shell")
                 Shell
-                ;;
-            "SSH")
                 SSH
-                ;;
-            "Vim")
                 Vim
-                ;;
-            "WTF")
                 WTF
-                ;;
-            "X11")
                 X11
-                ;;
-            "ZSH")
                 ZSH
-                ;;
-            "Back")
-
                 mainmenu
-                ;;
-            *)
-                echo "Something else.  Where Am I?"
-                ;;
-            esac
-        done
-    done
 }
 #########################################################
 ## GUI
 #########################################################
 function GUI() {
-    while true; do
-        cmd=(dialog --backtitle "Dotfiles Installer - Thomas Leon Highbaugh" --title "GUI Environments" --clear --separate-output --checklist "Select Options:" 32 76 16)
-        options=(
-            "Awesome" "- primary window manager" off
-            "GTK" "- easily themed windows" off
-            "Picom" "- X11 desktop effects" off
-            "Qtile" "- window manager in Python" off
-            "Rofi" "- DMenu replacement" off
-            "LightDM" "- sometimes functional Display Manager" off
-            "Back" "- Return to Main Menu" off)
-        choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
-        for choice in $choices; do
-            case "$choice" in
-            "Awesome")
                 Lua
                 Caja
                 Picom
                 Awesome
-                ;;
-
-            "GTK")
                 GTK
-                ;;
-            "Qtile")
                 Python
                 Picom
                 QTile
-                ;;
-            "Rofi")
                 Rofi
-                ;;
-            "LightDM")
                 LightDM
-                ;;
-            "Back")
-
                 mainmenu
-                ;;
-            *)
-                echo "Something else.  Where Am I?"
-                ;;
-            esac
-        done
-    done
 }
 
 #########################################################
@@ -942,119 +794,30 @@ function GUI() {
 #########################################################
 
 function APPs() {
-    while true; do
-        cmd=(dialog --backtitle "Dotfiles Installer - Thomas Leon Highbaugh" --title "Applications" --checklist "Select Options:" 32 76 16)
-        options=(
-            "KeePassXC" "- password management" off
-            "Caja" "- File Manager" off
-            "CUPs" "- printer driver support" off
-            "Dunst" "- Notifications" off
-            "Firefox" "- Web Browser" off
-            "Fonts" "- for icon heavy ZSH prompt" off
-            "GIMP" "- image editing suite" off
-            "Inkscape" "- SVG editing" off
-            "Kitty" "- GPU accelerated terminal emulator" off
-            "NetworkManager" "- means of connecting to wifi networks" off
-            "PulseAudio" "- audio driver and controls" off
-            "VirtManager" "- open source virtualization source" off
-            "Virtualbox" "- virtualization solution" off
-            "vmware" "- powerful virtualization solution" off
-            "Back" "- Return to Main Menu" off
-        )
-        choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
-        for choice in $choices; do
-            case "$choice" in
-            "KeePassXC")
                 KeePassXC
-                ;;
-            "Caja")
                 Caja
-                ;;
-            "Cups")
                 Cups
-                ;;
-
-            "Dunst")
                 Dunst
-                ;;
-            "Firefox")
                 Firefox
-                ;;
-            "Fonts")
                 Fonts
-                ;;
-            "GIMP")
                 GIMP
-                ;;
-            "Inkscape")
                 Inkscape
-                ;;
-            "Kitty")
                 Kitty
-
-                ;;
-            "NetworkManager")
                 NetworkManager
-                ;;
-            "PulseAudio")
                 PulseAudio
-                ;;
-            "VirtManager")
                 VirtManager
-
-                ;;
-            "Virtualbox")
                 Virtualbox
-                ;;
-            "vmware")
                 vmware
-
-                ;;
-            "Back")
-
                 mainmenu
-                ;;
-            *)
-                echo "Something else.  Where Am I?"
-                ;;
-            esac
-        done
-    done
 }
 #########################################################
 ## Dev
 #########################################################
 function Dev() {
-    while true; do
-        cmd=(dialog --backtitle "Dotfiles Installer - Thomas Leon Highbaugh" --title "Local Development" --clear --separate-output --checklist "Select Options:" 32 76 16)
-        options=(
-            "Python" "- Scritping language with understandable syntax" off
-            "Lua" "- Used in AwesomeWM for configuration, finds employment in seemingly random contexts." off
-            "Ruby" "- Often used in backends or frameworks." off
-            "Rust" "- trendy new language developed by Mozilla" off
-            "Back" "- Return to Main Menu" off)
-
-        choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
-        for choice in $choices; do
-            case "$choice" in
-            "Python")
                 Python
-                ;;
-            "Ruby")
                 Ruby
-                ;;
-            "Rust")
                 Rust
-                ;;
-            "Back")
                 mainmenu
-                ;;
-            *)
-                echo "Something else.  Where Am I?"
-                ;;
-            esac
-        done
-    done
 }
 
 #############################################################################

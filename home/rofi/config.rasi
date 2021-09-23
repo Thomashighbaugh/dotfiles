@@ -3,12 +3,10 @@ configuration {
 	font: "Hurmit Nerd Font Mono bold 13";
 	show-icons: true;
 	drun-display-format: "{name}";
-	fullscreen: false;
 	threads: 0;
 	matching: "fuzzy";
 	scroll-method: 0;
 	disable-history: false;
-	fullscreen: true;
 	window-thumbnail: true;
 }
 

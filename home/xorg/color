@@ -9,7 +9,7 @@
 *.cursorColor:  #f4f4f7 
 
 ! black
-*.color0:       #22262d
+*.color0:       #17191e
 *.color8:       #555e70
 
 ! red
@@ -17,7 +17,7 @@
 *.color9:       #ff87d7
 
 ! green
-*.color2:       #59E8A2
+*.color2:       #44ffdd
 *.color10:      #00ffcc
 
 ! yellow
@@ -41,9 +41,10 @@
 *.color15:      #f4f4f7
 
 ! Note: colors beyond 15 might not be loaded (e.g., xterm, urxvt),
-*color16:      #2f303d
+*color16:      #22262d
 *color17:      #0b0c0f
 *color18:      #3c3f4c
 *color19:      #555566
 *color20:      #727f96
 *color21:      #383A47
+*color22:      #2f303d
