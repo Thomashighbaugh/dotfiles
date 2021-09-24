@@ -1,7 +1,6 @@
 ! xterm
-XTerm.vt100.loginShell: true
-xterm.vt100.saveLines: 2000
-XTerm.vt100.eightBitInput: false
-
-XTerm.vt100.foreground: white
-XTerm.vt100.background: black
+xterm.loginShell: true
+xterm.saveLines: 2000
+xterm.eightBitInput: false
+xterm.foreground: lightgray
+xterm.background: black

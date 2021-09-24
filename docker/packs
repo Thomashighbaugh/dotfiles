@@ -1,4 +1,12 @@
-YAYIN() {
+#!/bin/bash
+
+
+YAYIN() {   while (($# > 0)); do
+                yay --sync --sysupgrade --refresh --noconfirm --needed "$1"
+                shift
+            done
+            return
+         }
 YAYIN android-tools android-messages-desktop android-file-transfer android-udev jadx repo smali android-sdk-platform-tools android-sdk-build-tools
 YAYIN android-apktool scrcpy android-bash-completion abootimg-git simg-tools sdat2img-git bootimgtool-git
 YAYIN gpart gparted mtools nilfs-utils ntfs-3g polkit

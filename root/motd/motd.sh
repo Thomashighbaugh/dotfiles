@@ -10,30 +10,32 @@ clear
 cat <<echo
 
 
-    ${RED}┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
-    │  ${CYAN}    dBBBP  dBP    dBBBP  dBBBP dBBBBBBP dBBBBBb    dBP dBBBP     dBBBBBBP dBBBBBb     dBBBBb dBBBBBBP dBBBBBb dBBBBBb  ${RED}│
-    │  ${CYAN}                                            dBP                                BB        dBP              dBP      BB  ${RED}│
-    │  ${CYAN}  dBBP   dBP    dBBP   dBP      dBP     dBBBBK   dBP dBP          dBP      dBP BB   dBP dBP   dBP     dBBBBK   dBP BB  ${RED}│
-    │  ${CYAN} dBP    dBP    dBP    dBP      dBP     dBP  BB  dBP dBP          dBP      dBP  BB  dBP dBP   dBP     dBP  BB  dBP  BB  ${RED}│
-    │  ${CYAN}dBBBBP dBBBBP dBBBBP dBBBBP   dBP     dBP  dB' dBP dBBBBP       dBP      dBBBBBBB dBP dBP   dBP     dBP  dB' dBBBBBBB  ${RED}│
-    └─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
-
-
-    ┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
-    │ ${CYAN}                                    "Rivers of power flowing everywhere.                                                ${RED}│
-    │ ${CYAN}                                  Fields of magnetism relating everything.                                              ${RED}│
-    │ ${CYAN}                                          This is your origin.                                                          ${RED}│
-    │ ${CYAN}                                         This is your lineage."                                                         ${RED}│
-    │ ${WHITE}                                                                                                                        ${RED}│
-    │ ${RED}                                      - Vijnana Bhairava Tantra                                                         ${RED}│
-    │ ${WHITE}                                                                                                                        ${RED}│
-    │ ${WHITE}                                                                                                                        ${RED}│
-    │ ${WHITE}                                      Thomas Leon Highbaugh (c) 2020                                                    ${RED}│
-    │ ${WHITE}                                                                                                                        ${RED}│
-    │ ${WHITE}                                                                                                                        ${RED}│
-    │ ${WHITE}                                      Email:   thighbaugh@zoho.com                                                      ${RED}│
-    │ ${WHITE}                                      Github:  Thomashighbaugh                                                          ${RED}│
-    │ ${WHITE}                                      Site:    https://thomasleonhighbaugh.me                                           ${RED}│
-    └─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+    ${RED}┌───────────────────────────────────────────────────────────────┐
+    │  ${CYAN}    dBBBP  dBP    dBBBP  dBBBP dBBBBBBP dBBBBBb    dBP dBBBP ${RED}│    
+    │  ${CYAN}                                            dBP              ${RED}│   
+    │  ${CYAN}  dBBP   dBP    dBBP   dBP      dBP     dBBBBK   dBP dBP     ${RED}│ 
+    │  ${CYAN} dBP    dBP    dBP    dBP      dBP     dBP  BB  dBP dBP      ${RED}│
+    │  ${CYAN}dBBBBP dBBBBP dBBBBP dBBBBP   dBP     dBP  dB' dBP dBBBBP    ${RED}│
+    │                                                               │
+    │  ${CYAN}       dBBBBBBP dBBBBBb     dBBBBb dBBBBBBP dBBBBBb dBBBBBb  ${RED}│
+    │  ${CYAN}                     BB        dBP              dBP      BB  ${RED}│
+    │  ${CYAN}        dBP      dBP BB   dBP dBP   dBP     dBBBBK   dBP BB  ${RED}│
+    │  ${CYAN}       dBP      dBP  BB  dBP dBP   dBP     dBP  BB  dBP  BB  ${RED}│
+    │  ${CYAN}      dBP      dBBBBBBB dBP dBP   dBP     dBP  dB' dBBBBBBB  ${RED}│
+    └───────────────────────────────────────────────────────────────┘
+    ┌───────────────────────────────────────────────────────────────┐
+    │ ${CYAN}           "Rivers of power flowing everywhere.               ${RED}│
+    │ ${CYAN}            Fields of magnetism relating everything.          ${RED}│
+    │ ${CYAN}                   This is your origin.                       ${RED}│
+    │ ${CYAN}                   This is your lineage."                     ${RED}│
+    │ ${RED}              - Vijnana Bhairava Tantra                       ${RED}│
+    │ ${WHITE}                                                              ${RED}│
+    │ ${WHITE}            Thomas Leon Highbaugh (c) 2021                    ${RED}│
+    │ ${WHITE}                                                              ${RED}│
+    │ ${WHITE}                                                              ${RED}│
+    │ ${WHITE}          Email:   thighbaugh@zoho.com                        ${RED}│
+    │ ${WHITE}          Github:  Thomashighbaugh                            ${RED}│
+    │ ${WHITE}          Site:    https://thomasleonhighbaugh.me             ${RED}│
+    └───────────────────────────────────────────────────────────────┘
    
 echo
