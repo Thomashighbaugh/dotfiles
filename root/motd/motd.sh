@@ -10,32 +10,31 @@ clear
 cat <<echo
 
 
-    ${RED}┌───────────────────────────────────────────────────────────────┐
-    │  ${CYAN}    dBBBP  dBP    dBBBP  dBBBP dBBBBBBP dBBBBBb    dBP dBBBP ${RED}│    
-    │  ${CYAN}                                            dBP              ${RED}│   
-    │  ${CYAN}  dBBP   dBP    dBBP   dBP      dBP     dBBBBK   dBP dBP     ${RED}│ 
-    │  ${CYAN} dBP    dBP    dBP    dBP      dBP     dBP  BB  dBP dBP      ${RED}│
-    │  ${CYAN}dBBBBP dBBBBP dBBBBP dBBBBP   dBP     dBP  dB' dBP dBBBBP    ${RED}│
+    ${MAGENTA}┌───────────────────────────────────────────────────────────────┐
+    │  ${CYAN}    dBBBP  dBP    dBBBP  dBBBP dBBBBBBP dBBBBBb    dBP dBBBP ${MAGENTA}│    
+    │  ${CYAN}   dBP    dBP    dBP    dBP      dBP        dBP   dBP dBP    ${MAGENTA}│   
+    │  ${CYAN}  dBBP   dBP    dBBP   dBP      dBP     dBBBBK   dBP dBP     ${MAGENTA}│ 
+    │  ${CYAN} dBP    dBP    dBP    dBP      dBP     dBP  BB  dBP dBP      ${MAGENTA}│
+    │  ${CYAN}dBBBBP dBBBBP dBBBBP dBBBBP   dBP     dBP  dB' dBP dBBBBP    ${MAGENTA}│
     │                                                               │
-    │  ${CYAN}       dBBBBBBP dBBBBBb     dBBBBb dBBBBBBP dBBBBBb dBBBBBb  ${RED}│
-    │  ${CYAN}                     BB        dBP              dBP      BB  ${RED}│
-    │  ${CYAN}        dBP      dBP BB   dBP dBP   dBP     dBBBBK   dBP BB  ${RED}│
-    │  ${CYAN}       dBP      dBP  BB  dBP dBP   dBP     dBP  BB  dBP  BB  ${RED}│
-    │  ${CYAN}      dBP      dBBBBBBB dBP dBP   dBP     dBP  dB' dBBBBBBB  ${RED}│
+    │  ${CYAN}  dBBBBBBP dBBBBBb     dBBBBb dBBBBBBP dBBBBBb dBBBBBb       ${MAGENTA}│
+    │  ${CYAN}    dBP         BB    dBP dBP   dBP        dBP      BB       ${MAGENTA}│
+    │  ${CYAN}   dBP      dBP BB   dBP dBP   dBP     dBBBBK   dBP BB       ${MAGENTA}│
+    │  ${CYAN}  dBP      dBP  BB  dBP dBP   dBP     dBP  BB  dBP  BB       ${MAGENTA}│
+    │  ${CYAN} dBP      dBBBBBBB dBP dBP   dBP     dBP  dB' dBBBBBBB       ${MAGENTA}│
     └───────────────────────────────────────────────────────────────┘
     ┌───────────────────────────────────────────────────────────────┐
-    │ ${CYAN}           "Rivers of power flowing everywhere.               ${RED}│
-    │ ${CYAN}            Fields of magnetism relating everything.          ${RED}│
-    │ ${CYAN}                   This is your origin.                       ${RED}│
-    │ ${CYAN}                   This is your lineage."                     ${RED}│
-    │ ${RED}              - Vijnana Bhairava Tantra                       ${RED}│
-    │ ${WHITE}                                                              ${RED}│
-    │ ${WHITE}            Thomas Leon Highbaugh (c) 2021                    ${RED}│
-    │ ${WHITE}                                                              ${RED}│
-    │ ${WHITE}                                                              ${RED}│
-    │ ${WHITE}          Email:   thighbaugh@zoho.com                        ${RED}│
-    │ ${WHITE}          Github:  Thomashighbaugh                            ${RED}│
-    │ ${WHITE}          Site:    https://thomasleonhighbaugh.me             ${RED}│
+    │ ${CYAN}           "Rivers of power flowing everywhere.               ${MAGENTA}│
+    │ ${CYAN}         Fields of magnetism relating everything.             ${MAGENTA}│
+    │ ${CYAN}        This is your origin. This is your lineage."           ${MAGENTA}│
+    │ ${MAGENTA}                  - Vijnana Bhairava Tantra                   ${MAGENTA}│
+    │ ${WHITE}                                                              ${MAGENTA}│
+    │ ${WHITE}            Thomas Leon Highbaugh (c) 2021                    ${MAGENTA}│
+    │ ${WHITE}                                                              ${MAGENTA}│
+    │ ${WHITE}                                                              ${MAGENTA}│
+    │ ${WHITE}          Email:   thighbaugh@zoho.com                        ${MAGENTA}│
+    │ ${WHITE}          Github:  Thomashighbaugh                            ${MAGENTA}│
+    │ ${WHITE}          Site:    https://thomasleonhighbaugh.me             ${MAGENTA}│
     └───────────────────────────────────────────────────────────────┘
    
 echo

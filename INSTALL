@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 #  _______               __          __ __
 # |_     _|.-----.-----.|  |_.---.-.|  |  |
 #  _|   |_ |     |__ --||   _|  _  ||  |  |
@@ -19,25 +19,25 @@ sn="$(tput sgr0)"
 
 print() {
     case "$1" in
-    t | title)
-        shift
-        printf "%s\n" "${sb}${cg}[###]$*${sn}"
+        t | title)
+            shift
+            printf "%s\n" "${sb}${cg}[###]$*${sn}"
         ;;
-    s | step)
-        shift
-        printf "%s\n" "${sb}${cm}[===]$*${sn}"
+        s | step)
+            shift
+            printf "%s\n" "${sb}${cm}[===]$*${sn}"
         ;;
-    e | error)
-        shift
-        printf "%s\n" "${sb}${cr}[!!!]$*${sn}"
-        exit 1
+        e | error)
+            shift
+            printf "%s\n" "${sb}${cr}[!!!]$*${sn}"
+            exit 1
         ;;
-    w | warning)
-        shift
-        printf "%s\n" "${sb}${cy}[:::]$*${sn}"
+        w | warning)
+            shift
+            printf "%s\n" "${sb}${cy}[:::]$*${sn}"
         ;;
-    *)
-        printf '%s\n' "$*"
+        *)
+            printf '%s\n' "$*"
         ;;
     esac
 }
@@ -65,7 +65,7 @@ YAYIN() {
     return
 }
 Android() {
-
+    
     print t "#################################################"
     print t "Android OS Interfacing"
     print t "#################################################"
@@ -78,7 +78,7 @@ Disks() {
     print t "#################################################"
     print t "Disks and Archive Management"
     print t "#################################################"
-
+    
     YAYIN gpart gparted mtools nilfs-utils ntfs-3g polkit
     YAYIN dosfstools findutils gzip lzip p7zip tar
     YAYIN bzip2 lzop udftools cpio file file-roller filesystem gnome-disk-utility
@@ -87,7 +87,7 @@ Disks() {
     YAYIN gvfs-gphoto2 gvfs-mtp gvfs-nfs lrzip hardinfo hddtemp bzip2
     YAYIN gvfs-smb xarchiver unrar unarj unzip borg btrfs-progs
     print t "Disks and Archive Management Provisioned" #calls groups function
-
+    
 }
 Nvidia() {
     print t "#################################################"
@@ -112,7 +112,7 @@ RPi4() {
     print t "#################################################"
     YAYIN linux-raspberrypi4-aarch64 linux-raspberrypi4-aarch64-headers argonone-git
     print t " Provisioned and Configured"
-
+    
 }
 
 Thinkpad() {
@@ -122,7 +122,7 @@ Thinkpad() {
     YAYIN tp_smapi tp-battery-mode hdaps-gl tpfand-git threshy libthinkpad i2c-tools
     YAYIN cpufreqctl auto-cpufreq aocl-gcc aocl-aocc hipcpu-git zenpower-dkms-git zenmonitor
     YAYIN ryzen_smu-dkms-git rapl-read-ryzen-git amf-headers opencl-mesa
-    YAYIN amd-ucode ryzenadj-git 
+    YAYIN amd-ucode ryzenadj-git
     YAYIN opencl-amd mhwd-amdgpu zenstates-git aocl-gcc tpc-git amdcovc rapl-read-ryzen-git
     YAYIN zenmonitor ryzenadj-git tuned perf-tools-git smartmontools tp_smapi x86_energy_perf_policy bash-completion acpi_call
     YAYIN tlp powertop acpid tlp-rdw acpi acpid acpica acpitool
@@ -160,7 +160,7 @@ BASH() {
     print t "BASH Shell Configured"
 }
 Docker() {
-
+    
     print t "#################################################"
     print t "Docker Container Environment"
     print t "#################################################"
@@ -200,7 +200,7 @@ Grub() {
     print t "#################################################"
     print t "Grub Bootloader"
     print t "#################################################"
-
+    
     git clone https://github.com/Thomashighbaugh/Bhairava-Grub-Theme "$HOME"/.local/share/Bhairava-Grub-Theme
     sudo sh "$HOME"/.local/share/Bhairava-Grub-Theme/svg2png.sh
     sudo sh "$HOME"/.local/share/Bhairava-Grub-Theme/set-grub.sh
@@ -210,7 +210,7 @@ Hosts() {
     print t "#################################################"
     print t "Hosts File"
     print t "#################################################"
-
+    
     sudo cp /etc/hosts /etc/hosts.backup
     sudo wget https://someonewhocares.org/hosts/hosts -O /etc/hosts
     sudo bash -c "cat hosts /etc/hosts | sponge /etc/hosts"
@@ -221,7 +221,7 @@ HTOP() {
     print t "#################################################"
     print t "HTOP Process Monitor"
     print t "#################################################"
-
+    
     PACIN htop
     print t " Provisioned and Configured"
 }
@@ -241,9 +241,9 @@ Makepkg() {
     print t "Makepkg Package Build System"
     print t "#################################################"
     YAYIN makepkg-tidy-scripts-git makepkg-meta remakepkg
-
+    
     sudo cp -rvf "$HOME"/dotfiles/root/makepkg/makepkg.conf /etc/makepkg.conf
-
+    
     print t "Makepkg Package Build System Provisioned and Configured"
 }
 
@@ -274,14 +274,14 @@ NVM() {
     print t "Node Version Manager Provisioned and Configured"
 }
 Organize() {
-   print t "#################################################"
-   print t "File Organization Utilities"       
-   print t "#################################################"
-   YAYIN organize  classifier-git 
-   ln -svf $HOME/dotfiles/home/organize/config.yaml $HOME/.config/organize/config.yaml
-
- }
-   Pacman() {
+    print t "#################################################"
+    print t "File Organization Utilities"
+    print t "#################################################"
+    YAYIN organize classifier-git
+    ln -svf $HOME/dotfiles/home/organize/config.yaml $HOME/.config/organize/config.yaml
+    
+}
+Pacman() {
     print t "#################################################"
     print t "Pacman Modifications, Hooks and Extensions"
     print t "#################################################"
@@ -390,15 +390,15 @@ Awesome() {
     print t "#################################################"
     print t "Awesome Window Manager"
     print t "#################################################"
-    YAYIN awesome-git feh xcape light
+    YAYIN awesome-git feh xcape light pop-sound-theme-bin rofi-git
     YAYIN vicious lain-git awesome-freedesktop-git archlinux-xdg-menu archlinux-menus
     YAYIN luarocks awmtt thunar thunar-archive-plugin
     YAYIN thunar-media-tags-plugin thunar-volman thunar-secure-delete
     YAYIN thunar-dropbox bcompare-thunar thunarx-python thunar-custom-actions python-thunar-plugins-git
     YAYIN zathura-git zathura-pdf-mupdf zathura-ps youtube-dl libzathura-git
-
+    
     ln -svf "$HOME"/dotfiles/home/zathura/zathurarc "$HOME"/.config/zathura
-
+    
     if [[ -r "$HOME/.config/awesome" ]]; then
         rm -rvf "$HOME"/.config/awesome
     fi
@@ -473,7 +473,7 @@ LightDM() {
     sudo ln -f "$HOME"/dotfiles/root/lightdm/lightdm-gtk-greeter.conf /etc/lightdm/lightdm-gtk-greeter.conf
     sudo ln -svf ~/dotfiles/root/lightdm/lightdm-webkit2-greeter.conf /etc/lightdm/lightdm-webkit2-greeter.conf
     sudo ln -f "$HOME"/dotfiles/root/lightdm/lightdm.conf /etc/lightdm/lightdm.conf
-
+    
     print t "Lightdm Provisioned and Configured"
 }
 
@@ -511,11 +511,11 @@ Firefox() {
     print t "#################################################"
     print t "Firefox Internet Browser"
     print t "#################################################"
-    YAYIN firefox firefox-userchromejs librewolf-bin librewolf-extension-localcdn librewolf-ublock-origin 
+    YAYIN firefox firefox-userchromejs librewolf-bin librewolf-extension-localcdn librewolf-ublock-origin
     git clone https://github.com/Izheil/Quantum-Nox-Firefox-Dark-Full-Theme /tmp/firefox-userchromejs
     git clone https://github.com/Thomashighbaugh/firefox /tmp/firefox
     sudo chmod +x /tmp/firefox/install.sh
-    sh /tmp/firefox/install.sh 
+    sh /tmp/firefox/install.sh
 }
 Fonts() {
     print t "#################################################"
@@ -543,7 +543,7 @@ Kitty() {
     print t "#################################################"
     print t "Kitty Terminal Emulator"
     print t "#################################################"
-
+    
     PACIN kitty kitty-terminfo catimg
     if [[ -r "$HOME/.config/kitty" ]]; then
         rm -rvf "$HOME"/.config/kitty
@@ -558,7 +558,7 @@ NetworkManager() {
     print t "Network Manager"
     print t "#################################################"
     YAYIN network-manager-applet networkmanager
-
+    
 }
 
 PulseAudio() {
@@ -604,10 +604,12 @@ Lua() {
     print t "Lua Programming Language"
     print t "#################################################"
     YAYIN lua-dbi lua-socket hererocks luakit luarocks luakit lua-socket lua-dbi
-    YAYIN lua-lgi lua-lpeg lua51 lua52 lua53 lua53-lgi ldoc lua-argparse lua-coxpcall maim lua-socket lua-posix lua-cjson
+    YAYIN lua-lgi lua-lpeg lua51 lua52 lua53 lua53-lgi ldoc lua-argparse lua-coxpcall maim lua-socket lua-posix lua-cjson lua-filesystem lua53-filesystem
     YAYIN lua-filesystem lua-penlight lua-socket lua53-socket luacheck lua-cjson lua53-posix lua-format cjson
     YAYIN lua53-std-normalize lua53-std-_debug
     sudo luarocks install
+    sudo luarocks install --server=https://luarocks.org/dev luaformatter
+    sudo luarocks install --server=https://luarocks.org/dev luafilesystem
     print t " Provisioned and Configured"
 }
 Ruby() {
@@ -644,32 +646,32 @@ mainmenu() {
             "GUI" "- Graphical Interfaces" \
             "Apps" "- Additional Applications" \
             "Dev" "- Useful for Development Purposes" \
-            "Quit" "- Exit to desktop" 3>&1 1>&2 2>&3)
-
+        "Quit" "- Exit to desktop" 3>&1 1>&2 2>&3)
+        
         case "$choice" in
-        "Core Dependencies")
-            deps
+            "Core Dependencies")
+                deps
             ;;
-        "Hardware")
-           hardware
+            "Hardware")
+                hardware
             ;;
-        "TUI")
-            TUI
+            "TUI")
+                TUI
             ;;
-        "GUI")
-            GUI
+            "GUI")
+                GUI
             ;;
-        "Apps")
-            APPs
+            "Apps")
+                APPs
             ;;
-        "Dev")
-            Dev
+            "Dev")
+                Dev
             ;;
-        "Quit")
-            exit
+            "Quit")
+                exit
             ;;
-        *)
-            echo "Something else.  Where Am I?"
+            *)
+                echo "Something else.  Where Am I?"
             ;;
         esac
     done
@@ -688,25 +690,25 @@ function deps() {
     print s "Set up local directories"
     print s "###########################################################"
     mkdir -p "$HOME"/Pictures "$HOME"/.local/share "$HOME"/.config "$HOME"/.cache "$HOME"/.local/lib "$HOME"/Desktop "$HOME"/Documents "$HOME"/Downloads
-
+    
     print s "###########################################################"
     print s "Adding Keys"
     print s "###########################################################"
-
+    
     gpg --receive-keys EC3CBE7F607D11E663149E811D1F0DC78F173680
     gpg --receive-keys 748231EBCBD808A14F5E85D28C004C2F93481F6B
     print s "###########################################################"
     print s "Package Dependencies Installation"
     print s "###########################################################"
-
+    
     PACIN git pacutils fakeroot perl-libwww perl-term-ui perl-json perl-data-dump perl-lwp-protocol-https perl-term-readline-gnu
-
+    
     PACIN atool autoconf autocutsel automake binutils bison libnotify
-
+    
     PACIN gcc gcc-libs gettext glibc dialog dmidecode
-
+    
     PACIN keychain grep ntp pacman-contrib pkgconf pkgfile pciutils sed
-
+    
     print s "###########################################################"
     print s "Install Yay"
     print s "###########################################################"
@@ -742,40 +744,40 @@ function hardware() {
             "RPi4" "- Raspberry Pi 4 8GB" off
             "Disks" "- Filesystem Management" off
             "Bluetooth" "- software for using bluetooth on Linux" off
-            "Back" "- Return to Main Menu" off)
+        "Back" "- Return to Main Menu" off)
         choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
         for choice in $choices; do
             case "$choice" in
-            "Android")
-                Android
+                "Android")
+                    Android
                 ;;
-            "Disks")
-                Disks
+                "Disks")
+                    Disks
                 ;;
-
-            "Nvidia")
-                Nvidia
+                
+                "Nvidia")
+                    Nvidia
                 ;;
-
-            "Performance")
-                Performance
+                
+                "Performance")
+                    Performance
                 ;;
-            "RPi4")
-                RPi4
+                "RPi4")
+                    RPi4
                 ;;
-            "Thinkpad")
-                Thinkpad
+                "Thinkpad")
+                    Thinkpad
                 ;;
-            "Bluetooth")
-                Bluetooth
+                "Bluetooth")
+                    Bluetooth
                 ;;
-            "Back")
-
-                mainmenu
+                "Back")
+                    
+                    mainmenu
                 ;;
-
-            *)
-                echo "Something else.  Where Am I?"
+                
+                *)
+                    echo "Something else.  Where Am I?"
                 ;;
             esac
         done
@@ -810,79 +812,79 @@ function TUI() {
             "WTF" "- A terminal dashboard with easy configuration options" off
             "X11" "- the basis for the GUI" off
             "ZSH" "- Primary Shell Used" off
-            "Back" "- Return to the Main Menu" off)
+        "Back" "- Return to the Main Menu" off)
         choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
         for choice in $choices; do
             case "$choice" in
-            "BASH")
-                BASH
+                "BASH")
+                    BASH
                 ;;
-            "Docker")
-                Docker
+                "Docker")
+                    Docker
                 ;;
-
-            "GPG")
-
-                GPG
+                
+                "GPG")
+                    
+                    GPG
                 ;;
-
-            "Git")
-                Git
+                
+                "Git")
+                    Git
                 ;;
-            "Grub")
-                Grub
+                "Grub")
+                    Grub
                 ;;
-            "Hosts")
-                Hosts
+                "Hosts")
+                    Hosts
                 ;;
-            "HTOP")
-                HTOP
+                "HTOP")
+                    HTOP
                 ;;
-            "LXD")
-                LXD
+                "LXD")
+                    LXD
                 ;;
-            "Makepkg")
-                Makepkg
+                "Makepkg")
+                    Makepkg
                 ;;
-            "MOTD")
-                MOTD
+                "MOTD")
+                    MOTD
                 ;;
-            "Neofetch")
-                Neofetch
+                "Neofetch")
+                    Neofetch
                 ;;
-            "NVM")
-                NVM
+                "NVM")
+                    NVM
                 ;;
-            "Pacman")
-                Pacman
+                "Pacman")
+                    Pacman
                 ;;
-            "Ranger")
-                Ranger
+                "Ranger")
+                    Ranger
                 ;;
-            "Shell")
-                Shell
+                "Shell")
+                    Shell
                 ;;
-            "SSH")
-                SSH
+                "SSH")
+                    SSH
                 ;;
-            "Vim")
-                Vim
+                "Vim")
+                    Vim
                 ;;
-            "WTF")
-                WTF
+                "WTF")
+                    WTF
                 ;;
-            "X11")
-                X11
+                "X11")
+                    X11
                 ;;
-            "ZSH")
-                ZSH
+                "ZSH")
+                    ZSH
                 ;;
-            "Back")
-
-                mainmenu
+                "Back")
+                    
+                    mainmenu
                 ;;
-            *)
-                echo "Something else.  Where Am I?"
+                *)
+                    echo "Something else.  Where Am I?"
                 ;;
             esac
         done
@@ -901,37 +903,37 @@ function GUI() {
             "Qtile" "- window manager in Python" off
             "Rofi" "- DMenu replacement" off
             "LightDM" "- sometimes functional Display Manager" off
-            "Back" "- Return to Main Menu" off)
+        "Back" "- Return to Main Menu" off)
         choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
         for choice in $choices; do
             case "$choice" in
-            "Awesome")
-                Lua
-                Caja
-                Picom
-                Awesome
+                "Awesome")
+                    Lua
+                    Caja
+                    Picom
+                    Awesome
                 ;;
-
-            "GTK")
-                GTK
+                
+                "GTK")
+                    GTK
                 ;;
-            "Qtile")
-                Python
-                Picom
-                QTile
+                "Qtile")
+                    Python
+                    Picom
+                    QTile
                 ;;
-            "Rofi")
-                Rofi
+                "Rofi")
+                    Rofi
                 ;;
-            "LightDM")
-                LightDM
+                "LightDM")
+                    LightDM
                 ;;
-            "Back")
-
-                mainmenu
+                "Back")
+                    
+                    mainmenu
                 ;;
-            *)
-                echo "Something else.  Where Am I?"
+                *)
+                    echo "Something else.  Where Am I?"
                 ;;
             esac
         done
@@ -965,58 +967,58 @@ function APPs() {
         choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
         for choice in $choices; do
             case "$choice" in
-            "KeePassXC")
-                KeePassXC
+                "KeePassXC")
+                    KeePassXC
                 ;;
-            "Caja")
-                Caja
+                "Caja")
+                    Caja
                 ;;
-            "Cups")
-                Cups
+                "Cups")
+                    Cups
                 ;;
-
-            "Dunst")
-                Dunst
+                
+                "Dunst")
+                    Dunst
                 ;;
-            "Firefox")
-                Firefox
+                "Firefox")
+                    Firefox
                 ;;
-            "Fonts")
-                Fonts
+                "Fonts")
+                    Fonts
                 ;;
-            "GIMP")
-                GIMP
+                "GIMP")
+                    GIMP
                 ;;
-            "Inkscape")
-                Inkscape
+                "Inkscape")
+                    Inkscape
                 ;;
-            "Kitty")
-                Kitty
-
+                "Kitty")
+                    Kitty
+                    
                 ;;
-            "NetworkManager")
-                NetworkManager
+                "NetworkManager")
+                    NetworkManager
                 ;;
-            "PulseAudio")
-                PulseAudio
+                "PulseAudio")
+                    PulseAudio
                 ;;
-            "VirtManager")
-                VirtManager
-
+                "VirtManager")
+                    VirtManager
+                    
                 ;;
-            "Virtualbox")
-                Virtualbox
+                "Virtualbox")
+                    Virtualbox
                 ;;
-            "vmware")
-                vmware
-
+                "vmware")
+                    vmware
+                    
                 ;;
-            "Back")
-
-                mainmenu
+                "Back")
+                    
+                    mainmenu
                 ;;
-            *)
-                echo "Something else.  Where Am I?"
+                *)
+                    echo "Something else.  Where Am I?"
                 ;;
             esac
         done
@@ -1033,25 +1035,25 @@ function Dev() {
             "Lua" "- Used in AwesomeWM for configuration, finds employment in seemingly random contexts." off
             "Ruby" "- Often used in backends or frameworks." off
             "Rust" "- trendy new language developed by Mozilla" off
-            "Back" "- Return to Main Menu" off)
-
+        "Back" "- Return to Main Menu" off)
+        
         choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
         for choice in $choices; do
             case "$choice" in
-            "Python")
-                Python
+                "Python")
+                    Python
                 ;;
-            "Ruby")
-                Ruby
+                "Ruby")
+                    Ruby
                 ;;
-            "Rust")
-                Rust
+                "Rust")
+                    Rust
                 ;;
-            "Back")
-                mainmenu
+                "Back")
+                    mainmenu
                 ;;
-            *)
-                echo "Something else.  Where Am I?"
+                *)
+                    echo "Something else.  Where Am I?"
                 ;;
             esac
         done
@@ -1068,13 +1070,13 @@ print
 print
 print
 dialog --title "Proceed?" \
-    --backtitle "Dotfiles Installation - Thomas Leon Highbaugh" \
-    --yesno "Are You Ready to Begin?" 7 60
+--backtitle "Dotfiles Installation - Thomas Leon Highbaugh" \
+--yesno "Are You Ready to Begin?" 7 60
 response=$?
 case $response in
-0) echo ;;
-1) exit ;;
-255) exit ;;
+    0) echo ;;
+    1) exit ;;
+    255) exit ;;
 esac
 
 mainmenu
