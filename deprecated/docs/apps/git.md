@@ -18,10 +18,10 @@ Also included is a user-wide (or global for all intents and purposes) `.gitignor
 
 | File | Exclusion Reason|
 |------x-----------------|
-| .fuse_hidden | prevents including files being deleted locally|
+| .fuse*hidden | prevents including files being deleted locally|
 | .directory | KDE directory preferences |
-| .Trash-_ | Prevents including trash |
-| .nfs_ | prevents including files being deleted but still open in an application |
+| .Trash-* | Prevents including trash |
+| .nfs\_ | prevents including files being deleted but still open in an application |
 | .tmp/ | prevents including temporary files |
 | coverage/ | prevents including code coverage files |
 | dist/ | prevents including build files, as hosting services typically will build themselves |
