@@ -31,17 +31,66 @@ if [ -f "$usermodmap" ]; then
 	xmodmap "$usermodmap"
 fi
 
-# The source of my woes, the default being somewhat faulty, see I knew I wasn't crazy!
-
 if [ -f "$HOME/.xprofile" ]; then
 	source "$HOME/.xprofile"
 fi
 
-# Here Xfce is kept as default
-#session=${1:-awesome}
+# First try ~/.xinitrc
+if [ -f "$HOME/.xinitrc" ]; then
+	XINITRC="$HOME/.xinitrc"
+	if [ -x $XINITRC ]; then
+		# if the x bit is set on .xinitrc
+		# it means the xinitrc is not a
+		# shell script but something else
+		exec $XINITRC "$@"
+	else
+		exec /bin/sh "$HOME/.xinitrc" "$@"
+	fi
+fi
 
-#exec /home/tlh/.display-manager
-exec awesome
-# Gnome Keyring / seahorse require the following
+
+if [ -d /etc/X11/xinit/xinitrc.d ] ; then
+	for f in /etc/X11/xinit/xinitrc.d/?* ; do
+		[ -x "$f" ] && . "$f"
+	done
+	unset f
+fi
+
+
+
 eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
 export SSH_AUTH_SOCK
+
+# Run awesome as the session 
+exec awesome
+
+# Commented out below are a variety of alternative sessions, a few of 
+# which I keep installations of but most of which I do use nor intend to, 
+# they are kept as a convenience or in case of a change of heart 
+#
+# exec enlightenment_start
+# exec i3
+# exec mate-session
+# exec xmonad
+# exec startlxqt
+# exec startlxde
+# exec awesome
+# exec bspwm
+# exec gnome-session
+# exec gnome-session --session=gnome-classic
+# exec startplasma-x11
+# exec startplasma-wayland
+# exec startxfce4
+# exec startfluxbox
+# exec openbox-session
+# exec cinnamon-session
+# exec pekwm
+# exec catwm
+# exec dwm
+# exec startede
+# exec icewm-session
+# exec jwm
+# exec monsterwm
+# exec notion
+# exec startdde       # deepin-session
+
