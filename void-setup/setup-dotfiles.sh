@@ -50,6 +50,7 @@ ln -svf "$HOME"/dotfiles/home/bash/bashenv "$HOME"/.bashenv
 ln -svf "$HOME"/dotfiles/home/bash/bashrc "$HOME"/.bashrc
 ln -svf "$HOME"/dotfiles/home/sh/profile "$HOME"/.profile
 ln -svf "$HOME"/dotfiles/home/sh/aliases "$HOME"/.aliases
+
 print s "####################################################"
 print s "Quality of Life"
 print s "####################################################"
@@ -99,6 +100,7 @@ print s "Picom"
 print s "####################################################"
 mkdir -p $HOME/.config/picom 
 ln -svf "$HOME"/dotfiles/home/picom/picom.conf "$HOME"/.config
+
 print s "####################################################"
 print s "Rofi"
 print s "####################################################"
@@ -113,3 +115,10 @@ print s "Dunst"
 print s "####################################################"
 mkdir -p $HOME/.config/dunst 
 ln -svf "$HOME"/dotfiles/home/dunst/dunstrc "$HOME"/.config/dunst/dunstrc
+
+print s "####################################################"
+print s "Kitty"
+print s "####################################################"
+mkdir -p $HOME/.config/kitty 
+ln -svf $HOME/dotfiles/home/kitty/kitty.conf $HOME/.config/kitty/kitty.comf
+ln -svf  $HOME/dotfiles/home/kitty/theme.conf $HOME/.config/kitty/theme.comf

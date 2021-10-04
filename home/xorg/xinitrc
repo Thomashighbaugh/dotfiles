@@ -49,7 +49,7 @@ fi
 #export SSH_AUTH_SOCK
 
 # Run awesome as the session 
-exec awesome
+#exec awesome
 
 # Commented out below are a variety of alternative sessions, a few of 
 # which I keep installations of but most of which I do use nor intend to, 

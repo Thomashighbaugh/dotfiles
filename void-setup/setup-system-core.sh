@@ -22,14 +22,6 @@ sudo xbps-install -S  -y i3lock-color dbus-elogind-x11 asciiquarium astroid nerd
 mkdir -p ~/.config
 mkdir -p ~/.local/share/bin
 
-
-## Configurations 
-git clone https://github.com/Thomashighbaugh/zsh ~/.zsh && cd ~/.zsh  && sh install
-
-git clone https://github.com/Thomashighbaugh/bin ~/.local/share/bin
-
-
-
 # VPSM
 
 git clone git@github.com:the-Electric-Tantra-Linux/void-packages.git ~/.void-packages
@@ -44,5 +36,5 @@ sudo cp -rvf $HOME/vpm/vpm /usr/local/bin/ && rm $HOME/vpm
 
 
 # XDEB
-git clone https://github.com/toluschr/xdeb && sudo chmod 744 xdeb/xdeb && sudo mv xdeb/xdeb /usr/local/bin/ && rm xdeb 
+git clone https://github.com/toluschr/xdeb $HOME/xdeb && cd $HOME/xdeb &&  sudo chmod 744 xdeb/xdeb && sudo mv xdeb/xdeb /usr/local/bin/ && rm xdeb 
 
