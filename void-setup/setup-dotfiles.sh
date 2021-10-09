@@ -1,7 +1,6 @@
-#!/bin/bash 
+#!/bin/bash
 
-# Dotfiles Setup 
-
+# Dotfiles Setup
 
 cr="$(tput setaf 1)"
 cg="$(tput setaf 2)"
@@ -12,33 +11,33 @@ sn="$(tput sgr0)"
 
 print() {
     case "$1" in
-        t | title)
-            shift
-            printf "%s\n" "${sb}${cg}[###]$*${sn}"
+    t | title)
+        shift
+        printf "%s\n" "${sb}${cg}[###]$*${sn}"
         ;;
-        s | step)
-            shift
-            printf "%s\n" "${sb}${cm}[===]$*${sn}"
+    s | step)
+        shift
+        printf "%s\n" "${sb}${cm}[===]$*${sn}"
         ;;
-        e | error)
-            shift
-            printf "%s\n" "${sb}${cr}[!!!]$*${sn}"
-            exit 1
+    e | error)
+        shift
+        printf "%s\n" "${sb}${cr}[!!!]$*${sn}"
+        exit 1
         ;;
-        w | warning)
-            shift
-            printf "%s\n" "${sb}${cy}[:::]$*${sn}"
+    w | warning)
+        shift
+        printf "%s\n" "${sb}${cy}[:::]$*${sn}"
         ;;
-        *)
-            printf '%s\n' "$*"
+    *)
+        printf '%s\n' "$*"
         ;;
     esac
 }
-## Cloning the Dotfiles 
+## Cloning the Dotfiles
 
 #git clone https://github.com/Thomashighbaugh/dotfiles ~/dotfiles
 
-## Symlinks 
+## Symlinks
 print t "####################################################"
 print t "Dotfiles Setup"
 print t "####################################################"
@@ -60,7 +59,6 @@ ln -svf "$HOME"/dotfiles/home/git/gitignore "$HOME"/.gitignore
 sudo ln -svf "$HOME"/dotfiles/root/motd/motd /etc/motd
 ln -svf "$HOME"/dotfiles/home/neofetch "$HOME"/.config/neofetch
 
-
 print s "####################################################"
 print s "X11"
 print s "####################################################"
@@ -72,6 +70,7 @@ ln -svf "$HOME"/dotfiles/home/xorg/rxvt-unicode "$HOME"/.Xresources.d/rxvt-unico
 ln -svf "$HOME"/dotfiles/home/xorg/xterm "$HOME"/.Xresources.d/xterm
 ln -svf "$HOME"/dotfiles/home/xorg/xscreensaver "$HOME"/.xscreensaver
 ln -svf "$HOME"/dotfiles/home/xorg/xprofile "$HOME"/.xprofile
+ln -svf "$HOME"/dotfiles/home/xorg/xsettingsd "$HOME"/.xsettingsd
 
 print s "####################################################"
 print s "Zathura"
@@ -86,7 +85,7 @@ ln -svf "$HOME"/dotfiles/home/gtk/gtk-3.0/bookmarks "$HOME"/.config/gtk-3.0/book
 ln -svf "$HOME"/dotfiles/home/gtk/gtk-3.0/gtk.css "$HOME"/.config/gtk-3.0/gtk.css
 ln -svf "$HOME"/dotfiles/home/gtk/gtk-3.0/settings.ini "$HOME"/.config/gtk-3.0/settings.ini
 ln -svf "$HOME"/dotfiles/home/gtk/gtkrc-2.0 "$HOME"/.gtkrc-2.0
-mkdir -p $HOME/.config/Kvantum/Kvantum 
+mkdir -p $HOME/.config/Kvantum/Kvantum
 ln -svf "$HOME"/dotfiles/home/gtk/kvantum.kvconfig "$HOME"/.config/Kvantum/kvantum.kvconfig
 
 print s "####################################################"
@@ -98,7 +97,7 @@ sudo ln -svf "$HOME"/dotfiles/root/images /usr/share/backgrounds
 print s "####################################################"
 print s "Picom"
 print s "####################################################"
-mkdir -p $HOME/.config/picom 
+mkdir -p $HOME/.config/picom
 ln -svf "$HOME"/dotfiles/home/picom/picom.conf "$HOME"/.config
 
 print s "####################################################"
@@ -113,12 +112,36 @@ ln -svf "$HOME"/dotfiles/home/rofi/three.rasi "$HOME"/.config/rofi/three.rasi
 print s "####################################################"
 print s "Dunst"
 print s "####################################################"
-mkdir -p $HOME/.config/dunst 
+mkdir -p $HOME/.config/dunst
 ln -svf "$HOME"/dotfiles/home/dunst/dunstrc "$HOME"/.config/dunst/dunstrc
 
 print s "####################################################"
 print s "Kitty"
 print s "####################################################"
-mkdir -p $HOME/.config/kitty 
-ln -svf $HOME/dotfiles/home/kitty/kitty.conf $HOME/.config/kitty/kitty.comf
-ln -svf  $HOME/dotfiles/home/kitty/theme.conf $HOME/.config/kitty/theme.comf
+mkdir -p $HOME/.config/kitty
+ln -svf $HOME/dotfiles/home/kitty/kitty.conf $HOME/.config/kitty/kitty.conf
+ln -svf $HOME/dotfiles/home/kitty/theme.conf $HOME/.config/kitty/theme.conf
+
+print s "####################################################"
+print s "Alacritty"
+print s "####################################################"
+mkdir -p $HOME/.config/alacritty
+ln -svf $HOME/dotfiles/home/alacritty/alacritty.yml $HOME/.config/alacritty/alacritty.yml
+
+print t "####################################################"
+print t "####################################################"
+print t "####################################################"
+print t "####################################################"
+print t "Root Modifications"
+print s "####################################################"
+print s "Desktop File"
+print s "####################################################"
+sudo cp -rvf $HOME/dotfiles/root/desktop/* /usr/share/applications
+print s "####################################################"
+print s "Docker"
+print s "####################################################"
+sudo cp -rvf $HOME/dotfiles/root/docker /etc/
+print s "####################################################"
+print s "System Optimization Tweaks"
+print s "####################################################"
+sudo cp -rvf $HOME/dotfiles/root/etc/* /etc/

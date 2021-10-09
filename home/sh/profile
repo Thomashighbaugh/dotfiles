@@ -20,4 +20,5 @@ done
 source "$HOME"/dotfiles/home/sh/aliases
 
 
-"$QT_QPA_PLATFORMTHEME"=qt5ct
+
+. "$HOME/.cargo/env"
