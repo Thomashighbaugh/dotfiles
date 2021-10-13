@@ -1,6 +1,6 @@
 #!/bin/bash
 
 
-alias xi="sudo xi "
-alias x?="sudo xlocate "
+alias xi="sudo xi -Suy  "
+alias xss="sudo vpm search  "
 

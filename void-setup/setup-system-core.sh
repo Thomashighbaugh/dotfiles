@@ -200,7 +200,7 @@ installPackages() {
     sudo xbps-install -S -y poppler-glib popt procps-ng psmisc pulseaudio pulseaudio-utils python3
     sudo xbps-install -S -y python3-BeautifulSoup4 python3-Pygments python3-Unidecode python3-cairo
     sudo xbps-install -S -y python3-charset-normalizer python3-colorama python3-commonmark
-    sudo xbps-install -S -y python3-defusedxml python3-docopt python3-downloader-cli
+    sudo xbps-install -S -y python3-defusedxml python3-docopt python3-downloader-cli vpm vpsm vsv
     sudo xbps-install -S -y python3-ffmpeg-python python3-future python3-gobject python3-gpg
     sudo xbps-install -S -y python3-httpx python3-idna python3-itunespy python3-keyutils
     sudo xbps-install -S -y python3-llfuse python3-lxml python3-musicbrainzngs python3-mutagen
@@ -266,25 +266,16 @@ clonePackages() {
 
     git clone git@github.com:the-Electric-Tantra-Linux/void-packages.git ~/.void-packages
 
-    git clone https://github.com/sinetoami/vpsm.git $HOME/vpsm && cd $HOME/vpsm && sudo make install && cd .. && rm $HOME/vpsm
-
-    # VPM
-
-    git clone https://github.com/netzverweigerer/vpm $HOME/vpm
-
-    sudo cp -rvf $HOME/vpm/vpm /usr/local/bin/ && rm $HOME/vpm
-
     # XDEB
     git clone https://github.com/toluschr/xdeb $HOME/xdeb && cd $HOME/xdeb && sudo chmod 744 xdeb/xdeb && sudo mv xdeb/xdeb /usr/local/bin/ && rm xdeb
 
     # AwesomeWM
-
     git clone https://github.com/awesomewm/awesome $HOME/awesome && cd $HOME/awesome && sudo make && sudo make install && cd $HOME && rm -rvf $HOME/awesome
 
     # goautolock
     git clone https://gitlab.com/mrvik/goautolock $HOME/goautolock && cd $HOME/goautolock && sudo make && sudo make install && cd $HOME && rm -rvf $HOME/goautolock
-    # greenclip
 
+    # greenclip
     sudo wget https://github.com/erebe/greenclip/releases/download/v4.2/greenclip /usr/bin/greenclip
 
     ## Void Glibc Container
@@ -301,6 +292,9 @@ clonePackages() {
     sudo ln -s /etc/sv/nix-daemon /var/service
     source /etc/profile
     nix-channel --add https://nixos.org/channels/nixos-20.09 nixpkgs --remove nixos-20.09, --update
+    
+    # notes 
+    curl -Ls https://raw.githubusercontent.com/pimterry/notes/latest-release/install.sh | sudo bash
 }
 
 installPackages

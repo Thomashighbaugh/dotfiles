@@ -67,3 +67,6 @@ fi
 if [[ -d "$HOME/$GOPATH/bin" ]]; then
 	export PATH="$HOME/$GOPATH/bin:$PATH"
 fi
+if [[ -d "$HOME/.local/bin" ]]; then
+	export PATH="$HOME/.local/bin:$PATH"
+fi
