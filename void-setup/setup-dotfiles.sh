@@ -11,25 +11,25 @@ sn="$(tput sgr0)"
 
 print() {
     case "$1" in
-    t | title)
-        shift
-        printf "%s\n" "${sb}${cg}[###]$*${sn}"
+        t | title)
+            shift
+            printf "%s\n" "${sb}${cg}[###]$*${sn}"
         ;;
-    s | step)
-        shift
-        printf "%s\n" "${sb}${cm}[===]$*${sn}"
+        s | step)
+            shift
+            printf "%s\n" "${sb}${cm}[===]$*${sn}"
         ;;
-    e | error)
-        shift
-        printf "%s\n" "${sb}${cr}[!!!]$*${sn}"
-        exit 1
+        e | error)
+            shift
+            printf "%s\n" "${sb}${cr}[!!!]$*${sn}"
+            exit 1
         ;;
-    w | warning)
-        shift
-        printf "%s\n" "${sb}${cy}[:::]$*${sn}"
+        w | warning)
+            shift
+            printf "%s\n" "${sb}${cy}[:::]$*${sn}"
         ;;
-    *)
-        printf '%s\n' "$*"
+        *)
+            printf '%s\n' "$*"
         ;;
     esac
 }
@@ -92,7 +92,7 @@ print s "####################################################"
 print s "Background Images"
 print s "####################################################"
 sudo ln -svf "$HOME"/dotfiles/root/images "$HOME"/.local/share/images
-sudo ln -svf "$HOME"/dotfiles/root/images /usr/share/backgrounds
+sudo cp -rvf  "$HOME"/dotfiles/root/images/* /usr/share/backgrounds
 
 print s "####################################################"
 print s "Picom"
