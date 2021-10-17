@@ -10,7 +10,6 @@ This is the landing point for the overall set of my Linux configuration files st
 
 Below is a directory of the other repositories that are associated with this configuration, which are themselves sets of interrelated files that keeping in this repository would be excessive and make administration of this and other repositories hard and awkward to deal with. Some of these are now part of the Electric Tantra effort, an operating system based on my overall system that is almost ready pending completion of my AwesomeWM configuration, thus the link will lead to a repository that is under the organization set up as a means of abstracting my repositories into relatively coherent portions, even if the organization is just me (as intended but pull requests welcome and open to new contributors always).
 
-
 ## Introduction to My Dotfiles
 
 As hopefully implied by them being my configurations, this is the files which make my installations of Linux perform according to my taste and desires. This repository has grown into a relatively unique and home rolled solution, I have eschewed the use of helper programs instead preferring to completely control the process using my own installation script, even over writing my own dotfiles manager program which would offer no additional advantage to me in my use case and add additional complexity of supporting use cases outside the scope of my own.
