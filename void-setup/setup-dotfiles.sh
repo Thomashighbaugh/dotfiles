@@ -41,7 +41,6 @@ print() {
 print t "####################################################"
 print t "Dotfiles Setup"
 print t "####################################################"
-
 print s "####################################################"
 print s "Shells"
 print s "####################################################"
@@ -49,7 +48,6 @@ ln -svf "$HOME"/dotfiles/home/bash/bashenv "$HOME"/.bashenv
 ln -svf "$HOME"/dotfiles/home/bash/bashrc "$HOME"/.bashrc
 ln -svf "$HOME"/dotfiles/home/sh/profile "$HOME"/.profile
 ln -svf "$HOME"/dotfiles/home/sh/aliases "$HOME"/.aliases
-
 print s "####################################################"
 print s "Quality of Life"
 print s "####################################################"
@@ -58,7 +56,6 @@ ln -svf "$HOME"/dotfiles/home/git/gitconfig "$HOME"/.gitconfig
 ln -svf "$HOME"/dotfiles/home/git/gitignore "$HOME"/.gitignore
 sudo ln -svf "$HOME"/dotfiles/root/motd/motd /etc/motd
 ln -svf "$HOME"/dotfiles/home/neofetch "$HOME"/.config/neofetch
-
 print s "####################################################"
 print s "X11"
 print s "####################################################"
@@ -71,12 +68,10 @@ ln -svf "$HOME"/dotfiles/home/xorg/xterm "$HOME"/.Xresources.d/xterm
 ln -svf "$HOME"/dotfiles/home/xorg/xscreensaver "$HOME"/.xscreensaver
 ln -svf "$HOME"/dotfiles/home/xorg/xprofile "$HOME"/.xprofile
 ln -svf "$HOME"/dotfiles/home/xorg/xsettingsd "$HOME"/.xsettingsd
-
 print s "####################################################"
 print s "Zathura"
 print s "####################################################"
 ln -svf "$HOME"/dotfiles/home/zathura/zathurarc "$HOME"/.config/zathura
-
 print s "####################################################"
 print s "GTK"
 print s "####################################################"
@@ -87,19 +82,16 @@ ln -svf "$HOME"/dotfiles/home/gtk/gtk-3.0/settings.ini "$HOME"/.config/gtk-3.0/s
 ln -svf "$HOME"/dotfiles/home/gtk/gtkrc-2.0 "$HOME"/.gtkrc-2.0
 mkdir -p $HOME/.config/Kvantum/Kvantum
 ln -svf "$HOME"/dotfiles/home/gtk/kvantum.kvconfig "$HOME"/.config/Kvantum/kvantum.kvconfig
-
 print s "####################################################"
 print s "Background Images"
 print s "####################################################"
 sudo ln -svf "$HOME"/dotfiles/root/images "$HOME"/.local/share/images
 sudo cp -rvf  "$HOME"/dotfiles/root/images/* /usr/share/backgrounds
-
 print s "####################################################"
 print s "Picom"
 print s "####################################################"
 mkdir -p $HOME/.config/picom
 ln -svf "$HOME"/dotfiles/home/picom/picom.conf "$HOME"/.config
-
 print s "####################################################"
 print s "Rofi"
 print s "####################################################"
@@ -108,27 +100,26 @@ ln -svf "$HOME"/dotfiles/home/rofi/config "$HOME"/.config/rofi/config
 ln -svf "$HOME"/dotfiles/home/rofi/themes "$HOME"/.config/rofi/themes
 ln -svf "$HOME"/dotfiles/home/rofi/config.rasi "$HOME"/.config/rofi/config.rasi
 ln -svf "$HOME"/dotfiles/home/rofi/three.rasi "$HOME"/.config/rofi/three.rasi
-
 print s "####################################################"
 print s "Dunst"
 print s "####################################################"
 mkdir -p $HOME/.config/dunst
 ln -svf "$HOME"/dotfiles/home/dunst/dunstrc "$HOME"/.config/dunst/dunstrc
-
 print s "####################################################"
 print s "Kitty"
 print s "####################################################"
 mkdir -p $HOME/.config/kitty
 ln -svf $HOME/dotfiles/home/kitty/kitty.conf $HOME/.config/kitty/kitty.conf
 ln -svf $HOME/dotfiles/home/kitty/theme.conf $HOME/.config/kitty/theme.conf
-
 print s "####################################################"
 print s "Alacritty"
 print s "####################################################"
 mkdir -p $HOME/.config/alacritty
 ln -svf $HOME/dotfiles/home/alacritty/alacritty.yml $HOME/.config/alacritty/alacritty.yml
-
-print t "####################################################"
+print s "####################################################"
+print s "Fontconfig"
+print s "####################################################"
+ln -svf $HOME/dotfiles/home/fontconfig $HOME/.config/fontconfig
 print t "####################################################"
 print t "####################################################"
 print t "####################################################"
