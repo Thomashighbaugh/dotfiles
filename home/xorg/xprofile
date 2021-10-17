@@ -8,57 +8,37 @@ export XDG_CONFIG_HOME="$HOME/.config"
 
 # keyring and polkit daemons
 ## Gnome Keyring
-if (command -v gnome-keyring-daemon && ! pgrep gnome-keyring-d); then
-    gnome-keyring-daemon ---start --components=pkcs11 --login &
-    /usr/lib/polkit-gnome/polkit-gnome-authentication-agent &
-fi
+gnome-keyring-daemon ---start --components=pkcs11 --login &
 
-## Pulse Audio for X11
-if (command -v start-pulseaudio-x11 && ! pgrep pulseaudio); then
-    start-pulseaudio-x11 &
-fi
+
+# PulseAudio 
+start-pulseaudio-x11 &
+
 ### Hitting Left Super == L Super + L Control + Escape (for rofi)
-    if (command -v "xcape" && ! pgrep "xcape"); then
-     xcape -e 'Super_L=Super_L|Control_L|Escape' &
-    fi
+xcape -e 'Super_L=Super_L|Control_L|Escape' &
 
 
 ### Compositor
 # Note: This is started by the window manager I am using (awesomewm) within its configuration
-# run picom -b --experimental-backends --dbus --config $HOME/.config/picom.conf
+# picom -b --experimental-backends --dbus --config $HOME/.config/picom.conf &
 
 ### Notifications
-#   if (command -v "dunst" && ! pgrep "dunst"); then
-#     dunst
-#    fi
+# dunst &
 
 ### PulseAudio Tray Applet
-#run pa-applet
-#   if (command -v "pa-applet" && ! pgrep "pa-applet"); then
-#    pa-applet
-#   fi 
+# pa-applet &
 
 ### Network Manager Applet
-# run nm-applet
-#   if (command -v "nm-applet" && ! pgrep "nm-applet"); then
-#     nm-applet
-#   fi
-
+#  nm-applet &
 
 ### Screen Saver
-#   if (command -v "xscreensaver" && ! pgrep "xscreensaver"); then
-#     xscreensaver
-#   fi
-# These two are generalized in terms of wanting them turned on even with Gnome or other DEs
+#  xscreensaver &
 
 ### Dropbox
-run dropbox
-    if (command -v "dropbox" && ! pgrep "dropbox"); then
-      dropbox
-    fi
-## Merging Xresources
+dropbox &
 
-xrdb -merge "$HOME"/.Xresources
+## Merging Xresources
+xrdb -merge "$HOME"/.Xresources &
 
 # Uncomment the below for an a e s t h e t i c sound to play at boot (commented out because it annoys my gf)
-#run sudo env -u SUDO_GID -u SUDO_COMMAND -u SUDO_USER -u SUDO_UID .local/share/bin/sound/BeverlyHillsCop
+#sudo env -u SUDO_GID -u SUDO_COMMAND -u SUDO_USER -u SUDO_UID .local/share/bin/sound/BeverlyHillsCop
