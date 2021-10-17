@@ -10,19 +10,6 @@ This is the landing point for the overall set of my Linux configuration files st
 
 Below is a directory of the other repositories that are associated with this configuration, which are themselves sets of interrelated files that keeping in this repository would be excessive and make administration of this and other repositories hard and awkward to deal with. Some of these are now part of the Electric Tantra effort, an operating system based on my overall system that is almost ready pending completion of my AwesomeWM configuration, thus the link will lead to a repository that is under the organization set up as a means of abstracting my repositories into relatively coherent portions, even if the organization is just me (as intended but pull requests welcome and open to new contributors always).
 
-## Related Repositories
-
-| Name                                                                                | Path                                          | Notes                                                                                      |
-| ----------------------------------------------------------------------------------- | --------------------------------------------- | ------------------------------------------------------------------------------------------ |
-| [Awesome](https://github.com/Thomashighbaugh/awesomewm)                             | ~/.config/awesome                             | configuration of my window manager configured in lua                                       |
-| [bin](https://github.com/Thomashighbaugh/bin)                                       | ~/.local/share/bin                            | scripts that I use locally, includes the scripts that display terminal colors in ASCii art |
-| [Chhinamasta Icon Theme](https://github.com/Thomashighbaugh/chhinamasta-icon-theme) | /usr/share/icons                              | My personal icon theme that uses the Vice Color Scheme                                     |
-| [Dhumavati GTK](https://github.com/Thomashighbaugh/Dhumavati-Theme)                 | /usr/share/themes                             | my personal GTK theme written in SCSS and using the Vice Color Scheme                      |
-| [firefox](https://github.com/Thomashighbaugh/firefox)                               | ~/.mozilla/firefox/[profile directory]/chrome | theme for webbrowser using CSS                                                             |
-| [nvim](https://github.com/Thomashighbaugh/nvim)                                     | ~/.config/nvim                                | My lua based nvim configuration                                                            |
-| [qtile](https://github.com/Thomashighbaugh/qtile)                                   | ~/.config/qtile                               | Alternative window manager configured in python                                            |
-| [vice Color Scheme](https://github.com/Thomashighbaugh/base16-vice-scheme)          | N/A                                           | My base16 scheme specifically designed for comfortable, long term dark theme use.          |
-| [zsh](https://github.com/Thomashighbaugh/zsh)                                       | ~/.zsh                                        | My z shell configuration, similar set up to the vim configuration above                    |
 
 ## Introduction to My Dotfiles
 
