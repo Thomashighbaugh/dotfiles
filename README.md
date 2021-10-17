@@ -70,17 +70,3 @@ My AwesomeWM configuration does feature the relevant files it needs to start and
 The two subdirectories at the repositories top level represent files that are contained within the user's home directory (aka `home/`) and those which are meant to be contained within the system's directories (or `root`). This division is merely to make it easier to appreciate the intended locations of these files on board the system without referencing the Installation Script. Inside of each, another subdirectory exists for topical divisions that often correspond to the names of the installation functions they relate to which in turn get their names from the programs that are being installed.
 
 There is now also a docker subdirectory that is where a variant of the installation script (without interaction) is stored and dockerfile that builds an arch linux docker container than attempts to install the programs, insuring my logic and packages are functional if I have need to test them, due to a mangled install or other issue I cannot foresee arising. In theory, you could use this as a docker container for other purposes, but I do not know why you would want to as it installs mostly GUI packages but `whatever is clever`.
-
-## Known Issues
-
-- In order to insure that a single package not building doesn't take a whole suite out, which one tends not to know about until they are in dire need, I have the installation script install each package by itself, which comes at the cost of pacman's new multithreaded functionality and can get slow where yay is pulling in a lot of packages and building them like in the `GTK` section. So I usually run it and work on something else on another machine or in another window, checking back here and there to go between categorical submenus when its done installing a section.
-
-## Inspiration
-
-- [Holman Does Dotfiles](https://github.com/holman/dotfiles)
-
-- [wafflepie/dotfiles](https://github.com/wafflepie/dotfiles)
-
-  - this configuration is really an unsung hero of dotfiles, unique approaches to common issues I was having that helped push me over to into a fuller knowledge.
-
-- Odds and Ends from anywhere and everywhere I can't remember but am awfully thankful for!
