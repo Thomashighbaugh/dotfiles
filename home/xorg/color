@@ -4,9 +4,9 @@
 ! Scheme: Vice (Base16)
 
 ! special
-*.foreground:   #f4f4f7
-*.background:   #17191e
-*.cursorColor:  #f4f4f7 
+XTerm.VT100.foreground:   #f4f4f7
+XTerm.VT100.background:   #17191e
+*.cursorColor:  #f4f4f7
 
 ! black
 *.color0:       #17191e

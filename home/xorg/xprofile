@@ -11,7 +11,7 @@ export XDG_CONFIG_HOME="$HOME/.config"
 gnome-keyring-daemon ---start --components=pkcs11 --login &
 
 
-# PulseAudio 
+# PulseAudio
 start-pulseaudio-x11 &
 
 ### Hitting Left Super == L Super + L Control + Escape (for rofi)
@@ -38,7 +38,7 @@ xcape -e 'Super_L=Super_L|Control_L|Escape' &
 dropbox &
 
 ## Merging Xresources
-xrdb -merge "$HOME"/.Xresources &
+xrdb -load "$HOME"/.Xresources &
 
 # Uncomment the below for an a e s t h e t i c sound to play at boot (commented out because it annoys my gf)
 #sudo env -u SUDO_GID -u SUDO_COMMAND -u SUDO_USER -u SUDO_UID .local/share/bin/sound/BeverlyHillsCop

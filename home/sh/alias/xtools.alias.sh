@@ -1,6 +1,6 @@
 #!/bin/bash
 
-
-alias xi="sudo xi -Suy && sudo xi -Suy "
+alias xup="topgrade"
+alias xi="sudo xi -Sy "
 alias xss="sudo vpm search  "
 alias xrm="sudo xbps-remove -Ryf "

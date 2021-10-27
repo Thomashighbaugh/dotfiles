@@ -15,3 +15,6 @@ Xft*lcdfilter:  lcddefault
 Xft.dpi: 96
 
 xterm*termName: xterm-256color
+
+0Xft.autohint: 1
+Xft.antialias: 1
