@@ -39,6 +39,10 @@ if [[ -d "$HOME/.local/bin" ]]; then
 	export PATH="$HOME/.local/bin:$PATH"
 fi
 
+if [[ -d "$HOME/.local/bin" ]]; then
+	export PATH="$HOME/.local/bin:$PATH"
+fi
+
 if [[ -d "$HOME/.local/share/bin" ]]; then
 	export PATH="$HOME/.local/share/bin:$PATH"
 fi

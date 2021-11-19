@@ -48,7 +48,7 @@ print s Awesome Window Manager
 git clone https://github.com/the-Electric-Tantra-Linux/awesome ~/.config/awesome
 print s "###############################################################################"
 print s Cloning Grub2 Theme
-git clone https://github.com/Thomashighbaugh/Bhairava-Grub-Theme "$HOME"/.local/share/Bhairava-Grub-Theme && sh "$HOME"/.local/share/Bhairava-Grub-Theme/install
+git clone https://github.com/Thomashighbaugh/Bhairava-Grub-Theme "$HOME"/.local/share/Bhairava-Grub-Theme && sh "$HOME"/.local/share/Bhairava-Grub-Theme/install.sh
 print s "###############################################################################"
 print s Cloning bin Scripts
 git clone https://github.com/Thomashighbaugh/bin "$HOME"/.local/share/bin
@@ -59,10 +59,7 @@ git clone https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pac
 git clone https://github.com/Thomashighbaugh/nvim "$HOME"/.config/nvim
 print s "###############################################################################"
 print s Cloning and Installing ZSH Configuration
-git clone https://github.com/Thomashighbaugh/zsh "$HOME"/.zsh && cd $HOME/.zsh && sh install.sh
-print s "###############################################################################"
-print s Cloning AwesomeWM Configuration
-git clone https://github.com/the-Electric-Tantra-Linux/awesome "$HOME"/.config/awesome
+git clone --recursive -j8 https://github.com/Thomashighbaugh/zsh "$HOME"/.zsh && cd $HOME/.zsh && sh install
 print s "###############################################################################"
 print s Cloning Icon Theme and GTK Theme, then Building the GTK Theme and Installing
 sudo git clone https://github.com/Thomashighbaugh/chhinamasta-icon-theme /usr/share/icons/chhinamasta
