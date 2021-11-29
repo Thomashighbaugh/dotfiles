@@ -3,6 +3,8 @@
 ## shell variables #################################################
 ####################################################################
 
+## git  ############################################################
+export GIT_SSH="$HOME/bin/git-ssh"
 
 ## Config Directory ################################################
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -71,6 +73,9 @@ export EMAIL="thighbaugh@zoho.com"
 export GIT_DISCOVERY_ACROSS_FILESYSTEM=1
 
 ## Applications ################################################################
+export TERMINAL="kitty"
+export TERM=xterm-256color
+export VISUAL="vim"
 export BROWSER="firefox"
 export EMAIL="thunderbird"
 export GUIFM="caja"
@@ -82,8 +87,10 @@ export MOZ_X11_EG=1
 export PYENV_ROOT="$HOME/.pyenv"
 
 ## OS and Arch Names ###########################################################
-export OS=$(uname -s)
-export ARCH=$(uname -m)
+OS="$(uname | tr A-Z a-z | sed 's/mingw/windows/; s/.*windows.*/windows/')"
+ARCH="$(uname -m | sed 's/^..86$$/386/; s/^.86$$/386/; s/x86_64/amd64/; s/arm.*/arm/; s/aarch64/arm64/')"
+export OS
+export ARCH
 
 ## Dropbox Present Location ####################################################
 export DROPBOXDIR="/home/tlh/256/Dropbox/Dropbox/"

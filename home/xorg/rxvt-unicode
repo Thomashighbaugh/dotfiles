@@ -3,7 +3,6 @@ URxvt*saveline: 15000
 URxvt*termName: rxvt-256color
 URxvt*iso14755: false
 URxvt*depth: 32
-!URxvt*background: [95]#2c2d33
 URxvt*scrollBar: false
 URxvt*scrollBar_right: false
 URxvt*internalBorder: 16
@@ -30,7 +29,6 @@ URxvt.bold.font: -xos4-terminus-bold-r-normal--16-160-72-72-c-80-iso10646-1
 URxvt.depth:                      32
 URxvt*mouseWheelScrollPage:       true
 URxvt*cursorBlink:                true
-URxvt.saveLines:0 ! use TMUX for this	
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
 URxvt.keysym.M-s: perl:keyboard-select:search
 URxvt.keysym.M-u: perl:url-select:select_next

@@ -53,6 +53,9 @@ fi
 if [[ -d "$HOME/.pyenv/bin" ]]; then
     export PATH="$HOME/.pyenv/bin:$PATH"
 fi
+if [[ -d "$HOME/.local/bin" ]]; then
+    export PATH="$HOME/.local/bin:$PATH"
+fi
 
 
 ## Go ###########################################################################################
@@ -60,11 +63,11 @@ fi
 if [[ -d "$HOME/go" ]]; then
     export PATH="$HOME/go:$PATH"
     export GOPATH=$HOME/go
-    export GO15VENDOREXPERIMENT=1
-    
 fi
 
 if [[ -d "$HOME/$GOPATH/bin" ]]; then
     export PATH="$HOME/$GOPATH/bin:$PATH"
 fi
-
+if [[ -d "$HOME/.local/bin" ]]; then
+    export PATH="$HOME/.local/bin:$PATH"
+fi

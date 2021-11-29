@@ -82,8 +82,10 @@ export MOZ_X11_EG=1
 export PYENV_ROOT="$HOME/.pyenv"
 
 ## OS and Arch Names ###########################################################
-export OS=$(uname -s)
-export ARCH=$(uname -m)
+OS="$(uname | tr A-Z a-z | sed 's/mingw/windows/; s/.*windows.*/windows/')"
+ARCH="$(uname -m | sed 's/^..86$$/386/; s/^.86$$/386/; s/x86_64/amd64/; s/arm.*/arm/; s/aarch64/arm64/')"
+export OS
+export ARCH
 
 ## Dropbox Present Location ####################################################
 export DROPBOXDIR="/home/tlh/256/Dropbox/Dropbox/"

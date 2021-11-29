@@ -13,12 +13,12 @@ PAPERSIZE=a4
 LANGUAGE=en_US
 LANG=en_US.UTF-8
 
-# If you use a display manager, xprofile is run, thus the commands of 
-# interest typical to this file are located there and sourced below! 
+# If you use a display manager, xprofile is run, thus the commands of
+# interest typical to this file are located there and sourced below!
 
 if [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/x11/xprofile" ]; then
 	. "${XDG_CONFIG_HOME:-$HOME/.config}/x11/xprofile"
 else
 	. "$HOME/.xprofile"
 fi
-
+exec awesome

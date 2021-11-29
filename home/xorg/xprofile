@@ -14,16 +14,11 @@ gnome-keyring-daemon ---start --components=pkcs11 --login &
 # PulseAudio
 start-pulseaudio-x11 &
 
-### Hitting Left Super == L Super + L Control + Escape (for rofi)
-xcape -e 'Super_L=Super_L|Control_L|Escape' &
-
-
 ### Compositor
-# Note: This is started by the window manager I am using (awesomewm) within its configuration
-# picom -b --experimental-backends --dbus --config $HOME/.config/picom.conf &
+picom -b --experimental-backends --dbus --config $HOME/.config/picom.conf &
 
 ### Notifications
-# dunst &
+dunst &
 
 ### PulseAudio Tray Applet
 # pa-applet &

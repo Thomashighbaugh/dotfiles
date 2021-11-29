@@ -3,9 +3,25 @@
 ## shell variables #################################################
 ####################################################################
 
+## git  ############################################################
+export GIT_SSH="$HOME/bin/git-ssh"
 
 ## Config Directory ################################################
 export XDG_CONFIG_HOME="$HOME/.config"
+
+## Editor ##########################################################
+unset EDITOR
+unset EDITORD
+
+if [[ -s $(which /usr/bin/vim) ]]; then
+	export EDITOR=/usr/bin/vim
+elif [[ -s $(which /usr/bin/nvim) ]]; then
+	export EDITOR=/usr/bin/nvim
+else
+	export EDITOR=vi
+fi
+export EDITORD=${EDITORD:-$EDITOR}
+export GUI_EDITOR="$EDITOR"
 
 ## XDG #############################################################
 export XDG_CONFIG_DIRS=/etc/xdg
@@ -62,15 +78,26 @@ HOSTNAME=/etc/hostname
 # ## LS Colors ######################################################################
 LS_COLORS='rs=0:di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:tw=30;42:ow=34;42:st=37;44:ex=01;32:'
 export LS_COLORS
+## Locale ######################################################################
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LANGUAGE=en_US.UTF-8
 
 ## Personal Email ##############################################################
 export EMAIL="thighbaugh@zoho.com"
 
+##  NVM ########################################################################
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
 ## Git Options #################################################################
 export GIT_DISCOVERY_ACROSS_FILESYSTEM=1
 
 ## Applications ################################################################
+export TERMINAL="kitty"
+export TERM=xterm-256color
+export VISUAL="vim"
 export BROWSER="firefox"
 export EMAIL="thunderbird"
 export GUIFM="caja"
@@ -82,8 +109,11 @@ export MOZ_X11_EG=1
 export PYENV_ROOT="$HOME/.pyenv"
 
 ## OS and Arch Names ###########################################################
-export OS=$(uname -s)
-export ARCH=$(uname -m)
+OS="$(uname | tr A-Z a-z | sed 's/mingw/windows/; s/.*windows.*/windows/')"
+ARCH="$(uname -m | sed 's/^..86$$/386/; s/^.86$$/386/; s/x86_64/amd64/; s/arm.*/arm/; s/aarch64/arm64/')"
+export OS
+export ARCH
 
 ## Dropbox Present Location ####################################################
-export DROPBOXDIR="/home/tlh/256/Dropbox/Dropbox/"
+
+export DROPBOXDIR="/home/tlh/256/Dropbox/Dropbox/" 
