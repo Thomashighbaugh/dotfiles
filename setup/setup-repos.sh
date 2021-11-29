@@ -73,7 +73,3 @@ git clone https://github.com/Izheil/Quantum-Nox-Firefox-Dark-Full-Theme /tmp/fir
 git clone https://github.com/Thomashighbaugh/firefox /tmp/firefox && cd /tmp/firefox && sh install.sh 
 print s "###############################################################################"
 print s Cloning LightDM Theme 
-git clone https://github.com/Izheil/Quantum-Nox-Firefox-Dark-Full-Theme /tmp/firefox-userchromejs
-git clone https://github.com/Thomashighbaugh/firefox /tmp/firefox && cd /tmp/firefox && sh install.sh 
-
-
