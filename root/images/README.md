@@ -1,10 +1,10 @@
-# Images 
+# Images
 
-These are some random wallpapers I have made for myself, you are free to use them as you will. All I ask is you mention its my art, with my full name and if you are feeling generous use [this link](https://github.com/Thomashighbaugh), [this link](https://thomasleonhighbaugh.me) OR [this link](https://instagram.com/thomashighbaugh). 
+These are some random wallpapers I have made for myself, you are free to use them as you will. All I ask is you mention its my art, with my full name and if you are feeling generous use [this link](https://github.com/Thomashighbaugh), [this link](https://thomasleonhighbaugh.me) OR [this link](https://instagram.com/thomashighbaugh).
 
-## Gallery 
+## Gallery
 
-Because no one wants to click through to preview these things, so here they are. 
+Because no one wants to click through to preview these things, so here they are.
 
 <hr/>
 <img src="./1.png">
