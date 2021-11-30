@@ -11,7 +11,7 @@
 ## Dotfiles Location ###########################################################
 
 for file in $(
-    find "$HOME"/dotfiles/home/sh/configs -name '*.posix.sh'
+    find "$HOME"/dotfiles/home/sh/configs -name '*.config.sh'
     ); do
     source "$file"
 done

@@ -1,3 +1,4 @@
+#!/bin/bash
 ################################################################################
 ## Path Modification ###########################################################
 ################################################################################
@@ -39,8 +40,8 @@ if [[ -d "$HOME/.local/bin" ]]; then
     export PATH="$HOME/.local/bin:$PATH"
 fi
 
-if [[ -d "$HOME/.local/bin" ]]; then
-    export PATH="$HOME/.local/bin:$PATH"
+if [[ -d "$HOME/.local/share/bin" ]]; then
+    export PATH="$HOME/.local/share/bin:$PATH"
 fi
 
 
@@ -60,8 +61,11 @@ fi
 if [[ -d "$HOME/go" ]]; then
     export PATH="$HOME/go:$PATH"
     export GOPATH=$HOME/go
+    export GO15VENDOREXPERIMENT=1
+    
 fi
 
 if [[ -d "$HOME/$GOPATH/bin" ]]; then
     export PATH="$HOME/$GOPATH/bin:$PATH"
 fi
+

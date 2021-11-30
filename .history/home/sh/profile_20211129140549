@@ -11,16 +11,12 @@
 ## Dotfiles Location ###########################################################
 
 for file in $(
-  find "$HOME"/dotfiles/home/sh/configs -name '*.posix.sh'
-); do
-  source "$file"
+    find "$HOME"/dotfiles/home/sh/configs -name '*.config.sh'
+    ); do
+    source "$file"
 done
 
 # shellcheck source=/dev/null
 source "$HOME"/dotfiles/home/sh/aliases
 
-
-if [[ -f $HOME/.cargo/env ]]; then
-    source $HOME/.cargo/env
-fi
 
