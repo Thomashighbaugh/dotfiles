@@ -15,13 +15,13 @@ Gtk/ToolbarIconSize 48
 Gtk/ToolbarStyle "icons"
 Net/CursorBlink 1
 Net/CursorBlinkTime 600
-Net/DndDragThreshold 8
+Net/DndDragThreshold 50
 Net/DoubleClickDistance 5
-Net/DoubleClickTime 400
+Net/DoubleClickTime 700
 Net/EnableEventSounds 1
 Net/EnableInputFeedbackSounds 1
 Net/IconThemeName "chhinamasta"
-Net/SoundThemeName "default"
+Net/SoundThemeName "Yaru"
 Net/ThemeName "Dhumavati-White-Dark"
 Xft/Antialias 1
 Xft/HintStyle "hintsfull"

@@ -62,10 +62,21 @@ if [[ -d "$HOME/go" ]]; then
     export PATH="$HOME/go:$PATH"
     export GOPATH=$HOME/go
     export GO15VENDOREXPERIMENT=1
-    
+
 fi
 
 if [[ -d "$HOME/$GOPATH/bin" ]]; then
     export PATH="$HOME/$GOPATH/bin:$PATH"
+fi
+
+
+## Rust  ##################################################################################################
+if [[ -d "$HOME/.cargo/bin" ]]; then
+    export PATH="$HOME/.cargo/bin:$PATH"
+fi
+
+## rbenv  #################################################################################################
+if [[ -d "$HOME/.rbenv/bin" ]]; then
+    export PATH="$HOME/.rbenv/bin:$PATH"
 fi
 

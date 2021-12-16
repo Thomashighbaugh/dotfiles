@@ -20,3 +20,4 @@ done
 source "$HOME"/dotfiles/home/sh/aliases
 
 
+. "$HOME/.cargo/env"

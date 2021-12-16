@@ -10,75 +10,56 @@ configuration {
 	window-thumbnail: true;
 }
 
-* {
-	transparent: #00000000;
-	foreground: #F4F4F7EE;
-	background-selected: #22262daa;
-	background-active: #2f303daa;
-	background-white: #e9efff;
-	background-black: #17191e66;
-	urgent: #E91E6366;
-	urgent-selected: #E91E6377;
-}
-
 window {
 	transparency: "real";
-	background-color: @background-black;
-	text-color: @foreground;
-	location: northwest;
-	anchor: northwest;
+
+	
 }
 
 prompt {
-	enabled: false;
+	enabled: true;
 }
 
 button {
 	action: "ok";
-	str: " ";
+	
 	font: "Commodore64 Rounded Bold 13";
 	expand: false;
-	text-color: @foreground;
-	background-color: @background-black;
+	
 }
 
 entry {
 	font: "Commodore64 Rounded Bold 13";
-	background-color: @background-black;
-	text-color: @foreground;
 	expand: true;
 	vertical-align: 0.5;
 	horizontal-align: 0.5;
 	placeholder: "Type to search";
-	placeholder-color: @foreground;
 	blink: true;
 }
 
 case-indicator {
-	background-color: @background;
-	text-color: @foreground;
+	
 }
 
 entry-wrapper {
 	orientation: horizontal;
 	spacing: 4px;
-	background-color: @background;
+
 	children: [ button, entry, case-indicator ];
 }
 
 inputbar {
-	background-color: @background-selected;
-	text-color: @foreground;
+
+
 	expand: false;
 	border-radius: 6px;
 	margin: 0px 25% 0px 20%;
 	padding: 10px 10px 10px 10px;
-	position: north;
 	children: [ entry-wrapper ];
 }
 
 listview {
-	background-color: @background;
+
 	columns: 1;
 	spacing: 1px;
 	cycle: false;
@@ -87,7 +68,7 @@ listview {
 }
 
 mainbox {
-	background-color: @background-black;
+
 	children: [ inputbar, listview ];
 	spacing: 5px;
 	padding: 1% ;
@@ -95,8 +76,6 @@ mainbox {
 }
 
 element {
-	background-color: @background;
-	text-color: @foreground;
 	orientation: vertical;
 	border-radius: 12px;
 
@@ -111,28 +90,5 @@ element-text {
 
 element normal.urgent,
 element alternate.urgent {
-	background-color: @urgent;
-	text-color: @foreground;
 	border-radius: 9px;
-}
-
-element normal.active,
-element alternate.active {
-	background-color: @background-active;
-	text-color: @foreground;
-}
-
-element selected {
-	background-color: @background-selected;
-	text-color: @foreground;
-}
-
-element selected.urgent {
-	background-color: @urgent-selected;
-	text-color: @foreground;
-}
-
-element selected.active {
-	background-color: @background-active;
-	color: @foreground-selected;
 }

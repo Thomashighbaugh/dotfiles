@@ -1,6 +1,6 @@
 #!/bin/bash
 
-## External Repositories
+## Related Repository Cloning and Setup
 
 ## This amounts to the bulk of the configuration nebula that is my dotfiles,
 # these repositories are a little too much to manage in a monorepo and calling
@@ -19,25 +19,25 @@ sn="$(tput sgr0)"
 
 print() {
     case "$1" in
-        t | title)
-            shift
-            printf "%s\n" "${sb}${cg}[###]$*${sn}"
+    t | title)
+        shift
+        printf "%s\n" "${sb}${cg}[###]$*${sn}"
         ;;
-        s | step)
-            shift
-            printf "%s\n" "${sb}${cm}[===]$*${sn}"
+    s | step)
+        shift
+        printf "%s\n" "${sb}${cm}[===]$*${sn}"
         ;;
-        e | error)
-            shift
-            printf "%s\n" "${sb}${cr}[!!!]$*${sn}"
-            exit 1
+    e | error)
+        shift
+        printf "%s\n" "${sb}${cr}[!!!]$*${sn}"
+        exit 1
         ;;
-        w | warning)
-            shift
-            printf "%s\n" "${sb}${cy}[:::]$*${sn}"
+    w | warning)
+        shift
+        printf "%s\n" "${sb}${cy}[:::]$*${sn}"
         ;;
-        *)
-            printf '%s\n' "$*"
+    *)
+        printf '%s\n' "$*"
         ;;
     esac
 }
@@ -70,6 +70,7 @@ git clone https://github.com/Thomashighbaugh/qtile "$HOME"/.config/qtile
 print s "###############################################################################"
 print s Cloning and Patching Firefox
 git clone https://github.com/Izheil/Quantum-Nox-Firefox-Dark-Full-Theme /tmp/firefox-userchromejs
-git clone https://github.com/Thomashighbaugh/firefox /tmp/firefox && cd /tmp/firefox && sh install.sh 
+git clone https://github.com/Thomashighbaugh/firefox /tmp/firefox && cd /tmp/firefox && sh install.sh
 print s "###############################################################################"
-print s Cloning LightDM Theme 
+print s Cloning LightDM Theme
+git clone https://github.com/the-Electric-Tantra-Linux/mahakali-webkit2-theme
