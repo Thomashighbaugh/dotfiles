@@ -1,4 +1,5 @@
-@import "./colors.css" .window-frame {
+@import "./colors.css";
+.window-frame {
   text-shadow: none;
   box-shadow: none;
   margin: 0;

@@ -136,3 +136,7 @@ print s "####################################################"
 print s "System Optimization Tweaks"
 print s "####################################################"
 sudo cp -rvf $HOME/dotfiles/root/etc/* /etc/
+print s "####################################################"
+print s "luakit"
+print s "####################################################"
+ln -svf $HOME/dotfiles/home/luakit $HOME/.config/luakit
