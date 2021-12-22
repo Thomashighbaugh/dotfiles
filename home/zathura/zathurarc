@@ -23,7 +23,7 @@ set scroll-step 100
 set zoom-min 10
 set guioptions ""
 
-set font "Minimal-Mono-Black-15"
+
 
 # zathurarc-dark
 set notification-error-bg "#22262d"

@@ -2,38 +2,56 @@
 #####################################################################
 #####################    xprofile    ################################
 #####################################################################
-# sourced at boot by xinit and display managers like lightdm
-
-export XDG_CONFIG_HOME="$HOME/.config"
-
-# keyring and polkit daemons
-## Gnome Keyring
-gnome-keyring-daemon ---start --components=pkcs11 --login &
+# sourced only once at login by xinit and display managers like lightdm
 
 
-# PulseAudio
-start-pulseaudio-x11 &
 
-### Compositor
-picom -b --experimental-backends --dbus --config $HOME/.config/picom.conf &
 
-### Notifications
-dunst &
+#  Disk Automounting & User Controls
+if "$(command -v udiskie)"; then
+    udiskie &
+fi
 
-### PulseAudio Tray Applet
-# pa-applet &
+#  clipboard manager
+if "$(command -v picom)"; then
+    picom -b --experimental-backends &
+fi
 
-### Network Manager Applet
-#  nm-applet &
+if "$(command -v xcape)"; then
+    xcape -e "Super_L=Super_L|Control_L|Escape" &
+fi
 
-### Screen Saver
-#  xscreensaver &
+#  Make sure the colors are as they are supposed to be
+if "$(command -v xrdb)"; then
+    xrdb "$HOME"/.Xresources &
+fi
 
-### Dropbox
-dropbox &
+# clipboard manager
+if "$(command -v xsettingsd)"; then
+    xsettingsd &
+fi
 
-## Merging Xresources
-xrdb -load "$HOME"/.Xresources &
+#  Make sure the colors are as they are supposed to be
+if "$(command -v xinput)"; then
+    xinput set-prop "ELAN1301:00 04F3:30C6 Touchpad" "libinput Tapping Enabled" 1 &
+fi
 
-# Uncomment the below for an a e s t h e t i c sound to play at boot (commented out because it annoys my gf)
-#sudo env -u SUDO_GID -u SUDO_COMMAND -u SUDO_USER -u SUDO_UID .local/share/bin/sound/BeverlyHillsCop
+if "$(command -v goautolock)"; then
+    goautolock --time 360 --notify 30 --locker "$HOME/.config/awesome/bin/blur.sh" &
+fi
+# Dropbox
+if "$(command -v dropbox)"; then
+    dropbox start &
+fi
+# Pulse Effects Equalizer
+if "$(command -v lxqt-policykit-agent)"; then
+    /usr/bin/lxqt-policykit-agent &
+fi
+
+# Pulse Effects Equalizer
+if "$(command -v lxqt-policykit-agent)"; then
+    /usr/bin/lxqt-policykit-agent &
+fi
+if "$(command -v gnome-keyring-daemon)"; then
+    eval "$(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)"
+fi
