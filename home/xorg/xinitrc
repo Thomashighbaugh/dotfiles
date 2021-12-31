@@ -9,16 +9,14 @@ LC_TELEPHONE=en_US.UTF-8
 LC_MEASUREMENT=en_US.UTF-8
 LC_IDENTIFICATION=en_US.UTF-8
 LC_TIME=en_US.UTF-8
-PAPERSIZE=a4
+PAPERSIZE=legal
 LANGUAGE=en_US
 LANG=en_US.UTF-8
 
 # If you use a display manager, xprofile is run, thus the commands of
 # interest typical to this file are located there and sourced below!
 
-if [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/x11/xprofile" ]; then
-	. "${XDG_CONFIG_HOME:-$HOME/.config}/x11/xprofile"
-else
-	. "$HOME/.xprofile"
-fi
+. "$HOME/.xprofile"
+
+# Execute Window Manager or Desktop Environment
 exec awesome

@@ -4,9 +4,6 @@
 #####################################################################
 # sourced only once at login by xinit and display managers like lightdm
 
-
-
-
 #  Disk Automounting & User Controls
 if "$(command -v udiskie)"; then
     udiskie &
