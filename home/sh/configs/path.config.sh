@@ -13,7 +13,6 @@ if [[ -d "$HOME/.yarn/bin" ]]; then
     export PATH="$HOME/.yarn/bin:$PATH"
 fi
 
-
 if [[ -d "$HOME/.nvm" ]]; then
     export PATH="$HOME/.nvm:$PATH"
 fi
@@ -26,10 +25,13 @@ if [[ -d "/usr/lib/ruby/gems/2.7.0" ]]; then
     export PATH="/usr/lib/ruby/gems/2.7.0:$PATH"
 fi
 
-if [[ -d "$HOME/.local/share/gem/ruby/3.0.1" ]]; then
-    export PATH="$HOME/.local/share/gem/ruby/3.0.1:$PATH"
+if [[ -d "$HOME/.local/share/gem/ruby/3.0.0" ]]; then
+    export PATH="$HOME/.local/share/gem/ruby/3.0.0:$PATH"
 fi
 
+if [[ -d "$HOME/.local/share/gem/ruby/3.0.3" ]]; then
+    export PATH="$HOME/.local/share/gem/ruby/3.0.3:$PATH"
+fi
 # Scripts ################################################################################################
 
 if [[ -d "$HOME/bin" ]]; then
@@ -65,8 +67,8 @@ if [[ -d "$HOME/go" ]]; then
 
 fi
 
-if [[ -d "$HOME/$GOPATH/bin" ]]; then
-    export PATH="$HOME/$GOPATH/bin:$PATH"
+if [[ -d "$HOME/go/bin" ]]; then
+    export PATH="$HOME/go/bin:$PATH"
 fi
 
 
