@@ -14,3 +14,6 @@ else
     EDITOR=vi
 fi
 export EDITORD=${EDITORD:-$EDITOR}
+
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' --color=fg:#b2bfd9,bg:#1b1d24,hl:#afffff --color=fg+:#f4f4f7,bg+:#17191e,hl+:#ff87d7 --color=info:#ff87d7,prompt:#87ffff,pointer:#87ffff --color=marker:#ff87d7,spinner:#ffff73,header:#afffff'
+
