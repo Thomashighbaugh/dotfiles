@@ -69,7 +69,6 @@ print s Cloning QTile Configuration
 git clone https://github.com/Thomashighbaugh/qtile "$HOME"/.config/qtile
 print s "###############################################################################"
 print s Cloning and Patching Firefox
-git clone https://github.com/Izheil/Quantum-Nox-Firefox-Dark-Full-Theme /tmp/firefox-userchromejs
 git clone https://github.com/Thomashighbaugh/firefox /tmp/firefox && cd /tmp/firefox && sh install.sh
 print s "###############################################################################"
 print s Cloning LightDM Theme

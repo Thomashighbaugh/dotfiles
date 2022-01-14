@@ -1,29 +1,29 @@
 function hex2rgb(hex)
-    local hex = hex:gsub('#', '')
-    return string.format(
-        '%s, %s, %s',
-        tonumber('0x' .. hex:sub(1, 2)),
-        tonumber('0x' .. hex:sub(3, 4)),
-        tonumber('0x' .. hex:sub(5, 6))
-    )
+	local hex = hex:gsub("#", "")
+	return string.format(
+		"%s, %s, %s",
+		tonumber("0x" .. hex:sub(1, 2)),
+		tonumber("0x" .. hex:sub(3, 4)),
+		tonumber("0x" .. hex:sub(5, 6))
+	)
 end
 
-local base00 = '#17191e' -- ----
-local base01 = '#22262d' -- ---
-local base02 = '#3c3f4c' -- --
-local base03 = '#515a6e' -- -
-local base04 = '#03050a' -- +
-local base05 = '#8b9cbe' -- ++
-local base06 = '#b2bfd9' -- +++
-local base07 = '#f4f4f7' -- ++++
-local base08 = '#ff29a8' -- red
-local base09 = '#85ffe0' -- orange
-local base0A = '#f0ffaa' -- yellow
-local base0B = '#0badff' -- green
-local base0C = '#8265ff' -- aqua/cyan
-local base0D = '#00eaff' -- blue
-local base0E = '#00ffcc' -- purple
-local base0F = '#ae80af' -- brown
+local base00 = "#17191e" -- ----
+local base01 = "#22262d" -- ---
+local base02 = "#3c3f4c" -- --
+local base03 = "#515a6e" -- -
+local base04 = "#03050a" -- +
+local base05 = "#8b9cbe" -- ++
+local base06 = "#b2bfd9" -- +++
+local base07 = "#f4f4f7" -- ++++
+local base08 = "#ff29a8" -- red
+local base09 = "#85ffe0" -- orange
+local base0A = "#f0ffaa" -- yellow
+local base0B = "#0badff" -- green
+local base0C = "#8265ff" -- aqua/cyan
+local base0D = "#00eaff" -- blue
+local base0E = "#00ffcc" -- purple
+local base0F = "#ae80af" -- brown
 
 local theme = {}
 
@@ -102,22 +102,22 @@ theme.notrust_fg = base0D
 -- Follow mode hints
 theme.hint_fg = base00
 theme.hint_bg = base0A
-theme.hint_border = string.format('1px dashed %s', base0A)
+theme.hint_border = string.format("1px dashed %s", base0A)
 
-theme.hint_overlay_bg = string.format('rgba(%s, 0.3)', hex2rgb(base07))
-theme.hint_overlay_border = string.format('1px dotted %s', base07)
+theme.hint_overlay_bg = string.format("rgba(%s, 0.3)", hex2rgb(base07))
+theme.hint_overlay_border = string.format("1px dotted %s", base07)
 
-theme.hint_overlay_selected_bg = string.format('rgba(%s, 0.3)', hex2rgb(base0B))
+theme.hint_overlay_selected_bg = string.format("rgba(%s, 0.3)", hex2rgb(base0B))
 theme.hint_overlay_selected_border = theme.hint_overlay_border
 
 -- General colour pairings
-theme.ok = {fg = base05, bg = base00}
-theme.warn = {fg = base00, bg = base0E}
-theme.error = {fg = base08, bg = base00}
+theme.ok = { fg = base05, bg = base00 }
+theme.warn = { fg = base00, bg = base0E }
+theme.error = { fg = base08, bg = base00 }
 
 -- Font
-theme.font = '12px SFMono Nerd Font Mono Heavy, monospace'
-theme.hint_font = '10px SFMono Nerd Font Mono Bold, monospace'
+theme.font = "12px SFMono Nerd Font Mono Heavy, monospace"
+theme.hint_font = "10px SFMono Nerd Font Mono Bold, monospace"
 
 return theme
 
