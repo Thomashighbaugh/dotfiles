@@ -11,25 +11,25 @@ sn="$(tput sgr0)"
 
 print() {
     case "$1" in
-        t | title)
-            shift
-            printf "%s\n" "${sb}${cg}[###]$*${sn}"
+    t | title)
+        shift
+        printf "%s\n" "${sb}${cg}[###]$*${sn}"
         ;;
-        s | step)
-            shift
-            printf "%s\n" "${sb}${cm}[===]$*${sn}"
+    s | step)
+        shift
+        printf "%s\n" "${sb}${cm}[===]$*${sn}"
         ;;
-        e | error)
-            shift
-            printf "%s\n" "${sb}${cr}[!!!]$*${sn}"
-            exit 1
+    e | error)
+        shift
+        printf "%s\n" "${sb}${cr}[!!!]$*${sn}"
+        exit 1
         ;;
-        w | warning)
-            shift
-            printf "%s\n" "${sb}${cy}[:::]$*${sn}"
+    w | warning)
+        shift
+        printf "%s\n" "${sb}${cy}[:::]$*${sn}"
         ;;
-        *)
-            printf '%s\n' "$*"
+    *)
+        printf '%s\n' "$*"
         ;;
     esac
 }
@@ -46,16 +46,11 @@ print s "Shells"
 print s "####################################################"
 ln -svf "$HOME"/dotfiles/home/bash/bashenv "$HOME"/.bashenv
 ln -svf "$HOME"/dotfiles/home/bash/bashrc "$HOME"/.bashrc
-ln -svf "$HOME"/dotfiles/home/sh/profile "$HOME"/.profile
-ln -svf "$HOME"/dotfiles/home/sh/aliases "$HOME"/.aliases
+ln -svf "$HOME"/dotfiles/home/shell/profile "$HOME"/.profile
+ln -svf "$HOME"/dotfiles/home/shell/aliases "$HOME"/.aliases
 print s "####################################################"
 print s "Quality of Life"
 print s "####################################################"
-ln -svf "$HOME"/dotfiles/home/gnupg/gpg.conf "$HOME"/.gnupg/gpg.conf
-ln -svf "$HOME"/dotfiles/home/git/gitconfig "$HOME"/.gitconfig
-ln -svf "$HOME"/dotfiles/home/git/gitignore "$HOME"/.gitignore
-sudo ln -svf "$HOME"/dotfiles/root/motd/motd /etc/motd
-ln -svf "$HOME"/dotfiles/home/neofetch "$HOME"/.config/neofetch
 print s "####################################################"
 print s "X11"
 print s "####################################################"
@@ -71,22 +66,16 @@ ln -svf "$HOME"/dotfiles/home/xorg/xsettingsd "$HOME"/.xsettingsd
 print s "####################################################"
 print s "Zathura"
 print s "####################################################"
-ln -svf "$HOME"/dotfiles/home/zathura/zathurarc "$HOME"/.config/zathura
+
 print s "####################################################"
 print s "GTK"
 print s "####################################################"
 mkdir -p $HOME/.config/gtk
-ln -svf "$HOME"/dotfiles/home/gtk/gtk-3.0/bookmarks "$HOME"/.config/gtk-3.0/bookmarks
-ln -svf "$HOME"/dotfiles/home/gtk/gtk-3.0/gtk.css "$HOME"/.config/gtk-3.0/gtk.css
-ln -svf "$HOME"/dotfiles/home/gtk/gtk-3.0/settings.ini "$HOME"/.config/gtk-3.0/settings.ini
-ln -svf "$HOME"/dotfiles/home/gtk/gtkrc-2.0 "$HOME"/.gtkrc-2.0
-mkdir -p $HOME/.config/Kvantum/Kvantum
-ln -svf "$HOME"/dotfiles/home/gtk/kvantum.kvconfig "$HOME"/.config/Kvantum/kvantum.kvconfig
 print s "####################################################"
 print s "Background Images"
 print s "####################################################"
 sudo ln -svf "$HOME"/dotfiles/root/images "$HOME"/.local/share/images
-sudo cp -rvf  "$HOME"/dotfiles/root/images/* /usr/share/backgrounds
+sudo cp -rvf "$HOME"/dotfiles/root/images/* /usr/share/backgrounds
 print s "####################################################"
 print s "Picom"
 print s "####################################################"

@@ -10,7 +10,7 @@
 ## Dotfiles Location ###########################################################
 
 for file in $(
-	find "$HOME"/dotfiles/home/sh/alias -name '*.alias.sh'
+	find "$HOME"/dotfiles/home/shell/alias -name '*.alias.sh'
 ); do
 	source "$file"
 done

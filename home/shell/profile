@@ -11,16 +11,16 @@
 ## Dotfiles Location ###########################################################
 
 for file in $(
-    find "$HOME"/dotfiles/home/sh/configs -name '*.config.sh'
+    find "$HOME"/dotfiles/home/shell/configs -name '*.config.sh'
     ); do
     source "$file"
 done
 
 # shellcheck source=/dev/null
-source "$HOME"/dotfiles/home/sh/aliases
+source "$HOME"/dotfiles/home/shell/aliases
 
 
-. "$HOME/.cargo/env"
+
 
 # Because this comes up more often than is natural but will not clear any other way thanks to ccache
 export CC="gcc"

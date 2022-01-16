@@ -74,28 +74,12 @@ Android() {
     print t "Android Phone Interfacing Provisioned"
 }
 
-Disks() {
-    print t "#################################################"
-    print t "Disks and Archive Management"
-    print t "#################################################"
-    
-    YAYIN gpart gparted mtools nilfs-utils ntfs-3g polkit
-    YAYIN dosfstools findutils gzip lzip p7zip tar
-    YAYIN bzip2 lzop udftools cpio file file-roller filesystem gnome-disk-utility
-    YAYIN diskus xz e2fsprogs diskus coreutils dosfstools exfat-utils fatresize
-    YAYIN gvfs gvfs-afc gvfs-goa gvfs-google lostfiles lzop unace
-    YAYIN gvfs-gphoto2 gvfs-mtp gvfs-nfs lrzip hardinfo hddtemp bzip2
-    YAYIN gvfs-smb xarchiver unrar unarj unzip borg btrfs-progs
-    print t "Disks and Archive Management Provisioned" #calls groups function
-    
-}
+
 Nvidia() {
     print t "#################################################"
     print t "Nvidia Firmware and Drivers"
     print t "#################################################"
-    YAYIN nvidia nvidia-dkms libvdpau nvidia-cg-toolkit pycuda-headers
-    YAYIN cuda cudnn mesa egl-wayland libxnvctrl ffnvcodec-headers8.1
-    YAYIN nvtop opencl-nvidia nvidia-utils nvidia-container-runtime
+
     print t " Provisioned and Configured"
 }
 
@@ -119,21 +103,13 @@ Thinkpad() {
     print t "#################################################"
     print t "Thinkpad E495 Settings"
     print t "#################################################"
-    YAYIN tp_smapi tp-battery-mode hdaps-gl tpfand-git threshy libthinkpad i2c-tools
-    YAYIN cpufreqctl auto-cpufreq aocl-gcc aocl-aocc hipcpu-git zenpower-dkms-git zenmonitor
-    YAYIN ryzen_smu-dkms-git rapl-read-ryzen-git amf-headers opencl-mesa
-    YAYIN amd-ucode ryzenadj-git
-    YAYIN opencl-amd mhwd-amdgpu zenstates-git aocl-gcc tpc-git amdcovc rapl-read-ryzen-git
-    YAYIN zenmonitor ryzenadj-git tuned perf-tools-git smartmontools tp_smapi x86_energy_perf_policy bash-completion acpi_call
-    YAYIN tlp powertop acpid tlp-rdw acpi acpid acpica acpitool
-    sudo systemctl enable auto-cpufreq.service
-    sudo systemctl enable acpid.service
-    SYSCTL cpupower.service
-    SYSCTL lm_sensors.service
-    SYSCTL ryzen-stabilizator.service
-    SYSCTL tuned.service
-    SYSCTL tlp
-    tuned-adm profiles laptop-ac-powersave
+    YAYIN  
+    YAYIN
+    YAYIN 
+    YAYIN 
+    YAYIN bash-completion 
+    YAYIN 
+
     sudo mkinitcpio -Psv
     sudo grub-mkconfig -o /boot/grub/grub.conf
     print t " Provisioned and Configured"
@@ -143,7 +119,7 @@ Bluetooth() {
     print t "#################################################"
     print t "Bluetooth Interfacing"
     print t "#################################################"
-    YAYIN blueberry blueman bluez-hid2hci bluez-tools bluez-utils python-pybluez
+  
     print t "Bluetooth Interfacing Provisioned"
 }
 BASH() {
@@ -151,12 +127,12 @@ BASH() {
     print t "BASH shell"
     print t "#################################################"
     ## Install Packages
-    PACIN bash shellharden bashlint argbash bash-bats-support bash-bats beautysh bashlint
+   
     ## Link Files
     ln -svf "$HOME"/dotfiles/home/bash/bashenv "$HOME"/.bashenv
     ln -svf "$HOME"/dotfiles/home/bash/bashrc "$HOME"/.bashrc
-    ln -svf "$HOME"/dotfiles/home/sh/profile "$HOME"/.profile
-    ln -svf "$HOME"/dotfiles/home/sh/aliases "$HOME"/.aliases
+    ln -svf "$HOME"/dotfiles/home/shell/profile "$HOME"/.profile
+    ln -svf "$HOME"/dotfiles/home/shell/aliases "$HOME"/.aliases
     print t "BASH Shell Configured"
 }
 Docker() {
@@ -304,8 +280,8 @@ Shell() {
     print s "Installing personal scripts"
     git clone https://github.com/Thomashighbaugh/bin "$HOME"/.local/share/bin
     print s "Configurations for All Shells"
-    ln -vf "$HOME"/dotfiles/home/sh/profile "$HOME"/.profile
-    ln -vf "$HOME"/dotfiles/home/sh/aliases "$HOME"/.aliases
+    ln -vf "$HOME"/dotfiles/home/shell/profile "$HOME"/.profile
+    ln -vf "$HOME"/dotfiles/home/shell/aliases "$HOME"/.aliases
     YAYIN autojump
     print t " Provisioned and Configured"
 }

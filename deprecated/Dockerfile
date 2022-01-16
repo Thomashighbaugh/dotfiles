@@ -32,8 +32,8 @@ SHELL ["/bin/bash", "-c"]
 
 RUN \
   # run our system setup script from our staging alias
-    git clone "https://github.com/Thomashighbaugh/dotfiles" dotfiles && \
-    sh dotfiles/docker/install.sh && \
+  git clone "https://github.com/Thomashighbaugh/dotfiles" dotfiles && \
+  sh dotfiles/docker/install.sh && \
   # clean up any extraneous dependencies left over by our installation
   yay --clean --noconfirm && \
   # clean up pacman's package cache for installed & uninstalled packages

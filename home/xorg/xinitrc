@@ -16,7 +16,7 @@ LANG=en_US.UTF-8
 # If you use a display manager, xprofile is run, thus the commands of
 # interest typical to this file are located there and sourced below!
 
-. "$HOME/.xprofile"
+
 
 # Execute Window Manager or Desktop Environment
 exec awesome

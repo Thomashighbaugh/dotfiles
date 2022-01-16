@@ -24,10 +24,9 @@ To install these locally, you will need to have a fresh install of Void Linux on
 git clone https://github.com/Thomashighbaugh/dotfiles $HOME/dotfiles
 ```
 
-Installation and configuration are handled by the BASH scripts in the setup directory, which can be accessed via the Makefile using the following command
+Included is a script handling the system's provisioning and configuration all at once post install. To run it
 
 ```bash
-make all
+cd $HOME/dotfiles
+./setup/install.sh
 ```
-
-This will run through the three bash shell scripts in the same order they are listed below

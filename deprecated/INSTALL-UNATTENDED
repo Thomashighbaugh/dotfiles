@@ -155,8 +155,8 @@ BASH() {
     ## Link Files
     ln -svf "$HOME"/dotfiles/home/bash/bashenv "$HOME"/.bashenv
     ln -svf "$HOME"/dotfiles/home/bash/bashrc "$HOME"/.bashrc
-    ln -svf "$HOME"/dotfiles/home/sh/profile "$HOME"/.profile
-    ln -svf "$HOME"/dotfiles/home/sh/aliases "$HOME"/.aliases
+    ln -svf "$HOME"/dotfiles/home/shell/profile "$HOME"/.profile
+    ln -svf "$HOME"/dotfiles/home/shell/aliases "$HOME"/.aliases
     print t "BASH Shell Configured"
 }
 Docker() {
@@ -304,8 +304,8 @@ Shell() {
     print s "Installing personal scripts"
     git clone https://github.com/Thomashighbaugh/bin "$HOME"/.local/share/bin
     print s "Configurations for All Shells"
-    ln -vf "$HOME"/dotfiles/home/sh/profile "$HOME"/.profile
-    ln -vf "$HOME"/dotfiles/home/sh/aliases "$HOME"/.aliases
+    ln -vf "$HOME"/dotfiles/home/shell/profile "$HOME"/.profile
+    ln -vf "$HOME"/dotfiles/home/shell/aliases "$HOME"/.aliases
     YAYIN autojump
     print t " Provisioned and Configured"
 }

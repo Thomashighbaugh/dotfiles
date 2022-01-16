@@ -26,8 +26,8 @@ alias yudel="yay -Rdd "
 alias pudel="sudo pacman -Rdd "
 
 ## Search
-alias yupss="yay -Ss "
-alias pupss="sudo pacman -Ss "
+alias yups="yay -Ss "
+alias pups="sudo pacman -Ss "
 
 ## No Dependencies
 alias yupxdeps="yay -Sdd "
