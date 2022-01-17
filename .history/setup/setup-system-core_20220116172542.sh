@@ -9,14 +9,7 @@
 #  _|   |_ |     |__ --||   _|  _  ||  |  ||  _  ||   _|  ||  _  |     |
 # |_______||__|__|_____||____|___._||__|__||___._||____|__||_____|__|__|
 # ---------------------------------------------------------------------------- #
-#
-# Author: Thomas Leon Highbaugh (thighbaugh@zoho.com)
-# Description: Menu driven tool to provision and configure a fresh installation of Void Linux
-# Usage: ./install.sh from within the setup subdirectory or ./setup/install.sh from within the dotfiles directory
-#
-# ---------------------------------------------------------------------------- #
-# ---------------------------------------------------------------------------- #
-#                                Print Statement                               #
+# Menu driven tool to provision and configure a fresh installation of Void Linux
 # ---------------------------------------------------------------------------- #
 # Assign Terminal Color Variables
 cr="$(tput setaf 1)"
@@ -53,7 +46,7 @@ print() {
 }
 
 # ---------------------------------------------------------------------------- #
-#                               Install Packages                               #
+# ----------------------------- Install Packages ----------------------------- #
 # ---------------------------------------------------------------------------- #
 InstallPackages() {
     bypass() {
@@ -389,7 +382,7 @@ InstallPackages() {
     mkdir -p ~/.local/share/bin
 }
 # ---------------------------------------------------------------------------- #
-#                                Clone Packages                                #
+# ------------------------------ Clone Packages ------------------------------ #
 # ---------------------------------------------------------------------------- #
 ClonePackages() {
     print t "####################################################"
@@ -435,7 +428,7 @@ ClonePackages() {
 
 }
 # ---------------------------------------------------------------------------- #
-#                           Confirmation Repositories                          #
+# ------------------------ Configuration Repositories ------------------------ #
 # ---------------------------------------------------------------------------- #
 function ConfigurationRepositories() {
     print t "####################################################"
@@ -507,9 +500,7 @@ function ConfigurationRepositories() {
     git clone https://github.com/the-Electric-Tantra-Linux/mahakali-webkit2-theme
     clear
 }
-# ---------------------------------------------------------------------------- #
-#                                   Dotfiles                                   #
-# ---------------------------------------------------------------------------- #
+Dotfiles
 function Dotfiles() {
     ## Symlinks
     print t "####################################################"

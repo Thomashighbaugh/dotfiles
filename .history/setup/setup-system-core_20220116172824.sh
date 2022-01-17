@@ -12,7 +12,6 @@
 #
 # Author: Thomas Leon Highbaugh (thighbaugh@zoho.com)
 # Description: Menu driven tool to provision and configure a fresh installation of Void Linux
-# Usage: ./install.sh from within the setup subdirectory or ./setup/install.sh from within the dotfiles directory
 #
 # ---------------------------------------------------------------------------- #
 # ---------------------------------------------------------------------------- #

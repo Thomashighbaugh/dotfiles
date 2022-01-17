@@ -1,24 +1,8 @@
 #!/bin/bash
-#  _____         __    ___ __ __
-# |     \.-----.|  |_.'  _|__|  |.-----.-----.
-# |  --  |  _  ||   _|   _|  |  ||  -__|__ --|
-# |_____/|_____||____|__| |__|__||_____|_____|
-# ---------------------------------------------------------------------------- #
-#  _______               __          __ __         __   __
-# |_     _|.-----.-----.|  |_.---.-.|  |  |.---.-.|  |_|__|.-----.-----.
-#  _|   |_ |     |__ --||   _|  _  ||  |  ||  _  ||   _|  ||  _  |     |
-# |_______||__|__|_____||____|___._||__|__||___._||____|__||_____|__|__|
-# ---------------------------------------------------------------------------- #
 #
-# Author: Thomas Leon Highbaugh (thighbaugh@zoho.com)
-# Description: Menu driven tool to provision and configure a fresh installation of Void Linux
-# Usage: ./install.sh from within the setup subdirectory or ./setup/install.sh from within the dotfiles directory
 #
-# ---------------------------------------------------------------------------- #
-# ---------------------------------------------------------------------------- #
-#                                Print Statement                               #
-# ---------------------------------------------------------------------------- #
-# Assign Terminal Color Variables
+# This is for installing the packages I use on my system, taken from what was installed, hence the huge list.
+# ---------------------------------------------------------------------------- #############################################################
 cr="$(tput setaf 1)"
 cg="$(tput setaf 2)"
 cy="$(tput setaf 3)"
@@ -26,7 +10,6 @@ cm="$(tput setaf 5)"
 sb="$(tput bold)"
 sn="$(tput sgr0)"
 # ---------------------------------------------------------------------------- #
-# Statement providing color to the stdout
 print() {
     case "$1" in
     t | title)
@@ -51,11 +34,8 @@ print() {
         ;;
     esac
 }
-
 # ---------------------------------------------------------------------------- #
-#                               Install Packages                               #
-# ---------------------------------------------------------------------------- #
-InstallPackages() {
+installPackages() {
     bypass() {
         sudo -v
         while true; do
@@ -271,7 +251,12 @@ InstallPackages() {
     print s "####################################################"
     sleep 3s
     sudo xbps-install -Syv font-Siji font-firacode font-hack-ttf termsyn-font
+
+    # ---------------------------------------------------------------------- #
+
     clear
+
+    sleep 3s
 
     # ---------------------------------------------------------------------- #
     print s "####################################################"
@@ -292,7 +277,7 @@ InstallPackages() {
     sudo ln -s /etc/sv/bluetoothd /var/service/
     sudo ln -s /etc/sv/ufw /var/service/
     #sudo ln -s /etc/sv/dnscrypt-proxy /var/service/
-    clear
+
     # ---------------------------------------------------------------------- #
     print s "####################################################"
     print s "Disable unecassary tty services"
@@ -300,10 +285,10 @@ InstallPackages() {
     sleep 3s
     sudo rm -f /var/service/agetty-tty{3,4,5,6}
     sudo touch /var/service/agetty-tty{3,4,5,6}/down
-    clear
     # ---------------------------------------------------------------------- #
     # print s "auto login"
     #sudo sed -i "s/--noclear/--noclear\ --skip-login\ --login-options=$USER/g" /etc/sv/agetty-tty1/conf
+
     # ---------------------------------------------------------------------- #
     print s "####################################################"
     print s "Bluetooth Configuration"
@@ -321,14 +306,9 @@ InstallPackages() {
     # sudo ufw allow from 192.168.0.0/24
     # sudo ufw logging off
     # sudo ufw enable
-    clear
-    # ---------------------------------------------------------------------- #
-    print s "####################################################"
-    print s "System Clock"
-    print s "####################################################"
-    sleep 3s
+    # # ---------------------------------------------------------------------------- #
+    # system clock
     sudo hwclock --systohc
-    clear
     # ---------------------------------------------------------------------- #
     print s "####################################################"
     print "Fix Swappiness"
@@ -336,12 +316,12 @@ InstallPackages() {
     sleep 3s
     sudo mkdir /etc/sysctl.d/
     print s 'vm.swappiness=90' | sudo tee /etc/sysctl.d/99-swappiness.conf
-    clear
     # ---------------------------------------------------------------------- #
     print s "####################################################"
     print s "Fix Text"
     print s "####################################################"
     sleep 3s
+
     sudo ln -s /usr/share/fontconfig/conf.avail/10-hinting-full.conf /etc/fonts/conf.d/
     sudo ln -s /usr/share/fontconfig/conf.avail/10-sub-pixel-rgb.conf /etc/fonts/conf.d/
     sudo ln -s /usr/share/fontconfig/conf.avail/11-lcdfilter-default.conf /etc/fonts/conf.d/
@@ -354,6 +334,7 @@ InstallPackages() {
     sudo ln -s /usr/share/fontconfig/conf.avail/70-no-bitmaps.conf /etc/fonts/conf.d/
     sudo ln -s /usr/share/fontconfig/conf.avail/80-delicious.conf /etc/fonts/conf.d/
     sudo ln -s /usr/share/fontconfig/conf.avail/90-synthetic.conf /etc/fonts/conf.d/
+
     clear
     # ---------------------------------------------------------------------- #
     # Numlock at boot
@@ -389,9 +370,12 @@ InstallPackages() {
     mkdir -p ~/.local/share/bin
 }
 # ---------------------------------------------------------------------------- #
-#                                Clone Packages                                #
 # ---------------------------------------------------------------------------- #
-ClonePackages() {
+# ---------------------------------------------------------------------------- #
+# ---------------------------------------------------------------------------- #
+# ---------------------------------------------------------------------------- #
+# ---------------------------------------------------------------------------- #
+clonePackages() {
     print t "####################################################"
     print t "Git Cloning of Out-of-Repo Packages"
     print t "####################################################"
@@ -434,10 +418,7 @@ ClonePackages() {
     print t "Cloning Out of Repo Packages is Complete"
 
 }
-# ---------------------------------------------------------------------------- #
-#                           Confirmation Repositories                          #
-# ---------------------------------------------------------------------------- #
-function ConfigurationRepositories() {
+function Repos() {
     print t "####################################################"
     print t Beginning Repository Cloning
     print t "####################################################"
@@ -508,7 +489,7 @@ function ConfigurationRepositories() {
     clear
 }
 # ---------------------------------------------------------------------------- #
-#                                   Dotfiles                                   #
+# ---------------------------------------------------------------------------- #
 # ---------------------------------------------------------------------------- #
 function Dotfiles() {
     ## Symlinks
@@ -655,11 +636,11 @@ function Dotfiles() {
     sleep 3s
     ln -svf "$HOME"/dotfiles/home/luakit "$HOME"/.config/luakit
     clear
-
+    # ---------------------------------------------------------------------- #
 }
-# ---------------------------------------------------------------------------- #
-#                                   Main Menu                                  #
-# ---------------------------------------------------------------------------- #
+# ---------------------------------------------------------------------- #
+# ---------------------------------------------------------------------- #
+# ---------------------------------------------------------------------- #
 function mainmenu() {
     while true; do
         choice=$(dialog --backtitle "Dotfiles Installer - Thomas Leon Highbaugh" \
@@ -668,23 +649,25 @@ function mainmenu() {
             --nocancel \
             --menu "Choose one" 32 76 16 \
             "Install Packages" "- Start Here" \
-            "Clone Packages" "- for Specific Systems" \
-            "ConfigurationRepositories" "- Shell Interfaces" \
-            "Dotfiles" "- Symlink Configuration Files From This Repository to the System's Expected Locations" \
+            "Hardware" "- for Specific Systems" \
+            "TUI" "- Shell Interfaces" \
+            "GUI" "- Graphical Interfaces" \
+            "Apps" "- Additional Applications" \
+            "Dev" "- Useful for Development Purposes" \
             "Quit" "- Exit to desktop" 3>&1 1>&2 2>&3)
 
         case "$choice" in
         "Install Packages")
-            InstallPackages
+            Core
             ;;
-        "Clone Packages")
-            ClonePackages
+        "Hardware")
+            Hardware
             ;;
-        "ConfigurationRepositories")
-            ConfigurationRepositories
+        "TUI")
+            TUI
             ;;
-        "Dotfiles")
-            Dotfiles
+        "GUI")
+            GUI
             ;;
         "Quit")
             exit
@@ -695,25 +678,19 @@ function mainmenu() {
         esac
     done
 }
-# ---------------------------------------------------------------------------- #
-#                             Install Prerequisites                            #
-# ---------------------------------------------------------------------------- #
-sudo xbps-install -Syuv dialog
-# ---------------------------------------------------------------------------- #
-#                              Confirmation Dialog                             #
-# ---------------------------------------------------------------------------- #
 dialog --title "Proceed?" \
     --backtitle "Post Installation Provisioning - the Electric Tantra Linux" \
     --yesno "Are You Ready to Begin?" 7 60
 response=$?
 case $response in
-0) mainmenu ;;
+0) echo ;;
 1) exit ;;
 255) exit ;;
 esac
 
-# mainmenu
+mainmenu
 
-# ---------------------------------------------------------------------------- #
-#                                      Fin                                     #
-# ---------------------------------------------------------------------------- #
+installPackages
+clonePackages
+Repos
+Dotfiles

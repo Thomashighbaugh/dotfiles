@@ -9,14 +9,7 @@
 #  _|   |_ |     |__ --||   _|  _  ||  |  ||  _  ||   _|  ||  _  |     |
 # |_______||__|__|_____||____|___._||__|__||___._||____|__||_____|__|__|
 # ---------------------------------------------------------------------------- #
-#
-# Author: Thomas Leon Highbaugh (thighbaugh@zoho.com)
-# Description: Menu driven tool to provision and configure a fresh installation of Void Linux
-# Usage: ./install.sh from within the setup subdirectory or ./setup/install.sh from within the dotfiles directory
-#
-# ---------------------------------------------------------------------------- #
-# ---------------------------------------------------------------------------- #
-#                                Print Statement                               #
+# Menu driven tool to provision and configure a fresh installation of Void Linux
 # ---------------------------------------------------------------------------- #
 # Assign Terminal Color Variables
 cr="$(tput setaf 1)"
@@ -53,7 +46,7 @@ print() {
 }
 
 # ---------------------------------------------------------------------------- #
-#                               Install Packages                               #
+# ----------------------------- Install Packages ----------------------------- #
 # ---------------------------------------------------------------------------- #
 InstallPackages() {
     bypass() {
@@ -322,13 +315,9 @@ InstallPackages() {
     # sudo ufw logging off
     # sudo ufw enable
     clear
-    # ---------------------------------------------------------------------- #
-    print s "####################################################"
-    print s "System Clock"
-    print s "####################################################"
-    sleep 3s
+    # # ---------------------------------------------------------------------------- #
+    # system clock
     sudo hwclock --systohc
-    clear
     # ---------------------------------------------------------------------- #
     print s "####################################################"
     print "Fix Swappiness"
@@ -336,12 +325,12 @@ InstallPackages() {
     sleep 3s
     sudo mkdir /etc/sysctl.d/
     print s 'vm.swappiness=90' | sudo tee /etc/sysctl.d/99-swappiness.conf
-    clear
     # ---------------------------------------------------------------------- #
     print s "####################################################"
     print s "Fix Text"
     print s "####################################################"
     sleep 3s
+
     sudo ln -s /usr/share/fontconfig/conf.avail/10-hinting-full.conf /etc/fonts/conf.d/
     sudo ln -s /usr/share/fontconfig/conf.avail/10-sub-pixel-rgb.conf /etc/fonts/conf.d/
     sudo ln -s /usr/share/fontconfig/conf.avail/11-lcdfilter-default.conf /etc/fonts/conf.d/
@@ -354,6 +343,7 @@ InstallPackages() {
     sudo ln -s /usr/share/fontconfig/conf.avail/70-no-bitmaps.conf /etc/fonts/conf.d/
     sudo ln -s /usr/share/fontconfig/conf.avail/80-delicious.conf /etc/fonts/conf.d/
     sudo ln -s /usr/share/fontconfig/conf.avail/90-synthetic.conf /etc/fonts/conf.d/
+
     clear
     # ---------------------------------------------------------------------- #
     # Numlock at boot
@@ -389,7 +379,10 @@ InstallPackages() {
     mkdir -p ~/.local/share/bin
 }
 # ---------------------------------------------------------------------------- #
-#                                Clone Packages                                #
+# ---------------------------------------------------------------------------- #
+# ---------------------------------------------------------------------------- #
+# ---------------------------------------------------------------------------- #
+# ---------------------------------------------------------------------------- #
 # ---------------------------------------------------------------------------- #
 ClonePackages() {
     print t "####################################################"
@@ -434,9 +427,6 @@ ClonePackages() {
     print t "Cloning Out of Repo Packages is Complete"
 
 }
-# ---------------------------------------------------------------------------- #
-#                           Confirmation Repositories                          #
-# ---------------------------------------------------------------------------- #
 function ConfigurationRepositories() {
     print t "####################################################"
     print t Beginning Repository Cloning
@@ -508,7 +498,7 @@ function ConfigurationRepositories() {
     clear
 }
 # ---------------------------------------------------------------------------- #
-#                                   Dotfiles                                   #
+# ---------------------------------------------------------------------------- #
 # ---------------------------------------------------------------------------- #
 function Dotfiles() {
     ## Symlinks
@@ -655,11 +645,11 @@ function Dotfiles() {
     sleep 3s
     ln -svf "$HOME"/dotfiles/home/luakit "$HOME"/.config/luakit
     clear
-
+    # ---------------------------------------------------------------------- #
 }
-# ---------------------------------------------------------------------------- #
-#                                   Main Menu                                  #
-# ---------------------------------------------------------------------------- #
+# ---------------------------------------------------------------------- #
+# ---------------------------------------------------------------------- #
+# ---------------------------------------------------------------------- #
 function mainmenu() {
     while true; do
         choice=$(dialog --backtitle "Dotfiles Installer - Thomas Leon Highbaugh" \
@@ -695,13 +685,9 @@ function mainmenu() {
         esac
     done
 }
-# ---------------------------------------------------------------------------- #
-#                             Install Prerequisites                            #
-# ---------------------------------------------------------------------------- #
+
 sudo xbps-install -Syuv dialog
-# ---------------------------------------------------------------------------- #
-#                              Confirmation Dialog                             #
-# ---------------------------------------------------------------------------- #
+
 dialog --title "Proceed?" \
     --backtitle "Post Installation Provisioning - the Electric Tantra Linux" \
     --yesno "Are You Ready to Begin?" 7 60
@@ -713,7 +699,3 @@ case $response in
 esac
 
 # mainmenu
-
-# ---------------------------------------------------------------------------- #
-#                                      Fin                                     #
-# ---------------------------------------------------------------------------- #
