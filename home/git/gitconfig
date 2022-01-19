@@ -1,6 +1,7 @@
 [user]
 	name = Thomas Leon Highbaugh
 	email = thighbaugh@zoho.com
+	signingkey = 2A75D3D17367E48B5A6AF1981403F51C03754B6B
 [alias]
 	a = add
 	b = branch
