@@ -24,3 +24,4 @@ source "$HOME"/dotfiles/home/shell/aliases
 
 # Because this comes up more often than is natural but will not clear any other way thanks to ccache
 export CC="gcc"
+. "$HOME/.cargo/env"
