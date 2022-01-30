@@ -9,11 +9,11 @@ if "$(command -v udiskie)"; then
     udiskie &
 fi
 
-#  clipboard manager
+# Compositor
 if "$(command -v picom)"; then
     picom -b --experimental-backends &
 fi
-
+# For my app menu
 if "$(command -v xcape)"; then
     xcape -e "Super_L=Super_L|Control_L|Escape" &
 fi
@@ -28,11 +28,11 @@ if "$(command -v xsettingsd)"; then
     xsettingsd &
 fi
 
-#  Make sure the colors are as they are supposed to be
+# Touchpad adjustments
 if "$(command -v xinput)"; then
     xinput set-prop "ELAN1301:00 04F3:30C6 Touchpad" "libinput Tapping Enabled" 1 &
 fi
-
+# Autolocker
 if "$(command -v goautolock)"; then
     goautolock --time 360 --notify 30 --locker "$HOME/.config/awesome/bin/blur.sh" &
 fi
@@ -40,15 +40,11 @@ fi
 if "$(command -v dropbox)"; then
     dropbox start &
 fi
-# Pulse Effects Equalizer
-if "$(command -v lxqt-policykit-agent)"; then
-    /usr/bin/lxqt-policykit-agent &
+# XFCE Policy Kit
+if /usr/libexec/xfce-polkit; then
+    /usr/libexec/xfce-polkit &
 fi
-
-# Pulse Effects Equalizer
-if "$(command -v lxqt-policykit-agent)"; then
-    /usr/bin/lxqt-policykit-agent &
-fi
+# Keyring
 if "$(command -v gnome-keyring-daemon)"; then
     eval "$(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)"
 fi
