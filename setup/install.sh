@@ -29,25 +29,25 @@ sn="$(tput sgr0)"
 # Statement providing color to the stdout
 print() {
     case "$1" in
-    t | title)
-        shift
-        printf "%s\n" "${sb}${cg}[###]$*${sn}"
+        t | title)
+            shift
+            printf "%s\n" "${sb}${cg}[###]$*${sn}"
         ;;
-    s | step)
-        shift
-        printf "%s\n" "${sb}${cm}[===]$*${sn}"
+        s | step)
+            shift
+            printf "%s\n" "${sb}${cm}[===]$*${sn}"
         ;;
-    e | error)
-        shift
-        printf "%s\n" "${sb}${cr}[!!!]$*${sn}"
-        exit 1
+        e | error)
+            shift
+            printf "%s\n" "${sb}${cr}[!!!]$*${sn}"
+            exit 1
         ;;
-    w | warning)
-        shift
-        printf "%s\n" "${sb}${cy}[:::]$*${sn}"
+        w | warning)
+            shift
+            printf "%s\n" "${sb}${cy}[:::]$*${sn}"
         ;;
-    *)
-        printf '%s\n' "$*"
+        *)
+            printf '%s\n' "$*"
         ;;
     esac
 }
@@ -74,13 +74,13 @@ SULINK() {
 #                               Install Packages                               #
 # ---------------------------------------------------------------------------- #
 InstallPackages() {
-
+    
     set e
     print t "[===================================================]"
     print t "Starting Void Linux Package Installation"
     print t "[===================================================]"
     sleep 3s
-
+    
     # ---------------------------------------------------------------------- #
     print s "[===================================================]"
     print s "Updating System and Adding Repositories"
@@ -88,35 +88,35 @@ InstallPackages() {
     sleep 3s
     sudo xbps-install -Syu
     XIN void-repo-nonfree void-repo-multilib void-repo-multilib-nonfree void-repo-debug xtools
-
+    
     # ---------------------------------------------------------------------- #
     print s "[===================================================]"
     print s "Service Packages"
     print s "[===================================================]"
     sleep 3s
     XIN dbus dbus-elogind elogind polkit docker docker-cli docker keychain polkit-devel
-
+    
     # ---------------------------------------------------------------------- #
     print s "[===================================================]"
     print s "Power Management"
     print s "[===================================================]"
     sleep 3s
     XIN acpid rtkit tlp
-
+    
     # ---------------------------------------------------------------------- #
     print s "[===================================================]"
     print s "Firmware Modules"
     print s "[===================================================]"
     sleep 3s
     XIN mesa glu-devel libgbm libgbm-devel mesa-dri mesa-ati-dri mesa mesa-dbg mesa-opencl amdvlk xf86-video-amdgpu linux-firmware-amd arandr
-
+    
     # ---------------------------------------------------------------------- #
     print s "[===================================================]"
     print s "Compiler"
     print s "[===================================================]"
     sleep 3s
     XIN gcc gcc-ada libgcc-devel libgcc gcc-objc gcc-objc++ gcc-objc-multilib qrintf cmake cmake-vala extra-cmake-modules gccmakedep leatherman leatherman-devel meson-cmake-wrapper leatherman-32bit leatherman-devel acr pkg-config pkgconf libpkgconf libopkg libopkg autoconf automake autoconf-archive perl-Config-AutoConf libuv-devel linux-tools gperf libtool
-
+    
     # ---------------------------------------------------------------------- #
     print s "[===================================================]"
     print s "Development"
@@ -125,7 +125,7 @@ InstallPackages() {
     XIN python3-devel python-devel ruby-devel lua-devel lgi lua51-lgi lua52-lgi lua54-lgi go cmake zsh zsh-autosuggestions coreutils
     sudo pip3 install hererocks
     XIN vscode neovim tree-sitter curl ninja make wget
-
+    
     # ---------------------------------------------------------------------- #
     print s "[===================================================]"
     print s "Window Manager / Desktop Environment"
@@ -133,7 +133,7 @@ InstallPackages() {
     sleep 3s
     XIN awesome rofi light kitty rofi-devel libnotify libnotify-devel libXScrnSaver-devel ruby-asciidoctor xcb-util-xrm-devel startup-notification-devel xcb-util-keysyms xcb-util-keysyms-devel xcb-util-cursor-devel xcb-util-cursor xcb-util-wm-devel startup-tools libxdg-basedir-devel luarocks gettext gettext-devel zathura zathura-cb zathura-devel zathura-pdf-mupdf zathura-ps mupdf gom gom-devel libpeas libpeas-devel
     sudo luarocks install ldoc luacheck luaposix luasec
-
+    
     # ---------------------------------------------------------------------- #
     print s "[===================================================]"
     print s "Network"
@@ -143,14 +143,14 @@ InstallPackages() {
     sudo xbps-remove -oyv dhcpcd
     #wireguard #https://www.wireguard.com/install/
     #XIN wireguard-tools wireguard-dkms
-
+    
     # ---------------------------------------------------------------------- #
     print s "[===================================================]"
     print s "Bluetooth"
     print s "[===================================================]"
     sleep 3s
     XIN bluez libspa-bluetooth sbc broadcom-bt-firmware libbluetooth hidapi blueman bluez-alsa
-
+    
     # ---------------------------------------------------------------------- #
     print s "[===================================================]"
     print s "Audio"
@@ -160,21 +160,21 @@ InstallPackages() {
     XIN alsa-firmware alsa-lib alsa-plugins alsa-plugins-ffmpeg pavucontrol
     #spotify
     XIN spotify-tui spotifyd
-
+    
     # ---------------------------------------------------------------------- #
     print s "[===================================================]"
     print s "Multimedia"
     print s "[===================================================]"
     sleep 3s
     XIN imv mpv gst-libav ffmpeg ImageMagick libmagick libmagick-devel vlc gimp gimp-devel gimp-lqr-plugin gmic-gimp gimp-python resynthesizer ufraw-gimp libgimp xsane-gimp
-
+    
     # ---------------------------------------------------------------------- #
     print s "[===================================================]"
     print s "Passwords"
     print s "[===================================================]"
     sleep 3s
     XIN keepassxc
-
+    
     # ---------------------------------------------------------------------- #
     print s "[===================================================]"
     print s "Internet"
@@ -182,13 +182,13 @@ InstallPackages() {
     sleep 3s
     sudo xbps-remove -y firefox-esr
     XIN dhcpcd-gtk wpa_gui firefox elinks luakit transmission-gtk
-
+    
     # ---------------------------------------------------------------------- #
     print s "[===================================================]"
     print s "Privacy"
     print s "[===================================================]"
     XIN dnscrypt-proxy ufw gufw
-
+    
     # ---------------------------------------------------------------------- #
     print s "[===================================================]"
     print s "System utilities"
@@ -196,27 +196,27 @@ InstallPackages() {
     sleep 3s
     #XIN numlockx
     XIN rsync fzf xrdb xrdb-dbg libcanberra-devel libcanberra-utils libcanberra-gtk gnome-disk-utility gparted autofs xeyes xev xcape maim xdg-desktop-portal xdg-desktop-portal-gtk xdgmenumaker dconf-editor ntfs-3g #Stable Read/Write NTFS Driver in userspace
-
+    
     # ---------------------------------------------------------------------- #
     print s "[===================================================]"
     print s "Terminal"
     print s "[===================================================]"
     sleep 3s
     XIN neofetch wget git gotop tty-clock calcurse vitetris bash-completion ranger vsv vpm
-
+    
     # ---------------------------------------------------------------------- #
     print s "[===================================================]"
     print s "Android"
     print s "[===================================================]"
     sleep 3s
     XIN android-tools android-udev-rules android-file-transfer-linux abootimg scrcpy smali
-
+    
     # ---------------------------------------------------------------------- #
     #print s "Nvidia"
     #sleep 3s
     #nvidia - https://docs.voidlinux.org/config/graphics/optimus.html
     #XIN nvidia glxinfo
-
+    
     # ---------------------------------------------------------------------- #
     print s "[===================================================]"
     print s "Flatpak"
@@ -224,14 +224,14 @@ InstallPackages() {
     sleep 3s
     XIN flatpak
     sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-
+    
     # ---------------------------------------------------------------------- #
     print s "[===================================================]"
     print s "Fonts"
     print s "[===================================================]"
     sleep 3s
     XIN font-Siji font-firacode font-hack-ttf termsyn-font
-
+    
     # ---------------------------------------------------------------------- #
     print s "[===================================================]"
     print s "Configuring system..."
@@ -277,14 +277,14 @@ InstallPackages() {
     # sudo ufw allow from 192.168.0.0/24
     # sudo ufw logging off
     # sudo ufw enable
-
+    
     # ---------------------------------------------------------------------- #
     print s "[===================================================]"
     print s "System Clock"
     print s "[===================================================]"
     sleep 3s
     sudo hwclock --systohc
-
+    
     # ---------------------------------------------------------------------- #
     print s "[===================================================]"
     print "Fix Swappiness"
@@ -292,7 +292,7 @@ InstallPackages() {
     sleep 3s
     sudo mkdir /etc/sysctl.d/
     print s 'vm.swappiness=90' | sudo tee /etc/sysctl.d/99-swappiness.conf
-
+    
     # ---------------------------------------------------------------------- #
     print s "[===================================================]"
     print s "Fix Text"
@@ -310,7 +310,7 @@ InstallPackages() {
     SULINK /usr/share/fontconfig/conf.avail/70-no-bitmaps.conf /etc/fonts/conf.d/
     SULINK /usr/share/fontconfig/conf.avail/80-delicious.conf /etc/fonts/conf.d/
     SULINK /usr/share/fontconfig/conf.avail/90-synthetic.conf /etc/fonts/conf.d/
-
+    
     # ---------------------------------------------------------------------- #
     # Numlock at boot
     #for tty in /dev/tty[1-6]*;
@@ -334,7 +334,7 @@ InstallPackages() {
     sudo usermod -aG kvm "$USER"
     sudo usermod -aG socklog "$USER"
     sudo usermod -aG docker "$USER"
-
+    
     # ---------------------------------------------------------------------- #
     print s "[===================================================]"
     print s "Setup Needed Directories"
@@ -360,7 +360,7 @@ ClonePackages() {
     git clone https://gitlab.com/mrvik/goautolock "$HOME"/goautolock
     cd "$HOME"/goautolock && sudo make && sudo make install
     cd "$HOME" && rm -rvf goautolock
-
+    
     # ---------------------------------------------------------------------- #
     print s "[===================================================]"
     print s "NVM"
@@ -378,7 +378,7 @@ ClonePackages() {
     git clone https://github.com/toluschr/xdeb "$HOME"/xdeb
     cd "$HOME"/xdeb && sudo chmod -Rv 744 xdeb && sudo mv xdeb /usr/local/bin/
     cd "$HOME" && rm -rvf xdeb
-
+    
     # ---------------------------------------------------------------------- #
     print s "[===================================================]"
     print s "AwesomeWM"
@@ -389,7 +389,7 @@ ClonePackages() {
     cd "$HOME" && sudo rm -rvf awesome
     SULINK /usr/local/bin/awesome /usr/bin
     SULINK /usr/local/bin/awesome-client /usr/bin
-
+    
     # ---------------------------------------------------------------------- #
     print s "[===================================================]"
     print s "Greenclip"
@@ -397,7 +397,7 @@ ClonePackages() {
     sleep 3s
     sudo wget https://github.com/erebe/greenclip/releases/download/v4.2/greenclip
     sudo mv -vf greenclip /usr/local/bin
-
+    
 }
 # ---------------------------------------------------------------------------- #
 #                           Confirmation Repositories                          #
@@ -413,7 +413,7 @@ function ConfigurationRepositories() {
     print s "[===================================================]"
     sleep 3s
     git clone https://github.com/the-Electric-Tantra-Linux/awesome ~/.config/awesome
-
+    
     # ---------------------------------------------------------------------- #
     print s "[===================================================]"
     print s Cloning Grub2 Theme
@@ -421,14 +421,14 @@ function ConfigurationRepositories() {
     sleep 3s
     git clone https://github.com/Thomashighbaugh/Bhairava-Grub-Theme "$HOME"/.local/share/Bhairava-Grub-Theme
     bash "$HOME"/.local/share/Bhairava-Grub-Theme/install.sh
-
+    
     # ---------------------------------------------------------------------- #
     print s "[===================================================]"
     print s Cloning bin Scripts
     print s "[===================================================]"
     sleep 3s
     git clone https://github.com/Thomashighbaugh/bin "$HOME"/.local/share/bin
-
+    
     # ---------------------------------------------------------------------- #
     print s "[===================================================]"
     print s "Installing the Latest Neovim, with Packer and then Configuring It"
@@ -436,13 +436,16 @@ function ConfigurationRepositories() {
     sleep 3s
     git clone https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
     git clone https://github.com/Thomashighbaugh/nvim "$HOME"/.config/nvim
-
+    
     # ---------------------------------------------------------------------- #
     print s "[===================================================]"
     print s Cloning and Installing ZSH Configuration
     print s "[===================================================]"
     sleep 3s
     XIN zsh zsh-autosuggestions
+    git clone https://github.com/clvv/fasd "$HOME"/fasd
+    cd "$HOME"/fasd && sudo make install
+    rm -rvf "$HOME"/fasd
     git clone --recursive -j8 https://github.com/Thomashighbaugh/zsh "$HOME"/.zsh && cd "$HOME"/.zsh && sh install
     chsh tlh
     # ---------------------------------------------------------------------- #
@@ -453,7 +456,7 @@ function ConfigurationRepositories() {
     sudo git clone https://github.com/Thomashighbaugh/chhinamasta-icon-theme /usr/share/icons/chhinamasta
     git clone https://github.com/Thomashighbaugh/Dhumavati-Theme ~/.local/share/themes/Dhumavati-Theme
     cd ~/.local/share/themes/Dhumavati-Theme && sudo make install
-
+    
     # ---------------------------------------------------------------------- #
     print s "[===================================================]"
     print s Cloning QTile Configuration
@@ -467,7 +470,7 @@ function ConfigurationRepositories() {
     sleep 3s
     git clone https://github.com/Thomashighbaugh/firefox "$HOME"/firefox
     bash "$HOME"/firefox/install.sh stable && rm -rvf "$HOME"/firefox
-
+    
     # ---------------------------------------------------------------------- #
     print s "[===================================================]"
     print s Cloning LightDM Theme
@@ -475,7 +478,7 @@ function ConfigurationRepositories() {
     sleep 3s
     git clone https://github.com/the-Electric-Tantra-Linux/mahakali-webkit2-theme "$HOME"/.local/share/mahakali-webkit2-theme
     cd "$HOME"/.local/share/mahakali-webkit2-theme && sudo bash install.sh
-
+    
 }
 # ---------------------------------------------------------------------------- #
 #                                   Dotfiles                                   #
@@ -495,7 +498,7 @@ function Dotfiles() {
     LINK "$HOME"/dotfiles/home/bash/bashrc "$HOME"/.bashrc
     LINK "$HOME"/dotfiles/home/shell/profile "$HOME"/.profile
     LINK "$HOME"/dotfiles/home/shell/aliases "$HOME"/.aliases
-
+    
     # ---------------------------------------------------------------------- #
     print s "[===================================================]"
     print s "Quality of Life"
@@ -507,7 +510,7 @@ function Dotfiles() {
     LINK "$HOME"/dotfiles/home/git/gitignore "$HOME"/.gitignore
     SULINK "$HOME"/dotfiles/root/motd/motd /etc/motd
     LINK "$HOME"/dotfiles/home/neofetch "$HOME"/.config/neofetch
-
+    
     # ---------------------------------------------------------------------- #
     print s "[===================================================]"
     print s "X11"
@@ -523,7 +526,7 @@ function Dotfiles() {
     LINK "$HOME"/dotfiles/home/xorg/xprofile "$HOME"/.xprofile
     LINK "$HOME"/dotfiles/home/xorg/xsettingsd "$HOME"/.xsettingsd
     xrdb -merge ~/.Xresources
-
+    
     # ---------------------------------------------------------------------- #
     print s "[===================================================]"
     print s "Zathura"
@@ -531,7 +534,7 @@ function Dotfiles() {
     sleep 3s
     mkdir -p "$HOME"/.config/zathura
     LINK "$HOME"/dotfiles/home/zathura/zathurarc "$HOME"/.config/zathura
-
+    
     # ---------------------------------------------------------------------- #
     print s "[===================================================]"
     print s "GTK"
@@ -544,7 +547,7 @@ function Dotfiles() {
     LINK "$HOME"/dotfiles/home/gtk/gtkrc-2.0 "$HOME"/.gtkrc-2.0
     mkdir -p "$HOME"/.config/Kvantum/Kvantum
     LINK "$HOME"/dotfiles/home/gtk/kvantum.kvconfig "$HOME"/.config/Kvantum/kvantum.kvconfig
-
+    
     # ---------------------------------------------------------------------- #
     print s "[===================================================]"
     print s "Background Images"
@@ -552,14 +555,14 @@ function Dotfiles() {
     sleep 3s
     SULINK "$HOME"/dotfiles/root/images "$HOME"/.local/share/images
     sudo cp -rvf "$HOME"/dotfiles/root/images/* /usr/share/backgrounds
-
+    
     # ---------------------------------------------------------------------- #
     print s "[===================================================]"
     print s "Picom"
     print s "[===================================================]"
     sleep 3s
     LINK "$HOME"/dotfiles/home/picom/picom.conf "$HOME"/.config
-
+    
     # ---------------------------------------------------------------------- #
     print s "[===================================================]"
     print s "Rofi"
@@ -570,7 +573,7 @@ function Dotfiles() {
     LINK "$HOME"/dotfiles/home/rofi/themes "$HOME"/.config/rofi/themes
     LINK "$HOME"/dotfiles/home/rofi/config.rasi "$HOME"/.config/rofi/config.rasi
     LINK "$HOME"/dotfiles/home/rofi/three.rasi "$HOME"/.config/rofi/three.rasi
-
+    
     # ---------------------------------------------------------------------- #
     print s "[===================================================]"
     print s "Dunst"
@@ -578,7 +581,7 @@ function Dotfiles() {
     sleep 3s
     mkdir -p "$HOME"/.config/dunst
     LINK "$HOME"/dotfiles/home/dunst/dunstrc "$HOME"/.config/dunst/dunstrc
-
+    
     # ---------------------------------------------------------------------- #
     print s "[===================================================]"
     print s "Kitty"
@@ -587,7 +590,7 @@ function Dotfiles() {
     mkdir -p "$HOME"/.config/kitty
     LINK "$HOME"/dotfiles/home/kitty/kitty.conf "$HOME"/.config/kitty/kitty.conf
     LINK "$HOME"/dotfiles/home/kitty/theme.conf "$HOME"/.config/kitty/theme.conf
-
+    
     # ---------------------------------------------------------------------- #
     print s "[===================================================]"
     print s "Fontconfig"
@@ -599,28 +602,28 @@ function Dotfiles() {
     print t "Root Modifications"
     print t "[===================================================]"
     sleep 3s
-
+    
     # ---------------------------------------------------------------------- #
     print s "[===================================================]"
     print s "Docker"
     print s "[===================================================]"
     sleep 3s
     sudo cp -rvf "$HOME"/dotfiles/root/docker /etc/
-
+    
     # ---------------------------------------------------------------------- #
     print s "[===================================================]"
     print s "System Optimization Tweaks"
     print s "[===================================================]"
     sleep 3s
     sudo cp -rvf "$HOME"/dotfiles/root/etc/* /etc/
-
+    
     # ---------------------------------------------------------------------- #
     print s "[===================================================]"
     print s "Luakit Web Browser"
     print s "[===================================================]"
     sleep 3s
     LINK "$HOME"/dotfiles/home/luakit "$HOME"/.config/luakit
-
+    
 }
 
 # ---------------------------------------------------------------------------- #
@@ -638,29 +641,29 @@ function mainmenu() {
             "Other Repos" "- Configurations for Programs Saved in Their Own Repositories" \
             "Dotfiles" "- Symlink Configuration Files From This Repository to the System's Expected Locations" \
             "Reboot" "- When Finished, Restart Your System For Best Results." \
-            "Quit" "- Exit to desktop" 3>&1 1>&2 2>&3)
-
+        "Quit" "- Exit to desktop" 3>&1 1>&2 2>&3)
+        
         case "$choice" in
-        "Install Packages")
-            InstallPackages
+            "Install Packages")
+                InstallPackages
             ;;
-        "Clone Packages")
-            ClonePackages
+            "Clone Packages")
+                ClonePackages
             ;;
-        "Other Repos")
-            ConfigurationRepositories
+            "Other Repos")
+                ConfigurationRepositories
             ;;
-        "Dotfiles")
-            Dotfiles
+            "Dotfiles")
+                Dotfiles
             ;;
-        "Reboot")
-            sudo reboot
+            "Reboot")
+                sudo reboot
             ;;
-        "Quit")
-            exit
+            "Quit")
+                exit
             ;;
-        *)
-            echo "Something else.  Where Am I?"
+            *)
+                echo "Something else.  Where Am I?"
             ;;
         esac
     done
@@ -673,13 +676,13 @@ sudo xbps-install -Syuv dialog
 #                              Confirmation Dialog                             #
 # ---------------------------------------------------------------------------- #
 dialog --title "Proceed?" \
-    --backtitle "Post Installation Provisioning - the Electric Tantra Linux" \
-    --yesno "Are You Ready to Begin?" 7 60
+--backtitle "Post Installation Provisioning - the Electric Tantra Linux" \
+--yesno "Are You Ready to Begin?" 7 60
 response=$?
 case $response in
-0) mainmenu ;;
-1) exit ;;
-255) exit ;;
+    0) mainmenu ;;
+    1) exit ;;
+    255) exit ;;
 esac
 
 # mainmenu

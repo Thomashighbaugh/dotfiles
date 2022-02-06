@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 LC_NUMERIC=en_US.UTF-8
 LC_MONETARY=en_US.UTF-8
