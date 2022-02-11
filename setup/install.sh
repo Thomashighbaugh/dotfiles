@@ -442,7 +442,7 @@ function ConfigurationRepositories() {
     print s Cloning and Installing ZSH Configuration
     print s "[===================================================]"
     sleep 3s
-    XIN zsh zsh-autosuggestions
+    XIN zsh zsh-autosuggestions zsh-completions zsh-history-substring-search
     git clone https://github.com/clvv/fasd "$HOME"/fasd
     cd "$HOME"/fasd && sudo make install
     rm -rvf "$HOME"/fasd
@@ -450,12 +450,14 @@ function ConfigurationRepositories() {
     chsh tlh
     # ---------------------------------------------------------------------- #
     print s "[===================================================]"
-    print s "Cloning Icon Theme and GTK Theme, then Building the GTK Theme and Installing"
+    print s "GTK Theme & Icon Theme"
     print s "[===================================================]"
     sleep 3s
     sudo git clone https://github.com/Thomashighbaugh/chhinamasta-icon-theme /usr/share/icons/chhinamasta
     git clone https://github.com/Thomashighbaugh/Dhumavati-Theme ~/.local/share/themes/Dhumavati-Theme
-    cd ~/.local/share/themes/Dhumavati-Theme && sudo make install
+    wget https://github.com/the-Electric-Tantra-Linux/Dhumavati-Theme/releases/download/release/Dhumavati-White-Dark_.tar.xz
+    tar -xf Dhumavati-White-Dark.tar.xz
+    sudo cp -rvf Dhumavati-White-Dark/* /usr/share/themes
 
     # ---------------------------------------------------------------------- #
     print s "[===================================================]"
