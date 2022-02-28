@@ -1,159 +1,237 @@
---~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
---  luakit configuration file, more information at https://luakit.github.io/  --
---~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------------------------------------------------------------
+-- luakit configuration file, more information at https://luakit.github.io/ --
+------------------------------------------------------------------------------
 
-require("unique_instance")
-lousy = require("lousy") --  Library.Of.Useful.Stuff.You can use in luakit
-require("lfs")
+require "lfs"
 
---  Check for Lua config files that will never be loaded,
---  because they are shadowed by builtin modules.
-table.insert(package.loaders, 2, function(modname)
-	if not package.searchpath then
-		return
+-- Check for lua configuration files that will never be loaded because they are
+-- shadowed by builtin modules.
+table.insert(
+	package.loaders,
+	2,
+	function(modname)
+		if not package.searchpath then
+			return
+		end
+		local f = package.searchpath(modname, package.path)
+		if not f or f:find(luakit.install_paths.install_dir .. "/", 0, true) ~= 1 then
+			return
+		end
+		local lf = luakit.config_dir .. "/" .. modname:gsub("%.", "/") .. ".lua"
+		if f == lf then
+			msg.warn("Loading local version of '" .. modname .. "' module: " .. lf)
+		elseif lfs.attributes(lf) then
+			msg.warn(
+				"Found local version " ..
+					lf .. " for core module '" .. modname .. "', but it won't be used, unless you update 'package.path' accordingly."
+			)
+		end
 	end
+)
 
-	local f = package.searchpath(modname, package.path)
-	if not f or f:find(luakit.install_paths.install_dir .. "/", 0, true) ~= 1 then
-		return
-	end
-	local lf = luakit.config_dir .. "/" .. modname:gsub("%.", "/") .. ".lua"
-	if f == lf then
-		msg.warn("Loading local version of '" .. modname .. "' module: " .. lf)
-	elseif lfs.attributes(lf) then
-		msg.warn(
-			"Found local version "
-				.. lf
-				.. " for core module '"
-				.. modname
-				.. "', but it won't be used, unless you update 'package.path' accordingly."
-		)
-	end
-end)
+require "unique_instance"
 
-luakit.process_limit = 4 --  Max web processes. 0 = 'no limit'. No effect since WebKit 2.26
+-- Set the number of web processes to use. A value of 0 means 'no limit'. This
+-- has no effect since WebKit 2.26
+luakit.process_limit = 4
+-- Set the cookie storage location
+soup.cookies_storage = luakit.data_dir .. "/cookies.db"
 
-soup.cookies_storage = luakit.data_dir .. "/cookies.db" --  Cookie storage location
+-- Load library of useful functions for luakit
+local lousy = require "lousy"
 
-lousy = require("lousy") --  Library.Of.Useful.Stuff.You can use in luakit
-widgets = require("lousy.widget")
--- ( "$XDG_CONFIG_HOME/luakit/theme.lua"  or  "/etc/xdg/luakit/theme.lua" )
--- ( "$XDG_CONFIG_HOME/luakit/window.lua"  or  "/etc/xdg/luakit/window.lua" )
--- ( "$XDG_CONFIG_HOME/luakit/webview.lua"  or  "/etc/xdg/luakit/webview.lua" )
-
-lousy.theme.init(lousy.util.find_config("theme.lua")) --  Load user or default theme
+-- Load users theme
+-- ("$XDG_CONFIG_HOME/luakit/theme.lua" or "/etc/xdg/luakit/theme.lua")
+lousy.theme.init(lousy.util.find_config("theme.lua"))
 assert(lousy.theme.get(), "failed to load theme")
 
-local window = require("window") --  Load user or default window class
-local webview = require("webview") --  Load user or default webview class
+-- Load users window class
+-- ("$XDG_CONFIG_HOME/luakit/window.lua" or "/etc/xdg/luakit/window.lua")
+local window = require "window"
 
-local modes = require("modes") --  emit signals: 'normal', 'init', 'insert', 'command'...
-local binds = require("binds") --  keybindings
-local settings = require("settings") --  ability to store & change variables within modules
+-- Load users webview class
+-- ("$XDG_CONFIG_HOME/luakit/webview.lua" or "/etc/xdg/luakit/webview.lua")
+local webview = require "webview"
 
---~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
---  Optional modules:
---~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-- Add luakit;//log/ chrome page
+local log_chrome = require "log_chrome"
 
-local bookmarks = require("bookmarks") --  Add bookmarks support
-local quickmarks = require("quickmarks") --  Quickmarks support & manager
+window.add_signal(
+	"build",
+	function(w)
+		local widgets, l, r = require "lousy.widget", w.sbar.l, w.sbar.r
 
-local downloads = require("downloads") --  Add download capability
-local viewpdf = require("viewpdf") --  Automatic PDF downloading & opening
-local image_css = require("image_css") --  Add a stylesheet when showing images
+		-- Left-aligned status bar widgets
+		l.layout:pack(widgets.uri())
+		l.layout:pack(widgets.hist())
+		l.layout:pack(widgets.progress())
 
-local adblock = require("adblock") --  Adblock filter support
-local userscripts = require("userscripts") --  Greasemonkey-like JavaScript / Userscript support '.user.js'
-local styles = require("styles") --  loader for user's local CSS styles
-local noscript = require("noscript") --  Toggle JS &/or plugins on a per-domain basis.
---  `,ts` to toggle scripts,  `,tp` to toggle plugins,  `,tr` to reset.
---  IF you use this module, careful using any site-specific
---  `enable_scripts` or `enable_plugins` settings, as these may conflict.
+		-- Right-aligned status bar widgets
+		r.layout:pack(widgets.buf())
+		r.layout:pack(log_chrome.widget())
+		r.layout:pack(widgets.ssl())
+		r.layout:pack(widgets.tabi())
+		r.layout:pack(widgets.scroll())
+	end
+)
 
-local view_source = require("view_source") --  Add :view-source command
-local webinspector = require("webinspector")
-local error_page = require("error_page")
+-- Load luakit binds and modes
+local modes = require "modes"
+local binds = require "binds"
 
-local search = require("search") --  Search mode  & binds
-local formfiller = require("formfiller") --  Add uzbl-like form filling
---local open_editor  = require( 'open_editor' --  Press Control-E while in insert mode
---  to edit contents of currently focused <textarea> or <input> element, using `xdg-open`
+local settings = require "settings"
+require "settings_chrome"
 
-local session = require("session") --  Session saving /loading support
-local history = require("history") --  Save web history
-local cmdhist = require("cmdhist") --  Command history  : then key Up
-local completion = require("completion") --  Command completion w/ Tab key
+----------------------------------
+-- Optional user script loading --
+----------------------------------
 
-local taborder = require("taborder") --  Add ordering of new tabs
-local tab_favicons = require("tab_favicons") --  Insert favicons into tabs
-local tabhistory = require("tabhistory") --  Command to list tab history items
-local tablist = require("lousy.widget.tablist")
-local vertical_tabs = require("vertical_tabs")
-local tabmenu = require("tabmenu")
-local undoclose = require("undoclose") --  List closed tabs  & bind to open closed tabs
+-- Add adblock
+local adblock = require "adblock"
+local adblock_chrome = require "adblock_chrome"
 
---local follow  = require( 'follow' )  --  Vimperator-like link hinting  & following
---local follow_selected  = require( 'follow_selected' )
---local hide_scrollbars  = require( 'hide_scrollbars' )  --  Hide scrollbars on all pages
+local webinspector = require "webinspector"
 
-local go_input = require("go_input")
-local go_next_prev = require("go_next_prev")
-local go_up = require("go_up")
+-- Add uzbl-like form filling
+local formfiller = require "formfiller"
 
---  Filter Referer HTTP header if page domain does not match Referer domain
-require_web_module("referer_control_wm") --  cannot be local?
---local proxy  = require( 'proxy' )  --  Socks proxy support & manager
+-- Add proxy support & manager
+local proxy = require "proxy"
 
-require("userconf")
+-- Add cache control (clear-data, clear-favicon-db)
+local clear_data = require "clear_data"
 
---~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
---  End various required & optional module imports.
---  Generate pages to facilitate human-interaction:
---~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-- Add quickmarks support & manager
+local quickmarks = require "quickmarks"
 
-local log_chrome = require("log_chrome") --  Add  luakit://log/  page
-local help_chrome = require("help_chrome") --  Add  luakit://help/  page
-local binds_chrome = require("binds_chrome") --  Add  luakit://binds/  page
-local newtab_chrome = require("newtab_chrome") --  Add  luakit://newtab/  page
-local adblock_chrome = require("adblock_chrome") --  Add  luakit://adblock/  page
-local history_chrome = require("history_chrome") --  Add  luakit://history/  page
-local settings_chrome = require("settings_chrome") --  Add  luakit://settings/  page
-local bookmarks_chrome = require("bookmarks_chrome") --  Add  luakit://bookmarks/  page
-local downloads_chrome = require("downloads_chrome") --  Add  luakit://downloads/  page
+-- Add session saving/loading support
+local session = require "session"
 
---~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
---  Build statusbar from aforementioned modules:
---~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-- Add command to list closed tabs & bind to open closed tabs
+local undoclose = require "undoclose"
 
-window.add_signal("build", function(w)
-	local widgets = require("lousy.widget")
+-- Add command to list tab history items
+local tabhistory = require "tabhistory"
 
-	local la = w.sbar.l --  Left-aligned status bar widgets:
-	la.layout:pack(widgets.uri()) --  https://this.that/and/the/other/
-	--  la .layout :pack( widgets .hist() )  --  [-] fore  [+] back
-	la.layout:pack(widgets.progress()) --  80%
+-- Add command to list open tabs
+local tabmenu = require "tabmenu"
 
-	local ra = w.sbar.r --  Right-aligned status bar widgets:
-	ra.layout:pack(widgets.buf()) --  S
-	ra.layout:pack(log_chrome.widget()) --  E: 32
-	ra.layout:pack(widgets.ssl()) --  (trust)
-	ra.layout:pack(widgets.tabi()) --  tab index [1/5]  [current/total]
-	--  ra .layout :pack( widgets .scroll() )  --  scroll down page %
-	ra.layout:pack(widgets.zoom()) --  shows zoom level of current page
-end)
+-- Allow for tabs to be grouped together.
+-- One tab group is displayed in a window at any given time.
+--local tabgroups = require "tabgroups"
 
---~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
---  Restore last saved session:
---~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-- Add gopher protocol support (this module needs luasocket)
+-- local gopher = require "gopher"
 
-local w = not luakit.nounique and (session and session.restore())
+-- Add greasemonkey-like javascript userscript support
+local userscripts = require "userscripts"
 
+-- Add bookmarks support
+local bookmarks = require "bookmarks"
+local bookmarks_chrome = require "bookmarks_chrome"
+
+-- Add download support
+local downloads = require "downloads"
+local downloads_chrome = require "downloads_chrome"
+
+-- Add automatic PDF downloading and opening
+local viewpdf = require "viewpdf"
+
+-- Example using xdg-open for opening downloads / showing download folders
+downloads.add_signal(
+	"open-file",
+	function(file)
+		luakit.spawn(string.format("xdg-open %q", file))
+		return true
+	end
+)
+
+-- Add vimperator-like link hinting & following
+local follow = require "follow"
+
+-- Add command history
+local cmdhist = require "cmdhist"
+
+-- Add search mode & binds
+local search = require "search"
+
+-- Add ordering of new tabs
+local taborder = require "taborder"
+
+-- Save web history
+local history = require "history"
+local history_chrome = require "history_chrome"
+
+local help_chrome = require "help_chrome"
+local binds_chrome = require "binds_chrome"
+
+-- Add command completion
+local completion = require "completion"
+
+-- Press Control-E while in insert mode to edit the contents of the currently
+-- focused <textarea> or <input> element, using `xdg-open`
+local open_editor = require "open_editor"
+
+-- NoScript plugin, toggle scripts and or plugins on a per-domain basis.
+-- `,ts` to toggle scripts, `,tp` to toggle plugins, `,tr` to reset.
+-- If you use this module, don't use any site-specific `enable_scripts` or
+-- `enable_plugins` settings, as these will conflict.
+--require "noscript"
+
+local follow_selected = require "follow_selected"
+local go_input = require "go_input"
+local go_next_prev = require "go_next_prev"
+local go_up = require "go_up"
+
+-- Filter Referer HTTP header if page domain does not match Referer domain
+require_web_module("referer_control_wm")
+
+local error_page = require "error_page"
+
+-- Add userstyles loader
+local styles = require "styles"
+
+-- Hide scrollbars on all pages
+local hide_scrollbars = require "hide_scrollbars"
+
+-- Add a stylesheet when showing images
+local image_css = require "image_css"
+
+-- Add a new tab page
+local newtab_chrome = require "newtab_chrome"
+
+-- Add tab favicons mod
+local tab_favicons = require "tab_favicons"
+
+-- Add :view-source command
+local view_source = require "view_source"
+
+-- Put "userconf.lua" in your Luakit config dir with your own tweaks; if this is
+-- permanent, no need to copy/paste/modify the default rc.lua whenever you
+-- update Luakit.
+if
+	pcall(
+		function()
+			lousy.util.find_config("userconf.lua")
+		end
+	)
+ then
+	require "userconf"
+end
+
+-----------------------------
+-- End user script loading --
+-----------------------------
+
+-- Restore last saved session
+local w = (not luakit.nounique) and (session and session.restore())
 if w then
 	for i, uri in ipairs(uris) do
-		w:new_tab(uri, { switch = i == 1 })
+		w:new_tab(uri, {switch = i == 1})
 	end
 else
-	window.new(uris) --  Or open new window
+	-- Or open new window
+	window.new(uris)
 end
 
 -- vim: et:sw=4:ts=8:sts=4:tw=80

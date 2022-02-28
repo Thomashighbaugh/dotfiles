@@ -1,15 +1,4 @@
 #!/bin/bash
-#  _____         __    ___ __ __
-# |     \.-----.|  |_.'  _|__|  |.-----.-----.
-# |  --  |  _  ||   _|   _|  |  ||  -__|__ --|
-# |_____/|_____||____|__| |__|__||_____|_____|
-# ---------------------------------------------------------------------------- #
-#  _______               __          __ __         __   __
-# |_     _|.-----.-----.|  |_.---.-.|  |  |.---.-.|  |_|__|.-----.-----.
-#  _|   |_ |     |__ --||   _|  _  ||  |  ||  _  ||   _|  ||  _  |     |
-# |_______||__|__|_____||____|___._||__|__||___._||____|__||_____|__|__|
-# ---------------------------------------------------------------------------- #
-#
 # Author: Thomas Leon Highbaugh (thighbaugh@zoho.com)
 # Description: Menu driven tool to provision and configure a fresh installation of Void Linux
 # Usage: ./install.sh from within the setup subdirectory or ./setup/install.sh from within the dotfiles directory
@@ -29,25 +18,25 @@ sn="$(tput sgr0)"
 # Statement providing color to the stdout
 print() {
     case "$1" in
-        t | title)
-            shift
-            printf "%s\n" "${sb}${cg}[###]$*${sn}"
+    t | title)
+        shift
+        printf "%s\n" "${sb}${cg}[###]$*${sn}" | tee -a /tmp/install-log.txt
         ;;
-        s | step)
-            shift
-            printf "%s\n" "${sb}${cm}[===]$*${sn}"
+    s | step)
+        shift
+        printf "%s\n" "${sb}${cm}[===]$*${sn}" | tee -a /tmp/install-log.txt
         ;;
-        e | error)
-            shift
-            printf "%s\n" "${sb}${cr}[!!!]$*${sn}"
-            exit 1
+    e | error)
+        shift
+        printf "%s\n" "${sb}${cr}[!!!]$*${sn}" | tee -a /tmp/install-log.txt
+        exit 1
         ;;
-        w | warning)
-            shift
-            printf "%s\n" "${sb}${cy}[:::]$*${sn}"
+    w | warning)
+        shift
+        printf "%s\n" "${sb}${cy}[:::]$*${sn}" | tee -a /tmp/install-log.txt
         ;;
-        *)
-            printf '%s\n' "$*"
+    *)
+        printf '%s\n' "$*" | tee -a /tmp/install-log.txt
         ;;
     esac
 }
@@ -56,7 +45,7 @@ print() {
 # ---------------------------------------------------------------------------- #
 XIN() {
     while (($# > 0)); do
-        sudo xbps-install -Syv "$1"
+        sudo xbps-install -Syv "$1" | tee -a /tmp/install-log.txt
         shift
     done
     return
@@ -65,10 +54,10 @@ XIN() {
 #                             Symlinking Function                              #
 # ---------------------------------------------------------------------------- #
 LINK() {
-    ln -svf "$1" "$2"
+    ln -svf "$1" "$2" | tee -a /tmp/install-log.txt
 }
 SULINK() {
-    sudo ln -svf "$1" "$2"
+    sudo ln -svf "$1" "$2" | tee -a /tmp/install-log.txt
 }
 # ---------------------------------------------------------------------------- #
 #                               Install Packages                               #
@@ -86,7 +75,7 @@ InstallPackages() {
     print s "Updating System and Adding Repositories"
     print s "[===================================================]"
     sleep 3s
-    sudo xbps-install -Syu
+    sudo xbps-install -Syu | tee -a /tmp/install-log.txt
     XIN void-repo-nonfree void-repo-multilib void-repo-multilib-nonfree void-repo-debug xtools
 
     # ---------------------------------------------------------------------- #
@@ -122,17 +111,22 @@ InstallPackages() {
     print s "Development"
     print s "[===================================================]"
     sleep 3s
-    XIN python3-devel python-devel ruby-devel lua-devel lgi lua51-lgi lua52-lgi lua54-lgi go cmake zsh zsh-autosuggestions coreutils
-    sudo pip3 install hererocks
+    XIN python3-devel python-devel ruby-devel rbenv lua-devel lgi lua51-lgi lua52-lgi lua54-lgi go cmake zsh zsh-autosuggestions coreutils
+    sudo pip3 install hererocks | tee -a /tmp/install-log.txt
     XIN vscode neovim tree-sitter curl ninja make wget
+    rbenv install 3.0.0 | tee -a /tmp/install-log.txt
 
     # ---------------------------------------------------------------------- #
     print s "[===================================================]"
     print s "Window Manager / Desktop Environment"
     print s "[===================================================]"
     sleep 3s
-    XIN awesome rofi light kitty rofi-devel libnotify libnotify-devel libXScrnSaver-devel ruby-asciidoctor xcb-util-xrm-devel startup-notification-devel xcb-util-keysyms xcb-util-keysyms-devel xcb-util-cursor-devel xcb-util-cursor xcb-util-wm-devel startup-tools libxdg-basedir-devel luarocks gettext gettext-devel zathura zathura-cb zathura-devel zathura-pdf-mupdf zathura-ps mupdf gom gom-devel libpeas libpeas-devel
-    sudo luarocks install ldoc luacheck luaposix luasec
+    XIN awesome rofi light kitty rofi-devel libnotify libnotify-devel libXScrnSaver-devel ruby-asciidoctor xcb-util-xrm-devel startup-notification-devel xcb-util-keysyms xcb-util-keysyms-devel xcb-util-cursor-devel xcb-util-cursor xcb-util-wm-devel startup-tools libxdg-basedir-devel luarocks gettext gettext-devel zathura zathura-cb zathura-devel zathura-pdf-mupdf zathura-ps mupdf gom gom-devel libpeas libpeas-devel lua53-cjson lua53-lgi lua53 lua-lpeg
+    sudo luarocks install ldoc | tee -a /tmp/install-log.txt
+    sudo luarocks install luacheck | tee -a /tmp/install-log.txt
+    sudo luarocks install luaposix | tee -a /tmp/install-log.txt
+    sudo luarocks install luasec | tee -a /tmp/install-log.txt
+    sudo luarocks install luafilesystem | tee -a /tmp/install-log.txt
 
     # ---------------------------------------------------------------------- #
     print s "[===================================================]"
@@ -158,7 +152,6 @@ InstallPackages() {
     sleep 3s
     XIN alsa-utils pulseaudio alsa-plugins-pulseaudio pamixer playerctl ncpamixer
     XIN alsa-firmware alsa-lib alsa-plugins alsa-plugins-ffmpeg pavucontrol
-    #spotify
     XIN spotify-tui spotifyd
 
     # ---------------------------------------------------------------------- #
@@ -223,7 +216,7 @@ InstallPackages() {
     print s "[===================================================]"
     sleep 3s
     XIN flatpak
-    sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+    sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo | tee -a /tmp/install-log.txt
 
     # ---------------------------------------------------------------------- #
     print s "[===================================================]"
@@ -249,15 +242,15 @@ InstallPackages() {
     SULINK /etc/sv/bluetoothd /var/service/
     SULINK /etc/sv/ufw /var/service/
     #SULINK /etc/sv/dnscrypt-proxy /var/service/
-    sudo rm -rvf /var/service/acpid
-    sudo rm -rvf /var/service/dhcpcd
+    sudo rm -rvf /var/service/acpid | tee -a /tmp/install-log.txt
+    sudo rm -rvf /var/service/dhcpcd | tee -a /tmp/install-log.txt
     # ---------------------------------------------------------------------- #
     print s "[===================================================]"
     print s "Disable unecassary tty services"
     print s "[===================================================]"
     sleep 3s
-    sudo rm -f /var/service/agetty-tty{3,4,5,6}
-    sudo touch /var/service/agetty-tty{3,4,5,6}/down
+    sudo rm -f /var/service/agetty-tty{3,4,5,6} | tee -a /tmp/install-log.txt
+    sudo touch /var/service/agetty-tty{3,4,5,6}/down | tee -a /tmp/install-log.txt
     # print s "auto login"
     #sudo sed -i "s/--no/--no\ --skip-login\ --login-options=$USER/g" /etc/sv/agetty-tty1/conf
     # ---------------------------------------------------------------------- #
@@ -265,8 +258,8 @@ InstallPackages() {
     print s "Bluetooth Configuration"
     print s "[===================================================]"
     sleep 3s
-    sudo sed -i 's/\#AutoEnable=false/AutoEnable=true/g' /etc/bluetooth/main.conf
-    sudo sed -i 's/\#DiscoverableTimeout = 0/DiscoverableTimeout = 180/g' /etc/bluetooth/
+    sudo sed -i 's/\#AutoEnable=false/AutoEnable=true/g' /etc/bluetooth/main.conf | tee -a /tmp/install-log.txt
+    sudo sed -i 's/\#DiscoverableTimeout = 0/DiscoverableTimeout = 180/g' /etc/bluetooth/ | tee -a /tmp/install-log.txt
     # ---------------------------------------------------------------------- #
     print s "[===================================================]"
     print s "Network Setup"
@@ -283,7 +276,7 @@ InstallPackages() {
     print s "System Clock"
     print s "[===================================================]"
     sleep 3s
-    sudo hwclock --systohc
+    sudo hwclock --systohc | tee -a /tmp/install-log.txt
 
     # ---------------------------------------------------------------------- #
     print s "[===================================================]"
@@ -291,7 +284,7 @@ InstallPackages() {
     print s "[===================================================]"
     sleep 3s
     sudo mkdir /etc/sysctl.d/
-    print s 'vm.swappiness=90' | sudo tee /etc/sysctl.d/99-swappiness.conf
+    print s 'vm.swappiness=90' | sudo tee -a /etc/sysctl.d/99-swappiness.conf
 
     # ---------------------------------------------------------------------- #
     print s "[===================================================]"
@@ -323,17 +316,17 @@ InstallPackages() {
     print s "[===================================================]"
     sleep 3s
     sleep 3s
-    sudo usermod -a -G input "$USER"
-    sudo usermod -a -G audio "$USER"
-    sudo usermod -a -G video "$USER"
-    sudo usermod -a -G rfkill "$USER"
-    sudo usermod -a -G power "$USER"
-    sudo usermod -a -G bluetooth "$USER"
-    sudo usermod -a -G pulse-access "$USER"
-    sudo usermod -aG libvirt "$USER"
-    sudo usermod -aG kvm "$USER"
-    sudo usermod -aG socklog "$USER"
-    sudo usermod -aG docker "$USER"
+    sudo usermod -a -G input "$USER" | tee -a /tmp/install-log.txt
+    sudo usermod -a -G audio "$USER" | tee -a /tmp/install-log.txt
+    sudo usermod -a -G video "$USER" | tee -a /tmp/install-log.txt
+    sudo usermod -a -G rfkill "$USER" | tee -a /tmp/install-log.txt
+    sudo usermod -a -G power "$USER" | tee -a /tmp/install-log.txt
+    sudo usermod -a -G bluetooth "$USER" | tee -a /tmp/install-log.txt
+    sudo usermod -a -G pulse-access "$USER" | tee -a /tmp/install-log.txt
+    sudo usermod -aG libvirt "$USER" | tee -a /tmp/install-log.txt
+    sudo usermod -aG kvm "$USER" | tee -a /tmp/install-log.txt
+    sudo usermod -aG socklog "$USER" | tee -a /tmp/install-log.txt
+    sudo usermod -aG docker "$USER" | tee -a /tmp/install-log.txt
 
     # ---------------------------------------------------------------------- #
     print s "[===================================================]"
@@ -352,15 +345,6 @@ ClonePackages() {
     print t "Git Cloning of Out-of-Repo Packages"
     print t "[===================================================]"
     sleep 3s
-    # ---------------------------------------------------------------------- #
-    print s "[===================================================]"
-    print s "Go Autolock"
-    print s "[===================================================]"
-    sleep 3s
-    git clone https://gitlab.com/mrvik/goautolock "$HOME"/goautolock
-    cd "$HOME"/goautolock && sudo make && sudo make install
-    cd "$HOME" && rm -rvf goautolock
-
 
     # ---------------------------------------------------------------------- #
     print s "[===================================================]"
@@ -389,16 +373,30 @@ ClonePackages() {
     sleep 3s
     sudo wget https://github.com/erebe/greenclip/releases/download/v4.2/greenclip
     sudo mv -vf greenclip /usr/local/bin
-        # ---------------------------------------------------------------------- #
+    # ---------------------------------------------------------------------- #
     print s "[===================================================]"
     print s "NVM"
     print s "[===================================================]"
     sleep 3s
     mkdir -p "$HOME"/.nvm
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-    /bin/bash
-    nvm install node
+    #   /bin/bash -c  "echo 'export NVM_DIR="$HOME/.nvm"' >> ~/.bashrc  \
+    #&& echo '[ -s "$NVM_DIR/nvm.sh" ]' >> ~/.bashrc  \
+    # && echo '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"'  >> ~/.bashrc \
+    #&& nvm install node" &
+    # ---------------------------------------------------------------------- #
+    print s "[===================================================]"
+    print s "Tym"
+    print s "[===================================================]"
+    sleep 3s
+    XIN gtk2-engines gtk3-nocsd gtkd gtkd-devel gtkdatabox3 gtkdatabox3-devel gtkglext gtkglext-devel cairomm-devel pangomm-devel gtkmm-devel gtkmm2 gtkmm2-devel gtkmm4 gtkmm4-devel libvted-3.9.0_6 libvted-devel-3.9.0_6 evtest evtest-qt libvterm-devel vte3-devel wget tmux tmux-xpanes tmuxc tmux-mem-cpu-load python3-tmuxp
+    wget https://github.com/endaaman/tym/releases/download/3.2.0/tym-3.2.0.tar.gz
+    tar -xf tym-3.2.0.tar.gz
+    cd tym-3.2.0.tar.gz && ./configure && sudo make install && cd .. && rm tym*
+    LINK "$HOME"/dotfiles/home/tym/ "$HOME"/.config
+
 }
+
 # ---------------------------------------------------------------------------- #
 #                           Confirmation Repositories                          #
 # ---------------------------------------------------------------------------- #
@@ -435,7 +433,7 @@ function ConfigurationRepositories() {
     print s "[===================================================]"
     sleep 3s
     git clone https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
-    git clone https://github.com/Thomashighbaugh/nvim "$HOME"/.config/nvim
+    git clone https://github.com/Thomashighbaugh/nvim-forge "$HOME"/.config/nvim
 
     # ---------------------------------------------------------------------- #
     print s "[===================================================]"
@@ -518,6 +516,7 @@ function Dotfiles() {
     print s "X11"
     print s "[===================================================]"
     sleep 3s
+    XIN xorg-apps xorg xorg-fonts xorg-cf-files xorg-input-files xorg-server xorg-server-common xorg-server-xephyr xorg-server-xdmx xorg-server-devel xorg-video drivers xorgproto xorg-utils-macros xautolock
     mkdir -p "$HOME"/.Xresources.d
     LINK "$HOME"/dotfiles/home/xorg/Xresources "$HOME"/.Xresources
     LINK "$HOME"/dotfiles/home/xorg/color "$HOME"/.Xresources.d/color
@@ -636,29 +635,29 @@ function mainmenu() {
             "Other Repos" "- Configurations for Programs Saved in Their Own Repositories" \
             "Dotfiles" "- Symlink Configuration Files From This Repository to the System's Expected Locations" \
             "Reboot" "- When Finished, Restart Your System For Best Results." \
-        "Quit" "- Exit to desktop" 3>&1 1>&2 2>&3)
+            "Quit" "- Exit to desktop" 3>&1 1>&2 2>&3)
 
         case "$choice" in
-            "Install Packages")
-                InstallPackages
+        "Install Packages")
+            InstallPackages
             ;;
-            "Clone Packages")
-                ClonePackages
+        "Clone Packages")
+            ClonePackages
             ;;
-            "Other Repos")
-                ConfigurationRepositories
+        "Other Repos")
+            ConfigurationRepositories
             ;;
-            "Dotfiles")
-                Dotfiles
+        "Dotfiles")
+            Dotfiles
             ;;
-            "Reboot")
-                sudo reboot
+        "Reboot")
+            sudo reboot
             ;;
-            "Quit")
-                exit
+        "Quit")
+            exit
             ;;
-            *)
-                echo "Something else.  Where Am I?"
+        *)
+            echo "Something else.  Where Am I?"
             ;;
         esac
     done
@@ -671,13 +670,13 @@ sudo xbps-install -Syuv dialog
 #                              Confirmation Dialog                             #
 # ---------------------------------------------------------------------------- #
 dialog --title "Proceed?" \
---backtitle "Post Installation Provisioning - the Electric Tantra Linux" \
---yesno "Are You Ready to Begin?" 7 60
+    --backtitle "Post Installation Provisioning - the Electric Tantra Linux" \
+    --yesno "Are You Ready to Begin?" 7 60
 response=$?
 case $response in
-    0) mainmenu ;;
-    1) exit ;;
-    255) exit ;;
+0) mainmenu ;;
+1) exit ;;
+255) exit ;;
 esac
 
 # mainmenu

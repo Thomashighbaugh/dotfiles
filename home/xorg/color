@@ -48,3 +48,7 @@ XTerm.VT100.background:   #1b1d24
 *.color20:      #727f96
 *.color21:      #383A47
 *.color22:      #2f303d
+*.color23:      #23232F
+*.color24:      #7C3AED
+*.color25:      #2563EB
+*.color26:      #10B981

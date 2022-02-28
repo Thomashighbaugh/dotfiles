@@ -25,6 +25,6 @@ source "$HOME"/dotfiles/home/shell/aliases
 # Because this comes up more often than is natural but will not clear any other way thanks to ccache
 export CC="gcc"
 export NO_AT_BRIDGE=1
-. "$HOME/.cargo/env"
 
 export PATH="/home/tlh/.local/share/solana/install/active_release/bin:$PATH"
+
