@@ -454,10 +454,13 @@ function ConfigurationRepositories() {
     sudo git clone https://github.com/Thomashighbaugh/chhinamasta-icon-theme /usr/share/icons/chhinamasta
     git clone https://github.com/Thomashighbaugh/Dhumavati-Theme ~/.local/share/themes/Dhumavati-Theme
     wget https://github.com/the-Electric-Tantra-Linux/Dhumavati-Theme/releases/download/release/Dhumavati-White-Dark_.tar.xz
-    tar -xf Dhumavati-White-Dark.tar.xz
+    tar -xf Dhumavati-White-Dark_.tar.xz
     sudo cp -rvf Dhumavati-White-Dark/* /usr/share/themes
     LINK $HOME/dotfiles/home/gtk/gtk-3.0/colors.css $HOME/.config/gtk-3.0/colors.css
     LINK $HOME/dotfiles/home/gtk/gtk-3.0/gtk.css $HOME/.config/gtk-3.0/gtk.css
+    mkdir -p $HOME/.icons/default
+    LINK $HOME/dotfiles/home/icons/index.theme $HOME/.icons/default/
+    LINK /usr/share/icons/chhinamasta $HOME/.icons/default/cursors
 
     # ---------------------------------------------------------------------- #
     print s "[===================================================]"

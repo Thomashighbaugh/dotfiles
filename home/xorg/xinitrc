@@ -12,7 +12,7 @@ LC_TIME=en_US.UTF-8
 PAPERSIZE=legal
 LANGUAGE=en_US
 LANG=en_US.UTF-8
-
+xsetroot -cursor_name chinnamasta &
 # If you use a display manager, xprofile is run, thus the commands of
 # interest typical to this file are located there and sourced below!
 
