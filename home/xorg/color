@@ -2,53 +2,56 @@
 ! File: colors
 ! Project: X11 Color Settings
 ! Scheme: Vice (Base16)
-
+! Note: colors beyond 15 might not be loaded (e.g., xterm, urxvt)
 ! special
 XTerm.VT100.foreground:   #f4f4f7
 XTerm.VT100.background:   #1b1d24
-*.cursorColor:  #f4f4f7
+*.cursorColor:             #e9efff
 
 ! black
 *.color0:       #1b1d24
 *.color8:       #8b9cbe
+!*.color16:      #282b36
+!*.color24:      #323643
 
 ! red
 *.color1:       #ff00AA
 *.color9:       #ff87d7
+!*.color17:      #FF3d81
+!*.color25:      #e91e63
 
 ! green
 *.color2:       #44ffdd
 *.color10:      #00ffcc
+!*.color18:      #79F3CB
+!*.color26:      #2eedae
 
 ! yellow
 *.color3:       #ffff73
 *.color11:      #ffffaf
+!*.color19:      #ffff35
+!*.color27:      #ffff00
 
 ! blue
 *.color4:       #2FB1D4
 *.color12:      #00caff
+!*.color20:      #008BD2
+!*.color28:      #0badff
 
 ! magenta
 *.color5:       #8265ff
 *.color13:      #AF9DFC
+!*.color21:      #772DFF  
+!*.color29:      #6C31F4
 
 ! cyan
 *.color6:       #87ffff
 *.color14:      #afffff
+!*.color22:      #52F1FF
+!*.color30:      #00eaff
 
 ! white
-*.color7:     #f4f4f7
-*.color15:     #555e70
-
-! Note: colors beyond 15 might not be loaded (e.g., xterm, urxvt),
-*.color16:      #22262d
-*.color17:      #0b0c0f
-*.color18:      #8b9cbe
-*.color19:      #555566
-*.color20:      #727f96
-*.color21:      #383A47
-*.color22:      #2f303d
-*.color23:      #23232F
-*.color24:      #7C3AED
-*.color25:      #2563EB
-*.color26:      #10B981
+*.color7:       #f4f4f7
+*.color15:      #555e70
+!*.color23:      #b2bfd9
+!*.color31:      #727f96

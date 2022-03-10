@@ -456,6 +456,8 @@ function ConfigurationRepositories() {
     wget https://github.com/the-Electric-Tantra-Linux/Dhumavati-Theme/releases/download/release/Dhumavati-White-Dark_.tar.xz
     tar -xf Dhumavati-White-Dark.tar.xz
     sudo cp -rvf Dhumavati-White-Dark/* /usr/share/themes
+    LINK $HOME/dotfiles/home/gtk/gtk-3.0/colors.css $HOME/.config/gtk-3.0/colors.css
+    LINK $HOME/dotfiles/home/gtk/gtk-3.0/gtk.css $HOME/.config/gtk-3.0/gtk.css
 
     # ---------------------------------------------------------------------- #
     print s "[===================================================]"

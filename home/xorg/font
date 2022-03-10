@@ -18,3 +18,5 @@ xterm*termName: xterm-256color
 
 0Xft.autohint: 1
 Xft.antialias: 1
+
+ Xcursor.theme: chhinamasta

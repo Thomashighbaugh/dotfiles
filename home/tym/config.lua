@@ -10,7 +10,7 @@ tym.set_config({
   shell = '/usr/bin/zsh',
   cursor_shape = 'underline',
   autohide = true,
-  color_foreground = '#8b9cbe',
+  color_foreground = '#b2bfd9',
   silent = true,
   scrollback_length=1024,
   padding_vertical=12,

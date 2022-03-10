@@ -1,5 +1,5 @@
-local bg = "#1b1d24"
-local fg = "#e9efff"
+local bg = "#1b1d24aa"
+local fg = "#b2bfd9"
 local accent = "#8b9cbe"
 return {
   color_background = bg,
