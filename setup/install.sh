@@ -272,6 +272,16 @@ InstallPackages() {
     # sudo ufw enable
 
     # ---------------------------------------------------------------------- #
+    # ---------------------------------------------------------------------- #
+    print s "[===================================================]"
+    print s "Bleachbit"
+    print s "[===================================================]"
+    sleep 3s
+    XIN bleachbit
+    git clone https://github.com/mm2048/org.bleachbit.cleaners $HOME/org.bleachbit.cleaners
+    cd $HOME/org.bleachbit.cleaners && sudo cp -rvf * /usr/share/bleachbit/cleaners/ && cd .$HOME && rm -rvf org.bleachbit.cleaners
+
+    # ---------------------------------------------------------------------- #
     print s "[===================================================]"
     print s "System Clock"
     print s "[===================================================]"

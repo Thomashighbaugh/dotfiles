@@ -60,17 +60,21 @@ fi
 
 ## Go ###########################################################################################
 
-if [[ -d "$HOME/go" ]]; then
-    export PATH="$HOME/go:$PATH"
-    export GOPATH=$HOME/go
+#if [[ -d "$HOME/go" ]]; then
+ #   export PATH="$HOME/go:$PATH"
+#    export GOPATH=$HOME/go
+ #   export GO15VENDOREXPERIMENT=1
+#fi
+
+#if [[ -d "$HOME/go/bin" ]]; then
+ #   export PATH="$HOME/go/bin:$PATH"
+#fi
+
+if [[ -d /usr/local/go/bin ]]; then
+    export PATH=$PATH:/usr/local/go/bin
     export GO15VENDOREXPERIMENT=1
-
+    export GOPATH=/usr/local/go
 fi
-
-if [[ -d "$HOME/go/bin" ]]; then
-    export PATH="$HOME/go/bin:$PATH"
-fi
-
 
 ## Rust  ##################################################################################################
 if [[ -d "$HOME/.cargo/bin" ]]; then
@@ -82,3 +86,6 @@ if [[ -d "$HOME/.rbenv/bin" ]]; then
     export PATH="$HOME/.rbenv/bin:$PATH"
 fi
 
+if [[ -d "$HOME/.local/share/flutter/bin" ]]; then
+    export PATH="$HOME/.local/share/flutter/bin:$PATH"
+fi
