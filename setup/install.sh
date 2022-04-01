@@ -279,8 +279,16 @@ InstallPackages() {
     sleep 3s
     XIN bleachbit
     git clone https://github.com/mm2048/org.bleachbit.cleaners $HOME/org.bleachbit.cleaners
-    cd $HOME/org.bleachbit.cleaners && sudo cp -rvf * /usr/share/bleachbit/cleaners/ && cd .$HOME && rm -rvf org.bleachbit.cleaners
+    cd "$HOME"/org.bleachbit.cleaners && sudo cp -rvf * /usr/share/bleachbit/cleaners/ && cd .$HOME && rm -rvf org.bleachbit.cleaners
 
+    # ---------------------------------------------------------------------- #
+    # ---------------------------------------------------------------------- #
+    print s "[===================================================]"
+    print s "Blackbox"
+    print s "[===================================================]"
+    sleep 3s
+    git clone https://github.com/StackExchange/blackbox "$HOME"/blackbox
+    cd "$HOME"/blackbox && sudo make copy-install && cd .. && rm -rvf blackbox
     # ---------------------------------------------------------------------- #
     print s "[===================================================]"
     print s "System Clock"
