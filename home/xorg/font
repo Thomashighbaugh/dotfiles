@@ -3,15 +3,15 @@
 !  Xft Settings
 !----------------
 
-Xcursor.size: 32
+Xcursor.size: 48
 Xcursor.theme: chinnamasta
 
-Xft*antialias:  true
-Xft*hinting:    true
-Xft*rgba:       rgba
-Xft*autohint:   true
-Xft*hintstyle:  hintslight
-Xft*lcdfilter:  lcddefault
+Xft.antialias:  true
+Xft.hinting:    true
+Xft.rgba:       rgba
+Xft.autohint:   true
+Xft.hintstyle:  hintsfull
+Xft.lcdfilter:  lcddefault
 Xft.dpi: 96
 
 xterm*termName: xterm-256color

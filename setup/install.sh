@@ -83,7 +83,7 @@ InstallPackages() {
     print s "Service Packages"
     print s "[===================================================]"
     sleep 3s
-    XIN dbus dbus-elogind elogind polkit docker docker-cli docker keychain polkit-devel
+    XIN dbus dbus-elogind elogind polkit docker docker-cli docker keychain polkit-devel irqbalance
 
     # ---------------------------------------------------------------------- #
     print s "[===================================================]"
@@ -91,6 +91,7 @@ InstallPackages() {
     print s "[===================================================]"
     sleep 3s
     XIN acpid rtkit tlp
+    sudo ln -svf /etc/sv/tlp /var/service
 
     # ---------------------------------------------------------------------- #
     print s "[===================================================]"
@@ -233,6 +234,7 @@ InstallPackages() {
     SULINK /etc/sv/dbus /var/service/
     SULINK /etc/sv/elogind /var/service/
     SULINK /etc/sv/polkitd /var/service/
+    SULINK /etc/sv/irqbalance /var/service
     SULINK /etc/sv/ntpd /var/service/
     SULINK /etc/sv/docker /var/service
     SULINK /etc/sv/rtkit /var/service/
@@ -266,10 +268,13 @@ InstallPackages() {
     print s "[===================================================]"
     sleep 3s
     sudo resolvconf -u
-    # sudo ufw default deny
-    # sudo ufw allow from 192.168.0.0/24
-    # sudo ufw logging off
-    # sudo ufw enable
+     sudo ufw default deny
+     sudo ufw allow from 192.168.0.0/24
+    sudo ufw allow from 192.168.0.1
+    # Adjust to local pihole address if present
+    #    sudo ufw allow from 192.168.0.12
+     sudo ufw logging off
+     sudo ufw enable
 
     # ---------------------------------------------------------------------- #
     # ---------------------------------------------------------------------- #
