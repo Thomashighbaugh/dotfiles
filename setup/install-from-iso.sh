@@ -1,280 +1,358 @@
 #!/bin/bash
 
-read -p "*** The effects of this script are irreversible and could lead to data loss and/or kernel panics if not used properly. Are you sure you want to do this? (y/n) " -n 1 -r
-echo
+###############################################################################################################
+#BEGIN MANDATORY FIELDS
+#These fields must be configured as per your computer hardware and desired install configuration
 
-if [[ ! $REPLY =~ ^[Yy1]$ ]]; then
-    echo "*** Exiting..."
-    exit 1
+# --------------------------------------------------- #
+# Boot Partition Size
+efi_part_size="1024M"
+
+# --------------------------------------------------- #
+# Root Partition Size or Blank for Whole Drive
+root_part_size=""
+
+# --------------------------------------------------- #
+# Swap, I use square of ram + 3gb
+swap_size="9G"
+
+# --------------------------------------------------- #
+# User
+username="tlh"
+# --------------------------------------------------- #
+# Name the System
+hostname="voidthink"
+# --------------------------------------------------- #
+#Desired filesystem to be used for the root and home partitions
+fs_type="ext4"
+# --------------------------------------------------- #
+# C Library
+#"musl" for musl, "" for glibc.
+libc=""
+# --------------------------------------------------- #
+# System Language
+language="en_US.UTF-8"
+
+# --------------------------------------------------- #
+# CPU
+vendor_cpu="amd"
+
+# --------------------------------------------------- #
+# GPU Drivers
+#Enter either "amd", "intel", or "nvidia" (all lowercase)
+vendor_gpu="amd"
+# --------------------------------------------------- #
+# Trim (blank for non-SSD)
+discards="rd.luks.allow-discards"
+
+# --------------------------------------------------- #
+# Desktop (xfce or kde [for now])
+graphical_de="xfce"
+
+void_repo="https://mirror.clarkson.edu/voidlinux/" #List of mirrors can be found here: https://docs.voidlinux.org/xbps/repositories/mirrors/index.html
+
+#END MANDATORY FIELDS
+###############################################################################################################
+#BEGIN APP/SERVICE SELECTION
+#Lists of apps to install, services to enable/disable, and groups that the user should be made a part of, to be performed during the install
+#These can be edited prior to running the script, but you can also easily install (and uninstall) packages, and enable/disable services, once you're up and running.
+
+#If apparmor is included here, the script will also add the apparmor security modules to the GRUB command line parameters
+apps="xorg-minimal xorg-fonts nano elogind dbus apparmor ufw cronie ntp firefox xdg-desktop-portal xdg-user-dirs xdg-utils flatpak alsa-utils ufw rclone RcloneBrowser chrony void-repo-nonfree void-repo-debug"
+
+#elogind and acpid should not both be enabled. Same with dhcpcd and NetworkManager.
+rm_services=("agetty-tty3" "agetty-tty4" "agetty-tty5" "agetty-tty6" "mdadm" "sshd" "acpid" "dhcpcd")
+en_services=("chronyd" "dbus" "elogind" "NetworkManager" "ufw" "cronie" "udevd" "uuidd")
+
+#Being part of the wheel group allows use of sudo so you'll be able to add yourself to more groups in the future without having to login as root
+#Some additional groups you may way to add to the above list (separate with commas, no spaces): floppy,cdrom,optical,audio,video,kvm,xbuilder
+user_groups="wheel,floppy,cdrom,optical,audio,video,kvm,xbuilder"
+
+#END APP/SERVICE SELECTION
+###############################################################################################################
+#BEGIN CPU/DRIVER/DE PACKAGES
+#These should only need to be changed if you want to tweak what gets installed as part of your graphical desktop environment
+#Or you have an old Nvidia or AMD/ATI GPU, and need to use a different driver package
+
+declare apps_intel_cpu="intel-ucode"
+declare apps_amd_cpu="linux-firmware-amd"
+declare apps_amd_gpu="linux-firmware-amd mesa-dri vulkan-loader mesa-vulkan-radeon mesa-vaapi mesa-vdpau xf86-video-amdgpu"
+declare apps_intel_gpu="linux-firmware-intel mesa-dri mesa-vulkan-intel intel-video-accel xf86-video-intel"
+declare apps_nvidia_gpu="nvidia"
+declare apps_kde="kde5 kde5-baseapps kcron pulseaudio ark user-manager plasma-wayland-protocols xdg-desktop-portal-kde plasma-applet-active-window-control" #libreoffice-kde plasma-disks partitionmanager
+#plasma-firewall GUI front end for ufw doesn't seem to work properly as of April/21
+declare apps_xfce="lightdm lightdm-gtk3-greeter xfce4 xfce4-plugins xdg-desktop-portal-gtk xdg-user-dirs-gtk"
+
+#END CPU/DRIVER/DE PACKAGES
+###############################################################################################################
+
+#Check if user has filled out required field by seeing if swap_size (which is left blank by default) has a value entered
+#If not, exit script
+if [[ -z $swap_size ]]; then
+	echo -e "\nPlease fill in required fields and re-run script\n"
+	exit
 fi
 
-echo "*** Performing initial tests..."
+#Add CPU microcode, graphics drivers, and/or desktop environment packages to the list of packages to install
+case $vendor_cpu in
+"amd")
+	apps="$apps $apps_amd_cpu"
+	;;
+"intel")
+	apps="$apps $apps_intel_cpu"
+	;;
+esac
+if [[ -n $graphical_de ]]; then
+	case $vendor_gpu in
+	"amd")
+		apps="$apps $apps_amd_gpu"
+		;;
+	"intel")
+		apps="$apps $apps_intel_gpu"
+		;;
+	"nvidia")
+		apps="$apps $apps_nvidia_gpu"
+		;;
+	esac
+fi
+case $graphical_de in
+"kde")
+	apps="$apps $apps_kde"
+	en_services+=("sddm")
+	;;
+"xfce")
+	apps="$apps $apps_xfce"
+	en_services+=("lightdm")
+	;;
+esac
 
-if [ -f "/root/packages.txt" ]; then
-    echo "*** File /root/packages.txt found."
-else
-    echo "*** File /root/packages.txt is missing."
+#Read passwords for root user, non-root user, and LUKS encryption from user input
+declare luks_pw root_pw user_pw disk_selected
+echo -e "\nEnter password to be used for disk encryption\n"
+read luks_pw
+echo -e "\nEnter password to be used for the root user\n"
+read root_pw
+echo -e "\nEnter password to be used for the user account\n"
+read user_pw
 
-    read -p "*** Create a /root/packages.txt with the package base-system in it? (y/n) " -n 1 -r
-    echo
-
-    if [[ ! $REPLY =~ ^[Yy1]$ ]]; then
-        echo "*** Exiting..."
-        exit 2
-    else
-        echo "base-system" >/root/packages.txt
-        BASE_INSTALL=y
-    fi
+#Prompt user to select disk for installation
+PS3="Select disk for installation: "
+select line in $(fdisk -l | grep -v mapper | grep -o '/.*GiB' | tr -d ' '); do
+	echo "Selected disk: $line"
+	disk_selected=$(echo $line | sed 's/:.*$//')
+	break
+done
+if [[ $disk_selected == *"sd"* ]]; then
+	efi_part=$(echo $disk_selected'1')
+	luks_part=$(echo $disk_selected'2')
+elif [[ $disk_selected == *"nvme"* ]]; then
+	efi_part=$(echo $disk_selected'p1')
+	luks_part=$(echo $disk_selected'p2')
 fi
 
-if ping -c 1 -q google.com >/dev/null; then
-    echo "*** Connected to the network."
-else
-    echo "*** Not connected to the network, initializing connection, then exiting..."
+#Wipe disk
+wipefs -aq $disk_selected
+#Format disk as GPT, create EFI partition with size selected above and a 2nd partition with the remaining disk space
+printf 'label: gpt\n, %s, U, *\n, , L\n' "$efi_part_size" | sfdisk -q "$disk_selected"
+#Create LUKS encrypted partition
+echo $luks_pw | cryptsetup -q luksFormat --type luks1 $luks_part
+#Open encrypted partition
+echo $luks_pw | cryptsetup luksOpen $luks_part $hostname
 
-    echo -n "*** SSID: "
-    read SSID_INPUT
-    echo -n "*** Passphrase: "
-    read PASS_INPUT
+#Create volume group in encrypted partition, and create root, swap and home volumes
+#If the value for root parition size was left blank, don't create a home volume and instead allocat the rest of the disk to root
+vgcreate $hostname /dev/mapper/$hostname
+lvcreate --name swap -L $swap_size $hostname
+if [[ -z $root_part_size ]]; then
+	lvcreate --name root -l 100%FREE $hostname
+elif [[ ! -z $root_part_size ]]; then
+	lvcreate --name root -L $root_part_size $hostname
+	lvcreate --name home -l 100%FREE $hostname
+fi
+#Create swap, root, and home filesystems, with the filesystem for home and root as selected above
+mkfs.$fs_type -qL root /dev/$hostname/root
+if [[ ! -z $root_part_size ]]; then
+	mkfs.$fs_type -qL home /dev/$hostname/home
+fi
+mkswap /dev/$hostname/swap
 
-    wpa_supplicant -B -i wlp4s0 -c <(wpa_passphrase $SSID_INPUT $PASS_INPUT)
-    exit 1
+#Mount newly created filesystems, and create/mount virtual filesystem location under the root directory
+mount /dev/$hostname/root /mnt
+for dir in dev proc sys run; do
+	mkdir -p /mnt/$dir
+	mount --rbind /$dir /mnt/$dir
+	mount --make-rslave /mnt/$dir
+done
+if [[ ! -z $root_part_size ]]; then
+	mkdir -p /mnt/home
+	mount /dev/$hostname/home /mnt/home
 fi
 
-read -p "*** Create a swap partition at /dev/sda2? (y/n) " -n 1 -r
-echo
+#Create/mount EFI system partition filesystem
+mkfs.vfat $efi_part
+mkdir -p /mnt/boot/efi
+mount $efi_part /mnt/boot/efi
 
-if [[ ! $REPLY =~ ^[Yy1]$ ]]; then
-    echo "*** Not creating swap."
-else
-    echo -n "*** Creating a swap at /dev/sda2 of size (for eg: 512M, 2G): "
-    read SWAPSIZE_INPUT
+#Install Void directly from the repo
+echo y | xbps-install -SyR $void_repo/current/$libc -r /mnt base-system cryptsetup grub-x86_64-efi lvm2
+
+#Find the UUID of the encrypted LUKS partition
+luks_uuid=$(blkid -o value -s UUID $luks_part)
+
+#Copy the DNS configuration from the live image to allow internet access from the chroot of the new install
+cp /etc/resolv.conf /mnt/etc
+
+#Change ownership and permissions of root directory
+chroot /mnt chown root:root /
+chroot /mnt chmod 755 /
+
+#Create non-root user and add them to group(s)
+chroot /mnt useradd $username
+chroot /mnt usermod -aG $user_groups $username
+#Use the "HereDoc" to send a sequence of commands into chroot, allowing the root and non-root user passwords in the chroot to be set non-interactively
+cat <<EOF | chroot /mnt
+echo "$root_pw\n$root_pw" | passwd -q root
+echo "$user_pw\n$user_pw" | passwd -q $username
+EOF
+
+#Set hostname and language/locale
+echo $hostname >/mnt/etc/hostname
+echo "LANG=$language" >/mnt/etc/locale.conf
+#libc-locales are only applicable for glibc installations, skip if musl was selected above
+if [[ -z $libc ]]; then
+	echo "en_US.UTF-8 UTF-8" >>/mnt/etc/default/libc-locales
+	xbps-reconfigure -fr /mnt/ glibc-locales
 fi
 
-echo -n "*** Size of EFI System Partition? Can't be lower than 64M due to FAT32 (for eg: 256M, 512M): "
-read ESPSIZE_INPUT
+#Add lines to fstab, which determines which partitions/volumes are mounted at boot
+echo -e "/dev/$hostname/root	/	$fs_type	defaults	0	0" >>/mnt/etc/fstab
+if [[ ! -z $root_part_size ]]; then
+	echo -e "/dev/$hostname/home	/home	$fs_type	defaults	0	0" >>/mnt/etc/fstab
+fi
+echo -e "/dev/$hostname/swap	swap	swap	defaults	0	0" >>/mnt/etc/fstab
+echo -e "$efi_part	/boot/efi	vfat	defaults	0	0" >>/mnt/etc/fstab
 
-echo "*** Creating filesystems..."
+#Modify GRUB config to allow for LUKS encryption. Also enables SSD discards if configured above.
+#If apparmor is being installed, enable the apparmor security module
+kernel_params="rd.lvm.vg=$hostname rd.luks.uuid=$luks_uuid $discards"
+if [[ $apps == *"apparmor"* ]]; then
+	kernel_params="$kernel_params apparmor=1 security=apparmor"
+fi
+echo "GRUB_ENABLE_CRYPTODISK=y" >>/mnt/etc/default/grub
+sed -i "s/GRUB_CMDLINE_LINUX_DEFAULT=\"/GRUB_CMDLINE_LINUX_DEFAULT=\"$kernel_params /" /mnt/etc/default/grub
 
-# This is not an epic way of doing this, but it works.
-# Explanation for each action:
-# wipefs clears all of the signatures on the disk.
-# g\n creates a new GPT table.
-# n\n creates a new partition.
-# \n auto chooses the partition number.
-# \n auto chooses the starting block.
-# +ESPSIZE_INPUT\m chooses the size of the ESP (boot partition).
-# t\n opens the type setting dialog (auto chooses partition 1).
-# 1\n sets type to EFI System.
-# If swap is chosen: n\n makes new partition.
-# If swap is chosen: \n auto chooses the partition number.
-# If swap is chosen: \n auto chooses the starting block.
-# If swap is chosen: +$SWAPSIZE_INPUT\n chooses size of the swap space.
-# If swap is chosen: t\n opens the type setting dialog.
-# If swap is chosen: \n chooses the newest partition.
-# If swap is chosen: 19\n sets type to Linux Swap.
-# n\n makes new partition.
-# \n auto chooses the partition number.
-# \n auto chooses the starting block.
-# \n chooses till the end of the disk.
-# w\n writes the partition table.
+#To avoid having to enter the password twice on boot, a key will be configured to automatically unlock the encrypted volume on boot.
+#Generate keyfile
+dd bs=1 count=64 if=/dev/urandom of=/mnt/boot/volume.key
+#Use the "HereDoc" to send a sequence of commands into chroot, allowing the keyfile to be added to the encrypted volume in the chroot non-interactively
+cat <<EOF | chroot /mnt
+echo $luks_pw | cryptsetup -q luksAddKey $luks_part /boot/volume.key
+EOF
+#Change the permissions to protect generated the keyfile
+chroot /mnt chmod 000 /boot/volume.key
+chroot /mnt chmod -R g-rwx,o-rwx /boot
+#Add keyfile to /etc/crypttab
+echo "$hostname	$luks_part	/boot/volume.key	luks" >>/mnt/etc/crypttab
+#Add keyfile and crypttab to initramfs
+echo -e "install_items+=\" /boot/volume.key /etc/crypttab \"" >/mnt/etc/dracut.conf.d/10-crypt.conf
 
-wipefs /dev/sda* -afq 2>/dev/null
-echo -e $([ -z $SWAPSIZE_INPUT ] && echo "g\n n\n \n \n +$ESPSIZE_INPUT\n t\n 1\n n\n \n \n \n w\n" || echo "g\n n\n \n \n +$ESPSIZE_INPUT\n t\n 1\n n\n \n \n +$SWAPSIZE_INPUT\n t\n \n 19\n n\n \n \n \n w\n") | fdisk /dev/sda >/dev/null
+#Install GRUB bootloader
+chroot /mnt grub-install $disk_selected
 
-echo "*** Formatting filesystems..."
+#Ensure an initramfs is generated
+xbps-reconfigure -far /mnt/
 
-mkfs.vfat -F 32 /dev/sda1 >/dev/null
-
-if [ -z $SWAPSIZE_INPUT ]; then
-    mkfs.ext4 -q /dev/sda2 >/dev/null
-else
-    mkswap /dev/sda2 >/dev/null
-    swapon /dev/sda2
-    mkfs.ext4 -q /dev/sda3 >/dev/null
+#Allow users in the wheel group to use sudo
+sed -i "s/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/" /mnt/etc/sudoers
+#Change the default text editor from VI to nano for visudo and sudoedit, if nano is installed
+if [[ $apps == *"nano"* ]]; then
+	echo "Defaults editor=/usr/bin/nano" >>/mnt/etc/sudoers
 fi
 
-echo "*** Mounting partitions..."
-
-mount $([ -z $SWAPSIZE_INPUT ] && echo "/dev/sda2" || echo "/dev/sda3") /mnt >/dev/null
-mkdir -p /mnt/boot/efi >/dev/null
-mount /dev/sda1 /mnt/boot/efi >/dev/null
-
-echo "*** Setting up XBPS environment..."
-
-REPO=https://alpha.de.repo.voidlinux.org/current
-ARCH=x86_64
-XBPS_ARCH=$ARCH
-
-echo "*** Installing packages, this might take a while (if you see a few errors, thats fine)..."
-
-xbps-install -S -r /mnt -R "$REPO" -y $(cat /root/packages.txt) >/dev/null
-
-echo "*** Setting up chroot environment and script..."
-
-mount --rbind /sys /mnt/sys && mount --make-rslave /mnt/sys
-mount --rbind /dev /mnt/dev && mount --make-rslave /mnt/dev
-mount --rbind /proc /mnt/proc && mount --make-rslave /mnt/proc
-
-cp /etc/resolv.conf /mnt/etc/
-
-echo '#!/bin/bash
-
-echo "*** Performing initial tests..."
-
-if which efibootmgr > /dev/null 2>&1; then
-	echo "*** efibootmgr found."
-else
-	echo "*** efibootmgr is missing, installing it..."
-	xbps-install -S -y efibootmgr > /dev/null
+#Ensure the xbps package manager in the chroot is up to date
+xbps-install -SuyR $void_repo/current/$libc -r /mnt xbps
+#Nvidia graphics drivers and intel microcode are both proprietary, if we need to install either we need to install the nonfree repo
+if [[ $vendor_gpu == "nvidia" ]] || [[ $vendor_cpu == "intel" ]]; then
+	xbps-install -SyR $void_repo/current/$libc -r /mnt/ void-repo-nonfree
 fi
+#Install all previously selected packages. This includes all applications in the "apps" variable, as well as packages for graphics drivers, CPU microcode, and graphical DE based on selected options
+xbps-install -SyR $void_repo/current/$libc -r /mnt $apps
 
-if which blkid > /dev/null 2>&1; then
-	echo "*** blkid found."
-else
-	echo "*** blkid is missing, installing util-linux..."
-	xbps-install -S -y util-linux > /dev/null
-fi' >/mnt/root/temp.sh
-
-if [ ! -z $BASE_INSTALL ]; then
-    echo "BASE_INSTALL=y" >>/mnt/root/temp.sh
-fi
-
-if [ ! -z $SWAPSIZE_INPUT ]; then
-    echo "SWAP_INSTALL=y" >>/mnt/root/temp.sh
-fi
-
-echo echo '"*** Configuring void installation..."
-
-echo -n "*** Hostname: "
-read HOSTNAME_INPUT
-echo -n "*** Username: "
-read USERNAME_INPUT
-
-echo $HOSTNAME_INPUT > /etc/hostname
-
-useradd -m $USERNAME_INPUT
-
-if [ -z $BASE_INSTALL ]; then
-	read -p "*** Are you going to be using doas instead of sudo? (y/n) " -n 1 -r
-	echo
-
-	if [[ ! $REPLY =~ ^[Yy1]$ ]]; then
-		echo "*** Changing sudoers file to allow $USERNAME_INPUT as root..."
-		echo "$USERNAME_INPUT ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-	else
-		echo "*** Changing doas.conf file to allow $USERNAME_INPUT as root..."
-		echo "permit nopass nolog $USERNAME_INPUT" > /etc/doas.conf
+#Disable services as selected above
+for service in ${rm_services[@]}; do
+	if [[ -e /mnt/etc/runit/runsvdir/default/$service ]]; then
+		chroot /mnt rm /etc/runit/runsvdir/default/$service
 	fi
-else
-	echo "*** Changing sudoers file to allow $USERNAME_INPUT as root..."
-	echo "$USERNAME_INPUT ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-fi
-
-set_zone() {
-	echo -n "*** Specify a timezone to link to /etc/localtime from /usr/share/zoneinfo (for eg. Asia/Kolkata, America/New_York) or press q to quit: "
-	read
-
-	if [[ $REPLY =~ ^[qQcC]$ ]]; then
-		return 1
+done
+#Enable services as selected above
+for service in ${en_services[@]}; do
+	if [[ ! -e /mnt/etc/runit/runsvdir/default/$service ]]; then
+		chroot /mnt ln -s /etc/sv/$service /etc/runit/runsvdir/default/
 	fi
+done
 
-	if [ -f "/usr/share/zoneinfo/$REPLY" ]; then
-		ln -sf /usr/share/zoneinfo/$REPLY /etc/localtime
-	else
-		echo "*** Zone file not found, retrying..."
-		set_zone
-	fi
-}
-
-set_zone
-
-read -p "Is this a GNU libc (glibc) installation? (y/n) " -n 1 -r
-echo
-
-if [[ ! $REPLY =~ ^[Yy1]$ ]]; then
-	echo "*** Not configuring glibc locales."
-else
-	echo "*** Configuring glibc locales..."
-
-	echo "en_US.UTF-8" > /etc/default/libc-locales
-	xbps-reconfigure -f glibc-locales > /dev/null
+if [[ $apps == *"apparmor"* ]]; then
+	#Enable apparmor, set to "complain" (alternatively can be "enforce")
+	sed -i 's/^#*APPARMOR=.*$/APPARMOR=complain/i' /mnt/etc/default/apparmor
+	#Enable apparmor profile caching, which speeds up boot
+	sed -i 's/^#*write-cache/write-cache/i' /mnt/etc/apparmor/parser.conf
 fi
 
-echo "*** Setting password for root..."
-passwd
+#Creates typical folders in user's home directory, sets ownership and permissions of the folders as well
+#It appears this is not necessary, as the user folders will automatically be created on first login
+#for dir in Desktop Documents Downloads Videos Pictures Music; do
+#if [[ ! -e /mnt/home/$username/$dir ]]; then
+#chroot /mnt mkdir -p /home/$username/$dir
+#chroot /mnt chown $username:$username /home/$username/$dir
+#chroot /mnt chmod 700 /home/$username/$dir
+#fi
+#done
 
-echo "*** Setting password for $USERNAME_INPUT..."
-passwd $USERNAME_INPUT
+#Includes the .bash_aliases file as part of .bashrc. This is a more modular way of adding aliases (which can also be added directly to .bashrc)
+echo 'if [ -e $HOME/.bash_aliases ]; then
+source $HOME/.bash_aliases
+fi' >>/mnt/home/$username/.bashrc
+#Create .bash_aliases file, sets owner to user
+chroot /mnt touch /home/$username/.bash_aliases
+chroot /mnt chown $username:$username /home/$username/.bash_aliases
+#Some personal aliases I use to shorten package manager commands. Inpsired by the command syntax used for xbps commands by the xtools package (http://git.vuxu.org/xtools)
+echo "alias xi='sudo xbps-install -S'" >>/mnt/home/$username/.bash_aliases
+echo "alias xu='sudo xbps-install -Suy'" >>/mnt/home/$username/.bash_aliases
+echo "alias xs='xbps-query -Rs'" >>/mnt/home/$username/.bash_aliases
+echo "alias xr='sudo xbps-remove -oOR'" >>/mnt/home/$username/.bash_aliases
+echo "alias xq='xbps-query'" >>/mnt/home/$username/.bash_aliases
 
-echo "*** Configuring /etc/fstab in a text editor..."
+#Script updatd to use SDDM for a KDE install rather than emptty, emptty config below disabled
+#If so, set emptty to use the TTY that is one higher than the number that are configured to be enabled in /var/service/
+#By default, this script disables all TTYs except for TTY1, so set emptty to use TTY2.
+num_tty=1
+#if [[ $apps == *"emptty"* ]]; then
+#	sed -i "s/^#*TTY_NUMBER=[0-9]*/TTY_NUMBER=$num_tty/i" /mnt/etc/emptty/conf
+#	#Set default emptty login as the non-root user that was created
+#	sed -i "s/^#*DEFAULT_USER=/DEFAULT_USER=$user_name/i" /mnt/etc/emptty/conf
+#	#Lists available desktop environments/sessions vertically, rather than all in one row
+#	sed -i "s/^#*VERTICAL_SELECTION=.*$/VERTICAL_SELECTION=true/i" /mnt/etc/emptty/conf
+#fi
 
-cp /proc/mounts /etc/fstab
-echo "# Only keep /dev/sda<X> here, as tmpfs (and if chosen, swap) will be added automatically." >> /etc/fstab
+#Enable numlock on startup for TTY range specified.
+#By default this install script will result in two TTYs being used (one for regular login shell, another for emptty)
+echo "INITTY=/dev/tty[1-$num_tty]
+for tty in \$INITTY; do
+	setleds -D +num < \$tty
+done" >>/mnt/etc/rc.conf
 
-#Open in editor to clean up
-if which nvim > /dev/null 2>&1; then
-	nvim /etc/fstab	
-	clear
-elif which vim > /dev/null 2>&1; then
-	vim /etc/fstab	
-	clear
-elif which nano > /dev/null 2>&1; then
-	nano /etc/fstab	
-	clear
-elif which nvi > /dev/null 2>&1; then
-	nvi /etc/fstab	
-	clear
-elif which vi > /dev/null 2>&1; then
-	vi /etc/fstab	
-	clear
-else
-	echo "*** Editor not found! Installation does not have any editor available, terminating script..."
-	exit 1
+#Change the void repository mirror to be used by the package manager
+chroot /mnt mkdir -p /etc/xbps.d
+cp /mnt/usr/share/xbps.d/*-repository-*.conf /mnt/etc/xbps.d/
+sed -i "s|https://alpha.de.repo.voidlinux.org|$void_repo|g" /mnt/etc/xbps.d/*-repository-*.conf
+
+echo -e "\nUnmount newly created Void installation and reboot? (y/n)\n"
+read tmp
+if [[ $tmp == "y" ]]; then
+	umount -R /mnt                 #Unmount root volume
+	vgchange -an                   #Deactivate volume group
+	cryptsetup luksClose $hostname #Close LUKS encrypted partition
+	reboot
 fi
 
-echo "*** Finishing up /etc/fstab automatically..."
-
-echo "tmpfs /tmp tmpfs defaults,nosuid,nodev 0 0" >> /etc/fstab
-
-if [ ! -z $SWAP_INSTALL ]; then
-	echo "UUID=$(blkid -o value -s UUID /dev/sda2) swap swap rw,noatime,discard 0 0" >> /etc/fstab
-fi
-
-echo "*** Reconfiguring the entire system..."
-
-xbps-reconfigure -fa > /dev/null
-
-echo "*** Setting up ESP and boot order..."
-
-cp /boot/vmlinuz-* /boot/efi/
-cp /boot/initr*.img /boot/efi/
-
-#Clear boot order
-efibootmgr -O > /dev/null
-
-if [ ! -z $SWAP_INSTALL ]; then
-	read -p "*** Allow for hibernation on swap space? Keep in mind this requires a swap space equal to the amount of RAM: (y/n) " -n 1 -r HIB_INPUT
-	echo
-fi
-
-#Add new boot order entry
-efibootmgr -c -L "$HOSTNAME_INPUT" -l $(ls /boot/efi/ | grep --color=never vmlinuz) -u "root=PARTUUID=$(blkid -o value -s PARTUUID $([ -z $SWAP_INSTALL ] && echo "/dev/sda2" || echo "/dev/sda3")) $([[ $HIB_INPUT =~ ^[Yy1]$ ]] && echo "resume=$(blkid -o value -s PARTUUID /dev/sda2) ")rw initrd=$(ls /boot/efi/ | grep --color=never initr)" > /dev/null
-
-echo "*** Chroot script done."
-exit 0' >>/mnt/root/temp.sh
-
-echo "*** Chrooting and executing script..."
-
-chmod +x /mnt/root/temp.sh
-chroot /mnt /bin/bash -c "/root/temp.sh"
-
-echo "*** Cleaning up..."
-
-rm /mnt/root/temp.sh
-#Trust me, you don't need these
-rm /mnt/boot/vmlinuz-*
-rm /mnt/boot/initr*.img
-
-echo "*** Done. Restart your system to boot into Void."
-exit 0
+echo -e "\nDone\n"
