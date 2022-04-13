@@ -1,6 +1,7 @@
 #!/bin/bash
+# Work in Progress, Currently Will Boot to System, but lacks any xorg and NetworkManager due to some issue arising that prevents the chroot actions
 
-###############################################################################################################
+# --------------------------------------------------- #
 #BEGIN MANDATORY FIELDS
 #These fields must be configured as per your computer hardware and desired install configuration
 
@@ -13,8 +14,8 @@ efi_part_size="1024M"
 root_part_size=""
 
 # --------------------------------------------------- #
-# Swap, I use square of ram + 3gb
-swap_size="9G"
+# I use zramen, so no swap for me but its commented out just in case
+# swap_size="9G"
 
 # --------------------------------------------------- #
 # User
@@ -52,24 +53,25 @@ graphical_de="xfce"
 void_repo="https://mirror.clarkson.edu/voidlinux/" #List of mirrors can be found here: https://docs.voidlinux.org/xbps/repositories/mirrors/index.html
 
 #END MANDATORY FIELDS
-###############################################################################################################
+# --------------------------------------------------- #
 #BEGIN APP/SERVICE SELECTION
 #Lists of apps to install, services to enable/disable, and groups that the user should be made a part of, to be performed during the install
 #These can be edited prior to running the script, but you can also easily install (and uninstall) packages, and enable/disable services, once you're up and running.
 
 #If apparmor is included here, the script will also add the apparmor security modules to the GRUB command line parameters
-apps="xorg-minimal xorg-fonts nano elogind dbus apparmor ufw cronie ntp firefox xdg-desktop-portal xdg-user-dirs xdg-utils flatpak alsa-utils ufw rclone RcloneBrowser chrony void-repo-nonfree void-repo-debug"
+apps="xorg-minimal xorg-fonts nano elogind dbus apparmor ufw cronie ntp firefox xdg-desktop-portal xdg-user-dirs xdg-utils flatpak alsa-utils ufw rclone RcloneBrowser chrony void-repo-nonfree void-repo-debug tlp "
 
 #elogind and acpid should not both be enabled. Same with dhcpcd and NetworkManager.
 rm_services=("agetty-tty3" "agetty-tty4" "agetty-tty5" "agetty-tty6" "mdadm" "sshd" "acpid" "dhcpcd")
-en_services=("chronyd" "dbus" "elogind" "NetworkManager" "ufw" "cronie" "udevd" "uuidd")
+en_services=("chronyd" "dbus" "elogind" "NetworkManager" "ufw" "cronie" "udevd" "uuidd" "tlp")
 
 #Being part of the wheel group allows use of sudo so you'll be able to add yourself to more groups in the future without having to login as root
 #Some additional groups you may way to add to the above list (separate with commas, no spaces): floppy,cdrom,optical,audio,video,kvm,xbuilder
 user_groups="wheel,floppy,cdrom,optical,audio,video,kvm,xbuilder"
 
 #END APP/SERVICE SELECTION
-###############################################################################################################
+# --------------------------------------------------- #
+# --------------------------------------------------- #
 #BEGIN CPU/DRIVER/DE PACKAGES
 #These should only need to be changed if you want to tweak what gets installed as part of your graphical desktop environment
 #Or you have an old Nvidia or AMD/ATI GPU, and need to use a different driver package
@@ -84,14 +86,8 @@ declare apps_kde="kde5 kde5-baseapps kcron pulseaudio ark user-manager plasma-wa
 declare apps_xfce="lightdm lightdm-gtk3-greeter xfce4 xfce4-plugins xdg-desktop-portal-gtk xdg-user-dirs-gtk"
 
 #END CPU/DRIVER/DE PACKAGES
-###############################################################################################################
-
-#Check if user has filled out required field by seeing if swap_size (which is left blank by default) has a value entered
-#If not, exit script
-if [[ -z $swap_size ]]; then
-	echo -e "\nPlease fill in required fields and re-run script\n"
-	exit
-fi
+# --------------------------------------------------- #
+# --------------------------------------------------- #
 
 #Add CPU microcode, graphics drivers, and/or desktop environment packages to the list of packages to install
 case $vendor_cpu in
@@ -126,6 +122,7 @@ case $graphical_de in
 	;;
 esac
 
+# --------------------------------------------------- #
 #Read passwords for root user, non-root user, and LUKS encryption from user input
 declare luks_pw root_pw user_pw disk_selected
 echo -e "\nEnter password to be used for disk encryption\n"
@@ -135,6 +132,7 @@ read root_pw
 echo -e "\nEnter password to be used for the user account\n"
 read user_pw
 
+# --------------------------------------------------- #
 #Prompt user to select disk for installation
 PS3="Select disk for installation: "
 select line in $(fdisk -l | grep -v mapper | grep -o '/.*GiB' | tr -d ' '); do
@@ -149,20 +147,27 @@ elif [[ $disk_selected == *"nvme"* ]]; then
 	efi_part=$(echo $disk_selected'p1')
 	luks_part=$(echo $disk_selected'p2')
 fi
-
+# --------------------------------------------------- #
 #Wipe disk
 wipefs -aq $disk_selected
+
+# --------------------------------------------------- #
 #Format disk as GPT, create EFI partition with size selected above and a 2nd partition with the remaining disk space
 printf 'label: gpt\n, %s, U, *\n, , L\n' "$efi_part_size" | sfdisk -q "$disk_selected"
+
+# --------------------------------------------------- #
 #Create LUKS encrypted partition
 echo $luks_pw | cryptsetup -q luksFormat --type luks1 $luks_part
+
+# --------------------------------------------------- #
 #Open encrypted partition
 echo $luks_pw | cryptsetup luksOpen $luks_part $hostname
 
+# --------------------------------------------------- #
 #Create volume group in encrypted partition, and create root, swap and home volumes
 #If the value for root parition size was left blank, don't create a home volume and instead allocat the rest of the disk to root
 vgcreate $hostname /dev/mapper/$hostname
-lvcreate --name swap -L $swap_size $hostname
+# lvcreate --name swap -L $swap_size $hostname
 if [[ -z $root_part_size ]]; then
 	lvcreate --name root -l 100%FREE $hostname
 elif [[ ! -z $root_part_size ]]; then
@@ -174,8 +179,9 @@ mkfs.$fs_type -qL root /dev/$hostname/root
 if [[ ! -z $root_part_size ]]; then
 	mkfs.$fs_type -qL home /dev/$hostname/home
 fi
-mkswap /dev/$hostname/swap
+# mkswap /dev/$hostname/swap
 
+# --------------------------------------------------- #
 #Mount newly created filesystems, and create/mount virtual filesystem location under the root directory
 mount /dev/$hostname/root /mnt
 for dir in dev proc sys run; do
@@ -188,24 +194,30 @@ if [[ ! -z $root_part_size ]]; then
 	mount /dev/$hostname/home /mnt/home
 fi
 
+# --------------------------------------------------- #
 #Create/mount EFI system partition filesystem
 mkfs.vfat $efi_part
 mkdir -p /mnt/boot/efi
 mount $efi_part /mnt/boot/efi
 
+# --------------------------------------------------- #
 #Install Void directly from the repo
 echo y | xbps-install -SyR $void_repo/current/$libc -r /mnt base-system cryptsetup grub-x86_64-efi lvm2
 
+# --------------------------------------------------- #
 #Find the UUID of the encrypted LUKS partition
 luks_uuid=$(blkid -o value -s UUID $luks_part)
 
+# --------------------------------------------------- #
 #Copy the DNS configuration from the live image to allow internet access from the chroot of the new install
 cp /etc/resolv.conf /mnt/etc
 
+# --------------------------------------------------- #
 #Change ownership and permissions of root directory
 chroot /mnt chown root:root /
 chroot /mnt chmod 755 /
 
+# --------------------------------------------------- #
 #Create non-root user and add them to group(s)
 chroot /mnt useradd $username
 chroot /mnt usermod -aG $user_groups $username
@@ -215,6 +227,7 @@ echo "$root_pw\n$root_pw" | passwd -q root
 echo "$user_pw\n$user_pw" | passwd -q $username
 EOF
 
+# --------------------------------------------------- #
 #Set hostname and language/locale
 echo $hostname >/mnt/etc/hostname
 echo "LANG=$language" >/mnt/etc/locale.conf
@@ -224,14 +237,16 @@ if [[ -z $libc ]]; then
 	xbps-reconfigure -fr /mnt/ glibc-locales
 fi
 
+# --------------------------------------------------- #
 #Add lines to fstab, which determines which partitions/volumes are mounted at boot
 echo -e "/dev/$hostname/root	/	$fs_type	defaults	0	0" >>/mnt/etc/fstab
 if [[ ! -z $root_part_size ]]; then
 	echo -e "/dev/$hostname/home	/home	$fs_type	defaults	0	0" >>/mnt/etc/fstab
 fi
-echo -e "/dev/$hostname/swap	swap	swap	defaults	0	0" >>/mnt/etc/fstab
+#echo -e "/dev/$hostname/swap	swap	swap	defaults	0	0" >>/mnt/etc/fstab
 echo -e "$efi_part	/boot/efi	vfat	defaults	0	0" >>/mnt/etc/fstab
 
+# --------------------------------------------------- #
 #Modify GRUB config to allow for LUKS encryption. Also enables SSD discards if configured above.
 #If apparmor is being installed, enable the apparmor security module
 kernel_params="rd.lvm.vg=$hostname rd.luks.uuid=$luks_uuid $discards"
@@ -241,6 +256,7 @@ fi
 echo "GRUB_ENABLE_CRYPTODISK=y" >>/mnt/etc/default/grub
 sed -i "s/GRUB_CMDLINE_LINUX_DEFAULT=\"/GRUB_CMDLINE_LINUX_DEFAULT=\"$kernel_params /" /mnt/etc/default/grub
 
+# --------------------------------------------------- #
 #To avoid having to enter the password twice on boot, a key will be configured to automatically unlock the encrypted volume on boot.
 #Generate keyfile
 dd bs=1 count=64 if=/dev/urandom of=/mnt/boot/volume.key
@@ -256,21 +272,22 @@ echo "$hostname	$luks_part	/boot/volume.key	luks" >>/mnt/etc/crypttab
 #Add keyfile and crypttab to initramfs
 echo -e "install_items+=\" /boot/volume.key /etc/crypttab \"" >/mnt/etc/dracut.conf.d/10-crypt.conf
 
+# --------------------------------------------------- #
 #Install GRUB bootloader
 chroot /mnt grub-install $disk_selected
 
+# --------------------------------------------------- #
 #Ensure an initramfs is generated
 xbps-reconfigure -far /mnt/
 
 #Allow users in the wheel group to use sudo
 sed -i "s/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/" /mnt/etc/sudoers
-#Change the default text editor from VI to nano for visudo and sudoedit, if nano is installed
-if [[ $apps == *"nano"* ]]; then
-	echo "Defaults editor=/usr/bin/nano" >>/mnt/etc/sudoers
-fi
 
+# --------------------------------------------------- #
 #Ensure the xbps package manager in the chroot is up to date
 xbps-install -SuyR $void_repo/current/$libc -r /mnt xbps
+
+# --------------------------------------------------- #
 #Nvidia graphics drivers and intel microcode are both proprietary, if we need to install either we need to install the nonfree repo
 if [[ $vendor_gpu == "nvidia" ]] || [[ $vendor_cpu == "intel" ]]; then
 	xbps-install -SyR $void_repo/current/$libc -r /mnt/ void-repo-nonfree
@@ -278,12 +295,15 @@ fi
 #Install all previously selected packages. This includes all applications in the "apps" variable, as well as packages for graphics drivers, CPU microcode, and graphical DE based on selected options
 xbps-install -SyR $void_repo/current/$libc -r /mnt $apps
 
+# --------------------------------------------------- #
 #Disable services as selected above
 for service in ${rm_services[@]}; do
 	if [[ -e /mnt/etc/runit/runsvdir/default/$service ]]; then
 		chroot /mnt rm /etc/runit/runsvdir/default/$service
 	fi
 done
+
+# --------------------------------------------------- #
 #Enable services as selected above
 for service in ${en_services[@]}; do
 	if [[ ! -e /mnt/etc/runit/runsvdir/default/$service ]]; then

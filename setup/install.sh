@@ -1,13 +1,13 @@
 #!/bin/bash
 # Author: Thomas Leon Highbaugh (thighbaugh@zoho.com)
 #
-# Description: Menu driven tool to provision and configure a fresh installation of Void Linux, idempotent and
-
+# Description: Menu driven tool to provision and configure a fresh installation of Void Linux.
+#
 # Usage: ./install.sh from within the setup subdirectory or ./setup/install.sh from within the dotfiles directory
 #
 # --------------------------------------------------- #
 # --------------------------------------------------- #
-#               Print Statement                       #
+# ----------------- Print Statement ----------------- #
 # --------------------------------------------------- #
 # Assign Terminal Color Variables
 cr="$(tput setaf 1)"
@@ -43,7 +43,7 @@ print() {
     esac
 }
 # --------------------------------------------------- #
-#                               Install Functions                              #
+# ---------------- Install Functions ---------------- #
 # --------------------------------------------------- #
 XIN() {
     while (($# > 0)); do
@@ -53,7 +53,7 @@ XIN() {
     return
 }
 # --------------------------------------------------- #
-#                             Symlinking Function                              #
+# --------------- Symlinking Function --------------- #
 # --------------------------------------------------- #
 LINK() {
     ln -svf "$1" "$2" | tee -a /tmp/install-log.txt
@@ -62,7 +62,7 @@ SULINK() {
     sudo ln -svf "$1" "$2" | tee -a /tmp/install-log.txt
 }
 # --------------------------------------------------- #
-#                               Install Packages                               #
+# ----------------- Install Packages ---------------- #
 # --------------------------------------------------- #
 InstallPackages() {
 
@@ -117,7 +117,14 @@ InstallPackages() {
     XIN python3-devel python-devel ruby-devel rbenv lua-devel lgi lua51-lgi lua52-lgi lua54-lgi go cmake zsh zsh-autosuggestions coreutils
     sudo pip3 install hererocks | tee -a /tmp/install-log.txt
     XIN vscode neovim tree-sitter curl ninja make wget
-    #    rbenv install 3.0.0 | tee -a /tmp/install-log.txt
+    rbenv install 3.0.0 | tee -a /tmp/install-log.txt
+
+    # --------------------------------------------------- #
+    print s "[===================================================]"
+    print s "Archives"
+    print s "[===================================================]"
+    sleep 3s
+    XIN archiver atool autoconf-archive bsatool bsdtar bsdunzip enchive engrampa libarchive libunarr libunarr-devel libarchive-devel libunshield libunshield-devel libzip libzip-devel p7zip tar unar unp unshield unzip wimlib wimlib-devel xarchiver
 
     # --------------------------------------------------- #
     print s "[===================================================]"
@@ -127,7 +134,8 @@ InstallPackages() {
     XIN awesome rofi light kitty rofi-devel libnotify libnotify-devel libXScrnSaver-devel ruby-asciidoctor xcb-util-xrm-devel startup-notification-devel xcb-util-keysyms xcb-util-keysyms-devel xcb-util-cursor-devel xcb-util-cursor xcb-util-wm-devel startup-tools libxdg-basedir-devel luarocks gettext gettext-devel zathura zathura-cb zathura-devel zathura-pdf-mupdf zathura-ps mupdf gom gom-devel libpeas libpeas-devel lua53-cjson lua53-lgi lua53 lua-lpeg
     sudo luarocks install ldoc | tee -a /tmp/install-log.txt
     sudo luarocks install luacheck | tee -a /tmp/install-log.txt
-    sudo luarocks install luaposix | tee -a /tmp/install-log.txt
+    sudo luarocks install luaposix | tee -a /
+    tmp/install-log.txt
     sudo luarocks install luasec | tee -a /tmp/install-log.txt
     sudo luarocks install luafilesystem | tee -a /tmp/install-log.txt
 
@@ -357,7 +365,7 @@ InstallPackages() {
     mkdir -p ~/.local/share/bin
 }
 # --------------------------------------------------- #
-#                  Clone Packages                     #
+# ------------------ Clone Packages ----------------- #
 # --------------------------------------------------- #
 ClonePackages() {
     print t "[===================================================]"
@@ -394,14 +402,16 @@ ClonePackages() {
     SULINK /usr/local/bin/awesome /usr/bin
     SULINK /usr/local/bin/awesome-client /usr/bin
 
+
+
     # --------------------------------------------------- #
     print s "[===================================================]"
-    print s "Greenclip"
+    print s "wtfutil"
     print s "[===================================================]"
-    sleep 3s
-    sudo wget https://github.com/erebe/greenclip/releases/download/v4.2/greenclip
-    sudo mv -vf greenclip /usr/local/bin
-    # --------------------------------------------------- #
+    curl -o- https://github.com/wtfutil/wtf/releases/download/v0.41.0/wtf_0.41.0_linux_amd64.tar.gz
+    tar -xf wtf_0.41.0_linux_amd64.tar.gz
+    sudo mv wtf_0.41.0_linux_amd64/wtfutil /usr/local/bin
+
     print s "[===================================================]"
     print s "NVM"
     print s "[===================================================]"
@@ -426,7 +436,7 @@ ClonePackages() {
 }
 
 # --------------------------------------------------- #
-#             Confirmation Repositories               #
+# ------------ Confirmation Repositories ------------ #
 # --------------------------------------------------- #
 function ConfigurationRepositories() {
     print t "[===================================================]"
@@ -515,7 +525,7 @@ function ConfigurationRepositories() {
 
 }
 # --------------------------------------------------- #
-#                       Dotfiles                      #
+# --------------------- Dotfiles -------------------- #
 # --------------------------------------------------- #
 function Dotfiles() {
     ## Symlinks
@@ -647,6 +657,20 @@ function Dotfiles() {
 
     # --------------------------------------------------- #
     print s "[===================================================]"
+    print s "Thinkpad Optimization Tweaks"
+    print s "[===================================================]"
+    # thanks to the Gentoo Wiki for the e495
+    sleep 3s
+    XIN thinkfan tp_smapi-dkms tpacpi-bat
+    sudo cp -rvf "$HOME"/dotfiles/root/e495/* /etc/
+    sudo echo "options thinkpad_acpi fan_control=1" | sudo tee /etc/modprobe.d/thinkfan.conf
+    sudo modprobe -rv thinkpad_acpi
+    sudo modprobe -v thinkpad_acpi
+    echo "START=yes" | sudo tee -a /etc/default/thinkfan
+    sudo thinkfan -q
+
+    # --------------------------------------------------- #
+    print s "[===================================================]"
     print s "Luakit Web Browser"
     print s "[===================================================]"
     sleep 3s
@@ -655,7 +679,7 @@ function Dotfiles() {
 }
 
 # --------------------------------------------------- #
-#                   Main Menu                         #
+# -------------------- Main Menu -------------------- #
 # --------------------------------------------------- #
 function mainmenu() {
     while true; do
@@ -697,11 +721,11 @@ function mainmenu() {
     done
 }
 # --------------------------------------------------- #
-#                             Install Prerequisites                            #
+# -------------- Install Prerequisites -------------- #
 # --------------------------------------------------- #
 sudo xbps-install -Syuv dialog
 # --------------------------------------------------- #
-#                              Confirmation Dialog                             #
+# --------------- Confirmation Dialog --------------- #
 # --------------------------------------------------- #
 dialog --title "Proceed?" \
     --backtitle "Post Installation Provisioning - the Electric Tantra Linux" \
@@ -713,8 +737,6 @@ case $response in
 255) exit ;;
 esac
 
-# mainmenu
-
 # --------------------------------------------------- #
-#                                      Fin                                     #
+# ----------------------- Fin ----------------------- #
 # --------------------------------------------------- #
