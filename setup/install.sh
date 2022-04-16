@@ -85,7 +85,7 @@ InstallPackages() {
     print s "Service Packages"
     print s "[===================================================]"
     sleep 3s
-    XIN dbus dbus-elogind elogind polkit docker docker-cli docker keychain polkit-devel irqbalance
+    XIN dbus dbus-elogind elogind polkit docker docker-cli docker docker-compose docker-buildx docker-credential-pass docker-gc docker-gen docker-machine docker-machine-driver-kvm docker-machine-driver-kvm2 rocker lazydocker moby keychain polkit-devel irqbalance
 
     # --------------------------------------------------- #
     print s "[===================================================]"

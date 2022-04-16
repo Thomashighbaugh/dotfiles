@@ -59,7 +59,7 @@ void_repo="https://mirror.clarkson.edu/voidlinux/" #List of mirrors can be found
 #These can be edited prior to running the script, but you can also easily install (and uninstall) packages, and enable/disable services, once you're up and running.
 
 #If apparmor is included here, the script will also add the apparmor security modules to the GRUB command line parameters
-apps="xorg-minimal xorg-fonts nano elogind dbus apparmor ufw cronie ntp firefox xdg-desktop-portal xdg-user-dirs xdg-utils flatpak alsa-utils ufw rclone RcloneBrowser chrony void-repo-nonfree void-repo-debug tlp "
+apps="xorg-minimal xorg-fonts nano elogind NetworkManager dbus apparmor ufw cronie ntp firefox xdg-desktop-portal xdg-user-dirs xdg-utils flatpak alsa-utils ufw rclone RcloneBrowser chrony void-repo-nonfree void-repo-debug tlp "
 
 #elogind and acpid should not both be enabled. Same with dhcpcd and NetworkManager.
 rm_services=("agetty-tty3" "agetty-tty4" "agetty-tty5" "agetty-tty6" "mdadm" "sshd" "acpid" "dhcpcd")
