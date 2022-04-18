@@ -199,8 +199,23 @@ InstallPackages() {
     print s "[===================================================]"
     sleep 3s
     #XIN numlockx
-    XIN rsync fzf xrdb xrdb-dbg libcanberra-devel libcanberra-utils libcanberra-gtk gnome-disk-utility gparted autofs xeyes xev xcape maim xdg-desktop-portal xdg-desktop-portal-gtk xdgmenumaker dconf-editor ntfs-3g #Stable Read/Write NTFS Driver in userspace
+    XIN rsync fzf xrdb xrdb-dbg libcanberra-devel libcanberra-utils libcanberra-gtk gnome-disk-utility 
+    XIN gparted autofs xeyes xev xcape maim xdg-desktop-portal xdg-desktop-portal-gtk xdgmenumaker dconf-editor ntfs-3g #Stable Read/Write NTFS Driver in userspace
 
+    # --------------------------------------------------- #
+    print s "[===================================================]"
+    print s "Shells"
+    print s "[===================================================]"
+    sleep 3s
+    
+    XIN zsh zsh-autosuggestions zsh-completions zsh-history-substring-search
+    # --------------------------------------------------- #
+
+    print s "[===================================================]"
+    print s "X11 Packages"
+    print s "[===================================================]"
+    XIN xorg-apps xorg xorg-fonts xorg-cf-files xorg-input-files xorg-server xorg-server-common
+    XIN xorg-server-xephyr xorg-server-xdmx xorg-server-devel xorg-video drivers xorgproto xorg-utils-macros xautolock
     # --------------------------------------------------- #
     print s "[===================================================]"
     print s "Terminal"
@@ -470,13 +485,14 @@ function ConfigurationRepositories() {
     sleep 3s
     git clone https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
     git clone https://github.com/Thomashighbaugh/nvim-forge "$HOME"/.config/nvim
+    bash "$HOME"/.config/nvim/bin/install-latest-neovim.sh 
 
     # --------------------------------------------------- #
     print s "[===================================================]"
     print s Cloning and Installing ZSH Configuration
     print s "[===================================================]"
     sleep 3s
-    XIN zsh zsh-autosuggestions zsh-completions zsh-history-substring-search
+   
     git clone https://github.com/clvv/fasd "$HOME"/fasd
     cd "$HOME"/fasd && sudo make install
     rm -rvf "$HOME"/fasd
@@ -493,18 +509,13 @@ function ConfigurationRepositories() {
     wget https://github.com/the-Electric-Tantra-Linux/Dhumavati-Theme/releases/download/release/Dhumavati-White-Dark_.tar.xz
     tar -xf Dhumavati-White-Dark_.tar.xz
     sudo cp -rvf Dhumavati-White-Dark/* /usr/share/themes
-    LINK $HOME/dotfiles/home/gtk/gtk-3.0/colors.css $HOME/.config/gtk-3.0/colors.css
-    LINK $HOME/dotfiles/home/gtk/gtk-3.0/gtk.css $HOME/.config/gtk-3.0/gtk.css
-    mkdir -p $HOME/.icons/default
-    LINK $HOME/dotfiles/home/icons/index.theme $HOME/.icons/default/
+    LINK "$HOME"/dotfiles/home/gtk/gtk-3.0/colors.css "$HOME"/.config/gtk-3.0/colors.css
+    LINK "$HOME"/dotfiles/home/gtk/gtk-3.0/gtk.css "$HOME"/.config/gtk-3.0/gtk.css
+    mkdir -p "$HOME"/.icons/default
+    LINK "$HOME"/dotfiles/home/icons/index.theme "$HOME"/.icons/default/
     LINK /usr/share/icons/chhinamasta $HOME/.icons/default/cursors
 
-    # --------------------------------------------------- #
-    print s "[===================================================]"
-    print s Cloning QTile Configuration
-    print s "[===================================================]"
-    sleep 3s
-    git clone https://github.com/Thomashighbaugh/qtile "$HOME"/.config/qtile
+   
     # --------------------------------------------------- #
     print s "[===================================================]"
     print s Cloning and Patching Firefox
@@ -540,6 +551,8 @@ function Dotfiles() {
     LINK "$HOME"/dotfiles/home/bash/bashrc "$HOME"/.bashrc
     LINK "$HOME"/dotfiles/home/shell/profile "$HOME"/.profile
     LINK "$HOME"/dotfiles/home/shell/aliases "$HOME"/.aliases
+    LINK "$HOME"/dotfiles/home/shell/alias "$HOME"/.alias
+    LINK "$HOME"/dotfiles/home/shell/configs "$HOME"/.shell-configs
 
     # --------------------------------------------------- #
     print s "[===================================================]"
@@ -558,7 +571,7 @@ function Dotfiles() {
     print s "X11"
     print s "[===================================================]"
     sleep 3s
-    XIN xorg-apps xorg xorg-fonts xorg-cf-files xorg-input-files xorg-server xorg-server-common xorg-server-xephyr xorg-server-xdmx xorg-server-devel xorg-video drivers xorgproto xorg-utils-macros xautolock
+
     mkdir -p "$HOME"/.Xresources.d
     LINK "$HOME"/dotfiles/home/xorg/Xresources "$HOME"/.Xresources
     LINK "$HOME"/dotfiles/home/xorg/color "$HOME"/.Xresources.d/color
