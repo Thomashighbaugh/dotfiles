@@ -85,7 +85,7 @@ InstallPackages() {
     print s "Service Packages"
     print s "[===================================================]"
     sleep 3s
-    XIN dbus dbus-elogind elogind polkit docker docker-cli docker docker-compose docker-buildx docker-credential-pass docker-gc docker-gen docker-machine docker-machine-driver-kvm docker-machine-driver-kvm2 rocker lazydocker moby keychain polkit-devel irqbalance
+    XIN dbus dbus-elogind elogind polkit docker docker-cli docker docker-compose docker-buildx docker-credential-pass docker-gc docker-gen docker-machine docker-machine-driver-kvm docker-machine-driver-kvm2 rocker lazydocker moby keychain polkit-devel irqbalance lsd
 
     # --------------------------------------------------- #
     print s "[===================================================]"
@@ -401,8 +401,6 @@ ClonePackages() {
     cd "$HOME" && sudo rm -rvf awesome
     SULINK /usr/local/bin/awesome /usr/bin
     SULINK /usr/local/bin/awesome-client /usr/bin
-
-
 
     # --------------------------------------------------- #
     print s "[===================================================]"
