@@ -11,13 +11,13 @@
 ## Dotfiles Location ###########################################################
 
 for file in $(
-    find "$HOME"/.shell-configs -name '*.config.sh'
+    find "$HOME"/dotfiles/home/shell/configs -name '*.config.sh'
 ); do
     source "$file"
 done
 
 # shellcheck source=/dev/null
-source "$HOME"/.aliases
+source "$HOME"/dotfiles/home/shell/aliases
 
 
 
