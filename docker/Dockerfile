@@ -1,4 +1,7 @@
-FROM archlinux:latest
+FROM artixlinux/runit
+
+
+
 
 # specific to antergos setup when using the `base` installation
 ARG USER_SUDOERS_FILE="10-user"
@@ -33,9 +36,9 @@ SHELL ["/bin/bash", "-c"]
 RUN \
   # run our system setup script from our staging alias
   git clone "https://github.com/Thomashighbaugh/dotfiles" dotfiles && \
-  sh dotfiles/docker/install.sh && \
+  bash dotfiles/docker/install.sh && \
   # clean up any extraneous dependencies left over by our installation
-  yay --clean --noconfirm && \
+  paru --clean --noconfirm && \
   # clean up pacman's package cache for installed & uninstalled packages
   sudo pacman -Scc --noconfirm && \
   # remove the sudo config we previously created to make our docker setup work

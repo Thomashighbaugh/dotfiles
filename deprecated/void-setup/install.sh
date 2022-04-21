@@ -271,7 +271,7 @@ InstallPackages() {
     print s "[===================================================]"
     sleep 3s
     sudo sed -i 's/\#AutoEnable=false/AutoEnable=true/g' /etc/bluetooth/main.conf | tee -a /tmp/install-log.txt
-    sudo sed -i 's/\#DiscoverableTimeout = 0/DiscoverableTimeout = 180/g' /etc/bluetooth/ | tee -a /tmp/install-log.txt
+    sudo sed -i 's/\#DiscoverableTimeout = 0/DiscoverableTimeout = 180/g' /etc/bluetooth/bluetooth/main.conf | tee -a /tmp/install-log.txt
     # --------------------------------------------------- #
     print s "[===================================================]"
     print s "Network Setup"
