@@ -56,8 +56,6 @@ sudo usermod -a -G audio "$USER" | tee -a /tmp/install-log.txt
 sudo usermod -a -G video "$USER" | tee -a /tmp/install-log.txt
 sudo usermod -a -G rfkill "$USER" | tee -a /tmp/install-log.txt
 sudo usermod -a -G power "$USER" | tee -a /tmp/install-log.txt
-sudo usermod -a -G bluetooth "$USER" | tee -a /tmp/install-log.txt
-sudo usermod -a -G pulse-access "$USER" | tee -a /tmp/install-log.txt
 sudo usermod -aG libvirt "$USER" | tee -a /tmp/install-log.txt
 sudo usermod -aG kvm "$USER" | tee -a /tmp/install-log.txt
 sudo usermod -aG docker "$USER" | tee -a /tmp/install-log.txt
