@@ -1,7 +1,7 @@
 #!/bin/sh 
 
-alias vsv="sudo vsv "
-alias vsvr="sudo vsv restart "
-alias vsvs="sudo vsv start "
-alias vsvst="sudo vsv stop "
+alias vsv="sudo bash $HOME/.local/share/bin/rsm "
+alias vsvr="sudo bash $HOME/.local/share/bin/rsm  restart "
+alias vsvs="sudo  bash $HOME/.local/share/bin/rsm  start "
+alias vsvst="sudo  bash $HOME/.local/share/bin/rsm   stop "
 

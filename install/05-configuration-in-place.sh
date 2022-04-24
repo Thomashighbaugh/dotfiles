@@ -12,21 +12,21 @@ print s "[===================================================]"
 print s "Configuring system..."
 print s "[===================================================]"
 sleep 3s
-SULINK /etc/runit/sv/dbus /var/run/
-SULINK /etc/runit/sv/elogind /var/run/
-SULINK /etc/runit/sv/polkitd /var/run/
+SULINK /etc/runit/sv/dbus /run/runit/service/
+SULINK /etc/runit/sv/elogind /run/runit/service/
+SULINK /etc/runit/sv/polkitd /run/runit/service/
 SULINK /etc/runit/sv/irqbalance /var/service
-SULINK /etc/runit/sv/ntpd /var/run/
-SULINK /etc/runit/sv/docker /var/service
-SULINK /etc/runit/sv/rtkit /var/run/
-#SULINK /etc/runit/sv/sshd /var/run/
-SULINK /etc/runit/sv/uuid /var/run/
-SULINK /etc/runit/sv/alsa /var/run/
-SULINK /etc/runit/sv/bluetoothd /var/run/
-SULINK /etc/runit/sv/ufw /var/run/
-#SULINK /etc/sv/dnscrypt-proxy /var/run/
-sudo rm -rvf /var/run/acpid | tee -a /tmp/install-log.txt
-sudo rm -rvf /var/run/sshd | tee -a /tmp/install-log.txt
+SULINK /etc/runit/sv/ntpd /run/runit/service/
+SULINK /etc/runit/sv/docker /run/runit/service
+SULINK /etc/runit/sv/rtkit /run/runit/service/
+#SULINK /etc/runit/sv/sshd /run/runit/service/
+SULINK /etc/runit/sv/uuid /run/runit/service/
+SULINK /etc/runit/sv/alsa /run/runit/service/
+SULINK /etc/runit/sv/bluetoothd /run/runit/service/
+SULINK /etc/runit/sv/ufw /run/runit/service/
+#SULINK /etc/sv/dnscrypt-proxy /run/runit/service/
+
+sudo rm -rvf /run/runit/service/sshd | tee -a /tmp/install-log.txt
 # --------------------------------------------------- #
 print s "[===================================================]"
 print s "Bluetooth Configuration"
