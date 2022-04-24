@@ -29,7 +29,7 @@ function mainmenu() {
         "Dotfiles")
             bash "$HOME"/dotfiles/install/04-dotfiles.sh
             ;;
-        "Configuration In Place")
+        "Configurations In Place")
             bash "$HOME"/dotfiles/install/05-configuration-in-place.sh
             ;;
         "Reboot")
