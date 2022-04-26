@@ -7,7 +7,7 @@ print s "[===================================================]"
 print s Install Paru
 print s "[===================================================]"
 
-sudo pacman -S --noconfirm --needed git
+sudo pacman -S --noconfirm --needed git base-devel fakeroot
 if ! command -v paru &>/dev/null; then
     git clone https://aur.archlinux.org/paru-bin.git /tmp/paru-bin-cloned
     cd /tmp/paru-bin-cloned/ &&
