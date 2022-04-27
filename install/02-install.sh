@@ -16,13 +16,10 @@ fi
 
 # --------------------------------------------------- #
 print s "[===================================================]"
-print s Pacman Configuration and Additional Repositories
+print s Pacman Configuration  
 print s "[===================================================]"
 
-# arch linux packages (makes life easier)
-sudo pacman -S --noconfirm --needed artix-archlinux-support
 sudo pacman-key --init
-sudo pacman-key --populate artix
 sudo pacman-key --populate archlinux
 
 # Swap in Our pacman.conf

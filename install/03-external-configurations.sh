@@ -29,9 +29,9 @@ git clone https://github.com/Thomashighbaugh/nvim-forge "$HOME"/.config/nvim
 # ----------------------- ZSH ----------------------- #
 # --------------------------------------------------- #
 git clone https://github.com/clvv/fasd "$HOME"/fasd
-cd "$HOME"/fasd && sudo make install
+cd "$HOME"/fasd && sudo make install && cd ..
 rm -rvf "$HOME"/fasd
-git clone --recursive -j8 https://github.com/Thomashighbaugh/zsh "$HOME"/.zsh && bash "$HOME"/.zsh/install
+cd "$HOME" && git clone --recursive -j8 https://github.com/Thomashighbaugh/zsh "$HOME"/.zsh && bash "$HOME"/.zsh/install
 chsh --shell $(which zsh) "$USER"
 
 # --------------------------------------------------- #
@@ -59,7 +59,9 @@ print s Cloning and Patching Firefox
 print s "[===================================================]"
 sleep 3s
 git clone https://github.com/Thomashighbaugh/firefox /tmp/firefox
-bash /tmp/firefox/install.sh
+bash /tmp/firefox/install.sh stable
+bash /tmp/firefox/install.sh dev
+bash /tmp/firefox/install.sh nightly
 
 # --------------------------------------------------- #
 print s "[===================================================]"

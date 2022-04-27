@@ -47,3 +47,7 @@ LINK() {
 SULINK() {
     sudo ln -svf "$1" "$2" | tee -a /tmp/install-log.txt
 }
+
+SYSCTL() {
+    sudo systemctl enable "$1"
+}

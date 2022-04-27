@@ -12,21 +12,14 @@ print s "[===================================================]"
 print s "Configuring system..."
 print s "[===================================================]"
 sleep 3s
-SULINK /etc/runit/sv/dbus /run/runit/service/
-SULINK /etc/runit/sv/elogind /run/runit/service/
-SULINK /etc/runit/sv/polkitd /run/runit/service/
-SULINK /etc/runit/sv/irqbalance /var/service
-SULINK /etc/runit/sv/ntpd /run/runit/service/
-SULINK /etc/runit/sv/docker /run/runit/service
-SULINK /etc/runit/sv/rtkit /run/runit/service/
-#SULINK /etc/runit/sv/sshd /run/runit/service/
-SULINK /etc/runit/sv/uuid /run/runit/service/
-SULINK /etc/runit/sv/alsa /run/runit/service/
-SULINK /etc/runit/sv/bluetoothd /run/runit/service/
-SULINK /etc/runit/sv/ufw /run/runit/service/
-#SULINK /etc/sv/dnscrypt-proxy /run/runit/service/
-
-sudo rm -rvf /run/runit/service/sshd | tee -a /tmp/install-log.txt
+SYSCTL thinkfan
+SYSCTL docker
+SYSCTL tp-battery-mode
+SYSCTL tpacpi-bat
+SYSCTL sensord
+SYSCTL getty
+SYSCTL auditd
+SYSCTL ufw
 # --------------------------------------------------- #
 print s "[===================================================]"
 print s "Bluetooth Configuration"

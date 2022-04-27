@@ -1,5 +1,5 @@
 #!/bin/bash
-source $HOME/dotfiles/install/01-lib.sh
+source "$HOME"/dotfiles/install/01-lib.sh
 
 ## Symlinks
 print t "[===================================================]"
