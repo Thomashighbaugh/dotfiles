@@ -16,6 +16,12 @@ for file in $(
     source "$file"
 done
 
+for file in $(
+    find "$HOME"/dotfiles/home/shell/alias -name '*.aliases.sh'
+); do
+    source "$file"
+done
+
 # shellcheck source=/dev/null
 source "$HOME"/dotfiles/home/shell/aliases
 
@@ -29,4 +35,4 @@ export PATH="/home/tlh/.local/share/solana/install/active_release/bin:$PATH"
 
 export PATH=$PATH:/usr/local/go/bin
 
-
+export PATH=$PATH:$HOME/.local/bin

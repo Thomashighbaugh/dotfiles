@@ -63,6 +63,8 @@ LINK "$HOME"/dotfiles/home/gtk/gtk-3.0/settings.ini "$HOME"/.config/gtk-3.0/sett
 LINK "$HOME"/dotfiles/home/gtk/gtkrc-2.0 "$HOME"/.gtkrc-2.0
 mkdir -p "$HOME"/.config/Kvantum/Kvantum
 LINK "$HOME"/dotfiles/home/gtk/kvantum.kvconfig "$HOME"/.config/Kvantum/kvantum.kvconfig
+mkdir -p "$HOME"/.config/qt5ct
+LINK "$HOME"/dotfiles/home/qt5/* "$HOME"/.config/qt5ct
 
 # --------------------------------------------------- #
 print s "[===================================================]"
