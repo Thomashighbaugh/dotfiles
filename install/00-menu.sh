@@ -11,7 +11,7 @@ function mainmenu() {
                 -- \
                 --nocancel \
                 --menu "Choose one" 32 126 16 \
-                "Install Packages" "- Bootstrap Artix-based Systems With My Preferred Software" \
+                "Install Packages" "- Bootstrap Arch-based Systems With My Preferred Software" \
                 "External Configurations" "- Other Repositories I Use to House Configurations Delivered Where the System Expects Them" \
                 "Dotfiles" "- Symlink Configuration Files From This Repository to the System's Expected Locations" \
                 "Configurations In Place" "- Modifications of System Configurations As Needed After Everything is in Place" \

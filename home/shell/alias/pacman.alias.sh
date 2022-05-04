@@ -10,20 +10,26 @@ alias pu="sudo pacman -S "
 alias yup="paru  --sync --sysupgrade --refresh --noconfirm --needed"
 alias pup="sudo pacman --sync --sysupgrade --refresh --noconfirm --needed "
 
+## Topgrade Update
+alias puptop="topgrade"
+alias yuptop="topgrade"
+
+
 ## Uninstall Package(s)
 alias puprm="sudo pacman -Rns "
 alias yuprm="paru  -Rns "
 
-## Purge Packages
+## Uninstall Dependencies and Package 
 alias pupRM="sudo pacman -Rcns "
 alias yupRM="paru  -Rcns "
 
-## Uninstall Without Uninstalling Dependencies
+## Uninstall Without Uninstalling Dependencies (DANGEROUS)
 alias yudel="paru  -Rdd "
 alias pudel="sudo pacman -Rdd "
 
 ## Search
 alias yups="paruz"
+alias yupss="paru -Ss "
 alias pups="sudo pacman -Ss "
 
 ## No Dependencies

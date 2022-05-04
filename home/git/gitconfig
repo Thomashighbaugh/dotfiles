@@ -36,7 +36,5 @@
 [rebase]
 	autoStash = false
 	stat = false
-[init]
-	defaultBranch = main
 [credential]
 	helper = store
