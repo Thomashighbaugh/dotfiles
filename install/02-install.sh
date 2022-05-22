@@ -21,11 +21,24 @@ print s "[===================================================]"
 
 sudo pacman-key --init
 sudo pacman-key --populate archlinux
-
+#------------------------#
 # Swap in Our pacman.conf
 cd $HOME/dotfiles &&
     sudo cp ./root/etc/pacman.conf /etc/pacman.conf
 sudo pacman -Syyu
+#----------------------------------#
+# Add Choatic AUR for kernel builds 
+sudo pacman-key --recv-key FBA220DFC880C036 --keyserver keyserver.ubuntu.com
+sudo  pacman-key --lsign-key FBA220DFC880C036
+sudo pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst' 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
+sudo sh -c 'echo "[chaotic-aur]" >> /etc/pacman.conf '
+sudo sh -c 'echo "Include = /etc/pacman.d/chaotic-mirrorlist" >> /etc/pacman.conf' 
+sudo pacman -Syy 
+
+#--------------------------------#
+# Add Blackarch for Security Tools 
+cd /tmp && curl -O https://blackarch.org/strap.sh && sudo chmod +x strap.sh && sudo ./strap.sh && sudo pacman -Syu --noconfirm && cd $HOME/dotfiles
+
 # --------------------------------------------------- #
 print s "[===================================================]"
 print s Optimize Makepkg

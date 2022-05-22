@@ -49,5 +49,5 @@ SULINK() {
 }
 
 SYSCTL() {
-    sudo systemctl enable "$1"
+    sudo systemctl enable --now "$1"
 }

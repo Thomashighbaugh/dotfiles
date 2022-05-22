@@ -20,6 +20,27 @@ SYSCTL sensord
 SYSCTL getty
 SYSCTL auditd
 SYSCTL ufw
+SYSCTL bluetooth 
+SYSCTL canberra-system-bootup 
+SYSCTL caberra-system-shutdown
+SYSCTL caberra-system-shutdown-reboot
+SYSCTL containerd
+SYSCTL cronie
+SYSCTL dbus-broker 
+SYSCTL gpm 
+SYSCTL inotify-daemon 
+SYSCTL libvirt-dbus
+SYSCTL libvirt-guests
+SYSCTL lm_sensors
+SYSCTL linux-modules-cleanup 
+SYSCTL named 
+SYSCTL NetworkManager 
+SYSCTL ntpd
+SYSCTL ntpdate 
+SYSCTL qemu-guest-agent
+SYSCTL reflector 
+SYSCTL sensord
+SYSCTL upower 
 # --------------------------------------------------- #
 print s "[===================================================]"
 print s "Bluetooth Configuration"
@@ -52,3 +73,14 @@ sudo usermod -a -G power "$USER" | tee -a /tmp/install-log.txt
 sudo usermod -aG libvirt "$USER" | tee -a /tmp/install-log.txt
 sudo usermod -aG kvm "$USER" | tee -a /tmp/install-log.txt
 sudo usermod -aG docker "$USER" | tee -a /tmp/install-log.txt
+
+
+HOST=/etc/hostname
+if grep -q thinkpad $HOST; then 
+print s "[===================================================]"
+print s "Laptop Specific Hardware"
+print s "[===================================================]"
+sleep 3s
+sudo cp -rvf $HOME/dotfiles/root/e495/* /etc/
+
+fi 
