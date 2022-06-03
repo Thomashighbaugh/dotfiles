@@ -240,10 +240,7 @@ docker-machine-driver-kvm2
 docker-machine-kvm
 docker-prune
 docker-scan
-docker-squash
 dockerize
-dolphin
-dolphin-plugins
 dosfstools
 dotconf
 double-conversion
@@ -552,9 +549,7 @@ inkscape-generate-palette
 inkscape-label-guides
 inkscape-open-symbols-git
 inkscape-silhouette-git
-inotify-daemon
 inotify-tools
-intel-ucode
 intltool
 inxi
 iproute2
@@ -1263,7 +1258,6 @@ rubygems
 run-parts
 runc
 rustup
-rygel
 samba
 samurai
 sane
@@ -1367,10 +1361,13 @@ tevent
 texinfo
 thin-provisioning-tools
 threadweaver
-thunar
+thunar-extended
 thunar-archive-plugin
 thunar-media-tags-plugin
 thunar-volman
+thunar-secure-delete 
+thunarx-python 
+thunar-custom-actions
 thunderbird
 tigervnc
 tinyxml
@@ -1387,8 +1384,6 @@ tpm2-tss
 tpmmanager
 traceroute
 transmission-gtk
-transmission-qt
-tre
 tree-sitter
 trousers
 tslib
@@ -1643,3 +1638,11 @@ zstd
 zvbi
 zxing-cpp
 zziplib
+ananicy-cpp 
+irqbalance 
+memavaild 
+nohang 
+preload 
+prelockd 
+uresourced
+

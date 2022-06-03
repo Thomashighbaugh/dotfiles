@@ -1,0 +1,1 @@
+reflector --latest 20 --protocol http --sort age --save /etc/pacman.d/mirrorlist

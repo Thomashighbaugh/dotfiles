@@ -5,12 +5,13 @@ Gtk/ColorPalette "black:white:gray50:red:purple:blue:light blue:green:yellow:ora
 Gtk/CursorThemeName "chhinamasta"
 Gtk/CursorThemeSize 48
 Gtk/DecorationLayout "menu:minimize,maximize,close"
-Gtk/FontName "Nineteen Ninety Seven Regular 11"
+Gtk/FontName "SF Pro Rounded Semibold 11"
 Gtk/IconSizes 64
 Gtk/KeyThemeName "Dhumavati-White-Dark"
+Gtk/ThemeName "Dhumavati-White-Dark"
 Gtk/MenuBarAccel "F10"
 Gtk/MenuImages 1
-Gtk/MonospaceFontName "Nineteen Ninety Seven Bold 11"
+Gtk/MonospaceFontName "SFMono Nerd Font Mono Heavy 11"
 Gtk/ToolbarIconSize 48
 Gtk/ToolbarStyle "icons"
 Net/CursorBlink 1

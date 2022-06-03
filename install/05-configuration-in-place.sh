@@ -3,7 +3,7 @@
 # --------------------------------------------------- #
 # ------------------ Source Library ----------------- #
 # --------------------------------------------------- #
-source $HOME/dotfiles/install/01-lib.sh
+source "$HOME"/dotfiles/install/01-lib.sh
 
 # --------------------------------------------------- #
 # --------------------- Services -------------------- #
@@ -20,34 +20,28 @@ SYSCTL sensord
 SYSCTL getty
 SYSCTL auditd
 SYSCTL ufw
-SYSCTL bluetooth 
-SYSCTL canberra-system-bootup 
+SYSCTL bluetooth
+SYSCTL canberra-system-bootup
 SYSCTL caberra-system-shutdown
 SYSCTL caberra-system-shutdown-reboot
 SYSCTL containerd
 SYSCTL cronie
-SYSCTL dbus-broker 
-SYSCTL gpm 
-SYSCTL inotify-daemon 
+SYSCTL dbus-broker
+SYSCTL gpm
+SYSCTL inotify-daemon
 SYSCTL libvirt-dbus
 SYSCTL libvirt-guests
 SYSCTL lm_sensors
-SYSCTL linux-modules-cleanup 
-SYSCTL named 
-SYSCTL NetworkManager 
+SYSCTL linux-modules-cleanup
+SYSCTL named
+SYSCTL NetworkManager
 SYSCTL ntpd
-SYSCTL ntpdate 
+SYSCTL ntpdate
 SYSCTL qemu-guest-agent
-SYSCTL reflector 
+SYSCTL reflector
 SYSCTL sensord
-SYSCTL upower 
-# --------------------------------------------------- #
-print s "[===================================================]"
-print s "Bluetooth Configuration"
-print s "[===================================================]"
-sleep 3s
-sudo sed -i 's/\#AutoEnable=false/AutoEnable=true/g' /etc/bluetooth/main.conf | tee -a /tmp/install-log.txt
-sudo sed -i 's/\#DiscoverableTimeout = 0/DiscoverableTimeout = 180/g' /etc/bluetooth/bluetooth/main.conf | tee -a /tmp/install-log.txt
+SYSCTL upower
+
 # --------------------------------------------------- #
 print s "[===================================================]"
 print s "Network Setup"
@@ -73,14 +67,31 @@ sudo usermod -a -G power "$USER" | tee -a /tmp/install-log.txt
 sudo usermod -aG libvirt "$USER" | tee -a /tmp/install-log.txt
 sudo usermod -aG kvm "$USER" | tee -a /tmp/install-log.txt
 sudo usermod -aG docker "$USER" | tee -a /tmp/install-log.txt
-
-
-HOST=/etc/hostname
-if grep -q thinkpad $HOST; then 
+# --------------------------------------------------- #
 print s "[===================================================]"
-print s "Laptop Specific Hardware"
+print s "Performance Tweaking"
 print s "[===================================================]"
 sleep 3s
-sudo cp -rvf $HOME/dotfiles/root/e495/* /etc/
+sed -i 's|zram_checking_enabled = False|zram_checking_enabled = True|g' /etc/nohang/nohang.conf
 
-fi 
+sudo sh -e 'echo "w /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor - - - - performance" >  /usr/lib/tmpfiles.d/cpu-governor.conf'
+
+sudo sh -e 'echo "w /sys/devices/system/cpu/cpufreq/policy*/energy_performance_preference - - - - performance" > /usr/lib/tmpfiles.d/energy_performance_preference.conf'
+
+sudo sh -e 'echo "w /sys/module/pcie_aspm/parameters/policy - - - - performance" > /usr/lib/tmpfiles.d/pcie_aspm_performance.conf'
+
+
+
+
+
+
+# for thinkpad speecifically
+HOSTNAME=/etc/hostname
+if grep -q thinkpad $HOSTNAME; then
+    print s "[===================================================]"
+    print s "Laptop Specific Hardware"
+    print s "[===================================================]"
+    sleep 3s
+    sudo cp -rvf "$HOME"/dotfiles/root/e495/* /etc/
+
+fi

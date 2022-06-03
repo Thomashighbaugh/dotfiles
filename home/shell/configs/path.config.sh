@@ -19,6 +19,10 @@ fi
 if [[ -d "$HOME/.config/nvm" ]]; then
     export PATH="$HOME/.config/nvm:$PATH"
 fi
+## For system wide installs like with AUR packages
+if [[ -d "/usr/share/nvm" ]]; then
+    export PATH="/usr/share/nvm:$PATH"
+fi
 # Ruby Gems ################################################################################################
 
 if [[ -d "/usr/lib/ruby/gems/2.7.0" ]]; then

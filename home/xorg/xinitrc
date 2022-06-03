@@ -11,6 +11,17 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
   unset f
 fi
 
+
+xinput set-prop $(xinput | grep TrackPoint | grep -oP "id=\K..") "libinput Accel Speed" 0.8
+xinput set-prop $(xinput | grep Logitech | grep -oP "id=\K..") "libinput Accel Speed" 10.0
+
+
+if [[ $HOSTNAME == thinkpad ]]; then
+xrandr --output eDP --primary --mode 1920x1080 --pos 1677x1205 --rotate normal --output HDMI-A-0 --mode 1920x1080 --pos 3597x1205 --rotate normal --output DisplayPort-0 --off --output DisplayPort-1 --off
+fi
+
+exec awesome >> ~/.cache/awesome/stdout 2>> ~/.cache/awesome/stderr
+
 # exec gnome-session
 # exec startkde
 # exec startxfce4

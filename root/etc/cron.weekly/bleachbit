@@ -1,0 +1,6 @@
+#!/bin/bash 
+
+
+bleachbit --clean --all-but-warning
+
+sudo bleachbit --clearn --all-but-warning

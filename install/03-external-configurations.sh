@@ -47,12 +47,12 @@ mkdir -p "$HOME"/.icons/default
 LINK "$HOME"/dotfiles/home/icons/index.theme "$HOME"/.icons/default/
 LINK /usr/share/icons/chhinamasta "$HOME"/.icons/default/cursors
 
-# --------------------------------------------------- #
-print s "[===================================================]"
-print s Cloning QTile Configuration
-print s "[===================================================]"
-sleep 3s
-git clone https://github.com/Thomashighbaugh/qtile "$HOME"/.config/qtile
+# # --------------------------------------------------- #
+# print s "[===================================================]"
+# print s Cloning QTile Configuration
+# print s "[===================================================]"
+# sleep 3s
+# git clone https://github.com/Thomashighbaugh/qtile "$HOME"/.config/qtile
 # --------------------------------------------------- #
 print s "[===================================================]"
 print s Cloning and Patching Firefox

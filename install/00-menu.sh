@@ -50,6 +50,10 @@ function mainmenu() {
 # --------------------------------------------------- #
 sudo pacman -Syu dialog
 
+sudo timedatectl set-ntp true
+
+sudo hwclock --systohc --localtime 
+
 # --------------------------------------------------- #
 # --------------- Confirmation Dialog --------------- #
 # --------------------------------------------------- #
