@@ -24,7 +24,7 @@ sudo pacman-key --populate archlinux
 #------------------------#
 # Swap in Our pacman.conf
 cd $HOME/dotfiles &&
-    sudo cp ./root/etc/pacman.conf /etc/pacman.conf
+    sudo cp ./root/pacman.conf /etc/pacman.conf
 sudo pacman -Syyu
 #----------------------------------#
 # Add Choatic AUR for kernel builds 
