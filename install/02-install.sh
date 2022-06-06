@@ -71,3 +71,6 @@ print s "[===================================================]"
 for package in "luasec" "luaposix" "luacheck" "luafilesystem" "ldoc" "lpeg" "argparse" "penlight"; do
     sudo luarocks install $package | tee -a /tmp/install-log.txt
 done
+
+# Get rid of these pains now, even if xfce4 is a useful secondary DE
+sudo pacman -Rncs --noconfirm  xfce4-screensaver xfce4-screenshooter xfce4-power-manager 
