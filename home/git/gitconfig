@@ -40,3 +40,61 @@
 	helper = store
 [init]
 	defaultBranch = main
+[color "status"]
+	branch = 6 normal bold
+	added = 10 normal
+	updated = 10 normal
+	localbranch = 6 normal bold
+	changed = 11 normal
+	header = normal
+	remotebranch = 5 normal bold
+	nobranch = 9 normal bold italic blink
+	unmerged = 9 normal
+	untracked = normal dim
+[color "branch"]
+	plain = 6 normal bold dim
+	remote = 5 normal bold dim
+	current = 6 normal bold
+	local = 6 normal bold dim
+	upstream = 5 normal bold
+[color "remote"]
+	hint = normal dim
+	success = 2 normal
+	error = 1 normal
+	warning = 3 normal
+[color "interactive"]
+	header = 9 normal bold italic blink
+	prompt = 15 4
+	help = 9 normal bold italic blink
+	error = 9 normal bold italic blink
+[color "diff"]
+	commit = 3 0
+	newMoved = 14 normal
+	oldMovedAlternativeDimmed = 4 normal dim
+	frag = 9 normal bold italic blink ul
+	oldMovedAlternative = 12 normal dim
+	contextBold = normal bold
+	newBold = 10 normal bold
+	context = normal
+	oldMoved = 14 normal dim
+	oldBold = 9 normal dim bold
+	newMovedDimmed = 6 normal
+	func = 9 normal bold italic blink ul
+	meta = 9 normal bold italic blink
+	newDimmed = 2 normal
+	newMovedAlternative = 12 normal
+	new = 10 normal
+	newMovedAlternativeDimmed = 4 normal
+	whitespace = normal 9
+	oldMovedDimmed = 6 normal dim
+	oldDimmed = 1 normal dim
+	old = 9 normal dim
+[color "decorate"]
+	branch = 6 normal bold
+	tag = 3 0
+	remotebranch = 5 normal bold
+	stash = 9 normal bold italic blink
+	grafted = 9 normal bold italic blink
+	HEAD = 6 normal bold dim
+[diff]
+	colorMoved = zebra

@@ -1,5 +1,9 @@
 #!/bin/bash
+
+# Its symlink farming time! 
+
 source "$HOME"/dotfiles/install/01-lib.sh
+
 
 ## Symlinks
 print t "[===================================================]"

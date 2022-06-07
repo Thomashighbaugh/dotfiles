@@ -1647,3 +1647,7 @@ prelockd
 uresourced
 sysz
 zramd
+linux-xanmod-tt
+linux-xanmod-tt-headers
+mkinitcpio-firmware
+zsh-fzy-git
