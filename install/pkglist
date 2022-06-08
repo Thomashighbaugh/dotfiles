@@ -142,7 +142,6 @@ ceph-libs
 cervisia
 cfitsio
 cgroup_event_listener
-cheese
 chromaprint
 chrpath
 cifs-utils
@@ -238,23 +237,15 @@ docker-ls
 docker-machine
 docker-machine-driver-kvm2
 docker-machine-kvm
-docker-prune
 docker-scan
 dockerize
 dosfstools
 dotconf
 double-conversion
-dragon
-drkonqi
 drone-runner-docker
 dtc
-dtkcommon
-dtkcore
-dtkgui
-dtkwidget
 duf
 dunst
-dvd+rw-tools
 e2fsprogs
 easy-rsa
 ebook-tools
@@ -289,7 +280,6 @@ extra-cmake-modules
 faac
 faad2
 fakeroot
-falkon
 farstream
 fastjar
 fcgi
@@ -309,9 +299,6 @@ firefox-developer-edition
 firefox-nightly
 firewalld
 flac
-flashrom
-flatpak
-flatpak-builder
 flex
 flite
 flite-voices
@@ -340,7 +327,7 @@ fuseiso
 fwupd
 fwupd-efi
 fzf
-galculator
+fzy
 gambas3-gb-inotify
 gambas3-runtime
 garcon
@@ -367,8 +354,6 @@ geoip-database
 gettext
 gfbgraph
 ghc-libs
-ghex
-ghistory
 ghostscript
 giflib
 gimp
@@ -501,8 +486,6 @@ gvfs-smb
 gwenview
 gzip
 handbrake-git
-harfbuzz
-harfbuzz-icu
 haveged
 hdf5
 hicolor-icon-theme
@@ -534,7 +517,6 @@ ibm-tpm2-tss
 icu
 id3lib
 ijs
-image-optimizer-bin
 imagemagick
 imath
 imlib2
@@ -562,9 +544,6 @@ iso-codes
 itinerary
 itstool
 iw
-jack2
-jansson
-jasper
 java-runtime-common
 jbig2dec
 jemalloc
@@ -630,9 +609,6 @@ linux-firmware
 linux-firmware-whence
 linux-headers
 linux-tools-meta
-linux-zen
-linux-zen-docs
-linux-zen-headers
 llvm-libs
 lm_sensors
 lmdb
@@ -807,8 +783,6 @@ nodejs-nopt
 notify-osd
 notify-sharp-3
 notion-app-enhanced
-noto-fonts
-noto-fonts-emoji
 npm
 npth
 nspr
@@ -824,7 +798,6 @@ okular
 oniguruma
 openal
 openbabel
-openbox
 opencolorio
 openconnect
 opencore-amr
@@ -968,8 +941,6 @@ playerctl
 polari
 polkit
 polkit-gnome
-polkit-kde-agent
-polkit-qt5
 poppler
 poppler-data
 poppler-glib
@@ -1498,7 +1469,6 @@ xdg-dbus-proxy
 xdg-desktop-portal
 xdg-desktop-portal-gnome
 xdg-desktop-portal-gtk
-xdg-desktop-portal-kde
 xdg-user-dirs
 xdg-user-dirs-gtk
 xdg-utils
@@ -1653,3 +1623,10 @@ mkinitcpio-firmware
 zsh-fzy-git
 zsh-autosuggestions
 zsh-sudo-git
+zsh-system-clipboard-git
+zsh-fzf-plugin-git
+ttf2eot
+freetype2-infinality-remix
+woff2-git
+sfnt2woff 
+preload

@@ -12,7 +12,7 @@ print s "[===================================================]"
 print s "Configuring system..."
 print s "[===================================================]"
 sleep 3s
-SYSCTL thinkfan
+SYSCTL thinkfan 
 SYSCTL docker
 SYSCTL tp-battery-mode
 SYSCTL tpacpi-bat
@@ -30,13 +30,12 @@ SYSCTL dbus-broker
 SYSCTL gpm
 SYSCTL inotify-daemon
 SYSCTL libvirt-dbus
-SYSCTL libvirt-guests
+SSYSCTL libvirt-guests
 SYSCTL lm_sensors
 SYSCTL linux-modules-cleanup
 SYSCTL named
 SYSCTL NetworkManager
 SYSCTL ntpd
-SYSCTL ntpdate
 SYSCTL qemu-guest-agent
 SYSCTL reflector
 SYSCTL sensord
@@ -80,10 +79,10 @@ sudo sh -e 'echo "w /sys/devices/system/cpu/cpufreq/policy*/energy_performance_p
 
 sudo sh -e 'echo "w /sys/module/pcie_aspm/parameters/policy - - - - performance" > /usr/lib/tmpfiles.d/pcie_aspm_performance.conf'
 
+sudo cp -rvf $HOME/dotfiles/root/etc/* /etc/ | tee -a /tmp/install-log.txt 
 
 
-
-
+# --------------------------------------------------- #
 
 # for thinkpad speecifically
 HOSTNAME=/etc/hostname

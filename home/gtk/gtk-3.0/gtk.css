@@ -1,4 +1,4 @@
-@import url("$HOME/.config/gtk-3.0/colors.css");
+@import url("colors.css");
 .window-frame {
   text-shadow: none;
   box-shadow: none;
