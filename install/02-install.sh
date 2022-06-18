@@ -20,7 +20,7 @@ print s "[===================================================]"
 
 HOSTNAME=/etc/hostname
 
-if grep -q raspberrypi4 $HOSTNAME; then
+if grep -q alarm $HOSTNAME; then
     bash ./install/02a-raspberrypi-install.sh
     return
 fi
