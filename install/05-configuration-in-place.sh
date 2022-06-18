@@ -35,7 +35,7 @@ sudo ufw default deny | tee -a /tmp/install-log.txt
 sudo ufw allow from 192.168.0.0/24 | tee -a /tmp/install-log.txt
 sudo ufw allow from 192.168.0.1 | tee -a /tmp/install-log.txt
 # Adjust to local pihole address if present
-#sudo ufw allow from 192.168.0.12 | tee -a /tmp/install-log.txt
+sudo ufw allow from 192.168.0.20 | tee -a /tmp/install-log.txt
 sudo ufw logging off | tee -a /tmp/install-log.txt
 sudo ufw enable | tee -a /tmp/install-log.txt
 # --------------------------------------------------- #
