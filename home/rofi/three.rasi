@@ -1,102 +1,129 @@
 
-@import "themes/colors.rasi"
-
-* {
-  /* General */
-  text-font:                            "Monofonto Regular 12";
-  icon-font:                            "FontAwesome Regular 18";
-  
-  option-6-listview-spacing:            6px;
-  menu-window-padding:                  6px 6px;
-  menu-element-padding:                 20px 0px 15px -10px;
+/** Basic config file **/
+@import "~/dotfiles/home/rofi/themes/color.rasi"
+configuration {
+  show-icons:         true;
+  icon-theme:         "chhinamasta";
 }
 
-#window {
-  width: 6%;
-  height: 28%;
-  anchor: east;
-  location: east;
-  x-offset: -1%;
-  y-offset: 0%;
-  border: 0px;
-  border-radius: 12px;
+window {
+    transparency:                   "real";
+    background-color:               @background;
+    text-color:                     @foreground;
+	border:							2% 1% 2% 1%;
+	border-color:					@border;
+    border-radius:                  0% 0% 0% 0%;
+    height:                         70%;
+    width:                          70%;
+    location:                       center;
+    x-offset:                       0;
+    y-offset:                       0;
 }
 
-* {
-  background-color: @background;
-  text-color: @foreground;
-  font: @icon-font;
+prompt {
+    enabled: 						true;
+	padding: 						0% 1% 0% 0%;
+	background-color: 				@background;
+	text-color: 					@foreground;
+	font:							"FantasqueSansMono Nerd Font 12";
 }
 
-#horibox {
-  children: [ listview ];
+entry {
+    background-color:               @background;
+    text-color:                     @foreground;
+    placeholder-color:              @foreground;
+    expand:                         true;
+    horizontal-align:               0;
+    placeholder:                    "Search Applications";
+    padding:                        0.15% 0% 0% 0%;
+    blink:                          true;
 }
 
-#listview {
-  layout: vertical;
+inputbar {
+	children: 						[ prompt, entry ];
+    background-color:               @background;
+    text-color:                     @foreground;
+    expand:                         false;
+	border:							0% 0% 0.3% 0%;
+    border-radius:                  0% 0% 0% 0%;
+	border-color:					@border-alt;
+    margin:                         0% 38.25% 0% 0%;
+    padding:                        1%;
+    position:                       center;
 }
 
-#element {
-  border: 0px;
-  border-radius: 10px;
-  padding: @option-element-padding;
-  background-color: @background-light;
+listview {
+    background-color:               @background;
+    columns:                        8;
+    spacing:                        1%;
+    cycle:                          false;
+    dynamic:                        true;
+    layout:                         vertical;
 }
 
-#element.selected {
-  background-color: @accent;
-  text-color: @background;
+mainbox {
+    background-color:               @background;
+	border:							2% 1% 2% 1%;
+    border-radius:                  0% 0% 0% 0%;
+	border-color:					@border-alt;
+    children:                       [ inputbar, listview ];
+    spacing:                       	2%;
+    padding:                        6% 3% 6% 3%;
 }
 
-* {
-  font: @text-font;
+element {
+    background-color:               @background;
+    text-color:                     @foreground;
+    orientation:                    vertical;
+    border-radius:                  0%;
+    padding:                        1% 0% 1% 0%;
 }
 
-#window {
-  padding: @menu-window-padding;
-  children: [ inputbar, horibox ];
+element-icon {
+    background-color: 				inherit;
+    text-color:       				inherit;
+    horizontal-align:               0.5;
+    vertical-align:                 0.5;
+    size:                           64px;
+    border:                         0px;
 }
 
-#inputbar {
-  enabled: false;
-  children: [ textbox-prompt-colon, prompt ];
-  margin: @menu-inputbar-margin;
+element-text {
+    background-color: 				inherit;
+    text-color:       				inherit;
+    expand:                         true;
+    horizontal-align:               0.5;
+    vertical-align:                 0.5;
+    margin:                         0.5% 1% 0% 1%;
 }
 
-#listview {
-  spacing: @option-6-listview-spacing;
-  lines: 3;
+element normal.urgent,
+element alternate.urgent {
+    background-color:               @urgent;
+    text-color:                     @foreground;
+    border-radius:                  1%;
 }
 
-#element {
-  font: @icon-font;
-  border: @menu-element-border;
-  padding: @menu-element-padding;
-  border-color: @background-light;
+element normal.active,
+element alternate.active {
+    background-color:               @background-alt;
+    text-color:                     @foreground;
 }
 
-#element.selected {
-  border-color: @accent;
+element selected {
+    background-color:               @selected;
+    text-color:                     @foreground;
+	border:							0% 0% 0.3% 0%;
+    border-radius:                  0% 0% 0% 0%;
+    border-color:                  	@border-alt;
 }
 
-element.active,
-element.selected.urgent {
-  background-color: @on;
-  text-color: @background;
-  border-color: @on;
+element selected.urgent {
+    background-color:               @urgent;
+    text-color:                     @foreground;
 }
 
-element.selected.urgent {
-  border-color: @accent;
-}
-
-element.urgent,
-element.selected.active {
-  background-color: @off;
-  text-color: @background;
-  border-color: @off;
-}
-
-element.selected.active {
-  border-color: @accent;
+element selected.active {
+    background-color:               @background-alt;
+    color:                          @foreground;
 }

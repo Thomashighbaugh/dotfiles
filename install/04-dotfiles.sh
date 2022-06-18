@@ -112,6 +112,8 @@ sleep 3s
 mkdir -p "$HOME"/.config/kitty | tee -a /tmp/install-log.txt
 LINK "$HOME"/dotfiles/home/kitty/kitty.conf "$HOME"/.config/kitty/kitty.conf
 LINK "$HOME"/dotfiles/home/kitty/theme.conf "$HOME"/.config/kitty/theme.conf
+sudo cp -rvf "$HOME"/dotfiles/home/kitty/kitty.png /usr/lib/kitty/logo/kitty.png
+sudo cp -rvf "$HOME"/dotfiles/home/kitty/kitty.png /usr/lib/kitty/logo/kitty-128.png
 
 # --------------------------------------------------- #
 print s "[===================================================]"

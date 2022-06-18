@@ -1,94 +1,102 @@
 
-configuration {
-	font: "Commodore64 Rounded Bold 13";
-	show-icons: true;
-	drun-display-format: "{name}";
-	threads: 0;
-	matching: "fuzzy";
-	scroll-method: 0;
-	disable-history: false;
-	window-thumbnail: true;
+@import "themes/colors.rasi"
+
+* {
+  /* General */
+  text-font:                            "Monofonto Regular 12";
+  icon-font:                            "FontAwesome Regular 18";
+  
+  option-6-listview-spacing:            6px;
+  menu-window-padding:                  6px 6px;
+  menu-element-padding:                 20px 0px 15px -10px;
 }
 
-window {
-	transparency: "real";
-
-	
+#window {
+  width: 6%;
+  height: 28%;
+  anchor: east;
+  location: east;
+  x-offset: -1%;
+  y-offset: 0%;
+  border: 0px;
+  border-radius: 12px;
 }
 
-prompt {
-	enabled: true;
+* {
+  background-color: @background;
+  text-color: @foreground;
+  font: @icon-font;
 }
 
-button {
-	action: "ok";
-	
-	font: "Commodore64 Rounded Bold 13";
-	expand: false;
-	
+#horibox {
+  children: [ listview ];
 }
 
-entry {
-	font: "Commodore64 Rounded Bold 13";
-	expand: true;
-	vertical-align: 0.5;
-	horizontal-align: 0.5;
-	placeholder: "Type to search";
-	blink: true;
+#listview {
+  layout: vertical;
 }
 
-case-indicator {
-	
+#element {
+  border: 0px;
+  border-radius: 10px;
+  padding: @option-element-padding;
+  background-color: @background-light;
 }
 
-entry-wrapper {
-	orientation: horizontal;
-	spacing: 4px;
-
-	children: [ button, entry, case-indicator ];
+#element.selected {
+  background-color: @accent;
+  text-color: @background;
 }
 
-inputbar {
-
-
-	expand: false;
-	border-radius: 6px;
-	margin: 0px 25% 0px 20%;
-	padding: 10px 10px 10px 10px;
-	children: [ entry-wrapper ];
+* {
+  font: @text-font;
 }
 
-listview {
-
-	columns: 1;
-	spacing: 1px;
-	cycle: false;
-	dynamic: true;
-	layout: vertical;
+#window {
+  padding: @menu-window-padding;
+  children: [ inputbar, horibox ];
 }
 
-mainbox {
-
-	children: [ inputbar, listview ];
-	spacing: 5px;
-	padding: 1% ;
-	/*padding: 70px 135px 0 135px;*/
+#inputbar {
+  enabled: false;
+  children: [ textbox-prompt-colon, prompt ];
+  margin: @menu-inputbar-margin;
 }
 
-element {
-	orientation: vertical;
-	border-radius: 12px;
-
+#listview {
+  spacing: @option-6-listview-spacing;
+  lines: 3;
 }
 
-
-element-text {
-	expand: true;
-    margin: 0px 5% 0px 5%;
-    padding: 1%;
+#element {
+  font: @icon-font;
+  border: @menu-element-border;
+  padding: @menu-element-padding;
+  border-color: @background-light;
 }
 
-element normal.urgent,
-element alternate.urgent {
-	border-radius: 9px;
+#element.selected {
+  border-color: @accent;
+}
+
+element.active,
+element.selected.urgent {
+  background-color: @on;
+  text-color: @background;
+  border-color: @on;
+}
+
+element.selected.urgent {
+  border-color: @accent;
+}
+
+element.urgent,
+element.selected.active {
+  background-color: @off;
+  text-color: @background;
+  border-color: @off;
+}
+
+element.selected.active {
+  border-color: @accent;
 }

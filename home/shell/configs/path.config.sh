@@ -23,6 +23,10 @@ fi
 if [[ -d "/usr/share/nvm" ]]; then
     export PATH="/usr/share/nvm:$PATH"
 fi
+
+if [[ -d "$HOME/.nvm/versions/node/v16.15.1/bin" ]]; then 
+  export PATH="$HOME/.nvm/versions/node/v16.15.1/bin:$PATH"
+fi
 # Ruby Gems ################################################################################################
 
 if [[ -d "/usr/lib/ruby/gems/2.7.0" ]]; then
