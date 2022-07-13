@@ -1,29 +1,29 @@
 #!/bin/bash
-#TODO add in the color-script-manager since that's no longer in bin 
+#TODO add in the color-script-manager since that's no longer in bin
 # --------------------------------------------------- #
 # ------------------ Source Library ----------------- #
 # --------------------------------------------------- #
 source "$HOME"/dotfiles/install/01-lib.sh
 
 # Only set until you reboot, enables easier time working
-# with directories cloned into tmpfs, while are also 
+# with directories cloned into tmpfs, while are also
 # wiped at reboot even if the commands fail
-sudo chmod -Rv 777  /tmp
+sudo chmod -Rv 777 /tmp
 
 # --------------------------------------------------- #
 print s "[===================================================]"
 print s "Cloning AwesomeWM Configuration"
-print s "[===================================================]" 
+print s "[===================================================]"
 sleep 3
 git clone https://github.com/the-Electric-Tantra-Linux/awesome ~/.config/awesome
 
 # --------------------------------------------------- #
 print s "[===================================================]"
 print s "Cloning Grub2 Theme"
-print s "[===================================================]" 
+print s "[===================================================]"
 sleep 3
-git clone https://github.com/Thomashighbaugh/Bhairava-Grub-Theme /tmp/Bhairava-Grub-Theme 
-cd /tmp/Bhairava-Grub-Theme && bash install.sh && cd ~ && sudo rm -rvf /tmp/Bhairava-Grub-Theme 
+git clone https://github.com/the-Electric-Tantra-Linux/Bhairava-Grub-Theme /tmp/Bhairava-Grub-Theme
+cd /tmp/Bhairava-Grub-Theme && bash install.sh && cd ~ && sudo rm -rvf /tmp/Bhairava-Grub-Theme
 
 # --------------------------------------------------- #
 # ------------------- Bin Scripts ------------------- #
@@ -47,8 +47,8 @@ git clone https://github.com/clvv/fasd "$HOME"/fasd
 cd "$HOME"/fasd && sudo make install && cd ..
 rm -rvf "$HOME"/fasd
 cd "$HOME" && git clone --recursive -j8 https://github.com/Thomashighbaugh/zsh "$HOME"/.zsh && bash "$HOME"/.zsh/install
-chsh --shell $(which zsh) "$USER"
-sudo chsh --shell $(which zsh) 
+chsh --shell "$(which zsh)" "$USER"
+sudo chsh --shell "$(which zsh)"
 # --------------------------------------------------- #
 print s "[===================================================]"
 print s "Downloading and Installing GTK and Icon Themes"
@@ -74,11 +74,11 @@ git clone https://github.com/Thomashighbaugh/firefox /tmp/firefox
 # as each has had the time to generate a profile for the script
 # to install into plus the 3 seconds from the sleep command after
 # to insure there are no excuses
-firefox & 
+firefox &
 sleep 3
 sudo pkill firefox
 bash /tmp/firefox/install.sh stable
-firefox-developer-edition & 
+firefox-developer-edition &
 sleep 3
 sudo pkill firefox-developer-edition
 bash /tmp/firefox/install.sh dev

@@ -1,9 +1,8 @@
 #!/bin/bash
 
-# Its symlink farming time! 
+# Its symlink farming time!
 
 source "$HOME"/dotfiles/install/01-lib.sh
-
 
 ## Symlinks
 print t "[===================================================]"
@@ -68,7 +67,7 @@ LINK "$HOME"/dotfiles/home/gtk/gtkrc-2.0 "$HOME"/.gtkrc-2.0
 mkdir -p "$HOME"/.config/Kvantum/Kvantum
 LINK "$HOME"/dotfiles/home/gtk/kvantum.kvconfig "$HOME"/.config/Kvantum/kvantum.kvconfig
 mkdir -p "$HOME"/.config/qt5ct
-LINK "$HOME"/dotfiles/home/qt5/* "$HOME"/.config/qt5ct
+LINK "$HOME"/dotfiles/home/qt5ct "$HOME"/.config/
 
 # --------------------------------------------------- #
 print s "[===================================================]"
@@ -122,8 +121,6 @@ print s "[===================================================]"
 sleep 3s
 LINK "$HOME"/dotfiles/home/fontconfig "$HOME"/.config/fontconfig
 # --------------------------------------------------- #
-
-
 
 # --------------------------------------------------- #
 print s "[===================================================]"

@@ -6,17 +6,19 @@
 Xcursor.size: 48
 Xcursor.theme: chinnamasta
 
-Xft.antialias:  true
-Xft.hinting:    true
+
+
 Xft.rgba:       rgba
-Xft.autohint:   true
-Xft.hintstyle:  hintsfull
+Xft.autohint:   0
+Xft.hinting: 1
+Xft.antialias: 1
+Xft.hintstyle:  hintslight
 Xft.lcdfilter:  lcddefault
-Xft.dpi: 96
+Xft.dpi: 100
 
 xterm*termName: xterm-256color
 
-0Xft.autohint: 1
-Xft.antialias: 1
 
- Xcursor.theme: chhinamasta
+
+
+

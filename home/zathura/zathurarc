@@ -24,43 +24,38 @@ set zoom-min 10
 set guioptions ""
 
 
+# Base16 vice
+# Author: Thomas Leon Highbaugh thighbaugh@zoho.com
 
-# zathurarc-dark
-set notification-error-bg "#22262d"
-set notification-error-fg "#ff00aa"
-set notification-warning-bg "#22262d"
-set notification-warning-fg "#ffffaa"
-set notification-bg "#22262d"
-set notification-fg "#e9efff"
+set default-bg                  "#17191E"
+set default-fg                  "#22262d"
 
-set completion-group-bg "#22262d"
-set completion-group-fg "#efe999"
-set completion-bg "#22262d"
-set completion-fg "#8b9cbe"
-set completion-highlight-bg "#17191e"
-set completion-highlight-fg "#b2bfd9"
+set statusbar-fg                "#555e70"
+set statusbar-bg                "#3c3f4c"
 
-set index-bg "#22262d" 
-set index-fg "#b2bfd9" 
-set index-active-bg "#22262d"
-set index-active-fg "#b2bfd9"
+set inputbar-bg                 "#17191E"
+set inputbar-fg                 "#f4f4f7"
 
-set inputbar-bg "#22262d"
-set inputbar-fg "#b2bfd9"
+set notification-bg             "#17191E"
+set notification-fg             "#f4f4f7"
 
-set statusbar-bg "#22262d"
-set statusbar-fg "#b2bfd9"
+set notification-error-bg       "#17191E"
+set notification-error-fg       "#ff29a8"
 
-set highlight-color "#"
-set highlight-active-color "#4061cf"
+set notification-warning-bg     "#17191E"
+set notification-warning-fg     "#ff29a8"
 
-set default-bg "#22262d"
-set default-fg "#f4f4f7"
-set render-loading true
-set render-loading-fg "#8b9cbe"
-set render-loading-bg "#22262d"
+set highlight-color             "#f0ffaa"
+set highlight-active-color      "#00eaff"
 
-set recolor true
-set recolor-lightcolor "#17191e"
-set recolor-darkcolor "#f4f4f7"
-set recolor-keephue true  
+set completion-bg               "#22262d"
+set completion-fg               "#00eaff"
+
+set completion-highlight-fg     "#f4f4f7"
+set completion-highlight-bg     "#00eaff"
+
+set recolor-lightcolor          "#17191E"
+set recolor-darkcolor           "#B2BFD9"
+
+set recolor                     "false"
+set recolor-keephue             "false"

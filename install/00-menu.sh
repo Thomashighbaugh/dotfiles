@@ -52,14 +52,18 @@ sudo pacman -Syu dialog
 
 sudo timedatectl set-ntp true
 
-sudo hwclock --systohc --localtime 
+sudo hwclock --systohc --localtime
+
+sudo touch /tmp/install-log.txt
+
+sudo chmod -Rv 777 /tmp/install-log.txt
 
 # --------------------------------------------------- #
 # --------------- Confirmation Dialog --------------- #
 # --------------------------------------------------- #
 dialog --title "Proceed?" \
     --backtitle "Post Installation Provisioning - the Electric Tantra Linux" \
-    --yesno "Are You Ready to Begin?" 7 60
+    --yesno "Broke Your Install Again I See, Ready to Get Back to Work??" 7 60
 response=$?
 case $response in
 0) mainmenu ;;

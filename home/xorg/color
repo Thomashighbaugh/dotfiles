@@ -15,9 +15,9 @@ XTerm.VT100.background:   #1b1d24
 !*.color24:      #323643
 
 ! red
-*.color1:       #ff00AA
-*.color9:       #ff87d7
-!*.color17:      #FF3d81
+!*.color1:       #F88ED6 
+*.color9:       #FABDED
+*.color1:      #FF3d81
 !*.color25:      #e91e63
 
 ! green
@@ -55,3 +55,59 @@ XTerm.VT100.background:   #1b1d24
 *.color15:      #555e70
 !*.color23:      #b2bfd9
 !*.color31:      #727f96
+
+
+! Base16 vice
+! Scheme: Thomas Leon Highbaugh thighbaugh@zoho.com
+
+#define base00 #17191E
+#define base01 #22262d
+#define base02 #3c3f4c
+#define base03 #383a47
+#define base04 #555e70
+#define base05 #8b9cbe
+#define base06 #B2BFD9
+#define base07 #f4f4f7
+#define base08 #ff87d7
+#define base09 #85ffe0
+#define base0A #f0ffaa
+#define base0B #0badff
+#define base0C #8265ff
+#define base0D #00eaff
+#define base0E #00f6d9
+#define base0F #ff3d81
+
+*foreground:   base05
+#ifdef background_opacity
+*background:   [background_opacity]base00
+#else
+*background:   base00
+#endif
+*cursorColor:  base05
+
+*color0:       base00
+*color1:       base08
+*color2:       base0B
+*color3:       base0A
+*color4:       base0D
+*color5:       base0E
+*color6:       base0C
+*color7:       base05
+
+*color8:       base03
+*color9:       base08
+*color10:      base0B
+*color11:      base0A
+*color12:      base0D
+*color13:      base0E
+*color14:      base0C
+*color15:      base07
+
+! Note: colors beyond 15 might not be loaded (e.g., xterm, urxvt),
+! use 'shell' template to set these if necessary
+*color16:      base09
+*color17:      base0F
+*color18:      base01
+*color19:      base02
+*color20:      base04
+*color21:      base06
