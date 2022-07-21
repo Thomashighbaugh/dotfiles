@@ -97,3 +97,8 @@ fi
 if [[ -d "$HOME/.local/share/flutter/bin" ]]; then
     export PATH="$HOME/.local/share/flutter/bin:$PATH"
 fi
+
+
+if [[ -d "$HOME/.local/lib/python3.10" ]]; then 
+      export PATH="$HOME/.local/lib/python3.10:$PATH"
+fi
