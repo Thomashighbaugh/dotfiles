@@ -3,7 +3,7 @@
 # --------------------------------------------------- #
 # ------------------ Source Library ----------------- #
 # --------------------------------------------------- #
-source "$HOME"/dotfiles/install/arch/01-lib.sh
+source "$HOME"/dotfiles/install/artix/01-lib.sh
 
 # Only set until you reboot, enables easier time working
 # with directories cloned into tmpfs, while are also

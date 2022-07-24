@@ -57,5 +57,5 @@ SULINK() {
 }
 
 SYSCTL() {
-    sudo systemctl enable --now "$1"
+    sudo ln -svf /etc/runit/sv/"$1" /run/runit/service/ | tee -a /tmp/install-log.txt
 }
