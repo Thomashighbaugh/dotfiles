@@ -4,19 +4,20 @@ source $HOME/dotfiles/install/artix/01-lib.sh
 
 # --------------------------------------------------- #
 print s "[===================================================]"
-print s Install Paru 
+print s Install Paru
 print s "[===================================================]"
 
 sudo pacman -S --noconfirm --needed git base-devel fakeroot
+
 if ! command -v paru &>/dev/null; then
-    git clone https://aur.archlinux.org/paru-bin.git /tmp/paru-bin-cloned
-    cd /tmp/paru-bin-cloned/ &&
-        makepkg -sfci --noconfirm --needed
+    sudo rm -rvf /tmp/paru-bin-cloned
+    git clone https://aur.archlinux.org/paru.git /tmp/paru
+    cd /tmp/paru-bin-cloned/ && makepkg -si
 fi
 
 # --------------------------------------------------- #
 print s "[===================================================]"
-print s Pacman Configuration 
+print s Pacman Configuration
 print s "[===================================================]"
 
 sudo pacman-key --init
@@ -24,43 +25,50 @@ sudo pacman-key --populate archlinux
 #------------------------#
 # Swap in Our pacman.conf
 
-  #  if ! /tmp/install.lck; then
-#	    # first we must prepare to install arch support, ugly but it works
- #           sudo bash -c "echo '[universe]' >> /etc/pacman.conf"
-#	    sudo bash -c "echo '  Server = https://universe.artixlinux.org/$arch' >> /etc/pacman.conf"
-#	    sudo bash -c "echo 'Server = https://mirror1.artixlinux.org/universe/$arch' >> /etc/pacman.conf"
-#	    sudo bash -c "echo 'Server = https://mirror.pascalpuffke.de/artix-universe/$arch' >> /etc/pacman.conf"
- #           sudo bash -c "echo 'Server = https://mirror1.cl.netactuate.com/artix/universe/$arch' >> /etc/pacman.conf"
- #	    sudo bash -c "echo 'Server = https://ftp.crifo.org/artix-universe/' >> /etc/pacman.conf"
-	    # Now we install the support
-#	    sudo pacman -Sy artix-archlinux-support
-	    # Now we can safely copy over our presalted pacman, with candy!
-#	    cd "$HOME"/dotfiles &&
- #           sudo cp ./root/pacman/artix/pacman.conf /etc/pacman.conf &&
-  #          sudo touch /tmp/install.lck
-   # fi
+if [[ -z "$PACMAN" ]]; then
 
+    sudo bash -c "echo '[universe]' >> /etc/pacman.conf"
+    sudo bash -c "echo 'Server = https://universe.artixlinux.org/$arch' >> /etc/pacman.conf"
+    sudo bash -c "echo 'Server = https://mirror1.artixlinux.org/universe/$arch' >> /etc/pacman.conf"
+    sudo bash -c "echo 'Server = https://mirror.pascalpuffke.de/artix-universe/$arch' >> /etc/pacman.conf"
+    sudo bash -c "echo 'Server = https://artixlinux.qontinuum.space/artixlinux/universe/os/$arch' >> /etc/pacman.conf"
+    sudo bash -c "echo 'Server = https://mirror1.cl.netactuate.com/artix/universe/$arch' >> /etc/pacman.conf"
+    sudo bash -c "echo 'Server = https://ftp.crifo.org/artix-universe/' >> /etc/pacman.conf"
+    sudo bash -c "echo '[omniverse]' >> /etc/pacman.conf"
+    sudo bash -c "echo 'Server = http://omniverse.artixlinux.org/$arch' >> /etc/pacman.conf"
+    sudo pacman -Syyu
+    sudo pacman -S artix-archlinux-support
+    sudo pacman-key --populate archlinux
+    sudo bash -c "echo '[extra]' >> /etc/pacman.conf"
+    sudo bash -c "echo 'Include = /etc/pacman.d/mirrorlist-arch' >> /etc/pacman.conf"
+    sudo bash -c "echo '[community]' >> /etc/pacman.conf"
+    sudo bash -c "echo 'Include = /etc/pacman.d/mirrorlist-arch' >> /etc/pacman.conf"
+    sudo pacman -Syyu
+    export PACMAN=0
 
+    #----------------------------------#
+    # Add Choatic AUR for kernel builds
+    curl https://aur.chaotic.cx/chaotic.gpg >/tmp/chaotic.pgp
+    sudo pacman-key --add /tmp/chaotic.pgp
+    sudo pacman-key --lsign-key FBA220DFC880C036
+    sudo pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst' 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
+    sudo sh -c 'echo "[chaotic-aur]" >> /etc/pacman.conf '
+    sudo sh -c 'echo "Include = /etc/pacman.d/chaotic-mirrorlist" >> /etc/pacman.conf'
+    sudo pacman -Syy
 
+    #--------------------------------#
+    # Add Blackarch for Security Tools
+    cd /tmp && curl -O https://blackarch.org/strap.sh && sudo chmod +x strap.sh && sudo ./strap.sh && sudo pacman -Syu --noconfirm && cd $HOME/dotfiles || return
 
-#sudo pacman -Syyu
-#----------------------------------#
-# Add Choatic AUR for kernel builds
-#curl https://aur.chaotic.cx/chaotic.gpg >/tmp/chaotic.pgp
-#sudo pacman-key --add /tmp/chaotic.pgp
-#sudo pacman-key --lsign-key FBA220DFC880C036
-#sudo pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst' 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
-#sudo sh -c 'echo "[chaotic-aur]" >> /etc/pacman.conf '
-#sudo sh -c 'echo "Include = /etc/pacman.d/chaotic-mirrorlist" >> /etc/pacman.conf'
-#sudo pacman -Syy
+else
 
-#--------------------------------#
-# Add Blackarch for Security Tools
-#cd /tmp && curl -O https://blackarch.org/strap.sh && sudo chmod +x strap.sh && sudo ./strap.sh && sudo pacman -Syu --noconfirm && cd $HOME/dotfiles || return
+    return
+
+fi
 
 # --------------------------------------------------- #
 print s "[===================================================]"
-print s Optimize Makepkg | tee -a /tmp/install-log.txt
+print s Optimize Makepkg
 print s "[===================================================]"
 
 # makepkg.conf optimization
