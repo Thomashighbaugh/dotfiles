@@ -8,7 +8,6 @@ alsa-tools
 alsa-utils
 amdapp-sdk-opencv
 amdctl-git
-ananicy-cpp
 android-apktool
 android-emulator
 android-file-transfer
@@ -23,7 +22,8 @@ appimage-installer
 appimagetool-bin
 appstream-glib
 arandr
-archiso
+artools
+iso-profiles
 archiver
 arp-scan
 artikulate
@@ -314,7 +314,6 @@ mkinitcpio-firmware
 mkinitcpio-kms
 mkinitcpio-modconf-hook-git
 mkinitcpio-openswap
-mkinitcpio-systemd-tool
 mkinitcpio-utils
 mkmm
 mlt
@@ -498,8 +497,6 @@ swell-foop
 syslog-ng
 sysprof
 systembus-notify
-systemdgenie
-sysz
 tali
 tebu-flat-icon-theme
 template-glib

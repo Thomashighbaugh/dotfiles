@@ -98,3 +98,5 @@
 	HEAD = 6 normal bold dim
 [diff]
 	colorMoved = zebra
+[safe]
+	directory = /home/tlh/artools-workspace/
