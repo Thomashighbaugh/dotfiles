@@ -67,17 +67,6 @@ fi
 
 
 ## Go ###########################################################################################
-
-#if [[ -d "$HOME/go" ]]; then
- #   export PATH="$HOME/go:$PATH"
-#    export GOPATH=$HOME/go
- #   export GO15VENDOREXPERIMENT=1
-#fi
-
-#if [[ -d "$HOME/go/bin" ]]; then
- #   export PATH="$HOME/go/bin:$PATH"
-#fi
-
 if [[ -d /usr/local/go/bin ]]; then
     export PATH=$PATH:/usr/local/go/bin
     export GO15VENDOREXPERIMENT=1

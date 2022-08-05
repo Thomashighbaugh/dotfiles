@@ -3,7 +3,6 @@
 ## shell variables #################################################
 ####################################################################
 
-
 ## Config Directory ################################################
 export XDG_CONFIG_HOME="$HOME/.config"
 
@@ -43,7 +42,6 @@ export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;36m'
 export LESS=-r
 
-
 ## DATE  ###########################################################
 DATE=$(date +%s)
 export DATE
@@ -66,7 +64,6 @@ export LS_COLORS
 ## Personal Email ##############################################################
 export EMAIL="thighbaugh@zoho.com"
 
-
 ## Git Options #################################################################
 export GIT_DISCOVERY_ACROSS_FILESYSTEM=1
 
@@ -86,4 +83,4 @@ export OS=$(uname -s)
 export ARCH=$(uname -m)
 
 ## Dropbox Present Location ####################################################
-export DROPBOXDIR="/home/tlh/256/Dropbox/Dropbox/"
+export DROPBOXDIR="/home/tlh/256/Dropbox/"
