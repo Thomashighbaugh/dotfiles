@@ -1,8 +1,9 @@
 #
 # /etc/pacman.conf
 #
-# Fully Loaded Version with Universe and Omniverse
-# --------------------------------------------------- #
+# See the pacman.conf(5) manpage for option and repository directives
+
+#
 # GENERAL OPTIONS
 #
 [options]
@@ -14,7 +15,7 @@
 #LogFile     = /var/log/pacman.log
 #GPGDir      = /etc/pacman.d/gnupg/
 #HookDir     = /etc/pacman.d/hooks/
-HoldPkg = pacman glibc
+HoldPkg     = pacman glibc
 #XferCommand = /usr/bin/curl -L -C - -f -o %o %u
 #XferCommand = /usr/bin/wget --passive-ftp -c -O %o %u
 #CleanMethod = KeepInstalled
@@ -29,16 +30,15 @@ Architecture = auto
 
 # Misc options
 #UseSyslog
-Color
+#Color
 #NoProgressBar
 CheckSpace
-VerbosePkgLists
-ParallelDownloads = 12
-ILoveCandy
+#VerbosePkgLists
+#ParallelDownloads = 5
 
 # By default, pacman accepts packages signed by keys that its local keyring
 # trusts (see pacman-key and its man page), as well as unsigned packages.
-SigLevel = Required DatabaseOptional
+SigLevel    = Required DatabaseOptional
 LocalFileSigLevel = Optional
 #RemoteFileSigLevel = Required
 
@@ -84,34 +84,16 @@ Include = /etc/pacman.d/mirrorlist
 [galaxy]
 Include = /etc/pacman.d/mirrorlist
 
-
 # If you want to run 32 bit applications on your x86_64 system,
 # enable the lib32 repositories as required here.
 
 #[lib32-gremlins]
 #Include = /etc/pacman.d/mirrorlist
 
-[lib32]
-Include = /etc/pacman.d/mirrorlist
-
-## Artix Additional Repos 
-
-[universe]
-SigLevel = Optional TrustAll
-Server = https://universe.artixlinux.org/$arch
-Server = https://mirror1.artixlinux.org/universe/$arch
-Server = https://mirror.pascalpuffke.de/artix-universe/$arch
-Server = https://artixlinux.qontinuum.space/artixlinux/universe/os/$arch
-Server = https://mirror1.cl.netactuate.com/artix/universe/$arch
-Server = https://ftp.crifo.org/artix-universe/
-
-
-[omniverse]
-SigLevel = Optional TrustAll
-Server = http://omniverse.artixlinux.org/$arch
+#[lib32]
+#Include = /etc/pacman.d/mirrorlist
 
 # An example of a custom package repository.  See the pacman manpage for
 # tips on creating your own repositories.
 #[custom]
 #SigLevel = Optional TrustAll
-#Server = file:///home/custompkgs

@@ -2,6 +2,45 @@
 
 source $HOME/dotfiles/install/artix/01-lib.sh
 
+
+# --------------------------------------------------- #
+
+print s "[===================================================]"
+print s "Enabling Arch Repositories..." 
+print s "[===================================================]"
+
+sudo pacman -S --noconfirm artix-mirrorlist 
+
+sudo cp -rvf root/pacman/artix/pacman.conf /etc/
+
+sudo pacman-key --init
+sudo pacman-key --populate artix 
+
+sudo pacman -Syy 
+
+sudo pacman --noconfirm -Sy artix-keyring artix-archlinux-support  
+
+
+sudo bash -c 'echo " # Extra
+# Arch Linux Repositories 
+ [extra]
+
+ Include = /etc/pacman.d/mirrorlist-arch
+
+ [community]
+ Include = /etc/pacman.d/mirrorlist-arch
+
+ [multilib]
+ Include = /etc/pacman.d/mirrorlist-arch" >> /etc/pacman.conf' 
+
+
+sudo pacman-key --populate archlinux
+
+sudo pacman -Syyu
+
+
+
+
 # --------------------------------------------------- #
 print s "[===================================================]"
 print s Install Paru
