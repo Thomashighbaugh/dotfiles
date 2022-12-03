@@ -42,7 +42,6 @@ LINK "$HOME"/dotfiles/home/xorg/color "$HOME"/.Xresources.d/color
 LINK "$HOME"/dotfiles/home/xorg/font "$HOME"/.Xresources.d/font
 LINK "$HOME"/dotfiles/home/xorg/rxvt-unicode "$HOME"/.Xresources.d/rxvt-unicode
 LINK "$HOME"/dotfiles/home/xorg/xterm "$HOME"/.Xresources.d/xterm
-LINK "$HOME"/dotfiles/home/xorg/xprofile "$HOME"/.xprofile
 LINK "$HOME"/dotfiles/home/xorg/xsettingsd "$HOME"/.xsettingsd
 xrdb -merge ~/.Xresources
 

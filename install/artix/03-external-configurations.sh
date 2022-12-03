@@ -23,7 +23,7 @@ print s "Grub2 Theme" | tee -a /tmp/install-log.txt
 print s "[===================================================]"
 sleep 3
 git clone https://github.com/the-Electric-Tantra-Linux/Bhairava-Grub-Theme /tmp/Bhairava-Grub-Theme
-cd /tmp/Bhairava-Grub-Theme && bash install.sh && cd "$HOME"/dotfiles && sudo rm -rvf /tmp/Bhairava-Grub-Theme
+cd /tmp/Bhairava-Grub-Theme && sudo bash install.sh && cd "$HOME"/dotfiles 
 
 print s "[===================================================]"
 print s "Bin Scripts" | tee -a /tmp/install-log.txt
@@ -57,12 +57,13 @@ sleep 3
 sudo git clone https://github.com/Thomashighbaugh/chhinamasta-icon-theme /usr/share/icons/chhinamasta
 cd /tmp && wget https://github.com/the-Electric-Tantra-Linux/Dhumavati-Theme/releases/download/release/Dhumavati-White-Dark_.tar.xz
 sudo tar -xf /tmp/Dhumavati-White-Dark_.tar.xz
-sudo cp -rvf /tmp/Dhumavati-White-Dark/* /usr/share/themes
+sudo mkdir -p /usr/share/themes/Dhumavati-White-Dark
+sudo cp -rvf /tmp/Dhumavati-White-Dark/* /usr/share/themes/Dhumavati-White-Dark
 LINK "$HOME"/dotfiles/home/gtk/gtk-3.0/colors.css "$HOME"/.config/gtk-3.0/colors.css
 LINK "$HOME"/dotfiles/home/gtk/gtk-3.0/gtk.css "$HOME"/.config/gtk-3.0/gtk.css
 mkdir -p "$HOME"/.icons/default
 LINK "$HOME"/dotfiles/home/icons/index.theme "$HOME"/.icons/default/
-LINK /usr/share/icons/chhinamasta "$HOME"/.icons/default/cursors
+sudo ln -svf /usr/share/icons/chhinamasta "$HOME"/.icons/default/cursors
 
 # --------------------------------------------------- #
 print s "[===================================================]"
@@ -74,18 +75,22 @@ git clone https://github.com/Thomashighbaugh/firefox /tmp/firefox
 # as each has had the time to generate a profile for the script
 # to install into plus the 3 seconds from the sleep command after
 # to insure there are no excuses
+librewolf & 
+sleep 3 
+sudo pkill librewolf & 
+bash /tmp/firefox/install.sh wolf | tee -a /tmp/install-log.txt
 firefox &
 sleep 3
-sudo pkill firefox
-bash /tmp/firefox/install.sh stable
+sudo pkill firefox &
+bash /tmp/firefox/install.sh stable | tee -a /tmp/install-log.txt
 firefox-developer-edition &
 sleep 3
-sudo pkill firefox-developer-edition
-bash /tmp/firefox/install.sh dev
+sudo pkill firefox-developer-edition &
+bash /tmp/firefox/install.sh dev | tee -a /tmp/install-log.txt
 firefox-nightly &
 sleep 3
-sudo pkill firefox-nightly
-bash /tmp/firefox/install.sh nightly
+sudo pkill firefox-nightly &
+bash /tmp/firefox/install.sh nightly | tee -a /tmp/install-log.txt
 
 # --------------------------------------------------- #
 print s "[===================================================]"
@@ -93,4 +98,14 @@ print s Cloning LightDM Theme | tee -a /tmp/install-log.txt
 print s "[===================================================]"
 sleep 3s
 git clone https://github.com/the-Electric-Tantra-Linux/mahakali-webkit2-theme /tmp/mahakali-webkit2-theme
-cd /tmp/mahakali-webkit2-theme && bash install.sh && cd ~/dotfiles && sudo rm -rvf /tmp/mahakali-webkit2-theme
+cd /tmp/mahakali-webkit2-theme && bash install.sh && cd "$HOME"/dotfiles || exit 
+
+# --------------------------------------------------- #
+# without this, boot issues ensue probably due to grub theme 
+print s "[===================================================]"
+print s "Run mkinitcpio and Update Grub" | tee -a /tmp/install-log.txt
+print s "[===================================================]"
+
+sudo mkinitcpio -P
+
+sudo update-grub 
