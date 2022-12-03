@@ -23,7 +23,7 @@ print s "Grub2 Theme" | tee -a /tmp/install-log.txt
 print s "[===================================================]"
 sleep 3
 git clone https://github.com/the-Electric-Tantra-Linux/Bhairava-Grub-Theme /tmp/Bhairava-Grub-Theme
-cd /tmp/Bhairava-Grub-Theme && sudo bash install.sh && cd "$HOME"/dotfiles 
+cd /tmp/Bhairava-Grub-Theme && sudo bash install.sh && cd "$HOME"/dotfiles  || return
 
 print s "[===================================================]"
 print s "Bin Scripts" | tee -a /tmp/install-log.txt
