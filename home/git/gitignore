@@ -31,3 +31,8 @@ node_modules/
 
 # VSCode files 
 .vscode/
+
+
+# Added by cargo
+
+/target
