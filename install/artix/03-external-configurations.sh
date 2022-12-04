@@ -24,6 +24,9 @@ print s "[===================================================]"
 sleep 3
 git clone https://github.com/the-Electric-Tantra-Linux/Bhairava-Grub-Theme /tmp/Bhairava-Grub-Theme
 cd /tmp/Bhairava-Grub-Theme && sudo bash install.sh && cd "$HOME"/dotfiles  || return
+# To handle that annoying grub issue for arch based systems 
+sudo grub-install | tee -a /tmp/install-log.txt
+sudo grub-mkconfig -o /boot/grub/grub.cfg | tee -a /tmp/install-log.txt
 
 print s "[===================================================]"
 print s "Bin Scripts" | tee -a /tmp/install-log.txt
@@ -55,7 +58,7 @@ print s "GTK and Icon Themes" | tee -a /tmp/install-log.txt
 print s "[===================================================]"
 sleep 3
 sudo git clone https://github.com/Thomashighbaugh/chhinamasta-icon-theme /usr/share/icons/chhinamasta
-cd /tmp && wget https://github.com/the-Electric-Tantra-Linux/Dhumavati-Theme/releases/download/release/Dhumavati-White-Dark_.tar.xz
+cd /tmp && wget https://github.com/the-Electric-Tantra-Linux/Dhumavati-Theme/releases/download/release/Dhumavati-Black-Dark_.tar.xz
 sudo tar -xf /tmp/Dhumavati-White-Dark_.tar.xz
 sudo mkdir -p /usr/share/themes/Dhumavati-White-Dark
 sudo cp -rvf /tmp/Dhumavati-White-Dark/* /usr/share/themes/Dhumavati-White-Dark
