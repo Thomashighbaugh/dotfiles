@@ -14,7 +14,7 @@
 
 ! red
 *.color1:      #FF3d81  
-*.color9:       #ff2954
+*.color9:      #E91E63
 
 ! green
 *.color2:       #44ffdd
@@ -29,8 +29,8 @@
 *.color12:      #008fb3
 
 ! magenta
-*.color5:       #8265ff
-*.color13:      #7922dd
+*.color5:       #664ed0
+*.color13:      #8265ff
 
 ! cyan
 *.color6:       #38ffff

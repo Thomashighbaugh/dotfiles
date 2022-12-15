@@ -9,11 +9,11 @@ function hex2rgb(hex)
 end
 
 local base00 = "#17191e" -- ----
-local base01 = "#22262d" -- ---
+local base01 = "#202022" -- ---
 local base02 = "#3c3f4c" -- --
 local base03 = "#515a6e" -- -
 local base04 = "#03050a" -- +
-local base05 = "#8b9cbe" -- ++
+local base05 = "#555566" -- ++
 local base06 = "#b2bfd9" -- +++
 local base07 = "#f4f4f7" -- ++++
 local base08 = "#ff29a8" -- red
@@ -111,9 +111,9 @@ theme.hint_overlay_selected_bg = string.format("rgba(%s, 0.3)", hex2rgb(base0B))
 theme.hint_overlay_selected_border = theme.hint_overlay_border
 
 -- General colour pairings
-theme.ok = { fg = base05, bg = base00 }
-theme.warn = { fg = base00, bg = base0E }
-theme.error = { fg = base08, bg = base00 }
+theme.ok = {fg = base05, bg = base00}
+theme.warn = {fg = base00, bg = base0E}
+theme.error = {fg = base08, bg = base00}
 
 -- Font
 theme.font = "12px Operator SSm Black"

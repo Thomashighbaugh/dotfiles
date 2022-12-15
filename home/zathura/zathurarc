@@ -28,9 +28,9 @@ set guioptions ""
 # Author: Thomas Leon Highbaugh thighbaugh@zoho.com
 
 set default-bg                  "#17191E"
-set default-fg                  "#22262d"
+set default-fg                  "#202022"
 
-set statusbar-fg                "#555e70"
+set statusbar-fg                "#555566"
 set statusbar-bg                "#3c3f4c"
 
 set inputbar-bg                 "#17191E"
@@ -48,7 +48,7 @@ set notification-warning-fg     "#ff29a8"
 set highlight-color             "#f0ffaa"
 set highlight-active-color      "#00eaff"
 
-set completion-bg               "#22262d"
+set completion-bg               "#202022"
 set completion-fg               "#00eaff"
 
 set completion-highlight-fg     "#f4f4f7"

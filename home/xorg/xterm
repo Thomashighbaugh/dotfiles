@@ -2,5 +2,5 @@
 xterm.loginShell: true
 xterm.saveLines: 2000
 xterm.eightBitInput: false
-xterm.foreground: #8b9cbe
+xterm.foreground: #555566
 xterm.background: #17191e

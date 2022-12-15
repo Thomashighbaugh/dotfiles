@@ -1,11 +1,11 @@
 local bg = "#1d1e22aa"
 local fg = "#b2bfd9"
-local accent = "#8b9cbe"
+local accent = "#555566"
 return {
   color_background = bg,
   color_foreground = fg,
   color_bold = "#f4f4f7",
-  color_cursor = "#8b9cbe",
+  color_cursor = "#555566",
   color_cursor_foreground = bg,
   color_highlight = accent,
   color_highlight_foreground = bg,
@@ -17,7 +17,7 @@ return {
   color_5 = "#8265ff",
   color_6 = "#87ffff",
   color_7 = "#f4f4f7",
-  color_8 = "#555e70",
+  color_8 = "#555566",
   color_9 = "#ff87d7",
   color_10 = "#00ffcc",
   color_11 = "#ffffaf",

@@ -3,7 +3,7 @@ gtk-color-scheme =
 fg_color:#f4f4f7\n
 base_color:#2f303d\n
 text_color:#f4f4f7\n
-selected_bg_color:#8b9cbe\n
+selected_bg_color:#555566\n
 selected_fg_color:#f4f4f7\n
 tooltip_bg_color:#2f303d\n
 tooltip_fg_color:#f4f4f7\n
@@ -17,10 +17,10 @@ menu_bg_color:#2f303d\n
 menu_fg_color:#f4f4f7\n
 panel_bg_color:#2f303d\n
 panel_fg_color:#f4f4f7\n
-link_color:#8b9cbe"
+link_color:#555566"
 
 
-gtk-theme-name="Matangi"
+gtk-theme-name="Dhumavati-White-Dark"
 gtk-icon-theme-name="chhinamasta"
 gtk-font-name="Operator SSm Black 11"
 gtk-cursor-theme="chhinamasta"

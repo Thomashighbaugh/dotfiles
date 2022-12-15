@@ -25,7 +25,7 @@ Of stupid fools who stand in line <br />
 
 <h2>Introduction</h2>
 
-<p>The files in this repository are my configurations powering my <span style="background-color:#1d1e22; color: #8b9cbe; font-size:85%;">archlinux</span> setup and the installation scripts that place them into the directories the system reads them from, after first installing the software that is.</p>
+<p>The files in this repository are my configurations powering my <span style="background-color:#1d1e22; color: #555566; font-size:85%;">archlinux</span> setup and the installation scripts that place them into the directories the system reads them from, after first installing the software that is.</p>
 
 <p>This means that you are feasting your eyes upon a bare git repository featuring a home-rolled installation and configuration management system written by yours truly that has been derived from the organic process of reinstallations and daily management of these files and my system over all. </p>
 
