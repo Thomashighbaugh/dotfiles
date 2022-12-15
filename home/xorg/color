@@ -4,56 +4,40 @@
 ! Scheme: Vice (Base16)
 ! Note: colors beyond 15 might not be loaded (e.g., xterm, urxvt)
 ! special
-XTerm.VT100.foreground:   #f4f4f7
-XTerm.VT100.background:   #1b1d24
-*.cursorColor:             #e9efff
+*.foreground:   #f4f4f7
+*.background:   #1d1e22
+*.cursorColor:  #e9efff
 
 ! black
-*.color0:       #1b1d24
-*.color8:       #8b9cbe
-!*.color16:      #282b36
-!*.color24:      #323643
+*.color0:       #19191a
+*.color8:       #555566
 
 ! red
-!*.color1:       #F88ED6 
-*.color9:       #FABDED
 *.color1:      #FF3d81  
-!*.color25:      #e91e63
+*.color9:       #ff2954
 
 ! green
 *.color2:       #44ffdd
-*.color10:      #00ffcc
-!*.color18:      #79F3CB
-!*.color26:      #2eedae
+*.color10:      #00b893
 
 ! yellow
-*.color3:       #ffff73
-*.color11:      #ffffaf
-!*.color19:      #ffff35
-!*.color27:      #ffff00
+*.color3:       #ffffaf
+*.color11:      #ffff73
 
 ! blue
-*.color4:       #2FB1D4
-*.color12:      #00caff
-!*.color20:      #008BD2
-!*.color28:      #0badff
+*.color4:       #00caff
+*.color12:      #008fb3
 
 ! magenta
 *.color5:       #8265ff
-*.color13:      #AF9DFC
-!*.color21:      #772DFF  
-!*.color29:      #6C31F4
+*.color13:      #7922dd
 
 ! cyan
-*.color6:       #87ffff
-*.color14:      #afffff
-!*.color22:      #52F1FF
-!*.color30:      #00eaff
+*.color6:       #38ffff
+*.color14:      #03ddc4
 
 ! white
 *.color7:       #f4f4f7
-*.color15:      #555e70
-!*.color23:      #b2bfd9
-!*.color31:      #727f96
+*.color15:      #b2bfd9
 
 

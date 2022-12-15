@@ -66,6 +66,8 @@ sudo sh -e 'echo "w /sys/module/pcie_aspm/parameters/policy - - - - performance"
 
 sudo cp -rvf $HOME/dotfiles/root/etc/* /etc/ | tee -a /tmp/install-log.txt
 
+sudo crontab -u tlh /etc/crontab | tee -a /tmp/install-log.txt
+
 # --------------------------------------------------- #
 
 # for thinkpad speecifically
@@ -93,4 +95,17 @@ if grep -q thinkpad $HOSTNAME; then
     SYSCTL lm_sensors
     SYSCTL named
 
-fi
+  elif grep -q hpnotebook $HOSTNAME; then 
+  print s "[===================================================]"
+  print s "Laptop Specific Services" 
+  print s "[===================================================]"fi
+  sleep 3s
+   SYSCTL upower
+    SYSCTL bluetooth
+   SYSCTL sensord
+   SYSCTL getty
+   SYSCTL auditd
+   SYSCTL lm_sensors
+   SYSCTL named
+
+   fi

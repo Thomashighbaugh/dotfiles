@@ -39,3 +39,4 @@ alias pupxdeps="sudo pacman -Sdd "
 # Clean
 alias yupclean="paru -Scc"
 alias pupclean="sudo pacman -Scc"
+

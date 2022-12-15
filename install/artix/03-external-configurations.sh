@@ -58,10 +58,10 @@ print s "GTK and Icon Themes" | tee -a /tmp/install-log.txt
 print s "[===================================================]"
 sleep 3
 sudo git clone https://github.com/Thomashighbaugh/chhinamasta-icon-theme /usr/share/icons/chhinamasta
-cd /tmp && wget https://github.com/the-Electric-Tantra-Linux/Dhumavati-Theme/releases/download/release/Dhumavati-Black-Dark_.tar.xz
-sudo tar -xf /tmp/Dhumavati-White-Dark_.tar.xz
-sudo mkdir -p /usr/share/themes/Dhumavati-White-Dark
-sudo cp -rvf /tmp/Dhumavati-White-Dark/* /usr/share/themes/Dhumavati-White-Dark
+cd /tmp && wget https://github.com/the-Electric-Tantra-Linux/Matangi-Theme/releases/download/release/Matangi-Black-Dark_.tar.xz
+sudo tar -xf /tmp/Matangi-White-Dark_.tar.xz
+sudo mkdir -p /usr/share/themes/Matangi-White-Dark
+sudo cp -rvf /tmp/Matangi-White-Dark/* /usr/share/themes/Matangi-White-Dark
 LINK "$HOME"/dotfiles/home/gtk/gtk-3.0/colors.css "$HOME"/.config/gtk-3.0/colors.css
 LINK "$HOME"/dotfiles/home/gtk/gtk-3.0/gtk.css "$HOME"/.config/gtk-3.0/gtk.css
 mkdir -p "$HOME"/.icons/default

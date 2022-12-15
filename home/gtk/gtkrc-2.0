@@ -20,9 +20,9 @@ panel_fg_color:#f4f4f7\n
 link_color:#8b9cbe"
 
 
-gtk-theme-name="Dhumavati-White-Dark"
+gtk-theme-name="Matangi-White-Dark"
 gtk-icon-theme-name="chhinamasta"
-gtk-font-name="Minimal Mono Black 9"
+gtk-font-name="Operator SSm Black 11"
 gtk-cursor-theme="chhinamasta"
 gtk-cursor-theme-size=32
 gtk-toolbar-style=GTK_TOOLBAR_BOTH
@@ -35,3 +35,4 @@ gtk-xft-antialias=1
 gtk-xft-hinting=1
 gtk-xft-hintstyle="hintsfull"
 gtk-xft-rgba="rgba"
+gtk-modules=appmenu-gtk-module
