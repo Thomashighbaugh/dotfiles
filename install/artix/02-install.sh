@@ -9,7 +9,7 @@ print s "[===================================================]"
 print s "Enabling Arch Repositories..." 
 print s "[===================================================]"
 
-sudo pacman -S --noconfirm artix-mirrorlist 
+sudo pacman -S --noconfirm artix-mirrorlist git base-devel fakeroot ccache
 
 sudo cp -rvf root/pacman/artix/pacman.conf /etc/
 
@@ -18,7 +18,7 @@ sudo pacman-key --populate artix
 
 sudo pacman -Syy 
 
-sudo pacman --noconfirm -Sy artix-keyring artix-archlinux-support  
+sudo pacman --noconfirm -Sy --overwrite='*' artix-keyring artix-archlinux-support archlinux-mirrorlist 
 
 
 sudo bash -c 'echo " # Extra
@@ -36,7 +36,7 @@ sudo bash -c 'echo " # Extra
 
 sudo pacman-key --populate archlinux
 
-sudo pacman -Syyu
+sudo pacman -Syyu --overwrite='*'
 
 # Blackarch Repo
 curl -O https://blackarch.org/strap.sh && chmod +x strap.sh && sudo bash strap.sh && sudo pacman -Syu
@@ -52,37 +52,12 @@ print s "[===================================================]"
 print s Install Paru
 print s "[===================================================]"
 
-sudo pacman -S --noconfirm --needed git base-devel fakeroot ccache
-
 if ! command -v paru &>/dev/null; then
     sudo rm -rvf /tmp/paru
     git clone https://aur.archlinux.org/paru-bin.git /tmp/paru
     cd /tmp/paru && makepkg -si
 fi
 
-# --------------------------------------------------- #
-print s "[===================================================]"
-print s Pacman Configuration
-print s "[===================================================]"
-
-sudo pacman-key --init
-#------------------------#
-# Swap in Our pacman.conf
-
-if [[ -z "/tmp/pacman" ]]; then
-    sudo cp -rvf $HOME/dotfiles/root/pacman/artix/pacman.conf /etc/pacman.conf
-    #--------------------------------#
-    # Add Blackarch for Security Tools
-     print s "[===================================================]" 
-     print s BlackArch Repos 
-     print s "[===================================================]"
-    cd /tmp && curl -O https://blackarch.org/strap.sh && sudo chmod +x strap.sh && sudo ./strap.sh && sudo pacman -Syu --noconfirm && cd $HOME/dotfiles || return
-sudo touch /tmp/pacman
-else
-
-sleep 3
-
-fi
 
 # --------------------------------------------------- #
 print s "[===================================================]"
@@ -106,7 +81,7 @@ print s Install Packages
 print s "[===================================================]"
 
 for line in $(cat $HOME/dotfiles/install/artix/pkglist); do
-    paru -S --noconfirm --needed $line | tee -a /tmp/install-log.txt
+    paru -S --noconfirm --needed --overwrite='*' $line | tee -a /tmp/install-log.txt
 done
 
 # --------------------------------------------------- #
@@ -114,7 +89,7 @@ print s "[===================================================]"
 print s Install Luarocks Packages 
 print s "[===================================================]"
 
-paru -S --needed --noconfirm luarocks
+paru -S --needed --noconfirm --overwrite='*' luarocks
 
 for package in "luasec" "luaposix" "luacheck" "luafilesystem" "ldoc" "lpeg" "argparse" "penlight"; do
     sudo luarocks install $package | tee -a /tmp/install-log.txt
