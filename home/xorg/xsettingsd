@@ -7,8 +7,8 @@ Gtk/CursorThemeSize 48
 Gtk/DecorationLayout "menu:minimize,maximize,close"
 Gtk/FontName "Operator SSm Black 11"
 Gtk/IconSizes 64
-Gtk/KeyThemeName "Matangi-White-Dark"
-Gtk/ThemeName "Matangi-White-Dark"
+Gtk/KeyThemeName "Matangi"
+Gtk/ThemeName "Matangi"
 Gtk/MenuBarAccel "F10"
 Gtk/MenuImages 1
 Gtk/MonospaceFontName "Operator SSm Black 11"
@@ -23,7 +23,7 @@ Net/EnableEventSounds 1
 Net/EnableInputFeedbackSounds 1
 Net/IconThemeName "chhinamasta"
 Net/SoundThemeName "Yaru"
-Net/ThemeName "Matangi-White-Dark"
+Net/ThemeName "Matangi"
 Xft/Antialias 1
 Xft/HintStyle "hintsfull"
 Xft/Hinting 1

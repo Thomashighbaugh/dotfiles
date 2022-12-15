@@ -20,7 +20,7 @@ panel_fg_color:#f4f4f7\n
 link_color:#8b9cbe"
 
 
-gtk-theme-name="Matangi-White-Dark"
+gtk-theme-name="Matangi"
 gtk-icon-theme-name="chhinamasta"
 gtk-font-name="Operator SSm Black 11"
 gtk-cursor-theme="chhinamasta"

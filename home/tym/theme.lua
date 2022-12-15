@@ -1,4 +1,4 @@
-local bg = "#1b1d24aa"
+local bg = "#1d1e22aa"
 local fg = "#b2bfd9"
 local accent = "#8b9cbe"
 return {

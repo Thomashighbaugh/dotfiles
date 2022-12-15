@@ -23,8 +23,8 @@ print s "Grub2 Theme" | tee -a /tmp/install-log.txt
 print s "[===================================================]"
 sleep 3
 git clone https://github.com/the-Electric-Tantra-Linux/Bhairava-Grub-Theme /tmp/Bhairava-Grub-Theme
-cd /tmp/Bhairava-Grub-Theme && sudo bash install.sh && cd "$HOME"/dotfiles  || return
-# To handle that annoying grub issue for arch based systems 
+cd /tmp/Bhairava-Grub-Theme && sudo bash install.sh && cd "$HOME"/dotfiles || return
+# To handle that annoying grub issue for arch based systems
 sudo grub-install | tee -a /tmp/install-log.txt
 sudo grub-mkconfig -o /boot/grub/grub.cfg | tee -a /tmp/install-log.txt
 
@@ -59,9 +59,9 @@ print s "[===================================================]"
 sleep 3
 sudo git clone https://github.com/Thomashighbaugh/chhinamasta-icon-theme /usr/share/icons/chhinamasta
 cd /tmp && wget https://github.com/the-Electric-Tantra-Linux/Matangi-Theme/releases/download/release/Matangi-Black-Dark_.tar.xz
-sudo tar -xf /tmp/Matangi-White-Dark_.tar.xz
-sudo mkdir -p /usr/share/themes/Matangi-White-Dark
-sudo cp -rvf /tmp/Matangi-White-Dark/* /usr/share/themes/Matangi-White-Dark
+sudo tar -xf /tmp/Matangi_.tar.xz
+sudo mkdir -p /usr/share/themes/Matangi
+sudo cp -rvf /tmp/Matangi/* /usr/share/themes/Matangi
 LINK "$HOME"/dotfiles/home/gtk/gtk-3.0/colors.css "$HOME"/.config/gtk-3.0/colors.css
 LINK "$HOME"/dotfiles/home/gtk/gtk-3.0/gtk.css "$HOME"/.config/gtk-3.0/gtk.css
 mkdir -p "$HOME"/.icons/default
@@ -78,9 +78,9 @@ git clone https://github.com/Thomashighbaugh/firefox /tmp/firefox
 # as each has had the time to generate a profile for the script
 # to install into plus the 3 seconds from the sleep command after
 # to insure there are no excuses
-librewolf & 
-sleep 3 
-sudo pkill librewolf & 
+librewolf &
+sleep 3
+sudo pkill librewolf &
 bash /tmp/firefox/install.sh wolf | tee -a /tmp/install-log.txt
 firefox &
 sleep 3
@@ -101,14 +101,14 @@ print s Cloning LightDM Theme | tee -a /tmp/install-log.txt
 print s "[===================================================]"
 sleep 3s
 git clone https://github.com/the-Electric-Tantra-Linux/mahakali-webkit2-theme /tmp/mahakali-webkit2-theme
-cd /tmp/mahakali-webkit2-theme && bash install.sh && cd "$HOME"/dotfiles || exit 
+cd /tmp/mahakali-webkit2-theme && bash install.sh && cd "$HOME"/dotfiles || exit
 
 # --------------------------------------------------- #
-# without this, boot issues ensue probably due to grub theme 
+# without this, boot issues ensue probably due to grub theme
 print s "[===================================================]"
 print s "Run mkinitcpio and Update Grub" | tee -a /tmp/install-log.txt
 print s "[===================================================]"
 
 sudo mkinitcpio -P
 
-sudo update-grub 
+sudo update-grub

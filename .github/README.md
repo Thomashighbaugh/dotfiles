@@ -23,10 +23,9 @@ Of stupid fools who stand in line <br />
 
 <img src=".github/assets/dreams.gif" alt="pictoral representation of the state of the repository at any given moment depicting palm trees engulfed in flames due to nearby nuclear testing" />
 
-
 <h2>Introduction</h2>
 
-<p>The files in this repository are my configurations powering my <span style="background-color:#1b1d24; color: #8b9cbe; font-size:85%;">archlinux</span> setup and the installation scripts that place them into the directories the system reads them from, after first installing the software that is.</p>
+<p>The files in this repository are my configurations powering my <span style="background-color:#1d1e22; color: #8b9cbe; font-size:85%;">archlinux</span> setup and the installation scripts that place them into the directories the system reads them from, after first installing the software that is.</p>
 
 <p>This means that you are feasting your eyes upon a bare git repository featuring a home-rolled installation and configuration management system written by yours truly that has been derived from the organic process of reinstallations and daily management of these files and my system over all. </p>
 
@@ -34,6 +33,7 @@ Of stupid fools who stand in line <br />
 <p>At this point, the history of this repo reflects my use of a litany of tools to arrive a useful configuration following the need to install or reinstall, from ansible to Makefiles. I have settled, for now, on using the much more precise but fickle set of BASH scripts found in the `install` subdirectory.</p>
 
 <b>My goals for the installation process include:</b>
+
 <ul>
 <li>symlinking files within this repository to various locations in home so they are editable without needing to fuss with copying them over to the intended location again</li>
 <li>copying over set-and-forget configurations I like having system wide and do not edit, thus need not symlink</li>
@@ -44,6 +44,5 @@ Of stupid fools who stand in line <br />
 </ul>
 
 <hr/>
-
 
 <h2></h2>
