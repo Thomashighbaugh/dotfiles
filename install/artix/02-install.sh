@@ -84,6 +84,9 @@ for line in $(cat $HOME/dotfiles/install/artix/pkglist); do
     paru -S --noconfirm --needed --overwrite='*' $line | tee -a /tmp/install-log.txt
 done
 
+# For Thunar 
+uca-apply update
+
 # --------------------------------------------------- #
 print s "[===================================================]"
 print s Install Luarocks Packages 
