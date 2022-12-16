@@ -82,14 +82,9 @@ if grep -q thinkpad $HOSTNAME; then
   SYSCTL tp-battery-mode
   SYSCTL tpacpi-bat
   SSYSCTL libvirt-guests
-  SYSCTL upower
   SYSCTL bluetooth
   SYSCTL libvirt-dbus
-  SYSCTL inotify-daemon
-  SYSCTL sensord
-  SYSCTL auditd
   SYSCTL lm_sensors
-  SYSCTL named
 
 elif grep -q hpnotebook $HOSTNAME; then
   print s "[===================================================]"
@@ -100,6 +95,5 @@ elif grep -q hpnotebook $HOSTNAME; then
   SYSCTL backlight
   SYSCTL acpid
   SYSCTL tlp
-  SYSCTL inotify-daemon
 
 fi
