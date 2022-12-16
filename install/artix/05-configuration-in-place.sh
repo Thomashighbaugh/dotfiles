@@ -23,7 +23,12 @@ SYSCTL elogind
 SYSCTL dmeventd
 SYSCTL alsa
 SYSCTL logind
-SYSCTL
+SYSCTL hdparm
+SYSCTL earlyoom
+SYSCTL cgnanager
+SYSCTL cpupower
+SYSCTL glibc
+
 # --------------------------------------------------- #
 print s "[===================================================]"
 print s "Network Setup"
@@ -82,7 +87,6 @@ if grep -q thinkpad $HOSTNAME; then
   SYSCTL libvirt-dbus
   SYSCTL inotify-daemon
   SYSCTL sensord
-  SYSCTL getty
   SYSCTL auditd
   SYSCTL lm_sensors
   SYSCTL named
@@ -93,8 +97,9 @@ elif grep -q hpnotebook $HOSTNAME; then
   print s "[===================================================]"fi
   sleep 3s
   SYSCTL bluetooth
-  SYSCTL getty
+  SYSCTL backlight
   SYSCTL acpid
   SYSCTL tlp
+  SYSCTL inotify-daemon
 
 fi
