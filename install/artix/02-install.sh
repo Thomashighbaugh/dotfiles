@@ -84,6 +84,10 @@ for line in $(cat $HOME/dotfiles/install/artix/pkglist); do
     paru -S --noconfirm --needed --overwrite='*' $line | tee -a /tmp/install-log.txt
 done
 
+# freetype2 
+paru -Rns freetype2 
+paru -S --noconfirm --needed --overwrite='*' freetype2-infinality-remix 
+
 # For Thunar 
 uca-apply update
 

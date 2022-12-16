@@ -32,10 +32,10 @@ print s "Network Setup"
 print s "[===================================================]"
 sleep 3s
 sudo ufw default deny | tee -a /tmp/install-log.txt
-sudo ufw allow from 192.168.0.0/24 | tee -a /tmp/install-log.txt
-sudo ufw allow from 192.168.0.1 | tee -a /tmp/install-log.txt
+#sudo ufw allow from 192.168.0.0/24 | tee -a /tmp/install-log.txt
+#sudo ufw allow from 192.168.0.1 | tee -a /tmp/install-log.txt
 # Adjust to local pihole address if present
-sudo ufw allow from 192.168.0.12 | tee -a /tmp/install-log.txt
+#sudo ufw allow from 192.168.0.12 | tee -a /tmp/install-log.txt
 sudo ufw logging off | tee -a /tmp/install-log.txt
 sudo ufw enable | tee -a /tmp/install-log.txt
 # --------------------------------------------------- #
@@ -65,6 +65,8 @@ sudo sh -e 'echo "w /sys/devices/system/cpu/cpufreq/policy*/energy_performance_p
 sudo sh -e 'echo "w /sys/module/pcie_aspm/parameters/policy - - - - performance" > /usr/lib/tmpfiles.d/pcie_aspm_performance.conf' | tee -a /tmp/install-log.txt
 
 sudo cp -rvf $HOME/dotfiles/root/etc/* /etc/ | tee -a /tmp/install-log.txt
+
+sudo rm -rvf /etc/systemd
 
 sudo crontab -u tlh /etc/crontab | tee -a /tmp/install-log.txt
 
