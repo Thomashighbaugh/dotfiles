@@ -116,8 +116,8 @@ theme.warn = {fg = base00, bg = base0E}
 theme.error = {fg = base08, bg = base00}
 
 -- Font
-theme.font = "12px Operator SSm Black"
-theme.hint_font = "10px Operator SSm Black"
+theme.font = "12px OperatorMonoSSm Nerd Font Bold  Black"
+theme.hint_font = "10px OperatorMonoSSm Nerd Font Bold  Black"
 
 return theme
 

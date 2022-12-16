@@ -22,7 +22,7 @@ link_color:#555566"
 
 gtk-theme-name="Dhumavati-White-Dark"
 gtk-icon-theme-name="chhinamasta"
-gtk-font-name="Operator SSm Black 11"
+gtk-font-name="OperatorMonoSSm Nerd Font Bold  Black 11"
 gtk-cursor-theme="chhinamasta"
 gtk-cursor-theme-size=32
 gtk-toolbar-style=GTK_TOOLBAR_BOTH
