@@ -4,7 +4,6 @@ out
 gen
 *id_rsa
 .settings/
-.vscode/
 tsconfig.json
 jsconfig.json
 *~

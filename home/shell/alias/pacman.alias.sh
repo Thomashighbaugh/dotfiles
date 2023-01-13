@@ -28,7 +28,6 @@ alias yudel="paru  -Rdd "
 alias pudel="sudo pacman -Rdd "
 
 ## Search
-alias yups="paruz"
 alias yupss="paru -Ss "
 alias pups="sudo pacman -Ss "
 

@@ -6,12 +6,12 @@ source "$HOME"/dotfiles/install/artix/01-lib.sh
 
 ## Symlinks
 print t "[===================================================]"
-print t "Dotfiles Setup" 
+print t "Dotfiles Setup"
 print t "[===================================================]"
 sleep 3s
 # --------------------------------------------------- #
 print s "[===================================================]"
-print s "Shells" 
+print s "Shells"
 print s "[===================================================]"
 sleep 3s
 LINK "$HOME"/dotfiles/home/bash/bashenv "$HOME"/.bashenv
@@ -21,7 +21,7 @@ LINK "$HOME"/dotfiles/home/shell/aliases "$HOME"/.aliases
 
 # --------------------------------------------------- #
 print s "[===================================================]"
-print s "Quality of Life" 
+print s "Quality of Life"
 print s "[===================================================]"
 sleep 3s
 mkdir -p "$HOME"/.gnupg/ | tee -a /tmp/install-log.txt
@@ -33,7 +33,7 @@ LINK "$HOME"/dotfiles/home/neofetch "$HOME"/.config/neofetch
 
 # --------------------------------------------------- #
 print s "[===================================================]"
-print s "X11" 
+print s "X11"
 print s "[===================================================]"
 sleep 3s
 mkdir -p "$HOME"/.Xresources.d | tee -a /tmp/install-log.txt
@@ -43,11 +43,12 @@ LINK "$HOME"/dotfiles/home/xorg/font "$HOME"/.Xresources.d/font
 LINK "$HOME"/dotfiles/home/xorg/rxvt-unicode "$HOME"/.Xresources.d/rxvt-unicode
 LINK "$HOME"/dotfiles/home/xorg/xterm "$HOME"/.Xresources.d/xterm
 LINK "$HOME"/dotfiles/home/xorg/xsettingsd "$HOME"/.xsettingsd
-xrdb -merge ~/.Xresources
+LINK "$HOME"/dotfiles/home/xorg/xinitrc "$HOME"/.xinitrc
+xrdb -merge ~/.Xresources | tee -a /tmp/install-log.txt
 
 # --------------------------------------------------- #
 print s "[===================================================]"
-print s "Zathura" 
+print s "Zathura"
 print s "[===================================================]"
 sleep 3s
 mkdir -p "$HOME"/.config/zathura | tee -a /tmp/install-log.txt
@@ -55,7 +56,7 @@ LINK "$HOME"/dotfiles/home/zathura/zathurarc "$HOME"/.config/zathura
 
 # --------------------------------------------------- #
 print s "[===================================================]"
-print s "GTK" 
+print s "GTK"
 print s "[===================================================]"
 sleep 3s
 mkdir -p "$HOME"/.config/gtk-3.0 | tee -a /tmp/install-log.txt
@@ -70,7 +71,7 @@ LINK "$HOME"/dotfiles/home/qt5ct "$HOME"/.config/
 
 # --------------------------------------------------- #
 print s "[===================================================]"
-print s "Background Images" 
+print s "Background Images"
 print s "[===================================================]"
 sleep 3s
 SULINK "$HOME"/dotfiles/root/images "$HOME"/.local/share/images
@@ -78,14 +79,14 @@ sudo cp -rvf "$HOME"/dotfiles/root/images/* /usr/share/backgrounds | tee -a /tmp
 
 # --------------------------------------------------- #
 print s "[===================================================]"
-print s "Picom" 
+print s "Picom"
 print s "[===================================================]"
 sleep 3s
 LINK "$HOME"/dotfiles/home/picom/picom.conf "$HOME"/.config
 
 # --------------------------------------------------- #
 print s "[===================================================]"
-print s "Rofi" 
+print s "Rofi"
 print s "[===================================================]"
 sleep 3s
 mkdir -p "$HOME"/.config/rofi/themes | tee -a /tmp/install-log.txt
@@ -96,7 +97,7 @@ LINK "$HOME"/dotfiles/home/rofi/three.rasi "$HOME"/.config/rofi/three.rasi
 
 # --------------------------------------------------- #
 print s "[===================================================]"
-print s "Dunst" 
+print s "Dunst"
 print s "[===================================================]"
 sleep 3s
 mkdir -p "$HOME"/.config/dunst | tee -a /tmp/install-log.txt
@@ -104,7 +105,7 @@ LINK "$HOME"/dotfiles/home/dunst/dunstrc "$HOME"/.config/dunst/dunstrc
 
 # --------------------------------------------------- #
 print s "[===================================================]"
-print s "Kitty" 
+print s "Kitty"
 print s "[===================================================]"
 sleep 3s
 mkdir -p "$HOME"/.config/kitty | tee -a /tmp/install-log.txt
@@ -115,7 +116,7 @@ sudo cp -rvf "$HOME"/dotfiles/home/kitty/kitty.png /usr/lib/kitty/logo/kitty-128
 
 # --------------------------------------------------- #
 print s "[===================================================]"
-print s "Fontconfig" 
+print s "Fontconfig"
 print s "[===================================================]"
 sleep 3s
 LINK "$HOME"/dotfiles/home/fontconfig "$HOME"/.config/fontconfig
@@ -123,7 +124,7 @@ LINK "$HOME"/dotfiles/home/fontconfig "$HOME"/.config/fontconfig
 
 # --------------------------------------------------- #
 print s "[===================================================]"
-print s "Luakit Web Browser" 
+print s "Luakit Web Browser"
 print s "[===================================================]"
 sleep 3s
 LINK "$HOME"/dotfiles/home/luakit "$HOME"/.config/luakit

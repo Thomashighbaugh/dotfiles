@@ -50,12 +50,12 @@
 	remotebranch = 5 normal bold
 	nobranch = 9 normal bold italic blink
 	unmerged = 9 normal
-	untracked = normal dim
+	untracked = 9 normal bold italic blink
 [color "branch"]
-	plain = 6 normal bold dim
-	remote = 5 normal bold dim
-	current = 6 normal bold
-	local = 6 normal bold dim
+	plain = 6 normal bold
+	remote = 5 normal bold
+	current = 6 normal bold reverse
+	local = 6 normal bold
 	upstream = 5 normal bold
 [color "remote"]
 	hint = normal dim
@@ -69,34 +69,42 @@
 	error = 9 normal bold italic blink
 [color "diff"]
 	commit = 3 0
-	newMoved = 14 normal
+	newMoved = 11 normal
 	oldMovedAlternativeDimmed = 4 normal dim
-	frag = 9 normal bold italic blink ul
-	oldMovedAlternative = 12 normal dim
+	frag = normal dim italic
+	oldMovedAlternative = 4 normal
 	contextBold = normal bold
 	newBold = 10 normal bold
 	context = normal
-	oldMoved = 14 normal dim
-	oldBold = 9 normal dim bold
-	newMovedDimmed = 6 normal
-	func = 9 normal bold italic blink ul
-	meta = 9 normal bold italic blink
-	newDimmed = 2 normal
+	oldMoved = 3 normal
+	oldBold = 1 normal bold
+	newMovedDimmed = 11 normal dim
+	func = normal dim italic
+	meta = normal dim
+	newDimmed = 10 normal dim
 	newMovedAlternative = 12 normal
 	new = 10 normal
-	newMovedAlternativeDimmed = 4 normal
+	newMovedAlternativeDimmed = 12 normal dim
 	whitespace = normal 9
-	oldMovedDimmed = 6 normal dim
+	oldMovedDimmed = 3 normal dim
 	oldDimmed = 1 normal dim
-	old = 9 normal dim
+	old = 1 normal
 [color "decorate"]
 	branch = 6 normal bold
 	tag = 3 0
 	remotebranch = 5 normal bold
 	stash = 9 normal bold italic blink
 	grafted = 9 normal bold italic blink
-	HEAD = 6 normal bold dim
+	HEAD = 6 normal bold italic
 [diff]
 	colorMoved = zebra
 [safe]
 	directory = /home/tlh/artools-workspace/
+[maintenance]
+	repo = /home/tlh/.zsh/git/zcolors
+	repo = /home/tlh/.zsh/git/zsh-autocomplete
+	repo = /home/tlh/.zsh/git/zsh-autosuggestions
+	repo = /home/tlh/.zsh/git/zsh-edit
+	repo = /home/tlh/.zsh/git/zsh-hist
+	repo = /home/tlh/.zsh/git/zsh-snap
+	repo = /home/tlh/.zsh/git/zsh-syntax-highlighting
