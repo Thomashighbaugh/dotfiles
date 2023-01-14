@@ -14,15 +14,36 @@ set adjust-open "best-fit"
 # One page per row by default
 set pages-per-row 1
 
+# copy to clipboard
+set selection-clipboard clipboard
+
 # Stop at page boundries
 set scroll-page-aware "true"
 set scroll-full-overlap 0.01
 set scroll-step 100
 
-# zoom settings
-set zoom-min 10
+
+set zoom-step 20
+set n-completion-items 20
+set incremental-search true
+
+
 set guioptions ""
 
+# default; padding when statsubar opend (:something)
+set statusbar-v-padding 2
+set statusbar-h-padding 8
+# blank space between pages
+set page-padding 2
+
+set show-scrollbars false
+# default; on abort (<esc>) clear higlight (like :nohl)
+set abort-clear-search true
+
+# don't make window title fullpath
+set window-title-basename true
+# don't show fullpath in status bar
+# set statusbar-basename true
 
 # Base16 vice
 # Author: Thomas Leon Highbaugh thighbaugh@zoho.com
