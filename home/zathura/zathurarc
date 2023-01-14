@@ -36,7 +36,6 @@ set statusbar-h-padding 8
 # blank space between pages
 set page-padding 2
 
-set show-scrollbars false
 # default; on abort (<esc>) clear higlight (like :nohl)
 set abort-clear-search true
 
