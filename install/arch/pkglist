@@ -1,16 +1,11 @@
 acpi acpid alias-tips-git almh-git
 alsa-firmware alsa-oss alsa-tools alsa-utils
-amdapp-sdk-opencv amdctl-git ananicy-cpp
-android-apktool android-emulator android-file-transfer
-android-messages-desktop android-ndk android-sdk-build-tools
-android-sdk-platform-tools android-tools android-udev-rules
-appimage-installer appimagetool-bin appstream-glib arandr
+ananicy-cpp appimage-installer appimagetool-bin appstream-glib arandr
 archiso archiver archstrike-keyring archstrike-mirrorlist
 arp-scan artikulate asciidoc aspell-en atril
 audiocd-kio authy authy-export-git autoconf-archive
-avidemux-qt awesome-luajit-git awmtt b43-fwcutter
-baloo-widgets baobab base bashcaster bauh
-beep black-hole-solver blackarch-keyring blinken
+avidemux-qt baobab base bauh
+beep blackarch-keyring blinken
 bluetooth-support bluez-firmware bolt bomber
 boost breezy brightnessctl btop cantor cervisia
 chaotic-keyring chaotic-mirrorlist chrpath
@@ -18,13 +13,11 @@ ckbcomp clipnotify clutter-gst cmark cmocka
 code-insiders-features code-marketplace colord-gtk
 colord-gtk4 connman-gtk converseen ctags cups-pdf
 cups-pk-helper cylon cython dash dconf-editor dd_rescue
-ddcutil ddrescue deepin-polkit-agent discord-canary docker-compose
-docker-ls docker-machine dockerize drone-runner-docker duf
+ddcutil ddrescue deepin-polkit-agent discord-canary duf
 dunst easy-rsa ecryptfs-utils editorconfig-checker edk2-shell electron16
-elisa enchive eog epiphany exa expect extra-cmake-modules fastjar
-fcgi ffmpegthumbs figlet filelight firefox firefox-developer-edition
-firefox-nightly flite-voices fontforge fortune-mod freecell-solver freetype2-demos
-fuseiso fzy gambas3-gb-inotify gawk-xml geary gedit gfbgraph gifcurry
+enchive eog epiphany exa expect extra-cmake-modules fastjar
+fcgi ffmpegthumbs figlet filelight firefox fontforge fortune-mod  freetype2-demos
+fuseiso  gambas3-gb-inotify gawk-xml geary gedit gfbgraph gifcurry
 gifski gimp-font-rendering-fix gimp-nufraw gimp-paint-studio gimp-plugin-gmic
 gimp-plugin-registry git-hub github-backup glade gnome-disk-utility
 gnome-icon-theme-extras gnugo goimapnotify google-chrome gparted gpick
@@ -45,7 +38,7 @@ jpegoptim jq jsonrpc-glib juk k3b keepass kernel-modules-hook kernel-update-hook
 kernelshark killbots kio-gdrive kitty-bitmap klettres krdc krename
 krita ktweak-git lbzip2 leafpad lib32-libwebp libgnome-keyring light
 light-locker lightdm-gtk-greeter-settings lightdm-webkit2-greeter
-lightsoff linux-tools-meta linux-xanmod-tt-headers lls lokalize
+lightsoff linux-tools-meta lls lokalize
 lsb-release lsd lskat lua51-argparse lua51-binaryheap lua51-bit32
 lua51-busted lua51-compat53 lua51-cosmo lua51-expat lua51-linenoise
 lua51-loadkit lua51-lpeg-patterns
@@ -55,7 +48,7 @@ lua-posix lua-sec luadec51-git luakit lxappearance-obconf-gtk3
 lxqt-policykit macchanger maim maint makepkg-meta makepkg-optimize
 makeppkg man-pages marble markdownpart mate-polkit mbox-importer
 memavaild memtest86+ menu-cache menumaker midori minuet mirrorlist-rankmirrors-hook
-mkinitcpio-archiso mkinitcpio-bootmsg mkinitcpio-firmware mkinitcpio-kms
+mkinitcpio-bootmsg mkinitcpio-firmware mkinitcpio-kms
 mkinitcpio-modconf-hook-git mkinitcpio-openswap mkinitcpio-systemd-tool mkinitcpio-utils
 mkmm mlt moc mod_dnssd modprobed-db moka-icon-theme-git mousepad mpc
 mpd mpdris2 mpv mutt-wizard mythes-de mythes-en mythes-es ncmpcpp
@@ -67,7 +60,7 @@ packer packer-builder-arm-image pacman-hook-kernel-install palapeli
 pamixer pandoc pantheon-polkit-agent papirus-icon-theme parley parole
 partclone partitionmanager paruz perl-archive-extract perl-archive-zip
 perl-compress-bzip2 perl-datetime-timezone perl-importer perl-linux-pid
-phpvirtualbox picmi picom-jonaburg-fix pidgin-libnotify pim-data-exporter
+ picmi picom-jonaburg-fix pidgin-libnotify pim-data-exporter
 pim-sieve-editor playerctl polari pop-icon-theme porg powertop poxml
 preload prelockd print-manager progress projectm-pulseaudio pulseaudio-alsa
 pulseaudio-control pulseaudio-ctl pulseaudio-equalizer pulseaudio-qt
@@ -82,8 +75,8 @@ qqwing qt5ct qtcurve-kde r-tcltk2 r-widgettools ranger raw-thumbnailer reflector
 rofi rtl8812au-aircrack-dkms rtl88xxau-aircrack-dkms-git ruby-asciidoctor-html5s ruby-dbus ruby-gtk3 ruby-sass ruby-sd_notify
 ryzen-controller-bin ryzen-ppd ryzen-stabilizator-git samurai sassc scrot sddm sdl_sound sdl_ttf sfnt2woff shared-color-targets silentcast simple-scan simplescreenrecorder skanlite skanpage snorenotify socat soundkonverter spectacle
 stacer step sushi svgcleaner svgpart svgtools sway sweeper swell-foop syslog-ng sysprof systembus-notify
-systemdgenie sysz tali tebu-flat-icon-theme template-glib terraform-provider-libvirt-git thinkfan
-thinkfan-ui thinkpad_wmi-dkms thunar-custom-actions thunar-secure-delete thunarx-python thunderbird tldr
+systemdgenie sysz tali tebu-flat-icon-theme template-glib terraform-provider-libvirt-git
+ thunar-custom-actions thunar-secure-delete thunarx-python thunderbird tldr
 todo-bin totem tp_smapi-dkms tp-battery-mode tpfand-git tpm2-tools-git tpmmanager traceroute transmission-gtk
 ttf-material-design-icons-extended ttf-material-design-icons-git ttf2eot ttf2woff udiskie ufw-extras umbrello
 unison-gtk-2.48.4-compat-bin unp unshield unzip_all update-grub uresourced uwsgi-plugin-lua51
@@ -93,7 +86,7 @@ wxgtk2-dev-light wxgtk3-dev-light xapp xapp-appimage-thumbnailer xapp-epub-thumb
 xcape xdg-user-dirs-gtk xf86-input-elographics xf86-input-evdev
 xf86-input-synaptics xf86-input-vmmouse xf86-input-void xf86-input-wacom
 xf86-video-amdgpu xf86-video-ati xf86-video-dummy xf86-video-fbdev
-xf86-video-intel xf86-video-nouveau xf86-video-openchrome xf86-video-qxl
+xf86-video-nouveau xf86-video-openchrome xf86-video-qxl
 xf86-video-sisusb xf86-video-vesa xf86-video-voodoo
 xfburn xfce4-appfinder xfce4-artwork xfce4-battery-plugin xfce4-clipman-plugin
 xfce4-cpufreq-plugin xfce4-cpugraph-plugin xfce4-datetime-plugin xfce4-dict

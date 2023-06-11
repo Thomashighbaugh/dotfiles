@@ -71,7 +71,7 @@
 	commit = 3 0
 	newMoved = 11 normal
 	oldMovedAlternativeDimmed = 4 normal dim
-	frag = normal dim italic
+	frag = normal dim
 	oldMovedAlternative = 4 normal
 	contextBold = normal bold
 	newBold = 10 normal bold
@@ -79,8 +79,8 @@
 	oldMoved = 3 normal
 	oldBold = 1 normal bold
 	newMovedDimmed = 11 normal dim
-	func = normal dim italic
-	meta = normal dim
+	func = 2 normal bold dim
+	meta = normal italic
 	newDimmed = 10 normal dim
 	newMovedAlternative = 12 normal
 	new = 10 normal
